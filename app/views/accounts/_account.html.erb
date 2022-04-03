@@ -1,17 +1,6 @@
-<div id="<%= dom_id account %>">
-  <p>
-    <strong>Name:</strong>
-    <%= account.name %>
-  </p>
-
-  <p>
-    <strong>Subdomain:</strong>
-    <%= account.subdomain %>
-  </p>
-
-  <p>
-    <strong>Domain:</strong>
-    <%= account.domain %>
-  </p>
-
-</div>
+<tr id="<%= dom_id account %>">
+  <td><%= account.name %></td>
+  <td><%= account.subdomain %></td>
+  <td> <%= account.domain %></td>
+  <td><%= link_to "Show this account", account %></td>
+</tr>
