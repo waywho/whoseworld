@@ -53,6 +53,9 @@ gem 'acts_as_tenant', "~> 0.5.1"
 gem 'simple_form'
 gem 'simple_form-tailwind'
 
+# user authentication
+gem 'devise'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -67,6 +70,7 @@ group :development do
 
   gem "foreman"
 
+  gem "letter_opener"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

@@ -12,6 +12,12 @@
 
   <body>
     <div class="container mx-auto px-4 mt-10 md:px-10 md:mt-20 lg:px-20">
+      <% if notice %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
       <%= yield %>
     </div>
   </body>
