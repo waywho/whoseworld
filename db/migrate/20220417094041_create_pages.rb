@@ -2,6 +2,8 @@ class CreatePages < ActiveRecord::Migration[7.0]
   def change
     create_table :pages do |t|
       t.string :show
+      t.string :title
+      t.references :account, index: true
 
       t.timestamps
     end
