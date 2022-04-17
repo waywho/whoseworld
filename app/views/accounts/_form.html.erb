@@ -1,0 +1,7 @@
+<%= simple_form_for account do |f| %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.input :name %>
+  <%= f.input :subdomain %>
+  <%= f.input :domain %>
+  <%= f.submit %>
+<% end %>
