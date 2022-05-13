@@ -10,6 +10,14 @@ class PagesController < ApplicationController
   def show
   end
 
+  def landing
+    if @page = Page.landing
+      render :landing
+    else
+      render :file => "#{Rails.root}/public/404.html", :layout => false, :status => :not_found 
+    end
+  end
+
   # GET /pages/new
   def new
     @page = Page.new
@@ -53,6 +61,6 @@ class PagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:show)
+      params.require(:page).permit(:title, :landing)
     end
 end

@@ -1,3 +1,5 @@
 class Page < ApplicationRecord
-    acts_as_tenant :page
+    extend FriendlyId
+    friendly_id :title, use: :slugged
+
 end
