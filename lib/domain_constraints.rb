@@ -4,6 +4,6 @@ class DomainConstraints
     end
 
     def matches?(request)
-        @domains.include? request.host
+        @domains.include? request.domain
     end
 end  
