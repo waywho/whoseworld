@@ -9,21 +9,21 @@ Rails.application.routes.draw do
   # root "articles#index"
 
 
-  constraints DomainConstraints.new('weihsihu.test', 'weihsihu.com') do
-    root to: 'weihsihu/pages#landing'
+  constraints DomainConstraints.new("weihsihu.test", "weihsihu.com", "weihsihu.co.uk") do
+    root to: "weihsihu/pages#landing", as: :weihsihu_root
   end
 
-  constraints DomainConstraints.new('logical-thinking.co.uk', 'logical-thinking.test') do
-    root to: 'logical_thinking/pages#landing', as: :logical_thinking_root
+  constraints DomainConstraints.new("logical-thinking.co.uk", "logical-thinking.test") do
+    root to: "logical_thinking/pages#landing", as: :logical_thinking_root
   end
 
-  constraints DomainConstraints.new('storychor.com', 'storychor.test') do
-    root to: 'storychor/pages#landing', as: :storychor_root
+  constraints DomainConstraints.new("storychor.com", "storychor.test") do
+    root to: "storychor/pages#landing", as: :storychor_root
   end
 
-  constraints DomainConstraints.new('berlinunrehearsedmusicals.com', 'berlinunrehearsedmusicals.test') do
-    root to: 'burm/pages#landing', as: :burm
+  constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
+    root to: "burm/pages#landing", as: :burm
   end
 
-  # root "pages#landing"
+  root "pages#landing"
 end
