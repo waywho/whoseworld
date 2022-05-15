@@ -11,11 +11,7 @@ class PagesController < ApplicationController
   end
 
   def landing
-    if @page = Page.landing
-      render :landing
-    else
-      render :file => "#{Rails.root}/public/404.html", :layout => false, :status => :not_found 
-    end
+
   end
 
   # GET /pages/new

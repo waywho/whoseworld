@@ -1,0 +1,2 @@
+module LogicalThinking::PagesHelper
+end

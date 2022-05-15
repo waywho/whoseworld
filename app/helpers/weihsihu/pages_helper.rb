@@ -1,0 +1,2 @@
+module Weihsihu::PagesHelper
+end

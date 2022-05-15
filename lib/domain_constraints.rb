@@ -1,9 +1,9 @@
 class DomainConstraints
-    def initialize(domain)
-        @domains = [domain].flatten
+    def initialize(*domains)
+        @domains = [domains].flatten
     end
 
     def matches?(request)
-        @domains.include? request.domain
+        @domains.include? request.host
     end
 end  

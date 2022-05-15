@@ -1,0 +1,2 @@
+module Storychor::PagesHelper
+end

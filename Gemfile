@@ -73,6 +73,8 @@ group :development do
   gem "foreman"
 
   gem "letter_opener"
+
+  gem "pry-remote"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

@@ -7,21 +7,23 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  # constraints DomainConstraints.new('weihsihu.com') do
-  #   root to: 'mydomain#index'
-  # end
 
-  # constraints DomainConstraints.new('logical-thinking.co.uk') do
-  #   root to: 'mydomain#index'
-  # end
 
-  # constraints DomainConstraints.new('storychor.com') do
-  #   root to: 'mydomain#index'
-  # end
+  constraints DomainConstraints.new('weihsihu.test', 'weihsihu.com') do
+    root to: 'weihsihu/pages#landing'
+  end
 
-  # constraints DomainConstraints.new('berlinunrehearsedmusicals.com') do
-  #   root to: 'mydomain#index'
-  # end
+  constraints DomainConstraints.new('logical-thinking.co.uk', 'logical-thinking.test') do
+    root to: 'logical_thinking/pages#landing', as: :logical_thinking_root
+  end
 
-  root "pages#landing"
+  constraints DomainConstraints.new('storychor.com', 'storychor.test') do
+    root to: 'storychor/pages#landing', as: :storychor_root
+  end
+
+  constraints DomainConstraints.new('berlinunrehearsedmusicals.com', 'berlinunrehearsedmusicals.test') do
+    root to: 'burm/pages#landing', as: :burm
+  end
+
+  # root "pages#landing"
 end
