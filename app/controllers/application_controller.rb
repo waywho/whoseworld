@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def production_redirect
     if Rails.env.production?
-      redirect_to root_path
+      render "pages/landing"
     end
   end
 end

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
-    root to: "burm/pages#landing", as: :burm
+    root to: "burm/pages#landing", as: :burm_root
   end
 
   root "pages#landing"
