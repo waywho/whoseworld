@@ -1,0 +1,2 @@
+module Burm::PagesHelper
+end
