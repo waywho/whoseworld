@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
+  if Rails.env.development?
+    mount Lookbook::Engine, at: "/lookbook"
+  end
 
   constraints DomainConstraints.new("weihsihu.test", "weihsihu.com", "weihsihu.co.uk") do
     root to: "weihsihu/pages#landing", as: :weihsihu_root
