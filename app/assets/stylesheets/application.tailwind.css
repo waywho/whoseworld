@@ -9,11 +9,12 @@
     h2 {
         @apply text-xl font-bold;
     }
-
     h1, h2, h3, h4 {
         @apply mb-4;
     }
-
+    a {
+        @apply hover:text-gray-500;
+    }
     table {
         @apply table-fixed w-full text-sm text-left border-separate text-gray-500 text-gray-400;
     }
