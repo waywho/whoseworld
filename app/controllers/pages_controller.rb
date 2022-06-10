@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
 
   def landing
-
+    @site_name = nil
   end
 
   # GET /pages/new
