@@ -7,6 +7,8 @@
     <%= f.input :name %>
     <%= f.input :domain %>
     <%= f.input :subdomain %>
+    <%= f.input :slug %>
+    <%= f.input :orientation, collection: Site.orientations %>
   </div>
 
   <div class="form-actions">

@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
 
   def landing
-
+    render "#{Current.tenant.slug}/landing", layout: 'home'
   end
 
   # GET /pages/new

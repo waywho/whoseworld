@@ -1,2 +1,9 @@
-<div id="<%= dom_id site %>">
+<%= link_to [:admin, site] do %>
+<div id="<%= dom_id site %>" class="grid grid-cols-5">
+	<div><%= site.name %></div>
+	<div><%= site.subdomain %></div>
+	<div><%= site.domain %></div>
+	<div><%= site.slug %></div>
+	<div><%= site.orientation %></div>
 </div>
+<% end %>

@@ -8,6 +8,7 @@ class Admin::SitesController < ApplicationController
 
   # GET /admin/sites/1
   def show
+    render :edit
   end
 
   # GET /admin/sites/new
@@ -24,7 +25,7 @@ class Admin::SitesController < ApplicationController
     @site = Site.new(admin_site_params)
 
     if @site.save
-      redirect_to @site, notice: "Site was successfully created."
+      redirect_to admin_sites_url, notice: "Site was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +34,7 @@ class Admin::SitesController < ApplicationController
   # PATCH/PUT /admin/sites/1
   def update
     if @site.update(admin_site_params)
-      redirect_to @site, notice: "Site was successfully updated."
+      redirect_to admin_sites_url, notice: "Site was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,6 +54,6 @@ class Admin::SitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_site_params
-      params.fetch(:admin_site, {})
+      params.require(:site).permit(:name, :subdomain, :domain, :orientation, :slug)
     end
 end

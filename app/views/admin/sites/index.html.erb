@@ -2,13 +2,19 @@
 
 <h1>Sites</h1>
 
-<div id="sites">
+<%= link_to "New site", new_admin_site_path, class: "btn btn-primary my-4 float-right" %>
+<br class="clear-both" />
+
+<div id="sites" class="grid auto-rows-auto my-4">
+  <div class="grid grid-cols-5 font-semibold">
+    <div>Name</div>
+    <div>Subdomain</div>
+    <div>Domain</div>
+    <div>Slug</div>
+    <div>Orientation</div>
+  </div>
+
   <% @sites.each do |site| %>
     <%= render site %>
-    <p>
-      <%= link_to "Show this site", site %>
-    </p>
   <% end %>
 </div>
-
-<%= link_to "New site", new_admin_site_path %>

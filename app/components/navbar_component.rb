@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class NavbarComponent < ViewComponent::Base
-  def initialize(name:, menu_items: [], position: :top, logo: nil)
+  def initialize(name:, menu_items: [], position: :top, logo: nil, html: {})
     @name = name
     @position = position
     @menu_items = menu_items
     @logo = logo
+    @html_options = html.with_indifferent_access
   end
 
   private
@@ -29,7 +30,7 @@ class NavbarComponent < ViewComponent::Base
       right-0 items-center justify-between h-fit md:h-20 border-b w-screen flex bg-transparent"
     end
 
-    "flex #{base_classes} transition ease-in duration-500 items-stretch"
+    "flex #{base_classes} transition ease-in duration-500 items-stretch #{@html_options[:class]}"
   end
 
   def menu_button_class

@@ -3,7 +3,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Default class for buttons
-  config.button_class = 'my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded'
+  config.button_class = 'my-2 bg-blue-500 hover:bg-blue-700 text-white font-semibold text-sm py-2 px-4 rounded'
 
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = ''
@@ -33,7 +33,6 @@ SimpleForm.setup do |config|
   config.input_field_error_class = 'border-red-500'
   config.input_field_valid_class = 'border-green-400'
   config.label_class = 'text-sm font-medium text-gray-600'
-
 
   # vertical forms
   #
@@ -101,12 +100,25 @@ SimpleForm.setup do |config|
     end
     b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
       # ba.use :input, class: 'flex w-auto w-auto text-gray-500 text-sm border-gray-300 rounded p-2', error_class: 'text-red-500', valid_class: 'text-green-400'
-      ba.use :input, class: 'flex w-auto w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
+      ba.use :input, class: 'flex w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
 
+  # vertical select
+  config.wrappers :vertical_select, tag: 'div', class: 'my-4', error_class: 'f', valid_class: '' do |b|
+    b.use :html5
+    b.optional :readonly
+    b.wrapper :legend_tag, tag: 'legend', class: 'text-sm font-medium text-gray-600', error_class: 'text-red-500' do |ba|
+      ba.use :label_text
+    end
+    b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
+      ba.use :input, class: 'shadow border border-gray-300 text-gray-900 text-sm rounded w-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+    end
+    b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+  end
   # vertical range input
   config.wrappers :vertical_range, tag: 'div', class: 'my-4', error_class: 'text-red-500', valid_class: 'text-green-400' do |b|
     b.use :html5
@@ -134,6 +146,7 @@ SimpleForm.setup do |config|
     file:          :vertical_file,
     radio_buttons: :vertical_collection,
     range:         :vertical_range,
-    time:          :vertical_multi_select
+    time:          :vertical_multi_select,
+    select:        :vertical_select
   }
 end
