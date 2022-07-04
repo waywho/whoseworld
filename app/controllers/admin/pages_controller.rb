@@ -1,14 +1,14 @@
-class Admin::PagesController < ApplicationController
+class Admin::PagesController < AdminController
   before_action :set_page, only: %i[ show edit update destroy ]
 
   # GET /admin/pages
   def index
-    @pages = Page.all
+    @pages = Current.tenant.pages.all
   end
 
   # GET /admin/pages/new
   def new
-    @page = Page.new
+    @page = Current.tenant.pages.new
   end
 
   # GET /admin/pages/1/edit
@@ -17,7 +17,7 @@ class Admin::PagesController < ApplicationController
 
   # POST /admin/pages
   def create
-    @page = Page.new(admin_page_params)
+    @page = Current.tenant.pages.new(page_params)
 
     if @page.save
       redirect_to @page, notice: "Page was successfully created."
@@ -28,7 +28,7 @@ class Admin::PagesController < ApplicationController
 
   # PATCH/PUT /admin/pages/1
   def update
-    if @page.update(admin_page_params)
+    if @page.update(page_params)
       redirect_to @page, notice: "Page was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -44,11 +44,11 @@ class Admin::PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Current.tenant.pages.find(params[:id])
     end
 
-# Only allow a list of trusted parameters through.
+    # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:title)
+      params.require(:page).permit(:title, :menu, :site_id)
     end
 end

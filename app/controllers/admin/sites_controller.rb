@@ -1,4 +1,4 @@
-class Admin::SitesController < ApplicationController
+class Admin::SitesController < AdminController
   before_action :set_admin_site, only: %i[ show edit update destroy ]
 
   # GET /admin/sites
