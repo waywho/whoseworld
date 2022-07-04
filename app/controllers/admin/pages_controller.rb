@@ -1,14 +1,14 @@
 class Admin::PagesController < ApplicationController
-  before_action :set_admin_page, only: %i[ show edit update destroy ]
+  before_action :set_page, only: %i[ show edit update destroy ]
 
   # GET /admin/pages
   def index
-    @admin_pages = Page.all
+    @pages = Page.all
   end
 
   # GET /admin/pages/new
   def new
-    @admin_page = Page.new
+    @page = Page.new
   end
 
   # GET /admin/pages/1/edit
@@ -17,10 +17,10 @@ class Admin::PagesController < ApplicationController
 
   # POST /admin/pages
   def create
-    @admin_page = Page.new(admin_page_params)
+    @page = Page.new(admin_page_params)
 
-    if @admin_page.save
-      redirect_to @admin_page, notice: "Page was successfully created."
+    if @page.save
+      redirect_to @page, notice: "Page was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,8 +28,8 @@ class Admin::PagesController < ApplicationController
 
   # PATCH/PUT /admin/pages/1
   def update
-    if @admin_page.update(admin_page_params)
-      redirect_to @admin_page, notice: "Page was successfully updated."
+    if @page.update(admin_page_params)
+      redirect_to @page, notice: "Page was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,18 +37,18 @@ class Admin::PagesController < ApplicationController
 
   # DELETE /admin/pages/1
   def destroy
-    @admin_page.destroy
+    @page.destroy
     redirect_to admin_pages_url, notice: "Page was successfully destroyed."
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_page
-      @admin_page = Page.find(params[:id])
+    def set_page
+      @page = Page.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def admin_page_params
-      params.fetch(:admin_page, {})
+# Only allow a list of trusted parameters through.
+    def page_params
+      params.require(:page).permit(:title)
     end
 end

@@ -8,10 +8,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag asset_path("#{Current.tenant.slug}-favicon.png") %>
   </head>
 
   <body>
-    <%= render NavbarComponent.new(name: Current.tenant.name, position: Current.tenant.orientation.to_sym || :top, html: { class: 'p-8' }) %>
+    <%= render NavbarComponent.new(name: Current.tenant.name, position: Current.tenant.orientation.to_sym || :top, logo: Current.tenant.slug, html: { class: 'p-8' }) %>
     <%= yield %>
   </body>
 </html>

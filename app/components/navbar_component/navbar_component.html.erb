@@ -3,6 +3,7 @@
 		<%= link_to root_path do %>
 			<%= logo %>
 		<% end %>
+		<%= Current.tenant.subtitle %>
 	</div>
 	<button type="button" class="<%= menu_button_class %> inline-flex grow-0 items-center p-2 text-sm text-gray-500 md:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false" data-action="click->navbar-component#toggle">
 			<span class="sr-only">Open main menu</span>
