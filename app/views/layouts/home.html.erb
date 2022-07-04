@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Whoseworld</title>
+    <title><%= Current.tenant.name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag asset_path("#{Current.tenant.slug}-favicon.png") %>
   </head>
 
   <body>
-    <%= render NavbarComponent.new(name: @site_name, position: :top) %>
+    <%= render NavbarComponent.new(name: Current.tenant.name, position: Current.tenant.orientation.to_sym || :top, logo: Current.tenant.slug, html: { class: 'p-8' }) %>
     <%= yield %>
   </body>
 </html>

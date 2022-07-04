@@ -1,0 +1,21 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Sites</h1>
+
+<%= link_to "New site", new_admin_site_path, class: "btn btn-primary my-4 float-right" %>
+<br class="clear-both" />
+
+<div id="sites" class="grid auto-rows-auto my-4">
+  <div class="grid grid-cols-6 font-semibold">
+    <div>Name</div>
+    <div>Subdomain</div>
+    <div>Domain</div>
+    <div>Slug</div>
+    <div>Orientation</div>
+    <div>Subtitle</div>
+  </div>
+
+  <% @sites.each do |site| %>
+    <%= render site %>
+  <% end %>
+</div>

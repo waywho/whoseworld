@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Pages</h1>
+
+<%= link_to "New site", new_admin_page_path, class: "btn btn-primary my-4 float-right" %>
+<br class="clear-both" />
+
+<div id="pages" class="grid auto-rows-auto my-4">
+  <div class="grid grid-cols-1 font-semibold">
+    <div>Title</div>
+  </div>
+
+  <% @pages.each do |page| %>
+    <%= render page %>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :production_redirect
-  before_action :set_site_name
+  before_action :set_site
 
   private
 
@@ -10,7 +10,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_site_name
-    @site_name = nil
+  def set_site
+    if Rails.env.development?
+      domain = request.domain.split(".")[0]
+      site = Site.where("domain LIKE ?", "%#{domain}%").first
+    else
+      domain = request.domain
+      site = Site.find_by(domain: domain)
+    end
+    Current.tenant = site
   end
 end

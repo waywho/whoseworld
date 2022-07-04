@@ -1,31 +1,23 @@
-class PagesController < ApplicationController
+class Admin::PagesController < AdminController
   before_action :set_page, only: %i[ show edit update destroy ]
 
-  # GET /pages
+  # GET /admin/pages
   def index
-    @pages = Page.all
+    @pages = Current.tenant.pages.all
   end
 
-  # GET /pages/1
-  def show
-  end
-
-  def landing
-    render "#{Current.tenant.slug}/landing", layout: 'home'
-  end
-
-  # GET /pages/new
+  # GET /admin/pages/new
   def new
-    @page = Page.new
+    @page = Current.tenant.pages.new
   end
 
-  # GET /pages/1/edit
+  # GET /admin/pages/1/edit
   def edit
   end
 
-  # POST /pages
+  # POST /admin/pages
   def create
-    @page = Page.new(page_params)
+    @page = Current.tenant.pages.new(page_params)
 
     if @page.save
       redirect_to @page, notice: "Page was successfully created."
@@ -34,7 +26,7 @@ class PagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pages/1
+  # PATCH/PUT /admin/pages/1
   def update
     if @page.update(page_params)
       redirect_to @page, notice: "Page was successfully updated."
@@ -43,20 +35,20 @@ class PagesController < ApplicationController
     end
   end
 
-  # DELETE /pages/1
+  # DELETE /admin/pages/1
   def destroy
     @page.destroy
-    redirect_to pages_url, notice: "Page was successfully destroyed."
+    redirect_to admin_pages_url, notice: "Page was successfully destroyed."
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Current.tenant.pages.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:title, :landing)
+      params.require(:page).permit(:title, :menu, :site_id)
     end
 end
