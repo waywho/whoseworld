@@ -36,6 +36,9 @@ gem "redis", "~> 4.0"
 # Acts as tenant
 gem 'acts_as_tenant'
 
+# Row order
+gem 'ranked-model'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
