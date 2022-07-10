@@ -20,7 +20,7 @@ class Admin::PagesController < AdminController
     @page = Current.tenant.pages.new(page_params)
 
     if @page.save
-      redirect_to @page, notice: "Page was successfully created."
+      redirect_to admin_pages_path, notice: "Page was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,6 +49,6 @@ class Admin::PagesController < AdminController
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:title, :menu, :site_id)
+      params.require(:page).permit(:title, :content, :menu, :site_id)
     end
 end

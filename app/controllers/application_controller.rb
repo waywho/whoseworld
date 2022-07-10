@@ -19,5 +19,10 @@ class ApplicationController < ActionController::Base
       site = Site.find_by(domain: domain)
     end
     Current.tenant = site
+    if Current.tenant.slug == "weihsihu"
+      Current.style = :one_page
+    else
+      Current.style = :multi_page
+    end
   end
 end

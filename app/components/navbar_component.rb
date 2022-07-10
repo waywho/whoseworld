@@ -1,15 +1,26 @@
 # frozen_string_literal: true
 
 class NavbarComponent < ViewComponent::Base
-  def initialize(name:, menu_items: [], position: :top, logo: nil, html: {})
-    @name = name
-    @position = position
-    @menu_items = menu_items
-    @logo = logo
+  def initialize(site:, style: :multi_page, html: {})
+    @site = site
+    @position = @site.orientation.to_sym || :top
+    @logo = @site.slug
+    @style = style
     @html_options = html.with_indifferent_access
   end
 
   private
+
+  def menu_items
+    case @style
+    when :multi_page
+      @site.pages.menu_pages.map { |m| [m.title, url_for(m)] }
+    when :one_page
+      @site.pages.menu_pages.map { |m| [m.title, "##{m.slug}"] }
+    else
+      []
+    end
+  end
 
   def logo
     if @logo
@@ -31,6 +42,19 @@ class NavbarComponent < ViewComponent::Base
     end
 
     "flex #{base_classes} transition ease-in duration-500 items-stretch #{@html_options[:class]}"
+  end
+
+  def content_wrapper_classes
+    base_classes = case @position
+    when :left
+      "md:ml-[250px]"
+    when :right
+      "md:mr-[250px]"
+    else
+      "mt-20"
+    end
+
+    "p-12 #{base_classes}"
   end
 
   def menu_button_class
@@ -68,12 +92,14 @@ class NavbarComponent < ViewComponent::Base
   end
 
   def menu_classes
-    case @position
+    base_classes = case @position
     when :left, :right
       "p-2 hover:bg-gray-100"
     else
       "px-4 py-4 md:py-0 flex flex-col items-center justify-center"
     end
+
+    "text-xl font-semibold #{base_classes}"
   end
 
 end

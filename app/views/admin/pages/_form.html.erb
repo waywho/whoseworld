@@ -1,11 +1,13 @@
 
-<%= simple_form_for(@page) do |f| %>
+<%= simple_form_for([:admin, page]) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :menu %>
+    <%= f.association :site, value: Current.tenant.id, abel_method: :name, value_method: :id %>
+    <%= f.input :slug %>
   </div>
 
   <div class="form-actions">
