@@ -15,6 +15,9 @@
     a {
         @apply hover:text-gray-500;
     }
+    p {
+        @apply mb-6;
+    }
     table {
         @apply table-fixed w-full text-sm text-left border-separate text-gray-500 text-gray-400;
     }

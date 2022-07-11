@@ -1,6 +1,6 @@
 <div id="<%= dom_id page %>">
   <h1><%= page.title %></h1>
-  <p>
-    Testing
-  </p>
+  <% page.contents.each do |content| %>
+    <%= raw content.body %>
+  <% end %>
 </div>

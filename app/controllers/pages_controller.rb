@@ -1,9 +1,10 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[ show edit update destroy ]
+  layout 'home'
 
   # GET /pages
   def index
-    @pages = Current.tenant.pages.all
+    @pages = Current.tenant.pages.rank(:row_order).all
   end
 
   # GET /pages/1

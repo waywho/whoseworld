@@ -8,6 +8,11 @@
     <%= f.input :menu %>
     <%= f.association :site, value: Current.tenant.id, abel_method: :name, value_method: :id %>
     <%= f.input :slug %>
+    <%= f.input :template, collection: Page.templates %>
+    <%= f.simple_fields_for :contents do |contents_form| %>
+      <%= contents_form.input :body, as: :text, input_html: { rows: "6" } %>
+      <%= contents_form.association :page %>
+    <% end %>
   </div>
 
   <div class="form-actions">
