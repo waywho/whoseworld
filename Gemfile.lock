@@ -204,6 +204,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ranked-model (0.4.8)
+      activerecord (>= 4.2)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -291,6 +293,7 @@ DEPENDENCIES
   pry-remote
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
+  ranked-model
   redis (~> 4.0)
   selenium-webdriver
   simple_form

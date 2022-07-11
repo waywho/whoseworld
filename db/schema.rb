@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_04_003747) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_10_162806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.text "body"
+    t.bigint "page_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_contents_on_page_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -32,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_003747) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.bigint "site_id", null: false
+    t.integer "row_order"
+    t.string "template"
     t.index ["site_id"], name: "index_pages_on_site_id"
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
@@ -61,5 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_003747) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contents", "pages"
   add_foreign_key "pages", "sites"
 end

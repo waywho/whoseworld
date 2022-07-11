@@ -13,11 +13,17 @@ class ApplicationController < ActionController::Base
   def set_site
     if Rails.env.development?
       domain = request.domain.split(".")[0]
+      domain = "weihsihu" if domain == "localhost"
       site = Site.where("domain LIKE ?", "%#{domain}%").first
     else
       domain = request.domain
       site = Site.find_by(domain: domain)
     end
     Current.tenant = site
+    if Current.tenant&.slug == "weihsihu"
+      Current.style = :one_page
+    else
+      Current.style = :multi_page
+    end
   end
 end

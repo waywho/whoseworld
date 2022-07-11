@@ -4,16 +4,19 @@
 
 @layer base {
     h1 {
-        @apply text-2xl font-bold;
+        @apply text-4xl font-bold;
     }
     h2 {
-        @apply text-xl font-bold;
+        @apply text-2xl font-bold;
     }
     h1, h2, h3, h4 {
-        @apply mb-4;
+        @apply mb-4 font-bold;
     }
     a {
         @apply hover:text-gray-500;
+    }
+    p {
+        @apply mb-6;
     }
     table {
         @apply table-fixed w-full text-sm text-left border-separate text-gray-500 text-gray-400;

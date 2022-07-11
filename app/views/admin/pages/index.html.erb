@@ -6,11 +6,15 @@
 <br class="clear-both" />
 
 <div id="pages" class="grid auto-rows-auto my-4">
-  <div class="grid grid-cols-1 font-semibold">
+  <div class="grid grid-cols-3 font-semibold">
     <div>Title</div>
+    <div>Menu</div>
+    <div>Slug</div>
   </div>
-
-  <% @pages.each do |page| %>
-    <%= render page %>
-  <% end %>
+  <div data-controller="sortable" data-sortable-animation-value="150" data-sortable-resource-name-value="page"
+       data-sortable-param-name-value="row_order_position" data-sortable-response-kind-value="turbo-stream" >
+    <% @pages.each do |page| %>
+      <%= render page %>
+    <% end %>
+  </div>
 </div>

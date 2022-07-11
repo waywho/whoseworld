@@ -1,1 +1,9 @@
-
+<div id="landing" class="h-screen">
+	<%= render 'pages/page', page: Current.tenant.pages.landing %>
+</div>
+<% Current.tenant.pages.menu_pages.each do |page| %>
+	<div class="border-t -mx-12"></div>
+	<div class="h-screen py-12" id="<%= page.slug %>">
+		<%= render 'pages/page', page: page %>
+	</div>
+<% end %>

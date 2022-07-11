@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :sites
     resources :pages
   end
-  resources :pages
+  root "pages#landing"
+  resources :pages, only: %i[index show], path: ''
   devise_for :users, path: 'admin'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,6 +21,4 @@ Rails.application.routes.draw do
   # constraints DomainConstraints.new("weihsihu.test", "weihsihu.com", "weihsihu.co.uk") do
   #   root to: "weihsihu/pages#landing", as: :weihsihu_root
   # end
-
-  root "pages#landing"
 end

@@ -1,7 +1,6 @@
 <div id="<%= dom_id page %>">
-  <p>
-    <strong>Show:</strong>
-    <%= page.show %>
-  </p>
-
+  <h1><%= page.title %></h1>
+  <% page.contents.each do |content| %>
+    <%= raw content.body %>
+  <% end %>
 </div>

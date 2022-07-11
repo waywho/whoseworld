@@ -4,8 +4,10 @@ import "@hotwired/turbo-rails"
 
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
+import Sortable from 'stimulus-sortable'
 
 const application = Application.start()
+application.register('sortable', Sortable)
 
 const context = require.context("../controllers", true, /\.js$/)
 const contextComponents = require.context("../components", true, /_controller\.js$/)

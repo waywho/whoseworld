@@ -12,8 +12,11 @@
 	</button>
 
 	<div class="<%= menu_wrapper_classes %>" data-navbar-component-target="menu">
-		<% @menu_items.each do |item| %>
+		<% menu_items.each do |item| %>
 			<%= link_to item[0], item[1], class: menu_classes %>
 		<% end %>
 	</div>
 </nav>
+<div class="<%= content_wrapper_classes %>">
+	<%= content %>
+</div>

@@ -1,0 +1,8 @@
+<%= link_to [:admin, page] do %>
+  <div id="<%= dom_id page %>" class="grid grid-cols-3" data-sortable-update-url="<%=
+  url_for [:admin, page] %>">
+    <div><%= page.title %></div>
+    <div><%= page.menu %></div>
+    <div><%= page.slug %></div>
+  </div>
+<% end %>
