@@ -2,7 +2,7 @@ require "test_helper"
 
 class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @admin_site = admin_sites(:one)
+    @site = sites(:one)
   end
 
   test "should get index" do
@@ -24,23 +24,23 @@ class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show admin_site" do
-    get admin_site_url(@admin_site)
+    get admin_site_url(@site)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_admin_site_url(@admin_site)
+    get edit_admin_site_url(@site)
     assert_response :success
   end
 
   test "should update admin_site" do
-    patch admin_site_url(@admin_site), params: { admin_site: {  } }
-    assert_redirected_to admin_site_url(@admin_site)
+    patch admin_site_url(@site), params: { admin_site: {  } }
+    assert_redirected_to admin_site_url(@site)
   end
 
   test "should destroy admin_site" do
     assert_difference("Admin::Site.count", -1) do
-      delete admin_site_url(@admin_site)
+      delete admin_site_url(@site)
     end
 
     assert_redirected_to admin_sites_url

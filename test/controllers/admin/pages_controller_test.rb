@@ -2,7 +2,7 @@ require "test_helper"
 
 class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @admin_page = admin_pages(:one)
+    @page = pages(:one)
   end
 
   test "should get index" do
@@ -24,23 +24,23 @@ class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show admin_page" do
-    get admin_page_url(@admin_page)
+    get admin_page_url(@page)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_admin_page_url(@admin_page)
+    get edit_admin_page_url(@page)
     assert_response :success
   end
 
   test "should update admin_page" do
-    patch admin_page_url(@admin_page), params: { admin_page: {  } }
-    assert_redirected_to admin_page_url(@admin_page)
+    patch admin_page_url(@page), params: { admin_page: {  } }
+    assert_redirected_to admin_page_url(@page)
   end
 
   test "should destroy admin_page" do
     assert_difference("Admin::Page.count", -1) do
-      delete admin_page_url(@admin_page)
+      delete admin_page_url(@page)
     end
 
     assert_redirected_to admin_pages_url
