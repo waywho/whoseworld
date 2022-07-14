@@ -54,3 +54,7 @@ processes = []
 [[statics]]
   guest_path = "/app/public"
   url_prefix = "/"
+
+[mount]
+  source="myapp_data"
+  destination="/data"
