@@ -2,6 +2,11 @@ require "domain_constraints"
 
 Rails.application.routes.draw do
   namespace :admin do
+    resources :galleries do
+      member do
+        delete :delete_image
+      end
+    end
     root "sites#index"
     resources :sites
     resources :pages

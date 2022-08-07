@@ -1,0 +1,10 @@
+<h1><%= @gallery.title %></h1>
+
+<div id="<%= dom_id gallery %>" class="grid gap-4 grid-cols-2">
+	<% @gallery.images.each do |image| %>
+			<div>
+				<%= link_to icon("trash 2x"), delete_image_admin_gallery_path(id: @gallery.id, image_id: image.id), data: {  "turbo-method": :delete, confirm: "Are you sure?" } %>
+				<%= image_tag image %>
+			</div>
+	<% end %>
+</div>

@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Galleries</h1>
+<%= link_to "New gallery", new_admin_gallery_path, class: "btn btn-primary my-4 float-right" %>
+<br class="clear-both" />
+
+<div id="admin_galleries" class="grid auto-rows-auto my-4">
+  <div class="grid grid-cols-3 font-semibold">
+    <div>Title</div>
+    <div>Page</div>
+    <div>Featured?</div>
+  </div>
+  <% @galleries.each do |gallery| %>
+    <div id="<%= dom_id gallery %>" class="grid grid-cols-3">
+      <div><%= link_to gallery.title, admin_gallery_path(gallery) %></div>
+      <div><%= gallery.page.title %></div>
+      <div><%= gallery.feature? %></div>
+    </div>
+  <% end %>
+</div>
