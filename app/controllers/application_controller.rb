@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       site = Site.find_by(domain: domain)
     end
 
-    Current.style = Current.tenant&.style || :multi_page
+    Current.style = Current.tenant&.template_style || :multi_page
   end
 
   def current_domain
