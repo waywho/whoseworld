@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Site.upsert_all([{
+[{
   name: 'Storychor',
   domain: 'storychor.com',
   orientation: 'top',
@@ -27,4 +27,6 @@ Site.upsert_all([{
   domain: 'berlinunrehearsedmusicals.com',
   orientation: 'top',
   template_style: :multi_page
-}])
+}].each do |site|
+  Site.upsert(site)
+end
