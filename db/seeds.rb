@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-[{
+Site.upsert_all([{
   name: 'Storychor',
   domain: 'storychor.com',
   slug: 'storychor',
@@ -34,6 +34,4 @@
   orientation: 'top',
   sutbitle: nil,
   template_style: :multi_page
-}].each do |site|
-  Site.create(site) unless Site.exists?(domain: site[:domain])
-end
+}], unique_by: :slug)

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def production_redirect
-    if Rails.env.production?
+    if Rails.env.production? && !request.path.include?("admin")
       render "pages/landing", layout: 'application'
     end
   end
