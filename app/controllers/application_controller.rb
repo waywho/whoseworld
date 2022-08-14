@@ -6,12 +6,12 @@ class ApplicationController < ActionController::Base
 
   def production_redirect
     if Rails.env.production?
-      render "pages/landing"
+      render "pages/landing", layout: 'application'
     end
   end
 
   def set_site
-    if Rails.env.development?
+    Current.tenant = if Rails.env.development?
       domain = request.domain.split(".")[0]
       domain = "weihsihu" if domain == "localhost"
       site = Site.where("domain LIKE ?", "%#{domain}%").first
@@ -19,11 +19,15 @@ class ApplicationController < ActionController::Base
       domain = request.domain
       site = Site.find_by(domain: domain)
     end
-    Current.tenant = site
+
     if Current.tenant&.slug == "weihsihu"
       Current.style = :one_page
     else
       Current.style = :multi_page
     end
+  end
+
+  def current_domain
+    request.domain.split(".")[0]
   end
 end
