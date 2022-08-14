@@ -34,4 +34,4 @@ Site.upsert_all([{
   orientation: 'top',
   sutbitle: nil,
   template_style: :multi_page
-}], unique_by: :slug)
+}])
