@@ -1,14 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_action :production_redirect
   before_action :set_site
 
   private
-
-  def production_redirect
-    if Rails.env.production? && !request.path.include?("admin")
-      render "pages/landing", layout: 'application'
-    end
-  end
 
   def set_site
     Current.tenant = if Rails.env.development?
@@ -20,11 +13,7 @@ class ApplicationController < ActionController::Base
       site = Site.find_by(domain: domain)
     end
 
-    if Current.tenant&.slug == "weihsihu"
-      Current.style = :one_page
-    else
-      Current.style = :multi_page
-    end
+    Current.style = Current.tenant&.style || :multi_page
   end
 
   def current_domain
