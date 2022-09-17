@@ -13,7 +13,7 @@
   <% @galleries.each do |gallery| %>
     <div id="<%= dom_id gallery %>" class="grid grid-cols-3">
       <div><%= link_to gallery.title, admin_gallery_path(gallery) %></div>
-      <div><%= gallery.page.title %></div>
+      <div><%= gallery.page&.title %></div>
       <div><%= gallery.feature? %></div>
     </div>
   <% end %>
