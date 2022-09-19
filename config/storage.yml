@@ -15,7 +15,6 @@ filebase:
   endpoint: https://s3.filebase.com
   access_key_id: <%= Rails.application.credentials.dig(:filebase, :key) %>
   secret_access_key: <%= Rails.application.credentials.dig(:filebase, :secret) %>
-  region: unused
   bucket: <%= Rails.application.credentials.dig(:filebase, :bucket) %>
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
