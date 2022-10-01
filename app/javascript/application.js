@@ -5,9 +5,11 @@ import "@hotwired/turbo-rails"
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 import Sortable from 'stimulus-sortable'
+import Flowbite from 'flowbite'
 
 const application = Application.start()
 application.register('sortable', Sortable)
+application.register('flowbite', Flowbite)
 
 const context = require.context("./controllers", true, /\.js$/)
 const contextComponents = require.context("../components", true, /_controller\.js$/)

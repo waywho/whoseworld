@@ -22,6 +22,7 @@ module Whoseworld
 
     config.view_component.generate_sidecar = true
     config.view_component.preview_paths << "#{Rails.root}/test/components/previews"
+    config.view_component.default_preview_layout = "component_preview"
     # config.view_component.generate.preview = true
   end
 end

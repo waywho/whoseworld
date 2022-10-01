@@ -7,6 +7,10 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/assets/stylesheets/**/*.scss',
     './app/javascript/**/*.js',
-    './config/initializers/simple_form_tailwind.rb'
+    './config/initializers/simple_form_tailwind.rb',
+    './node_modules/flowbite/**/*.js'
+  ],
+  plugins: [
+    require('flowbite/plugin')
   ]
 }
