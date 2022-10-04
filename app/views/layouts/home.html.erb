@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <%= render NavbarComponent.new(site: Current.tenant, style: Current.style,  html: { class: 'p-8' }) do %>
+    <%= render LayoutComponent.new(site: Current.tenant) do |c| %>
+      <% c.navigation %>
       <%= yield %>
     <% end %>
   </body>

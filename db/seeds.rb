@@ -10,23 +10,27 @@
   name: 'Storychor',
   domain: 'storychor.com',
   orientation: 'top',
-  template_style: :multi_page
+  template_style: 'multi_page',
+  slug: 'storychor'
 }, {
   name: 'WeiHsi Hu',
   domain: 'weihsihu.com',
   orientation: 'left',
   subtitle: 'conductor, tenor',
-  template_style: :one_page
+  template_style: 'one_page',
+  slug: 'weihsihu'
 }, {
   name: 'Logical Thinking',
   domain: 'logical-thinking.co.uk',
   orientation: 'top',
-  template_style: :multi_page
+  template_style: 'multi_page',
+  slug: 'logical_thinking'
 }, {
   name: 'Berlin UnRehearsed Musicals',
   domain: 'berlinunrehearsedmusicals.com',
   orientation: 'top',
-  template_style: :multi_page
+  template_style: 'multi_page',
+  slug: 'burm'
 }].each do |site|
   Site.upsert(site)
 end

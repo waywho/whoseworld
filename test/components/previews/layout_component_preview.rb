@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
-class NavbarComponentPreview < ViewComponent::Preview
+class LayoutComponentPreview < ViewComponent::Preview
   # @display padding 0px
   # @param orientation select [top, left, right]
   # @param style select [one_page, multi_page]
-  def default(orientation: "top", style: "multi_page")
-    # site = Site.last
+  def default(orientation: :top, style: :multi_page)
     site = set_site(orientation, style)
-    render(NavbarComponent.new(logo: site.name, menu_items: menu_items))
+    items = menu_items
+    render_with_template(locals: {
+      site: site,
+      orientation: orientation,
+      menu_items: items
+    })
   end
 
   private
