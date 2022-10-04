@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
-class NavbarComponentPreview < ViewComponent::Preview
-  # @display padding 0px
-  # @param orientation select [top, left, right]
+class SidebarComponentPreview < ViewComponent::Preview
+  # @param orientation select [left, right]
   # @param style select [one_page, multi_page]
-  def default(orientation: "top", style: "multi_page")
-    # site = Site.last
+  def default(orientation: "left", style: "multi_page")
     site = set_site(orientation, style)
-    render(NavbarComponent.new(logo: site.name, menu_items: menu_items))
+    render(SidebarComponent.new(logo: site.name, menu_items: menu_items))
   end
 
   private
+
+  def logo
+    if @logo.attached?
+      image_tag @logo
+    else
+      content_tag :span, @site.name, class: "self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+    end
+  end
 
   def set_site(orientation, style)
     site = Site.new(

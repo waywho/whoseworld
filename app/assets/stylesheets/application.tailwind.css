@@ -46,3 +46,7 @@
         @apply bg-blue-500 hover:bg-blue-700 text-white
     }
 }
+
+html {
+    scroll-behavior: smooth;
+}

@@ -1,5 +1,7 @@
 <div id="<%= dom_id page %>">
-  <h1><%= page.title %></h1>
+  <% unless local_assigns[:hide_title] %>
+    <h1><%= page.title %></h1>
+  <% end %>
   <% page.contents.each do |content| %>
     <%= raw content.body %>
   <% end %>

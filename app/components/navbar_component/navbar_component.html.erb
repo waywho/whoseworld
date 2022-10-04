@@ -1,22 +1,28 @@
-<nav class = "fixed top-0 <%= nav_wrapper_classes %>" data-navbar-component-target="nav" data-position="<%= @position %>" data-controller= "navbar-component">
-	<div class="<%= logo_classes %>">
-		<%= link_to root_path do %>
-			<%= logo %>
-		<% end %>
-		<%= Current.tenant.subtitle %>
-	</div>
-	<button type="button" class="<%= menu_button_class %> inline-flex grow-0 items-center p-2 text-sm text-gray-500 md:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false" data-action="click->navbar-component#toggle">
-			<span class="sr-only">Open main menu</span>
-			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-			<svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-	</button>
+<nav class="bg-white border-gray-100 pl-4 pr-1 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0 bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <%= link_to root_path, class: "transition ease-out duration-1000", "data-sidebar-component-target": "logo" do %>
+       <% if @logo.is_a?(String) %>
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+             <%= @site %>
+          </span>
+       <% else %>
+          <%= image_tag @logo %>
+       <% end %>
+     <% end %>
 
-	<div class="<%= menu_wrapper_classes %>" data-navbar-component-target="menu">
-		<% menu_items.each do |item| %>
-			<%= link_to item[0], item[1], class: menu_classes %>
-		<% end %>
-	</div>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
+
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <% @menu_items.each do |item| %>
+          <li>
+            <%= link_to item[0], item[1], class: "#{menu_classes} #{params[:id] == item[0]&.parameterize ? active_menu_classes : non_active_menu_classes}", "aria-current"=>"page" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </nav>
-<div class="<%= content_wrapper_classes %>">
-	<%= content %>
-</div>
