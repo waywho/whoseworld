@@ -14,7 +14,7 @@ class LayoutComponent < ViewComponent::Base
   def initialize(site:, admin: false)
     @admin = admin
     @site = site
-    @logo = @site&.logo.attached? ? @site&.logo : @site&.name
+    @logo = @site&.logo&.attached? ? @site&.logo : @site&.name
     @style = @site&.template_style.to_sym
   end
 
