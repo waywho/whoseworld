@@ -35,7 +35,7 @@ class LayoutComponent < ViewComponent::Base
     return [
       { title: "Pages", url: admin_sites_path },
       { title: "Pages", url: admin_pages_path },
-      { title: "Gallery", url: admin_galleries_path }
+      { title: "Galleries", url: admin_galleries_path }
     ] if admin?
 
     @site.pages.menu_pages.blank? ? [] : @site.pages.menu_pages
