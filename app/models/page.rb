@@ -11,6 +11,7 @@ class Page < ApplicationRecord
   scope :landing, -> { friendly.find("landing") }
 
   # Associations
+  has_many :galleries
   belongs_to :site
   has_many :contents
   accepts_nested_attributes_for :contents, allow_destroy: true,

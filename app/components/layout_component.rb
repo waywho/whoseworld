@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (placement: nil, menu: nil, logo: @logo) do
+  renders_one :navigation, -> (placement: position, menu: nil, logo: @logo) do
     items = menu || menu_items
     case placement
     when :top
@@ -54,7 +54,7 @@ class LayoutComponent < ViewComponent::Base
   def position
     return :left if admin?
 
-    @site.orientation || :top
+    @site.orientation.to_sym || :top
   end
 
   def scroll_controller
@@ -64,11 +64,11 @@ class LayoutComponent < ViewComponent::Base
   def style_class
     case position
     when :top
-      "mt-24 mx-auto"
+      "test mt-24 mx-auto"
     when :left
-      "px-6 py-12 md:pr-16 md:pl-72"
+      "px-6 py-12 md:pr-24 md:pl-80"
     when :right
-      "px-6 py-12 md:pl-16 md:pr-72"
+      "px-6 py-12 md:pl-24 md:pr-80"
     end
   end
 
