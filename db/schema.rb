@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_14_080243) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_214729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_080243) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["page_id"], name: "index_contents_on_page_id"
+  end
+
+  create_table "domain_aliases", force: :cascade do |t|
+    t.string "domain"
+    t.string "subdomain"
+    t.bigint "site_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_domain_aliases_on_site_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -113,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_080243) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "contents", "pages"
+  add_foreign_key "domain_aliases", "sites"
   add_foreign_key "galleries", "pages"
   add_foreign_key "pages", "sites"
 end
