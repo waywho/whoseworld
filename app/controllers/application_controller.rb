@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
         domain_alias = DomainAlias.find_by(domain: domain)
         site = domain_alias.site if domain_alias
       end
+      site
     end
 
     Current.style = Current.tenant&.template_style || :multi_page
