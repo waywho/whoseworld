@@ -34,7 +34,7 @@ class Admin::GalleriesController < ApplicationController
   def update
     if @gallery.update(gallery_params.slice(:title, :description))
       @gallery.images.attach(gallery_params[:images]) if gallery_params[:images]
-      redirect_to admin_galleries_path, notice: "Gallery was successfully updated."
+      redirect_to admin_gallery_path(@gallery), notice: "Gallery was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -49,7 +49,7 @@ class Admin::GalleriesController < ApplicationController
   def delete_image
     @image = ActiveStorage::Attachment.find(params[:image_id])
     @image.purge
-    redirect_to @gallery
+    redirect_to admin_gallery_path(@gallery)
   end
 
   private

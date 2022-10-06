@@ -1,41 +1,68 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (position: @position, menu: nil, logo: @logo) do
+  renders_one :navigation, -> (placement: nil, menu: nil, logo: @logo) do
     items = menu || menu_items
-    case position
+    case placement
     when :top
       NavbarComponent.new(logo: logo, menu_items: items)
     when :left, :right
-      SidebarComponent.new(logo: logo, menu_items: items, position: position)
+      SidebarComponent.new(logo: logo, menu_items: items, position: placement)
     end
   end
 
-  def initialize(site:)
+  def initialize(site:, admin: false)
+    @admin = admin
     @site = site
-    @position = @site.orientation.to_sym || :top
-    @logo = @site.logo
+    @logo = @site.logo.attached? ? @site.logo : @site.name
     @style = @site.template_style.to_sym
   end
 
   def menu_items
-    items = (@site.pages.menu_pages.blank? ? [] : @site.pages.menu_pages)
-    menu_items = case @style
+    case style
+    when :multi_page_admin
+      menus.map { |m| [m[:title], m[:url]] }
     when :multi_page
-      items.map { |m| [m.title, url_for(m)] }
+      menus.map { |m| [m.title, url_for(m)] }
     when :one_page
-      items.map { |m| [m.title, "##{m.slug}"] }
+      menus.map { |m| [m.title, "##{m.slug}"] }
     end
   end
 
   private
 
+  def menus
+    return [
+      { title: "Pages", url: admin_sites_path },
+      { title: "Pages", url: admin_pages_path },
+      { title: "Gallery", url: admin_galleries_path }
+    ] if admin?
+
+    @site.pages.menu_pages.blank? ? [] : @site.pages.menu_pages
+  end
+
+  def style
+    return :multi_page_admin if admin?
+
+    @style
+  end
+
+  def admin?
+    @admin
+  end
+
+  def position
+    return :left if admin?
+
+    @site.orientation || :top
+  end
+
   def scroll_controller
-    "scroll" if @style == :one_page
+    "scroll" if style == :one_page
   end
 
   def style_class
-    case @position
+    case position
     when :top
       "mt-24 mx-auto"
     when :left
@@ -46,11 +73,11 @@ class LayoutComponent < ViewComponent::Base
   end
 
   def navbar_component
-    case @position
+    case position
     when :top
       render NavbarComponent.new(logo: @logo, menu_items: menu_items)
     when :left, :right
-      render SidebarComponent.new(logo: @logo, menu_items: menu_items, position: @position)
+      render SidebarComponent.new(logo: @logo, menu_items: menu_items, position: position)
     end
   end
 
