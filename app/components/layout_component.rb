@@ -1,24 +1,19 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (placement: position, menu: nil, logo: @logo) do
+  renders_one :navigation, -> (placement: position, menu: nil, site_logo: logo) do
     items = menu || menu_items
     case placement
     when :top
-      NavbarComponent.new(logo: logo, menu_items: items)
+      NavbarComponent.new(logo: site_logo, menu_items: items)
     when :left, :right
-      SidebarComponent.new(logo: logo, menu_items: items, position: placement)
+      SidebarComponent.new(logo: site_logo, menu_items: items, position: placement)
     end
   end
 
   def initialize(site:, admin: false)
     @admin = admin
-
-    unless @admin
-      @site = site
-      @logo = @site&.logo&.attached? ? @site&.logo : @site&.name
-      @style = @site&.template_style&.to_sym
-    end
+    @site = site
   end
 
   def menu_items
@@ -34,6 +29,12 @@ class LayoutComponent < ViewComponent::Base
 
   private
 
+  def logo
+    return "Admin" if @admin
+
+    @site&.logo&.attached? ? @site&.logo : @site&.name
+  end
+
   def menus
     return [
       { title: "Pages", url: admin_sites_path },
@@ -47,7 +48,7 @@ class LayoutComponent < ViewComponent::Base
   def style
     return :multi_page_admin if admin?
 
-    @style
+    @site&.template_style&.to_sym
   end
 
   def admin?
@@ -78,9 +79,9 @@ class LayoutComponent < ViewComponent::Base
   def navbar_component
     case position
     when :top
-      render NavbarComponent.new(logo: @logo, menu_items: menu_items)
+      render NavbarComponent.new(logo: logo, menu_items: menu_items)
     when :left, :right
-      render SidebarComponent.new(logo: @logo, menu_items: menu_items, position: position)
+      render SidebarComponent.new(logo: logo, menu_items: menu_items, position: position)
     end
   end
 
