@@ -13,7 +13,9 @@
 
   <body>
     <%= render LayoutComponent.new(site: Current.tenant) do |c| %>
-      <% c.navigation %>
+      <% if Current.tenant.pages.menu_pages.present? %>
+        <% c.navigation %>
+      <% end %>
       <%= yield %>
     <% end %>
   </body>

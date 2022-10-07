@@ -1,4 +1,4 @@
-class Admin::GalleriesController < ApplicationController
+class Admin::GalleriesController < AdminController
   before_action :set_admin_gallery, only: %i[ show edit update destroy delete_image ]
 
   # GET /admin/galleries
