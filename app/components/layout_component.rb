@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (placement: position, menu: nil, site_logo: logo) do
-    items = menu || menu_items
+  renders_one :navigation, -> (placement: position, menu: menu_items, site_logo: logo) do
+    items = menu
     case placement
     when :top
       NavbarComponent.new(logo: site_logo, menu_items: items)

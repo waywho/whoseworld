@@ -4,7 +4,7 @@
       <%= link_to root_path, class: "transition ease-out duration-1000", "data-sidebar-component-target": "logo" do %>
          <% if @logo.is_a?(String) %>
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-               <%= @site %>
+               <%= @logo %>
             </span>
          <% elsif @logo.attached? %>
             <%= image_tag @logo %>
