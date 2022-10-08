@@ -1,8 +1,22 @@
-<%= link_to [:admin, page] do %>
-  <div id="<%= dom_id page %>" class="grid grid-cols-3" data-sortable-update-url="<%=
-  url_for [:admin, page] %>">
-    <div><%= page.title %></div>
-    <div><%= page.menu %></div>
-    <div><%= page.slug %></div>
-  </div>
-<% end %>
+
+<tr id="<%= dom_id page %>" class="hover-row">
+
+  <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= link_to [:admin, page] do %>
+      <%= page.title %>
+    <% end %>
+  </th>
+  <td class="py-4 px-2">
+    <%= simple_form_for [:admin, page], html: { "data-controller": "submit-by-click" } do |f| %>
+      <%= f.input :menu, input_html: {
+        id: "page_menu_page_#{page.id}",
+        "data-action": "submit-by-click#submit"
+      } %>
+    <% end %>
+  </td>
+  <td class="py-4 px-2">
+    <%= page.slug %>
+  </td>
+
+</tr>
+

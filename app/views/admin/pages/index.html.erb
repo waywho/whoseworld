@@ -1,20 +1,30 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Pages</h1>
 
-<%= link_to "New site", new_admin_page_path, class: "btn btn-primary my-4 float-right" %>
+<%= link_to "New Page", new_admin_page_path, class: "btn btn-primary my-4 float-right" %>
 <br class="clear-both" />
 
-<div id="pages" class="grid auto-rows-auto my-4">
-  <div class="grid grid-cols-3 font-semibold">
-    <div>Title</div>
-    <div>Menu</div>
-    <div>Slug</div>
-  </div>
-  <div data-controller="sortable" data-sortable-animation-value="150" data-sortable-resource-name-value="page"
-       data-sortable-param-name-value="row_order_position" data-sortable-response-kind-value="turbo-stream" >
-    <% @pages.each do |page| %>
-      <%= render page %>
-    <% end %>
-  </div>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Menu
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Slug
+                </th>
+            </tr>
+        </thead>
+        <tbody data-controller="sortable" data-sortable-animation-value="150"
+               data-sortable-resource-name-value="page"
+               data-sortable-param-name-value="row_order_position"
+               data-sortable-response-kind-value="turbo-stream" >
+            <% @pages.each do |page| %>
+              <%= render page %>
+            <% end %>
+        </tbody>
+    </table>
 </div>

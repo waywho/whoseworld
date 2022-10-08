@@ -37,7 +37,7 @@ class LayoutComponent < ViewComponent::Base
 
   def menus
     return [
-      { title: "Pages", url: admin_sites_path },
+      { title: "Sites", url: admin_sites_path },
       { title: "Pages", url: admin_pages_path },
       { title: "Galleries", url: admin_galleries_path }
     ] if admin?
@@ -56,7 +56,7 @@ class LayoutComponent < ViewComponent::Base
   end
 
   def position
-    return :left if admin?
+    return :top if admin?
 
     @site.orientation.to_sym || :top
   end
@@ -68,7 +68,7 @@ class LayoutComponent < ViewComponent::Base
   def style_class
     case position
     when :top
-      "test mt-24 mx-auto"
+      "container mt-24 mx-auto"
     when :left
       "px-6 py-12 md:pr-24 md:pl-80"
     when :right

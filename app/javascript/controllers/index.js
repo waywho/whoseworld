@@ -12,3 +12,6 @@ application.register("multi-upload", MultiUploadController)
 
 import ScrollController from "./scroll_controller.js"
 application.register("scroll", ScrollController)
+
+import SubmitByClickController from "./submit_by_click_controller.js"
+application.register("submit-by-click", SubmitByClickController)

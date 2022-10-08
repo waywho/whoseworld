@@ -1,11 +1,25 @@
-<%= link_to [:admin, site] do %>
-<div id="<%= dom_id site %>" class="grid grid-cols-7">
-	<div><%= site.name %></div>
-	<div><%= site.subdomain %></div>
-	<div><%= site.domain %></div>
-	<div><%= site.slug %></div>
-	<div><%= site.orientation %></div>
-	<div><%= site.subtitle %></div>
-	<div><%= site.template_style %></div>
-</div>
-<% end %>
+	<tr id="<%= dom_id site %>" class="hover-row">
+		<th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+			<%= link_to [:admin, site] do %>
+				<%= site.name %>
+			<% end %>
+		</th>
+		<td class="py-4 px-2">
+			<%= site.subtitle %>
+		</td>
+		<td class="py-4 px-2">
+			<%= site.subdomain %>
+		</td>
+		<td class="py-4 px-2">
+			<%= site.domain %>
+		</td>
+		<td class="py-4 px-2">
+			<%= site.slug %>
+		</td>
+		<td class="py-4 px-2">
+			<%= site.orientation %>
+		</td>
+		<td class="py-4 px-2">
+			<%= site.template_style %>
+		</td>
+	</tr>

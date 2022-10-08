@@ -3,12 +3,12 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages
   def index
-    @pages = Current.tenant.pages.rank(:row_order).all
+    @pages = Page.rank(:row_order).all
   end
 
   # GET /admin/pages/new
   def new
-    @page = Current.tenant.pages.new
+    @page = Page.new
     @page.contents.build
   end
 
@@ -25,7 +25,7 @@ class Admin::PagesController < AdminController
 
   # POST /admin/pages
   def create
-    @page = Current.tenant.pages.new(page_params)
+    @page = Page.new(page_params)
 
     if @page.save
       redirect_to admin_pages_path, notice: "Page was successfully created."
@@ -56,7 +56,7 @@ class Admin::PagesController < AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Current.tenant.pages.friendly.find(params[:id])
+      @page = Page.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

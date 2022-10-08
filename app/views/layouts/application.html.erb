@@ -13,7 +13,7 @@
   <body>
      <%= render LayoutComponent.new(site: Current.tenant, admin: true) do |c| %>
       <% if current_user %>
-        <% c.navigation %>
+        <% c.with_navigation %>
       <% end %>
       <%= render AlertComponent.new(flash) %>
       <%= yield %>

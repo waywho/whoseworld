@@ -5,18 +5,37 @@
 <%= link_to "New site", new_admin_site_path, class: "btn btn-primary my-4 float-right" %>
 <br class="clear-both" />
 
-<div id="sites" class="grid auto-rows-auto my-4">
-  <div class="grid grid-cols-7 font-semibold">
-    <div>Name</div>
-    <div>Subdomain</div>
-    <div>Domain</div>
-    <div>Slug</div>
-    <div>Orientation</div>
-    <div>Subtitle</div>
-    <div>Style</div>
-  </div>
-
-  <% @sites.each do |site| %>
-    <%= render site %>
-  <% end %>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Subtitle
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Subdomain
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Domain
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Slug
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Orientation
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Style
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @sites.each do |site| %>
+              <%= render site %>
+            <% end %>
+        </tbody>
+    </table>
 </div>
