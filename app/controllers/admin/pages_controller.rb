@@ -60,7 +60,7 @@ class Admin::PagesController < AdminController
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:title, :content, :menu, :site_id, :row_order_position,
-                                   contents_attributes: %i[body page_id])
+      params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
+                                   contents_attributes: %i[id body page_id])
     end
 end
