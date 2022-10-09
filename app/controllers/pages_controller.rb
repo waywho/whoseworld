@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[ show edit update destroy ]
-  layout 'home'
+  layout "home"
 
   # GET /pages
   def index
@@ -13,9 +13,11 @@ class PagesController < ApplicationController
 
   def landing
     if Rails.env.production? && !current_user&.admin?
-      render "pages/landing", layout: 'application'
-    else
+      render "pages/landing", layout: "application"
+    elsif Current.tenant
       render "#{Current.tenant.slug}/landing"
+    else
+      render "pages/landing", layout: "application"
     end
   end
 

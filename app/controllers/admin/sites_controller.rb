@@ -14,6 +14,7 @@ class Admin::SitesController < AdminController
   # GET /admin/sites/new
   def new
     @site = Site.new
+    @site.domain_aliases.build
   end
 
   # GET /admin/sites/1/edit
