@@ -9,9 +9,8 @@ class ApplicationController < ActionController::Base
       domain = "weihsihu" if domain == "localhost"
       site = Site.where("domain LIKE ?", "%#{domain}%").first
     else
-      domain = request.domain
-      unless site = Site.find_by(domain: domain)
-        domain_alias = DomainAlias.find_by(domain: domain)
+      unless site = Site.find_by(domain: current_domain)
+        domain_alias = DomainAlias.find_by(domain: current_domain)
         site = domain_alias.site if domain_alias
       end
       site
@@ -20,7 +19,11 @@ class ApplicationController < ActionController::Base
     Current.style = Current.tenant&.template_style || :multi_page
   end
 
-  # def current_domain
-  #   request.domain.split(".")[0]
-  # end
+  def current_domain
+    if request.domain == "co.uk"
+      request.domain(2)
+    else
+      request.domain
+    end
+  end
 end
