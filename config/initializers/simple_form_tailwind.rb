@@ -30,8 +30,8 @@ SimpleForm.setup do |config|
   config.error_method = :to_sentence
 
   # add validation classes to `input_field`
-  config.input_field_error_class = 'border-red-500'
-  config.input_field_valid_class = 'border-green-400'
+  config.input_field_error_class = 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 dark:bg-gray-700 focus:border-red-500 block w-full p-2.5 dark:text-red-500 dark:placeholder-red-500 dark:border-red-500'
+  config.input_field_valid_class = ''
   config.label_class = 'text-sm font-medium text-gray-600'
 
   # vertical forms
@@ -45,8 +45,8 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'block', error_class: 'text-red-500'
-    b.use :input, class: 'shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 text-gray-400 leading-6 transition-colors duration-200 ease-in-out', error_class: 'border-red-500', valid_class: 'border-green-400'
+    b.use :label, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300', error_class: 'text-red-700 dark:text-red-500'
+    b.use :input, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
@@ -85,8 +85,8 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'text-sm font-medium text-gray-600 block', error_class: 'text-red-500'
-    b.use :input, class: 'w-full text-gray-500 px-3 py-2 border rounded', error_class: 'text-red-500 border-red-500', valid_class: 'text-green-400'
+    b.use :label, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300', error_class: 'text-red-500'
+    b.use :input, class: 'block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400', error_class: 'text-red-500 border-red-500', valid_class: 'text-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
   end
