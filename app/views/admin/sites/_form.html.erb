@@ -13,6 +13,7 @@
     <%= f.input :template_style %>
     <label>Domain Aliases</label>
     <%= f.simple_fields_for :domain_aliases do |domain_alias| %>
+      <%= domain_alias.input :id %>
       <%= domain_alias.input :domain %>
       <%= domain_alias.input :subdomain %>
     <% end %>

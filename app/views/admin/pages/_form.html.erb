@@ -10,6 +10,7 @@
     <%= f.input :slug %>
     <%= f.input :template, collection: Page.templates %>
     <%= f.simple_fields_for :contents do |contents_form| %>
+      <%= contents_form.input :id %>
       <%= contents_form.input :body, as: :text, input_html: { rows: "6" } %>
     <% end %>
   </div>
