@@ -5,7 +5,6 @@ export default class extends Controller {
   connect() {
   }
   submit() {
-    console.log(this.element)
     this.element.submit();
   }
 }
