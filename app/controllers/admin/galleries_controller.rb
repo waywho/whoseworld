@@ -32,7 +32,7 @@ class Admin::GalleriesController < AdminController
 
   # PATCH/PUT /admin/galleries/1
   def update
-    if @gallery.update(gallery_params.slice(:title, :description))
+    if @gallery.update(gallery_params.slice(:title, :description, :page_id))
       @gallery.images.attach(gallery_params[:images]) if gallery_params[:images]
       redirect_to admin_gallery_path(@gallery), notice: "Gallery was successfully updated."
     else
