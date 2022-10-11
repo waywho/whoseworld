@@ -4,6 +4,10 @@
 <% Current.tenant.pages.menu_pages.each do |page| %>
 	<hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 <%= Current.tenant.orientation == "left" ? "-ml-80" : "-mr-80" %>">
 	<div class="min-h-screen py-12 px-10" id="<%= page.slug %>">
-		<%= render 'pages/page', page: page %>
+		<% if page.template %>
+			<%= render "pages/#{page.template}", page: page %>
+		<% else %>
+			<%= render "pages/page", page: page %>
+		<% end %>
 	</div>
 <% end %>

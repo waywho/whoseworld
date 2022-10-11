@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class SidebarComponent < ViewComponent::Base
-  def initialize(logo:, menu_items: [], position: :left)
+  def initialize(logo:, subtitle: nil, menu_items: [], position: :left)
     @logo = logo
     @menu_items = menu_items
     @position = position
+    @subtitle = subtitle
   end
 
   private

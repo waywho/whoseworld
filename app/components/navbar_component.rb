@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class NavbarComponent < ViewComponent::Base
-  def initialize(logo:, menu_items: [])
+  def initialize(logo:, subtitle: nil, menu_items: [])
     @logo = logo
     @menu_items = menu_items
+    @subtitle = subtitle
   end
 
   private

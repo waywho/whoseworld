@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (placement: position, menu: menu_items, site_logo: logo) do
+  renders_one :navigation, -> (placement: position, menu: menu_items, subtitle: @subtitle, site_logo: logo) do
     items = menu
     case placement
     when :top
-      NavbarComponent.new(logo: site_logo, menu_items: items)
+      NavbarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items)
     when :left, :right
-      SidebarComponent.new(logo: site_logo, menu_items: items, position: placement)
+      SidebarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items, position: placement)
     end
   end
 
   def initialize(site:, admin: false)
     @admin = admin
     @site = site
+    @subtitle = @site&.subtitle
   end
 
   def menu_items
@@ -79,9 +80,9 @@ class LayoutComponent < ViewComponent::Base
   def navbar_component
     case position
     when :top
-      render NavbarComponent.new(logo: logo, menu_items: menu_items)
+      render NavbarComponent.new(logo: logo, subtitle: @subtitle, menu_items: menu_items)
     when :left, :right
-      render SidebarComponent.new(logo: logo, menu_items: menu_items, position: position)
+      render SidebarComponent.new(logo: logo, subtitle: @subtitle, menu_items: menu_items, position: position)
     end
   end
 

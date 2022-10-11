@@ -1,17 +1,1 @@
-<h1><%= gallery.title %></h1>
-
-
-<section id="<%= dom_id gallery %>" class="overflow-hidden text-gray-700 ">
-	<div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
-		<div class="flex flex-wrap -m-1 md:-m-2">
-			<% gallery.images.each do |image| %>
-				<div class="flex flex-wrap w-1/3">
-					<div class="w-full p-1 md:p-2 relative">
-						<%= image_tag image, class: "block object-cover object-center w-full h-full rounded-lg" %>
-						<%= link_to icon("trash"), delete_image_admin_gallery_path(id: gallery.id, image_id: image.id), class: "absolute bottom-0 right-0 h-4 w-4", data: {  "turbo-method": :delete, confirm: "Are you sure?" } %>
-					</div>
-				</div>
-			<% end %>
-		</div>
-	</div>
-</section>
+<%= render GalleryComponent.new(gallery: gallery, admin: true) %>
