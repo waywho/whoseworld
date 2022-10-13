@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :medias
     resources :galleries do
       member do
         delete :delete_image

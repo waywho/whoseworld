@@ -34,7 +34,7 @@ class Admin::GalleriesController < AdminController
   def update
     if @gallery.update(gallery_params.slice(:title, :description, :page_id))
       @gallery.images.attach(gallery_params[:images]) if gallery_params[:images]
-      redirect_to admin_gallery_path(@gallery), notice: "Gallery was successfully updated."
+      redirect_to admin_galleries_path, notice: "Gallery was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

@@ -12,6 +12,7 @@ class Page < ApplicationRecord
 
   # Associations
   has_many :galleries
+  has_many :medias
   belongs_to :site
   has_many :contents
   accepts_nested_attributes_for :contents, allow_destroy: true,

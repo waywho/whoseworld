@@ -38,8 +38,8 @@ class Admin::PagesController < AdminController
   def update
     if @page.update(page_params)
       respond_to do |format|
-        format.turbo_stream
-        format.html         { redirect_to admin_pages_path, notice: "Page was successfully updated." }
+        # format.turbo_stream
+        format.html { redirect_to admin_pages_path, notice: "Page was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity

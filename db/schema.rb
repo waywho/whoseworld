@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_06_214729) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_211850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,7 +77,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_214729) do
     t.datetime "updated_at", null: false
     t.string "title"
     t.boolean "feature", default: false, null: false
+    t.integer "row_order"
     t.index ["page_id"], name: "index_galleries_on_page_id"
+  end
+
+  create_table "medias", force: :cascade do |t|
+    t.string "title"
+    t.text "source"
+    t.bigint "page_id", null: false
+    t.bigint "site_id"
+    t.string "media_type"
+    t.integer "row_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_medias_on_page_id"
+    t.index ["site_id"], name: "index_medias_on_site_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -124,5 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_06_214729) do
   add_foreign_key "contents", "pages"
   add_foreign_key "domain_aliases", "sites"
   add_foreign_key "galleries", "pages"
+  add_foreign_key "medias", "pages"
+  add_foreign_key "medias", "sites"
   add_foreign_key "pages", "sites"
 end

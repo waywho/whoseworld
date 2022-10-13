@@ -1,0 +1,30 @@
+<h1>Medias</h1>
+
+<%= link_to "New media", new_admin_media_path, class: "btn btn-primary my-4 float-right" %>
+<br class="clear-both" />
+
+<div id="admin_meidas" class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Type
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Page
+                </th>
+            </tr>
+        </thead>
+        <tbody data-controller="sortable" data-sortable-animation-value="150"
+               data-sortable-resource-name-value="page"
+               data-sortable-param-name-value="row_order_position"
+               data-sortable-response-kind-value="turbo-stream" >
+            <% @medias.each do |media| %>
+              <%= render media %>
+            <% end %>
+        </tbody>
+    </table>
+</div>

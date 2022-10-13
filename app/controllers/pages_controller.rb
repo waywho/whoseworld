@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   # GET /pages
   def index
-    @pages = Current.tenant.pages.rank(:row_order).all
+    @pages = Current.tenant.pages.includes(:galleries, :medias).rank(:row_order).all
   end
 
   # GET /pages/1
