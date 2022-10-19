@@ -19,6 +19,7 @@ class Admin::SitesController < AdminController
 
   # GET /admin/sites/1/edit
   def edit
+    @site.domain_aliases.build
   end
 
   # POST /admin/sites
@@ -56,6 +57,6 @@ class Admin::SitesController < AdminController
     # Only allow a list of trusted parameters through.
     def site_params
       params.require(:site).permit(:name, :subdomain, :domain, :orientation, :slug, :subtitle,
-                                   domain_aliases_attributes: %i[id domain subdomain site_id])
+              :logo, :template_style, domain_aliases_attributes: %i[id domain subdomain site_id])
     end
 end

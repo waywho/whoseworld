@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_211850) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_19_203639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_211850) do
     t.bigint "page_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "heading"
+    t.string "summary"
     t.index ["page_id"], name: "index_contents_on_page_id"
   end
 
@@ -103,8 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_211850) do
     t.bigint "site_id", null: false
     t.integer "row_order"
     t.string "template"
+    t.boolean "feature", default: false
     t.index ["site_id"], name: "index_pages_on_site_id"
-    t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
   create_table "sites", force: :cascade do |t|

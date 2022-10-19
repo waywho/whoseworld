@@ -10,13 +10,17 @@
     <%= f.input :slug %>
     <%= f.input :orientation, collection: Site.orientations %>
     <%= f.input :subtitle %>
-    <%= f.input :template_style %>
+    <%= f.input :template_style, collection: Site.site_styles %>
     <label>Domain Aliases</label>
     <%= f.simple_fields_for :domain_aliases do |domain_alias| %>
       <%= domain_alias.input :id %>
       <%= domain_alias.input :domain %>
       <%= domain_alias.input :subdomain %>
     <% end %>
+    <br />
+    <%= f.file_field :logo %>
+    <h2 class="mt-4">Selected Files</h2>
+    <ul class="mb-4" data-multi-upload-target="files"></ul>
   </div>
 
   <div class="form-actions">

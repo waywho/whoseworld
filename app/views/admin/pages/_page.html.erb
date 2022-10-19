@@ -12,11 +12,23 @@
         id: "page_menu_page_#{page.id}",
         "data-action": "submit-by-click#submit"
       } %>
+      <%= f.input :site_id, as: :hidden %>
+    <% end %>
+  </td>
+  <td class="py-4 px-2">
+    <%= simple_form_for [:admin, page], html: { "data-controller": "submit-by-click" } do |f| %>
+      <%= f.input :feature, input_html: {
+        id: "page_feature_page_#{page.id}",
+        "data-action": "submit-by-click#submit"
+      } %>
+      <%= f.input :site_id, as: :hidden %>
     <% end %>
   </td>
   <td class="py-4 px-2">
     <%= page.slug %>
   </td>
-
+  <td class="py-4 px-2">
+    <%= page.site.domain %>
+  </td>
 </tr>
 

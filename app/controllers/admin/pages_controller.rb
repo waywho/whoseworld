@@ -1,5 +1,5 @@
 class Admin::PagesController < AdminController
-  before_action :set_page, only: %i[ show edit update destroy ]
+  before_action :set_page, only: %i[ show edit destroy ]
 
   # GET /admin/pages
   def index
@@ -36,6 +36,8 @@ class Admin::PagesController < AdminController
 
   # PATCH/PUT /admin/pages/1
   def update
+    site = Site.find(page_params[:site_id])
+    @page = site.pages.friendly.find(params[:id])
     if @page.update(page_params)
       respond_to do |format|
         # format.turbo_stream
@@ -61,6 +63,6 @@ class Admin::PagesController < AdminController
     # Only allow a list of trusted parameters through.
     def page_params
       params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
-                                   contents_attributes: %i[id body page_id])
+                              :feature, contents_attributes: %i[id body heading summary image page_id])
     end
 end

@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     root "sites#index"
     resources :sites
     resources :pages
+    resources :contents do
+      member do
+        delete :delete_image
+      end
+    end
   end
 
   root "pages#landing"

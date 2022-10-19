@@ -1,4 +1,5 @@
 class Admin::GalleriesController < AdminController
+  include Imageable
   before_action :set_admin_gallery, only: %i[ show edit update destroy delete_image ]
 
   # GET /admin/galleries
@@ -32,7 +33,7 @@ class Admin::GalleriesController < AdminController
 
   # PATCH/PUT /admin/galleries/1
   def update
-    if @gallery.update(gallery_params.slice(:title, :description, :page_id))
+    if @gallery.update(gallery_params.slice(:title, :description, :page_id, :feature))
       @gallery.images.attach(gallery_params[:images]) if gallery_params[:images]
       redirect_to admin_galleries_path, notice: "Gallery was successfully updated."
     else
@@ -47,8 +48,7 @@ class Admin::GalleriesController < AdminController
   end
 
   def delete_image
-    @image = ActiveStorage::Attachment.find(params[:image_id])
-    @image.purge
+    purge_image(params[:image_id])
     redirect_to admin_gallery_path(@gallery)
   end
 
@@ -60,6 +60,6 @@ class Admin::GalleriesController < AdminController
 
     # Only allow a list of trusted parameters through.
     def gallery_params
-       params.require(:gallery).permit(:title, :description, :page_id, :images => [])
+       params.require(:gallery).permit(:title, :description, :feature, :page_id, :images => [])
     end
 end
