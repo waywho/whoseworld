@@ -36,11 +36,12 @@ class Admin::PagesController < AdminController
 
   # PATCH/PUT /admin/pages/1
   def update
-    site = Site.find(page_params[:site_id])
+    site_id = page_params[:site_id] || params[:site_id]
+    site = Site.find(site_id)
     @page = site.pages.friendly.find(params[:id])
     if @page.update(page_params)
       respond_to do |format|
-        # format.turbo_stream
+        format.turbo_stream
         format.html { redirect_to admin_pages_path, notice: "Page was successfully updated." }
       end
     else

@@ -3,6 +3,9 @@
 		<h1><%= page.title %></h1>
 	<% end %>
 	<% page.contents.each do |content| %>
+		<% if content.heading.present? %>
+			<h2><%= content.heading %></h2>
+		<% end %>
 		<%= raw content.body %>
 	<% end %>
 </div>

@@ -1,26 +1,32 @@
 <div class="min-h-[500px] grid grid-cols-4 grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-4">
 	<div class="col-span-4 lg:col-span-2 row-span-2 leading-normal tracking-normal text-white bg-gradient-to-r from-cyan-500 to-blue-500 min-w-screen w-full min-h-full flex flex-col justify-center items-center p-12 sm:p-28 text-center">
-		<h1><%= Current.tenant.pages.landing.contents.first.heading %></h1>
-		<p class="text-xl"><%= Current.tenant.pages.landing.contents.first.body %></p>
+		<h1><%= Current.tenant.landing_page.contents.first.heading %></h1>
+		<p class="text-xl"><%= Current.tenant.landing_page.contents.first.body %></p>
 	</div>
-	<% Current.tenant.pages.landing.galleries.featured.images.each do |image| %>
-		<div><%= image_tag image %></div>
+	<% Current.tenant.landing_page.featured_gallery.images.each do |image| %>
+		<div style="background-image: url(<%= rails_blob_url(image) %>)" class="bg-center bg-no-repeat bg-cover w-full"></div>
 	<% end %>
 </div>
 
-<hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 my-16">
 <% Current.tenant.pages.feature.each do |page| %>
+<hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 my-16">
+<div class="text-center">
 <h2><%= page.title %></h2>
-<div class="flex text-center">
-	<% contents_count = page.contents.size %>
-	<% page.contents.each do |content| %>
-		<div class="w-1/<%= contents_count %>">
-			<div class="flex flex-col items-center">
-				<div class="mb-4"><%= image_tag content.image %></div>
-				<h3><%= content.heading %></h3>
+	<div class="flex justify-items-stretch text-center mt-16">
+		<% page.contents.each do |content| %>
+			<div class="flex-1 px-8">
+				<div class="flex flex-col items-center">
+					<% if content.image&.persisted? %>
+						<div class="mb-4"><%= image_tag content.image %></div>
+					<% end %>
+					<% if content.heading %>
+						<h3><%= content.heading %></h3>
+					<% end %>
+				</div>
+				<div><%= raw content.summary %></div>
 			</div>
-			<div class="px-8"><%= content.summary %></div>
-		</div>
-	<% end %>
+		<% end %>
+	</div>
 </div>
 <% end %>
+

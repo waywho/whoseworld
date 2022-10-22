@@ -12,5 +12,13 @@ module.exports = {
   ],
   plugins: [
     require('flowbite/plugin')
-  ]
+  ],
+  theme: {
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square'
+    }
+  }
 }

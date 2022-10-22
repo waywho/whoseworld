@@ -2,13 +2,15 @@ class Page < ApplicationRecord
   extend FriendlyId
   include RankedModel
   ranks :row_order, with_same: :site_id
+
   # Associations
   has_many :galleries
+  has_one :featured_gallery, -> { where(feature: true) }, class_name: "Gallery"
   has_many :medias
   belongs_to :site
   has_many :contents
   accepts_nested_attributes_for :contents, allow_destroy: true,
-                                           reject_if: proc { |attributes| attributes['body'].blank? }
+                                           reject_if: proc { |attributes| attributes['body'].blank? && attributes["summary"].blank? }
 
   friendly_id :title, use: :scoped, scope: :site
 

@@ -4,10 +4,10 @@
 
 @layer base {
     h1 {
-        @apply text-4xl font-bold;
+        @apply text-5xl font-bold;
     }
     h2 {
-        @apply text-2xl font-bold;
+        @apply text-4xl font-bold;
     }
     h1, h2, h3, h4 {
         @apply mb-4 font-bold;
@@ -27,11 +27,18 @@
     tbody tr {
         @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
     }
+    ul {
+        @apply list-square list-inside;
+    }
+    nav ul, .nav ul { @apply list-none list-outside; }
     .btn {
         @apply font-semibold text-sm py-2 px-4 rounded;
     }
     .btn.btn-primary {
         @apply bg-blue-500 hover:bg-blue-700 text-white;
+    }
+    .btn.btn-primary-xl {
+        @apply bg-blue-500 hover:bg-blue-700 text-white text-2xl;
     }
     .hover-row {
         @apply hover:bg-gray-50 dark:hover:bg-gray-600;
