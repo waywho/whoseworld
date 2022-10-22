@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_domain
-    request.host
+    if request.subdomain == "www"
+      request.domain
+    elsif request.domain == "co.uk"
+      request.domain(2)
+    else
+      request.domain
+    end
   end
 end
