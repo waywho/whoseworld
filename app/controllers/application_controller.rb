@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   private
 
   def set_site
-    Rails.logger.info "Request Domain: #{request.host}"
+    Rails.logger.info "Request host: #{request.host}"
+    Rails.logger.info "Request Domain: #{request.domain}"
+
     Current.tenant = if Rails.env.development?
       domain = request.domain.split(".")[0]
       domain = "weihsihu" if domain == "localhost"
