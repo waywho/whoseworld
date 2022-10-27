@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
     set_dev_tenant and return if Rails.env.development?
 
-    Current.tentant = if site = Site.find_by(domain: current_domain)
+    Current.tenant = if site = Site.find_by(domain: current_domain)
       site
     elsif domain_alias = DomainAlias.find_by(domain: current_domain)
       domain_alias.site
