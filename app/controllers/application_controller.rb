@@ -7,18 +7,14 @@ class ApplicationController < ActionController::Base
     Rails.logger.info "Request host: #{request.host}"
     Rails.logger.info "Request Domain: #{request.domain}"
 
-    Current.tenant = if Rails.env.development?
-      domain = request.domain.split(".")[0]
-      domain = "weihsihu" if domain == "localhost"
-      Site.where("domain LIKE ?", "%#{domain}%").first
-    else
-      if site = Site.find_by(domain: current_domain)
-        site
-      elsif domain_alias = DomainAlias.find_by(domain: current_domain)
-        domain_alias.site
-      end
-    end
+    set_dev_tenant and return if Rails.env.development?
 
+    Current.tentant = if site = Site.find_by(domain: current_domain)
+      site
+    elsif domain_alias = DomainAlias.find_by(domain: current_domain)
+      domain_alias.site
+    end
+    Rails.logger.info "Request Domain: #{Current.tenant}"
     Current.style = Current.tenant&.template_style || :multi_page
   end
 
@@ -29,5 +25,13 @@ class ApplicationController < ActionController::Base
     else
       request.domain
     end
+  end
+
+  def set_dev_tenant
+    domain = request.domain.split(".")[0]
+    domain = "weihsihu" if domain == "localhost"
+
+    Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first
+    Current.style = Current.tenant&.template_style || :multi_page
   end
 end
