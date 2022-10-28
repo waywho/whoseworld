@@ -1,4 +1,4 @@
-class Admin::ContentsController < ApplicationController
+class Admin::ContentsController < AdminController
   include Imageable
 
   def delete_image

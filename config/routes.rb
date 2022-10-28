@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  namespace :admin do
+  namespace :manage, module: 'admin' do
     resources :medias
     resources :galleries do
       member do
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   root "pages#landing"
   resources :pages, only: %i[index show], path: ''
-  devise_for :users, path: 'admin'
+  devise_for :users, path: 'manage'
 
 
 
