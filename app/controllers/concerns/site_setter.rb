@@ -7,7 +7,7 @@ module SiteSetter
     if params[:site]
       @site = Site.find_by(slug: params[:site])
     elsif Current.site
-      @site = Current.site
+      @site = Current.tenant
     end
   end
 end
