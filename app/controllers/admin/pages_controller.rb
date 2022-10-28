@@ -1,14 +1,21 @@
 class Admin::PagesController < AdminController
+  include SiteSetter
+
+  before_action :set_site, only: %i[ index new ]
   before_action :set_page, only: %i[ show edit destroy ]
 
   # GET /admin/pages
   def index
-    @pages = Page.rank(:row_order).all
+    @pages = if @site
+      @site.pages.rank(:row_order).all
+    else
+      Page.rank(:row_order).all
+    end
   end
 
   # GET /admin/pages/new
   def new
-    @page = Page.new
+    @page = Page.new(site_id: @site.id)
     @page.contents.build
   end
 
@@ -56,14 +63,15 @@ class Admin::PagesController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.friendly.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def page_params
-      params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
-                              :feature, contents_attributes: %i[id body heading summary image page_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def page_params
+    params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
+                            :feature, contents_attributes: %i[id body heading summary image page_id])
+  end
 end

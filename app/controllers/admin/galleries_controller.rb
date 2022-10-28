@@ -1,10 +1,17 @@
 class Admin::GalleriesController < AdminController
   include Imageable
-  before_action :set_admin_gallery, only: %i[ show edit update destroy delete_image ]
+  include SiteSetter
+
+  before_action :set_site, only: %i[ index new ]
+  before_action :set_admin_gallery
 
   # GET /admin/galleries
   def index
-    @galleries = Gallery.all
+    @galleries = if @site
+      @site.galleries.all
+    else
+      Gallery.all
+    end
   end
 
   # GET /admin/galleries/1

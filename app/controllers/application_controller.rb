@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
       site
     elsif domain_alias = DomainAlias.find_by(domain: current_domain)
       domain_alias.site
-    elsif site = Site.find_by(slug: parmas[:site])
-      site
     end
 
     Current.style = Current.tenant&.template_style || :multi_page
