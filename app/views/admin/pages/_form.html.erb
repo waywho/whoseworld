@@ -7,7 +7,6 @@
     <%= f.input :title %>
     <%= f.input :menu %>
     <%= f.input :feature %>
-    <%= f.input :public %>
     <%= f.association :site, value: Current.tenant&.id, label_method: :name, value_method: :id %>
     <%= f.input :template, collection: Page.templates %>
     <%= f.simple_fields_for :contents do |contents_form| %>
