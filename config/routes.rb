@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  namespace :manage, module: 'admin' do
+  namespace :manage, module: 'admin', as: :admin do
     resources :medias
     resources :galleries do
       member do
