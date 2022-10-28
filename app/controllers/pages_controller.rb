@@ -13,9 +13,7 @@ class PagesController < ApplicationController
   end
 
   def landing
-    if Rails.env.production? && !current_user&.admin?
-      render "pages/landing", layout: "application"
-    elsif Current.tenant
+    if Rails.env.production? && (Current.tenant.public? || current_user.admin?)
       render "#{Current.tenant.slug}/landing"
     else
       render "pages/landing", layout: "application"

@@ -49,14 +49,14 @@ class Admin::SitesController < AdminController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin_site
-      @site = Site.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_admin_site
+    @site = Site.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def site_params
-      params.require(:site).permit(:name, :subdomain, :domain, :orientation, :slug, :subtitle,
-              :logo, :template_style, domain_aliases_attributes: %i[id domain subdomain site_id])
-    end
+  # Only allow a list of trusted parameters through.
+  def site_params
+    params.require(:site).permit(:name, :subdomain, :domain, :orientation, :slug, :subtitle, :public, :logo, :template_style,
+      domain_aliases_attributes: %i[id domain subdomain site_id])
+  end
 end
