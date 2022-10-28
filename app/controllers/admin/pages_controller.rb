@@ -15,7 +15,7 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages/new
   def new
-    @page = Page.new(site_id: @site.id)
+    @page = Page.new(site_id: @site&.id)
     @page.contents.build
   end
 
