@@ -3,7 +3,7 @@ class Admin::GalleriesController < AdminController
   include SiteSetter
 
   before_action :set_site, only: %i[ index new ]
-  before_action :set_admin_gallery
+  before_action :set_admin_gallery, except: %i[ index ]
 
   # GET /admin/galleries
   def index

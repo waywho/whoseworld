@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def set_dev_tenant
     domain = request.domain.split(".")[0]
     domain = "weihsihu" if domain == "localhost"
-
+    Rails.logger.info "Dev domain: #{domain}"
     Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first
     Current.style = Current.tenant&.template_style || :multi_page
   end

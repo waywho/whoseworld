@@ -16,7 +16,6 @@ class Admin::PagesController < AdminController
   # GET /admin/pages/new
   def new
     @page = Page.new(site_id: @site&.id)
-    @page.contents.build
   end
 
 
@@ -27,7 +26,6 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages/1/edit
   def edit
-    @page.contents.build
   end
 
   # POST /admin/pages
@@ -72,6 +70,6 @@ class Admin::PagesController < AdminController
   # Only allow a list of trusted parameters through.
   def page_params
     params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
-                            :feature, contents_attributes: %i[id body heading summary image page_id])
+                            :feature, contents_attributes: %i[id body heading summary image page_id _destroy])
   end
 end
