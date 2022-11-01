@@ -2,9 +2,9 @@ class Admin::PagesController < AdminController
   include SiteSetter
   include PagesSetter
 
+  before_action :set_pages, only: :show
   before_action :set_site, only: %i[ index show new ]
   before_action :set_page, only: %i[ show edit destroy ]
-  before_action :set_pages, only: :show
 
   # GET /admin/pages
   def index
