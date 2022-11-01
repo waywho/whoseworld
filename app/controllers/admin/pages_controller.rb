@@ -32,6 +32,7 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages/1/edit
   def edit
+    @page.contents.build
   end
 
   # POST /admin/pages
