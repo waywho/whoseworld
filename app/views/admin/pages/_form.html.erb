@@ -1,4 +1,3 @@
-
 <%= simple_form_for([:admin, page]) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -10,20 +9,12 @@
     <%= f.association :site, value: Current.tenant&.id, label_method: :name, value_method: :id %>
     <%= f.input :template, collection: Page.templates %>
     <%= f.simple_fields_for :contents do |contents_form| %>
-      <%= contents_form.input :id, as: :hidden %>
-      <h3>feature image</h3>
-      <%= contents_form.file_field :image %>
-      <h3 class="mt-4">Selected</h3>
-      <div class="w-4 h-auto">
-        <% if contents_form.object&.image&.attached? %>
-          <%= image_tag contents_form.object.image  %>
-          <%= link_to icon("trash"), delete_image_admin_content_path(id: contents_form.object&.id, image_id: contents_form.object.image.id), class: "h-5 w-5 bg-white opacity-80 rounded", data: {  "turbo-method": :delete, confirm: "Are you sure?" } %>
-        <% end %>
+      <div id="contents">
+        <%= render "admin/contents/content", f: contents_form %>
       </div>
-      <%= contents_form.input :heading %>
-      <%= contents_form.input :summary %>
-      <%= contents_form.input :body, as: :text, input_html: { rows: "6" } %>
+      <div id="add-content"></div>
     <% end %>
+
   </div>
 
   <div class="form-actions">

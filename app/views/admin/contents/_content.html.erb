@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "content_#{f.index}" do %>
+  <h2>Content <%= f.object.id %></h2>
+  <%= f.input :id, as: :hidden %>
+  <h3>feature image</h3>
+  <%= f.file_field :image %>
+  <h3 class="mt-4">Selected</h3>
+  <div class="w-4 h-auto">
+    <% if f.object&.image&.attached? %>
+      <%= image_tag f.object.image  %>
+      <%= link_to icon("trash"), delete_image_admin_content_path(id: f.object&.id, image_id: f.object.image.id), class: "h-5 w-5 bg-white opacity-80 rounded", data: {  "turbo-method": :delete, confirm: "Are you sure?" } %>
+    <% end %>
+  </div>
+  <%= f.input :heading %>
+  <%= f.input :summary %>
+  <%= f.input :body, as: :text, input_html: { rows: "6" } %>
+  <%= f.input :_destroy, as: :boolean %>
+<% end %>
+
