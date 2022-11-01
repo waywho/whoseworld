@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   include PagesSetter
   before_action :set_page, only: %i[ show edit update destroy ]
-  before_action :set_pages, only: :landing
   layout "home"
 
   # GET /pages
@@ -15,6 +14,7 @@ class PagesController < ApplicationController
 
   def landing
     if Current.tenant&.public? || current_user&.admin?
+      @pages = set_pages(Current.site)
       render "#{Current.tenant.slug}/landing"
     else
       render "pages/landing", layout: "application"

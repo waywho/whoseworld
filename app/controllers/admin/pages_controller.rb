@@ -2,7 +2,6 @@ class Admin::PagesController < AdminController
   include SiteSetter
   include PagesSetter
 
-  before_action :set_pages, only: :show
   before_action :set_site, only: %i[ index show new ]
   before_action :set_page, only: %i[ show edit destroy ]
 
@@ -24,6 +23,7 @@ class Admin::PagesController < AdminController
   # GET /admin/pages/1
   def show
     if @site
+      @pages = set_pages(@site)
       render "#{@site.slug}/landing", layout: "home"
     else
       redirect_to edit_admin_page_path
