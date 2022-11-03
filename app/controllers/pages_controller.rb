@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   def landing
     if Current.tenant&.public? || current_user&.admin?
-      @pages = set_pages(Current.site)
+      @pages = set_pages(Current.tenant)
       render "#{Current.tenant.slug}/landing"
     else
       render "pages/landing", layout: "application"
