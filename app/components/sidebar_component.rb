@@ -10,6 +10,14 @@ class SidebarComponent < ViewComponent::Base
 
   private
 
+  def logo
+    if @logo.is_a?(String)
+      content_tag :span, @logo, class: "self-center text-3xl font-semibold whitespace-nowrap dark:text-white font-display"
+    elsif @logo.respond_to?(:attached?) && @logo.attached?
+      image_tag @logo
+    end
+  end
+
   def additional_options
    {
       "data-action"=>"click->scroll#smoothScroll"
@@ -17,7 +25,7 @@ class SidebarComponent < ViewComponent::Base
   end
 
   def menu_classes
-    "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+    "flex items-center p-2 font-normal text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 text-xl"
   end
 
   def navbar_classes

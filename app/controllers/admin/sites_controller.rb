@@ -1,4 +1,6 @@
 class Admin::SitesController < AdminController
+  include Imageable
+
   before_action :set_admin_site, only: %i[ show edit update destroy ]
 
   # GET /admin/sites
@@ -35,7 +37,7 @@ class Admin::SitesController < AdminController
 
   # PATCH/PUT /admin/sites/1
   def update
-    if @site.update(site_params)
+    if @site.update(site_params) && update_image(@site, site_params[:logo])
       redirect_to admin_sites_url, notice: "Site was successfully updated."
     else
       render :edit, status: :unprocessable_entity

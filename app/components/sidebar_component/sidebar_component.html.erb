@@ -1,16 +1,10 @@
 <div data-controller="sidebar-component" data-placement="<%= @position %>">
    <navbar class="fixed top-0 left-0 md:hidden flex w-full justify-between items-center z-[90] <%= navbar_classes %>">
-      <div>
+
       <%= link_to root_path, class: "transition ease-out duration-1000", "data-sidebar-component-target": "logo" do %>
-         <% if @logo.is_a?(String) %>
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-               <%= @logo %>
-            </span>
-         <% elsif @logo.attached? %>
-            <%= image_tag @logo %>
-         <% end %>
+         <%= logo %>
        <% end %>
-      </div>
+
       <button type="button" class="flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
          data-action="click->sidebar-component#toggle"
          data-sidebar-component-target="trigger"
@@ -28,20 +22,14 @@
       </button>
    </navbar>
 
-   <aside class="w-64 fixed top-4 <%= placement %> pb-4 transition ease-in duration-500 z-[99] nav"
+   <aside class="w-64 fixed top-4 <%= placement %> pb-4 transition ease-in duration-500 bg-transparent z-[99] nav"
           aria-label="Sidebar"
           data-sidebar-component-target="navigation">
-      <div class="overflow-y-auto py-4 px-6 bg-gray-50 rounded-lg dark:bg-gray-800 overflow-x-hidden">
+      <div class="overflow-y-auto p-6 bg-white rounded-lg dark:bg-gray-800 overflow-x-hidden opacity-75">
          <%= link_to root_path do %>
-            <% if @logo.respond_to?(:attached?) && @logo.attached? %>
-              <%= image_tag @logo %>
-            <% else %>
-              <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                <%= @logo %>
-              <span>
-            <% end %>
+            <%= logo %>
           <% end %>
-          <div class="text-sm ml-4"><%= @subtitle %></div>
+          <div class="text-sm ml-4 text-base"><%= @subtitle %></div>
 
          <ul class="mt-8 space-y-2">
             <% @menu_items.each do |item| %>

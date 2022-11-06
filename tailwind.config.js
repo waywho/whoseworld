@@ -19,6 +19,11 @@ module.exports = {
       disc: 'disc',
       decimal: 'decimal',
       square: 'square'
+    },
+    extend: {
+      fontFamily: {
+        'display': ['League\\ Spartan', 'Helvetica', 'Arial', 'sans-serif']
+      }
     }
   }
 }

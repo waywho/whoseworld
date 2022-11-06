@@ -4,6 +4,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.hidden_field :updated_at, value: DateTime.current %>
     <%= f.input :name %>
     <%= f.input :domain %>
     <%= f.input :subdomain %>
@@ -20,8 +21,12 @@
     <br />
     <%= f.input :public %>
     <%= f.file_field :logo %>
-    <h2 class="mt-4">Selected Files</h2>
-    <ul class="mb-4" data-multi-upload-target="files"></ul>
+    <% if f.object.logo.attached? %>
+      <h3 class="mt-4">Attached Logo</h3>
+      <ul class="mb-4">
+        <li><%= f.object.attached_logo.filename %></li>
+      </ul>
+    <% end %>
   </div>
 
   <div class="form-actions">

@@ -1,8 +1,9 @@
 class Admin::PagesController < AdminController
   include SiteSetter
   include PagesSetter
+  include Imageable
 
-  before_action :set_site, only: %i[ index show new ]
+  before_action :set_site
   before_action :set_page, only: %i[ show edit destroy ]
 
   # GET /admin/pages
@@ -51,6 +52,7 @@ class Admin::PagesController < AdminController
     site_id = page_params[:site_id] || params[:site_id]
     site = Site.find(site_id)
     @page = site.pages.friendly.find(params[:id])
+
     if @page.update(page_params)
       respond_to do |format|
         format.turbo_stream
@@ -71,12 +73,16 @@ class Admin::PagesController < AdminController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    @page = Page.friendly.find(params[:id])
+    if @site
+      @page = @site.pages.friendly.find(params[:id])
+    else
+      @page = Page.friendly.find(params[:id])
+    end
   end
 
   # Only allow a list of trusted parameters through.
   def page_params
-    params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position,
+    params.require(:page).permit(:title, :menu, :template, :site_id, :row_order_position, :feature_image,
                             :feature, contents_attributes: %i[id body heading summary image page_id _destroy])
   end
 end
