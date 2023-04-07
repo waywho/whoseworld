@@ -4,11 +4,7 @@ module SiteSetter
   private
 
   def set_site
-    if params[:site]
-      @site = Site.find_by(slug: params[:site])
-      # Current.tenant = @site
-    elsif Current.tenant
-      @site = Current.tenant
-    end
+    @site = Site.find(params[:site_id])
+    # Current.tenant = @site
   end
 end

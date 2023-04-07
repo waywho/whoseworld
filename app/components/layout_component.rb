@@ -38,10 +38,10 @@ class LayoutComponent < ViewComponent::Base
 
   def menus
     return [
-      { title: "Sites", url: admin_sites_path },
-      { title: "Pages", url: admin_pages_path },
-      { title: "Galleries", url: admin_galleries_path },
-      { title: "Medias", url: admin_medias_path }
+      { title: "Sites", url: admin_sites_path(@site) },
+      { title: "Pages", url: admin_pages_path(@site) },
+      { title: "Galleries", url: admin_galleries_path(@site) },
+      { title: "Medias", url: admin_medias_path(@site) }
     ] if admin?
 
     @site.pages.menu_pages.blank? ? [] : @site.pages.menu_pages

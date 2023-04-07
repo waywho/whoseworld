@@ -1,9 +1,7 @@
 class Admin::PagesController < AdminController
-  include SiteSetter
   include PagesSetter
   include Imageable
 
-  before_action :set_site
   before_action :set_page, only: %i[ show edit destroy ]
 
   # GET /admin/pages
@@ -73,11 +71,7 @@ class Admin::PagesController < AdminController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    if @site
-      @page = @site.pages.friendly.find(params[:id])
-    else
-      @page = Page.friendly.find(params[:id])
-    end
+    @page = Current.tenant.pages.friendly.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

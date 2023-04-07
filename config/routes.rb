@@ -6,18 +6,21 @@ Rails.application.routes.draw do
   end
 
   namespace :manage, module: 'admin', as: :admin do
-    resources :medias
-    resources :galleries do
-      member do
-        delete :delete_image
-      end
-    end
     root "sites#index"
     resources :sites
-    resources :pages
-    resources :contents do
-      member do
-        delete :delete_image
+    scope "(:site_id)" do
+      resources :medias
+      resources :galleries do
+        member do
+          delete :delete_image
+        end
+      end
+
+      resources :pages
+      resources :contents do
+        member do
+          delete :delete_image
+        end
       end
     end
   end

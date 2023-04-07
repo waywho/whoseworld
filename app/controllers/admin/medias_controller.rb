@@ -1,6 +1,4 @@
 class Admin::MediasController < ApplicationController
-  include SiteSetter
-
   before_action :set_site, only: %i[ index new ]
   before_action :set_admin_media, only: %i[ show edit update destroy ]
 
