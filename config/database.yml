@@ -84,6 +84,3 @@ test:
 #
 production:
   <<: *default
-  database: whoseworld_production
-  username: <%= ENV["WHOSEWORLD_DATABASE_USERNAME"] %>
-  password: <%= ENV["WHOSEWORLD_DATABASE_PASSWORD"] %>
