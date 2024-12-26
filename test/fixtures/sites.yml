@@ -1,19 +1,27 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+weihsi:
   name: WeiHsi Hu
-  domain: MyString
+  domain: weihsihu.com
   subdomain: MyString
   slug: weihsihu
   orientation: left
   subtitle: Great site
   template_style: one_page
 
-two:
+logical:
   name: Logical Thinking
   domain: MyString
   subdomain: MyString
   slug: logical-thinking
+  orientation: top
+  subtitle: Great site
+  template_style: multi_page
+
+example:
+  name: Example
+  domain: example.com
+  slug: example
   orientation: top
   subtitle: Great site
   template_style: multi_page

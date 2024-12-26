@@ -31,7 +31,7 @@ class Admin::GalleriesController < AdminController
     @gallery = Gallery.new(gallery_params)
 
     if @gallery.save
-      redirect_to admin_galleries_path, notice: "Gallery was successfully created."
+      redirect_to admin_gallery_path(@gallery), notice: "Gallery was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class Admin::GalleriesController < AdminController
   def update
     if @gallery.update(gallery_params.slice(:title, :description, :page_id, :feature))
       @gallery.images.attach(gallery_params[:images]) if gallery_params[:images]
-      redirect_to admin_galleries_path, notice: "Gallery was successfully updated."
+      redirect_to admin_gallery_path(@gallery), notice: "Gallery was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

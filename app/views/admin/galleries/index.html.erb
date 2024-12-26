@@ -22,7 +22,7 @@
             <% @galleries.each do |gallery| %>
               <tr id="<%= dom_id gallery %>" class="hover-row">
                 <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  <%= link_to [:admin, gallery] do %>
+                  <%= link_to admin_gallery_path(id: gallery) do %>
                     <%= gallery.title %>
                   <% end %>
                 </th>
@@ -30,7 +30,7 @@
                   <%= gallery.page&.title %>
                 </td>
                 <td class="py-4 px-2">
-                  <%= simple_form_for [:admin, gallery], html: { "data-controller": "submit-by-click" } do |f| %>
+                  <%= simple_form_for gallery, url: admin_gallery_path(id: gallery), html: { "data-controller": "submit-by-click" } do |f| %>
                     <%= f.input :feature, input_html: {
                       id: "gallery_feature_gallery_#{gallery.id}",
                       "data-action": "submit-by-click#submit"

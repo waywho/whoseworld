@@ -1,8 +1,13 @@
 require "test_helper"
 
 class Storychor::PagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @site = create(:site, domain: "storychor.com")
+  end
+
   test "should get landing" do
-    get storychor_pages_landing_url
+    host! @site.domain
+    get "/"
     assert_response :success
   end
 end

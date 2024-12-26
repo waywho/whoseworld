@@ -29,7 +29,7 @@ class Admin::SitesController < AdminController
     @site = Site.new(site_params)
 
     if @site.save
-      redirect_to admin_sites_url, notice: "Site was successfully created."
+      redirect_to admin_site_path(@site), notice: "Site was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Admin::SitesController < AdminController
   # PATCH/PUT /admin/sites/1
   def update
     if @site.update(site_params)
-      redirect_to admin_sites_url, notice: "Site was successfully updated."
+      redirect_to admin_site_path(@site), notice: "Site was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
