@@ -34,10 +34,10 @@ gem "cssbundling-rails"
 gem "redis", "~> 4.0"
 
 # Acts as tenant
-gem 'acts_as_tenant'
+gem "acts_as_tenant"
 
 # Row order
-gem 'ranked-model'
+gem "ranked-model"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -55,14 +55,14 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 # simple form
-gem 'simple_form'
-gem 'simple_form-tailwind'
+gem "simple_form"
+gem "simple_form-tailwind"
 
 # user authentication
-gem 'devise'
+gem "devise"
 
 # friendly id
-gem 'friendly_id'
+gem "friendly_id"
 
 # ViewComponent
 gem "view_component"
@@ -76,6 +76,8 @@ gem "aws-sdk-s3", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do
@@ -87,6 +89,7 @@ group :development do
   gem "letter_opener"
 
   gem "pry-remote"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

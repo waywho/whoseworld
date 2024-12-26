@@ -31,7 +31,7 @@ class Admin::MediasController < ApplicationController
     @media = Media.new(media_params)
 
     if @media.save
-      redirect_to admin_medias_path, notice: "Media was successfully created."
+      redirect_to admin_media_path(@media), notice: "Media was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class Admin::MediasController < ApplicationController
   # PATCH/PUT /admin/medias/1
   def update
     if @media.update(media_params)
-      redirect_to admin_medias_path, notice: "Media was successfully updated."
+      redirect_to admin_media_path(@media), notice: "Media was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

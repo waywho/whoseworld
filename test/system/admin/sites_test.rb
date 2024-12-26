@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class Admin::SitesTest < ApplicationSystemTestCase
   setup do
-    @admin_site = admin_sites(:one)
+    @site = create(:site)
   end
 
   test "visiting the index" do
@@ -21,7 +21,7 @@ class Admin::SitesTest < ApplicationSystemTestCase
   end
 
   test "should update Site" do
-    visit admin_site_url(@admin_site)
+    visit admin_site_url(@site)
     click_on "Edit this site", match: :first
 
     click_on "Update Site"
@@ -31,7 +31,7 @@ class Admin::SitesTest < ApplicationSystemTestCase
   end
 
   test "should destroy Site" do
-    visit admin_site_url(@admin_site)
+    visit admin_site_url(@site)
     click_on "Destroy this site", match: :first
 
     assert_text "Site was successfully destroyed"

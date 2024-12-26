@@ -2,6 +2,7 @@ module Imageable
   extend ActiveSupport::Concern
 
   private
+  
   def update_image(resource, params)
     resource.attachment_reflections.flat_map do |attachment_key|
       next unless params[:attachment_key.to_sym]

@@ -1,8 +1,13 @@
 require "test_helper"
 
 class LogicalThinking::PagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @site = sites(:logical)
+  end
+
   test "should get landing" do
-    get logical_thinking_pages_landing_url
+    host! @site.domain
+    get "/"
     assert_response :success
   end
 end
