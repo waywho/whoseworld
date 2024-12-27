@@ -11,7 +11,7 @@
   </head>
 
   <body>
-     <%= render LayoutComponent.new(site: @site, admin: true) do |c| %>
+    <%= render LayoutComponent.new(site: Current.tenant, admin: true) do |c| %>
       <% if current_user %>
         <% c.with_navigation %>
       <% end %>

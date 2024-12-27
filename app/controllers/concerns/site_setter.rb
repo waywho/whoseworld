@@ -13,7 +13,7 @@ module SiteSetter
 
     set_dev_tenant and return if Rails.env.development?
 
-    Current.tenant = Site.find_by_domain(current_domain)
+    Current.tenant = (Site.find_by_domain(current_domain) || Site.find(params[:site_id]))
     Current.layout = Current.tenant&.template_style || :multi_page
   end
 
@@ -29,7 +29,7 @@ module SiteSetter
   def set_dev_tenant
     domain = request.domain.split(".")[0]
     Rails.logger.info "Dev domain: #{domain}"
-    Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first
+    Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first || (Site.find(params[:site_id]) if params[:site_id])
     Current.layout = Current.tenant&.template_style || :multi_page
   end
 end
