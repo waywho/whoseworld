@@ -45,7 +45,7 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails test -f
+        run: bin/rails test -f --backtrace
 
   # lint:
   #   runs-on: ubuntu-latest
