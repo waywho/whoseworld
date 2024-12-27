@@ -29,7 +29,7 @@ module SiteSetter
   def set_dev_tenant
     domain = request.domain.split(".")[0]
     Rails.logger.info "Dev domain: #{domain}"
-    Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first || (Site.find(params[:site_id]) if params[:site_id])
+    Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first
     Current.layout = Current.tenant&.template_style || :multi_page
   end
 end
