@@ -1,6 +1,8 @@
 class Site < ApplicationRecord
   validates :domain, uniqueness: true, allow_nil: true
 
+  scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
+
   has_many :pages
   has_one :landing_page, ->{  where(slug: "landing") }, class_name: "Page"
   has_many :domain_aliases

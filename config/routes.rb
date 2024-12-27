@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  namespace :manage, module: 'admin', as: :admin do
+  namespace :admin, module: 'admin', as: :admin do
     root "sites#index"
     resources :sites
     scope "(:site_id)" do
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   root "pages#landing"
   resources :pages, only: %i[index show], path: ''
-  devise_for :users, path: 'manage'
+  devise_for :users, path: 'admin'
 
 
 

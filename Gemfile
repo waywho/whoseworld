@@ -34,7 +34,7 @@ gem "cssbundling-rails"
 gem "redis", "~> 4.0"
 
 # Acts as tenant
-gem "acts_as_tenant"
+# gem "acts_as_tenant"
 
 # Row order
 gem "ranked-model"

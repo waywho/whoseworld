@@ -1,3 +1,3 @@
 class Current < ActiveSupport::CurrentAttributes
-  attribute :tenant, :style, :admin_site
+  attribute :tenant, :layout, :admin_site
 end
