@@ -3,7 +3,7 @@
 weihsi:
   name: WeiHsi Hu
   domain: weihsihu.com
-  subdomain: MyString
+  subdomain: 
   slug: weihsihu
   orientation: left
   subtitle: Great site
@@ -11,8 +11,8 @@ weihsi:
 
 logical:
   name: Logical Thinking
-  domain: MyString
-  subdomain: MyString
+  domain: logical-thinking.com
+  subdomain:
   slug: logical-thinking
   orientation: top
   subtitle: Great site
