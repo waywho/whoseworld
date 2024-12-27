@@ -16,12 +16,10 @@ class Admin::SitesController < AdminController
   # GET /admin/sites/new
   def new
     @site = Site.new
-    @site.domain_aliases.build
   end
 
   # GET /admin/sites/1/edit
   def edit
-    @site.domain_aliases.build
   end
 
   # POST /admin/sites
@@ -54,6 +52,7 @@ class Admin::SitesController < AdminController
   # Use callbacks to share common setup or constraints between actions.
   def set_admin_site
     @site = Site.find(params[:id])
+    @site.domain_aliases.build if @site.domain_aliases.empty?
   end
 
   # Only allow a list of trusted parameters through.

@@ -1,6 +1,6 @@
 	<tr id="<%= dom_id site %>" class="hover-row">
 		<th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-			<%= link_to [:admin, site] do %>
+			<%= link_to [:edit, :admin, site] do %>
 				<%= site.name %>
 			<% end %>
 		</th>

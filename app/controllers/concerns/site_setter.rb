@@ -1,6 +1,10 @@
 module SiteSetter
   extend ActiveSupport::Concern
 
+  included do
+    before_action :set_site
+  end
+
   private
 
   def set_site
