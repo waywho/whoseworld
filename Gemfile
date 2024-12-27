@@ -27,6 +27,7 @@ gem "stimulus-rails"
 # gem "cssbundling-rails"
 
 gem "tailwindcss-rails"
+gem "flowbite", "~> 2.3"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

@@ -13,7 +13,7 @@ module.exports = {
     './node_modules/flowbite/**/*.js'
   ],
   plugins: [
-    require('flowbite/plugin')
+    require("../vendor/javascript/flowbite/plugin.js")
   ],
   theme: {
     listStyleType: {
