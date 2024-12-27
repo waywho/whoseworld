@@ -33,15 +33,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      # Setup Node.js
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        
-      - name: Install yarn
-        run: npm i -g yarn@1.22.5
-
-      - name: Install yarn dependencies
-        run: yarn install --frozen-lockfile
         
       # Add or replace database setup steps here
       - name: Set up database schema
