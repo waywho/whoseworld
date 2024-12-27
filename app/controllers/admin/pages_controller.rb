@@ -32,7 +32,7 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages/1/edit
   def edit
-    @page.contents.build
+    @page.contents.build if @page.contents.empty?
   end
 
   # POST /admin/pages

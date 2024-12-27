@@ -25,9 +25,11 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
@@ -40,6 +42,7 @@ jobs:
 
       - name: Compile assets
         run: bin/rails assets:precompile
+
       # Add or replace test runners here
       - name: Run tests
         run: bin/rails test -f
