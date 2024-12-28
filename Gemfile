@@ -34,7 +34,7 @@ gem "flowbite", "~> 2.3"
 gem "nilify_blanks"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis", "~> 5.3"
 
 # Acts as tenant
 # gem "acts_as_tenant"
