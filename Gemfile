@@ -105,3 +105,5 @@ group :test do
   gem "capybara"
   gem "cuprite"
 end
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
