@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   namespace :admin, module: 'admin', as: :admin do
     root "sites#index"
     resources :sites
+
+    get "/:site_id/pages/:id", to: "pages#show", as: :preview_page
+
     scope "(:site_id)" do
       resources :medias
       resources :galleries do
@@ -16,7 +19,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :pages
+      resources :pages, only: %i[index new create edit update destroy]
       resources :contents do
         member do
           delete :delete_image

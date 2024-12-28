@@ -10,11 +10,19 @@ class Site < ApplicationRecord
                                 reject_if: proc { |attributes| attributes['domain'].blank? && attributes['subdomain'].blank? }
   has_one_attached :logo
 
+  after_create :create_landing_page
+
   def self.orientations
     %i[top left right].freeze
   end
 
   def self.site_styles
-    %i[multi_page one_page]
+    %i[multi_page one_page].freeze
+  end
+
+  private
+
+  def create_landing_page
+    pages.create(title: "Landing", slug: "landing", menu: false, template: "landing")
   end
 end

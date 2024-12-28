@@ -1,7 +1,6 @@
 class Admin::SitesController < AdminController
   include Imageable
 
-  skip_before_action :set_site
   before_action :set_admin_site, only: %i[ show edit update destroy ]
 
   # GET /admin/sites

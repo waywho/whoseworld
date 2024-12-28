@@ -1,7 +1,7 @@
 <tr id="<%= dom_id page %>" class="hover-row" data-sortable-update-url="<%= admin_page_path(page, site_id: page.site.id) %>">
 
   <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-    <%= link_to edit_admin_page_path(page, site_id: page.site.id) do %>
+    <%= link_to edit_admin_page_path(id: page, site_id: page.site.id) do %>
       <%= page.title %>
     <% end %>
   </th>
