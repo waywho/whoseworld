@@ -11,7 +11,7 @@ updates:
       interval: "weekly" # Check for updates weekly
     commit-message:
       prefix: "deps"
-      include: true
+      include: "scope"
     open-pull-requests-limit: 10
     reviewers:
       - "waywho" # Replace with your GitHub username or team
