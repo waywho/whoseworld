@@ -10,7 +10,7 @@ class Site < ApplicationRecord
                                 reject_if: proc { |attributes| attributes['domain'].blank? && attributes['subdomain'].blank? }
   has_one_attached :logo
 
-  after_create :create_landing_page
+  after_create_commit :create_landing_page
 
   def self.orientations
     %i[top left right].freeze

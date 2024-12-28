@@ -13,4 +13,11 @@ class SiteTest < ActiveSupport::TestCase
   test "#find_by_domain with alias" do
     assert_equal @site, Site.find_by_domain("burm-test.com")
   end
+
+  test "should automatically create landing page" do
+    assert_difference("Page.count") do
+      site = create(:site, domain: "test.com")
+      assert site.landing_page.present?
+    end
+  end
 end
