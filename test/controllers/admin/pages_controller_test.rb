@@ -2,7 +2,7 @@ require "test_helper"
 
 class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = sites(:weihsi)
+    @site = create(:site, :weihsi)
     @page = create(:page, site: @site)
     sign_in users(:admin)
   end

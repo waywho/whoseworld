@@ -2,7 +2,7 @@ require "test_helper"
 
 class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = sites(:weihsi)
+    @site = create(:site, :weihsi)
     sign_in users(:admin)
   end
 
@@ -16,7 +16,7 @@ class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create admin_site" do
+  test "should create site" do
     assert_difference("Site.count") do
       post admin_sites_url, params: { site: { name: "great site", domain: "great.com" } }
     end
@@ -24,7 +24,7 @@ class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_site_url(Site.last)
   end
 
-  test "should show admin_site" do
+  test "should show site" do
     get admin_site_url(@site)
     assert_response :success
   end
@@ -34,12 +34,12 @@ class Admin::SitesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update admin_site" do
+  test "should update site" do
     patch admin_site_url(@site), params: { site: { name: "new site" } }
     assert_redirected_to admin_site_url(@site)
   end
 
-  test "should destroy admin_site" do
+  test "should destroy site" do
     assert_difference("Site.count", -1) do
       delete admin_site_url(@site)
     end

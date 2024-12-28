@@ -3,9 +3,9 @@ class Site < ApplicationRecord
 
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
 
-  has_many :pages
+  has_many :pages, dependent: :destroy
   has_one :landing_page, ->{  where(slug: "landing") }, class_name: "Page"
-  has_many :domain_aliases
+  has_many :domain_aliases, dependent: :destroy
   accepts_nested_attributes_for :domain_aliases, allow_destroy: true,
                                 reject_if: proc { |attributes| attributes['domain'].blank? && attributes['subdomain'].blank? }
   has_one_attached :logo
