@@ -13,6 +13,10 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
+  setup do
+    @site = create(:site, :example)
+  end
+
   teardown do
     host! "www.example.com" if defined? host!
   end

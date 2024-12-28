@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-example:
-  name: Example
-  domain: example.com
-  slug: example
-  orientation: top
-  subtitle: Great site
-  template_style: multi_page
+# example:
+#   name: Example
+#   domain: example.com
+#   slug: example
+#   orientation: top
+#   subtitle: Great site
+#   template_style: multi_page

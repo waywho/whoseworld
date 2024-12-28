@@ -3,7 +3,7 @@ FactoryBot.define do
     title { "MyString" }
     source { "MyText" }
     page
-    site
+    site { nil }
     media_type { "MyString" }
     row_order { 1 }
   end

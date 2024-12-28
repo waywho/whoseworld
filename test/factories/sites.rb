@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :site do
     name { "MyString" }
-    domain { Faker::App.name }
+    domain { "#{Faker::App.name.downcase}.com" }
     subdomain { "MyString" }
     orientation { "MyString" }
     slug { "MyString" }
@@ -23,6 +23,16 @@ FactoryBot.define do
       domain { "logical-thinking.com" }
       subdomain { nil }
       slug { "logical-thinking" }
+      orientation { "top" }
+      subtitle { "Great site" }
+      template_style { "multi_page" }
+    end
+
+    trait :example do
+      name { "Example" }
+      domain { "example.com" }
+      subdomain { nil }
+      slug { "example" }
       orientation { "top" }
       subtitle { "Great site" }
       template_style { "multi_page" }
