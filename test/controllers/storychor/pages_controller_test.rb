@@ -2,7 +2,7 @@ require "test_helper"
 
 class Storychor::PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = create(:site, domain: "storychor.com")
+    @site = create(:site, name: "storychor", domain: "storychor.com")
   end
 
   test "should get landing" do

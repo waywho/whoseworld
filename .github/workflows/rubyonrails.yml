@@ -23,25 +23,19 @@ jobs:
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
     env:
+      CI: true
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      # Setup Node.js
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        
-      - name: Install yarn
-        run: npm i -g yarn@1.22.5
-
-      - name: Install yarn dependencies
-        run: yarn install --frozen-lockfile
         
       # Add or replace database setup steps here
       - name: Set up database schema
@@ -49,9 +43,10 @@ jobs:
 
       - name: Compile assets
         run: bin/rails assets:precompile
+
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails test -f
+        run: bin/rails test -f -b
 
   # lint:
   #   runs-on: ubuntu-latest

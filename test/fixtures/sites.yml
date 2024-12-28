@@ -1,23 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-weihsi:
-  name: WeiHsi Hu
-  domain: weihsihu.com
-  subdomain: MyString
-  slug: weihsihu
-  orientation: left
-  subtitle: Great site
-  template_style: one_page
-
-logical:
-  name: Logical Thinking
-  domain: MyString
-  subdomain: MyString
-  slug: logical-thinking
-  orientation: top
-  subtitle: Great site
-  template_style: multi_page
-
 example:
   name: Example
   domain: example.com

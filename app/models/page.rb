@@ -10,7 +10,7 @@ class Page < ApplicationRecord
   belongs_to :site
   has_many :contents
   accepts_nested_attributes_for :contents, allow_destroy: true,
-                                           reject_if: proc { |attributes| attributes['body'].blank? && attributes["summary"].blank? }
+                                           reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 
   friendly_id :title, use: :scoped, scope: :site
 

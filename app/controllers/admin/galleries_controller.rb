@@ -1,7 +1,6 @@
 class Admin::GalleriesController < AdminController
   include Imageable
 
-  before_action :set_site, only: %i[ index new ]
   before_action :set_admin_gallery, except: %i[ index new create ]
 
   # GET /admin/galleries

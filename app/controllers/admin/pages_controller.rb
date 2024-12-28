@@ -21,18 +21,16 @@ class Admin::PagesController < AdminController
 
   # GET /admin/pages/1
   def show
-    site = Site.find(params[:site_id]) || Current.tenant
-    if site
-      @pages = set_pages(site)
-      render "#{site.slug}/landing", layout: "home"
-    else
-      redirect_to admin_pages_path
-    end
+    @site = Site.find(params[:site_id])
+    Current.tenant = @site
+    @pages = set_pages(@site)
+
+    render "#{@site.slug}/landing", layout: "home"
   end
 
   # GET /admin/pages/1/edit
   def edit
-    @page.contents.build
+    @page.contents.build if @page.contents.empty?
   end
 
   # POST /admin/pages
@@ -40,7 +38,7 @@ class Admin::PagesController < AdminController
     @page = Page.new(page_params)
 
     if @page.save
-      redirect_to admin_page_path(@page), notice: "Page was successfully created."
+      redirect_to edit_admin_page_path(@page), notice: "Page was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -55,7 +53,7 @@ class Admin::PagesController < AdminController
     if @page.update(page_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to admin_page_path(@page), notice: "Page was successfully updated." }
+        format.html { redirect_to edit_admin_page_path(@page), notice: "Page was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity

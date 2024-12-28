@@ -7,17 +7,16 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-     <%= render LayoutComponent.new(site: @site, admin: true) do |c| %>
+    <%= render LayoutComponent.new(site: Current.tenant, admin: true) do |c| %>
       <% if current_user %>
         <% c.with_navigation %>
       <% end %>
       <%= render AlertComponent.new(flash) %>
       <%= yield %>
     <% end %>
-
   </body>
 </html>

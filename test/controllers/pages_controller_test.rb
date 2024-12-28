@@ -3,7 +3,7 @@ require "test_helper"
 class PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @site = sites(:example)
-    @page = create(:page, site: @site)
+    @page = create(:page, title: "Landing", site: @site)
   end
 
   test "should get index" do
