@@ -5,15 +5,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: bundler
+  - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: weekly
+      interval: "weekly" # Check for updates weekly
+    commit-message:
+      prefix: "deps"
+      include: true
     open-pull-requests-limit: 10
-    registries:
-      - rubygems-server-rubygems-pkg-github-com
-    insecure-external-code-execution: allow
-    groups:
-      ruby_deps:
-        patterns:
-          - "*"
+    reviewers:
+      - "waywho" # Replace with your GitHub username or team
+    assignees:
+      - "waywho" # Replace with your GitHub username or team
+    ignore:
+      # Ignore specific dependencies or set version constraints if needed
+      - dependency-name: "rails"
+        versions:
+          - "< 7.0"
