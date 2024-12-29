@@ -23,7 +23,7 @@ deploy:
   release_command: bundle exec rails db:migrate
 
 env:
-  PORT: "8080"
+  PORT: "3000"
   SERVER_COMMAND: bundle exec puma -C config/puma.rb
 
 mounts:
