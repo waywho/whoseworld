@@ -1,0 +1,65 @@
+# fly.yaml app configuration file generated for whoseworld on 2024-12-29T11:39:12+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app: whoseworld
+kill_signal: SIGINT
+kill_timeout: 5s
+
+experimental:
+  auto_rollback: true
+
+  attached:
+    secrets: {}
+
+build:
+  args:
+    BUNDLER_VERSION: 2.6.2
+    RUBY_VERSION: 3.3.2
+  build_target: app
+
+deploy:
+  release_command: bundle exec rails db:migrate
+
+env:
+  PORT: "8080"
+  SERVER_COMMAND: bundle exec puma -C config/puma.rb
+
+mounts:
+  - source: myapp_data
+    destination: /data
+
+services:
+  - protocol: tcp
+    internal_port: 3000
+
+    ports:
+      - port: 80
+
+        handlers:
+          - http
+        force_https: true
+      - port: 443
+
+        handlers:
+          - tls
+          - http
+
+    concurrency:
+      type: connections
+      hard_limit: 25
+      soft_limit: 20
+
+    tcp_checks:
+      - interval: 15s
+        timeout: 2s
+        grace_period: 1s
+
+    processes:
+      - app
+
+statics:
+  - guest_path: /app/public
+    url_prefix: /
+    tigris_bucket: ""
