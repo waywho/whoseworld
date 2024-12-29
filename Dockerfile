@@ -5,7 +5,7 @@ ARG RUBY_VERSION=3.3.2
 FROM ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
-WORKDIR /rails
+WORKDIR /app
 
 # Set production environment
 ENV BUNDLE_DEPLOYMENT="1" \
@@ -60,21 +60,21 @@ RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
-COPY --from=build /rails /rails
+COPY --from=build /app /app
 
 # Run and own only the runtime files as a non-root user for security
 ARG UID=1000 \
     GID=1000
-RUN groupadd -f -g $GID rails && \
-    useradd -u $UID -g $GID rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
-USER rails:rails
+RUN groupadd -f -g $GID app && \
+    useradd -u $UID -g $GID app --create-home --shell /bin/bash && \
+    chown -R app:app db log storage tmp
+USER app:app
 
 # Deployment options
 ENV RUBY_YJIT_ENABLE="1"
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
