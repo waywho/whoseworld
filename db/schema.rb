@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_28_233937) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_30_133825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_28_233937) do
     t.decimal "fee", precision: 8, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "burm_signups", force: :cascade do |t|
+    t.bigint "burm_person_id", null: false
+    t.bigint "burm_role_id", null: false
+    t.bigint "burm_show_id", null: false
+    t.bigint "alternative_role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
+    t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
+    t.index ["burm_show_id"], name: "index_burm_signups_on_burm_show_id"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -167,6 +179,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_28_233937) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "burm_roles", "burm_shows"
+  add_foreign_key "burm_signups", "burm_people"
+  add_foreign_key "burm_signups", "burm_roles"
+  add_foreign_key "burm_signups", "burm_shows"
   add_foreign_key "contents", "pages"
   add_foreign_key "domain_aliases", "sites"
   add_foreign_key "galleries", "pages"
