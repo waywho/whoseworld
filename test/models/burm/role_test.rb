@@ -2,12 +2,12 @@ require "test_helper"
 
 class Burm::RoleTest < ActiveSupport::TestCase
   setup do
-    @show = create(:burm_show)
-    @role = create(:burm_role, show: @show)
+    @musical = create(:burm_musical)
+    @role = create(:burm_role, musical: @musical)
   end
 
   test "validates uniqueness of name" do
-    role = build(:burm_role, show: @show, name: @role.name)
+    role = build(:burm_role, musical: @musical, name: @role.name)
     assert_not role.valid?
     assert_equal ["has already been taken"], role.errors[:name]
   end
