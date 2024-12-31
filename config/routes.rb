@@ -1,38 +1,38 @@
 require "domain_constraints"
 
 Rails.application.routes.draw do
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
   if Rails.env.development?
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  namespace :admin, module: 'admin', as: :admin do
-    root "sites#index"
-    resources :sites
+  # namespace :admin, module: 'admin', as: :admin do
+  #   root "sites#index"
+  #   resources :sites
 
-    get "/:site_id/pages/:id", to: "pages#show", as: :preview_page
+  #   get "/:site_id/pages/:id", to: "pages#show", as: :preview_page
 
-    scope "(:site_id)" do
-      resources :medias
-      resources :galleries do
-        member do
-          delete :delete_image
-        end
-      end
+  #   scope "(:site_id)" do
+  #     resources :medias
+  #     resources :galleries do
+  #       member do
+  #         delete :delete_image
+  #       end
+  #     end
 
-      resources :pages, only: %i[index new create edit update destroy]
-      resources :contents do
-        member do
-          delete :delete_image
-        end
-      end
-    end
-  end
+  #     resources :pages, only: %i[index new create edit update destroy]
+  #     resources :contents do
+  #       member do
+  #         delete :delete_image
+  #       end
+  #     end
+  #   end
+  # end
 
   root "pages#landing"
   resources :pages, only: %i[index show], path: ''
-  devise_for :users, path: 'admin'
-
-
 
   # example for route constraint
   # constraints DomainConstraints.new("weihsihu.test", "weihsihu.com", "weihsihu.co.uk") do
