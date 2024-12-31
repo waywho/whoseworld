@@ -1,3 +1,6 @@
+// patch to use v4 without node/yarn
+// https://github.com/activeadmin/activeadmin/discussions/8223
+
 import { execSync } from 'child_process';
 import activeAdminPlugin from '@activeadmin/activeadmin/plugin';
 

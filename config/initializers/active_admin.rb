@@ -1,3 +1,5 @@
+# patch to active_admin v4
+# https://github.com/activeadmin/activeadmin/discussions/8223
 ActiveAdmin.after_load do
   ActiveAdmin.importmap.draw(Rails.root.join("config/importmap.rb"))
   ActiveAdmin.importmap.cache_sweeper(watches: [ Rails.root.join("app/javascript") ])

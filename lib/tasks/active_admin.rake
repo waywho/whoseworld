@@ -1,3 +1,6 @@
+# patch to active_admin v4 using importmap
+# https://github.com/activeadmin/activeadmin/discussions/8223
+
 namespace :active_admin do
   COMMAND = [
     Rails.root.join("bin/tailwindcss").to_s,
