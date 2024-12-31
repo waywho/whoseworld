@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Page do
   permit_params :title, :menu, :slug, :site_id, :row_order, :template, :feature,
                 contents_attributes: %i[heading summary body _destroy]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Site do
   permit_params :name, :subtitle, :domain, :subdomain, :slug, :orientation, :template_style, :public
 
