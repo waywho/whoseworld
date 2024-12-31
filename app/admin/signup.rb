@@ -27,6 +27,9 @@ ActiveAdmin.register BURM::Signup do
       f.input :musical
       f.input :role
       f.input :alternative_role
+      f.input :musical_title, disabled: true
+      f.input :person_name, disabled: true
+      f.input :role_name, disabled: true
     end
 
     f.inputs "Person" do

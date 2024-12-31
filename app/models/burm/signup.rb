@@ -5,4 +5,16 @@ class BURM::Signup < ApplicationRecord
   belongs_to :alternative_role, optional: true, class_name: "BURM::Role"
 
   accepts_nested_attributes_for :person, reject_if: :all_blank
+
+  before_commit :set_cached_attributes, only: %i[create update]
+
+  validates :person, uniqueness: { scope: %i[role musical] }
+
+  private
+
+  def set_cached_attributes
+    self.person_name = person&.full_name
+    self.role_name = role&.name
+    self.musical_title = musical&.title
+  end
 end
