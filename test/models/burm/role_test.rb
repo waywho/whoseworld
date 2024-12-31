@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Burm::RoleTest < ActiveSupport::TestCase
+class BURM::RoleTest < ActiveSupport::TestCase
   setup do
     @musical = create(:burm_musical)
     @role = create(:burm_role, musical: @musical)

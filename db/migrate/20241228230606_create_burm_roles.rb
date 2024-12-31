@@ -1,4 +1,4 @@
-class CreateBurmRoles < ActiveRecord::Migration[7.2]
+class CreateBURMRoles < ActiveRecord::Migration[7.2]
   def change
     create_table :burm_roles do |t|
       t.string :name

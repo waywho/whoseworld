@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Burm::MusicalTest < ActiveSupport::TestCase
+class BURM::MusicalTest < ActiveSupport::TestCase
   setup do
     @show = create(:burm_musical)
   end

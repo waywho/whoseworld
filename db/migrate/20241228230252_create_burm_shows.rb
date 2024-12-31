@@ -1,4 +1,4 @@
-class CreateBurmShows < ActiveRecord::Migration[7.2]
+class CreateBURMShows < ActiveRecord::Migration[7.2]
   def change
     create_table :burm_shows do |t|
       t.string :title

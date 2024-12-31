@@ -1,8 +1,8 @@
 require "test_helper"
 
-class Burm::PagesControllerTest < ActionDispatch::IntegrationTest
+class BURM::PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = create(:site, name: "Burm", domain: "burm.com")
+    @site = create(:site, name: "BURM", domain: "burm.com")
   end
 
   test "should get landing" do
