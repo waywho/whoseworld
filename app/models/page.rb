@@ -21,7 +21,6 @@ class Page < ApplicationRecord
   scope :menu_pages, -> { where.not(title: "landing").where(menu: true) }
   scope :landing, -> { friendly.find("landing") }
   scope :feature, -> { where(feature: true) }
-  scope :by_site, ->(site) { where(site: site) }
 
   # Attachment
   has_one_attached :feature_image

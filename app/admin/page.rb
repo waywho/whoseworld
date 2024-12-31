@@ -9,7 +9,7 @@ ActiveAdmin.register Page do
   scope :all, default: true
 
   Site.all.each do |site|
-    scope(site.slug) { |scope| scope.by_site(site) }
+    scope(site.slug) { |scope| scope.where(site_id: site.id) }
   end
 
   index do
