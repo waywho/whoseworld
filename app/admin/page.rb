@@ -8,9 +8,9 @@ ActiveAdmin.register Page do
 
   scope :all, default: true
 
-  Site.all.each do |site|
-    scope(site.slug) { |scope| scope.where(site:) }
-  end
+  # Site.all.each do |site|
+  #   scope(site.slug) { |scope| scope.where(site:) }
+  # end
 
   index do
     column :row_order
