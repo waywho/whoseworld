@@ -5,7 +5,22 @@ ActiveAdmin.after_load do
   ActiveAdmin.importmap.cache_sweeper(watches: [ Rails.root.join("app/javascript") ])
 end
 
+# https://stackoverflow.com/questions/27032902/activeadmin-with-friendly-id
+module ActiveAdminFriendlyIdScoping
+  def find_resource
+    if resource_class.is_a? FriendlyId
+      scoped_collection.friendly.find params[:id]
+    else
+      super
+    end
+  end
+end
+
 ActiveAdmin.setup do |config|
+  # https://stackoverflow.com/questions/27032902/activeadmin-with-friendly-id
+  Rails.application.config.to_prepare do
+    ActiveAdmin::ResourceController.prepend(ActiveAdminFriendlyIdScoping)
+  end
   # == Site Title
   #
   # Set the title that is displayed on the main layout
