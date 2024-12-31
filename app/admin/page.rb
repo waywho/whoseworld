@@ -28,13 +28,13 @@ ActiveAdmin.register Page do
       f.input :template
       f.input :row_order
       f.input :feature
-
-      f.inputs "Contents" do
-        f.has_many :contents, heading: false,  sortable: :row_order, sortable_start: 1, allow_destroy: true do |c|
-          c.input :heading
-          c.input :summary
-          c.input :body
-        end
+    end
+    
+    f.inputs "Contents" do
+      f.has_many :contents, heading: false,  sortable: :row_order, sortable_start: 1, allow_destroy: true do |c|
+        c.input :heading
+        c.input :summary
+        c.input :body
       end
     end
     f.actions
