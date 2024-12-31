@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_31_112455) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_31_184752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_31_112455) do
     t.string "name"
     t.bigint "burm_musical_id", null: false
     t.integer "voice_type"
-    t.integer "type"
+    t.integer "role_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["burm_musical_id"], name: "index_burm_roles_on_burm_musical_id"
@@ -88,9 +88,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_31_112455) do
     t.bigint "burm_person_id", null: false
     t.bigint "burm_role_id", null: false
     t.bigint "burm_musical_id", null: false
-    t.bigint "alternative_role"
+    t.bigint "alternative_role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "musical_title"
+    t.string "person_name"
+    t.string "role_name"
     t.index ["burm_musical_id"], name: "index_burm_signups_on_burm_musical_id"
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
