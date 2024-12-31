@@ -22,5 +22,6 @@ ActiveAdmin.register Media do
     f.input :row_order, label: "Order"
     f.input :page
     f.input :site
+    f.actions
   end
 end
