@@ -4,9 +4,9 @@ ActiveAdmin.register Media do
   permit_params :title, :source, :page_id, :site_id, :media_type, :row_order
   config.sort_order = "row_order_asc"
 
-  Site.all.each do |site|
-    scope(site.slug) { |scope| scope.where(site:) }
-  end
+  # Site.all.each do |site|
+  #   scope(site.slug) { |scope| scope.where(site:) }
+  # end
 
   index do
     column :page
