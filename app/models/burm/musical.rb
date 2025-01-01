@@ -6,7 +6,7 @@ class BURM::Musical < ApplicationRecord
 
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy
-  has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_musical_id"
+  has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_musical_id", dependent: :nullify
   has_many :people, through: :signups, class_name: "BURM::Person", foreign_key: "burm_person_id"
 
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs.valid? }

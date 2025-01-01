@@ -8,11 +8,11 @@ class Page < ApplicationRecord
   ranks :row_order, with_same: :site_id
 
   # Associations
-  has_many :galleries
+  has_many :galleries, dependent: :nullify
   has_one :featured_gallery, -> { where(feature: true) }, class_name: "Gallery"
-  has_many :medias
+  has_many :medias, dependent: :nullify
   belongs_to :site
-  has_many :contents
+  has_many :contents, dependent: :destroy
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 
