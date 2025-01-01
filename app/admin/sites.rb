@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Site do
-  permit_params :name, :subtitle, :domain, :subdomain, :slug, :orientation, :template_style, :public
+  permit_params :name, :subtitle, :domain, :subdomain, :slug, :orientation, :template_style, :public, :logo
 
   index do
     id_column
@@ -26,6 +26,7 @@ ActiveAdmin.register Site do
       f.input :orientation
       f.input :template_style
       f.input :public
+      f.file_field :logo
     end
     f.actions
   end
