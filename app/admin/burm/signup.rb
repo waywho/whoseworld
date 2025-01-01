@@ -7,7 +7,7 @@ ActiveAdmin.register BURM::Signup do
   scope :all, default: true
 
   BURM::Musical.all.each do |musical|
-    scope(musical.slug.to_sym)
+    scope(musical.symbolized_slug)
   end
 
   index do

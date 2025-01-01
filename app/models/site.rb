@@ -1,4 +1,6 @@
 class Site < ApplicationRecord
+  include Sluggable
+  
   validates :domain, uniqueness: true, allow_nil: true
 
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }

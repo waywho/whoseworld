@@ -3,7 +3,7 @@ module MusicalScopes
 
   included do
     BURM::Musical.all.each do |musical|
-      scope musical.slug.to_sym, -> { where(burm_musical_id: musical.id) }
+      scope musical.symbolized_slug, -> { where(burm_musical_id: musical.id) }
     end
   end
 end

@@ -2,6 +2,8 @@ class BURM::Musical < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  include Sluggable
+
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy
   has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_musical_id"

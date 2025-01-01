@@ -3,7 +3,7 @@ module SiteScopes
 
   included do
     Site.all.each do |site|
-      scope site.slug.to_sym, -> { where(site_id: site.id) }
+      scope site.symbolized_slug, -> { where(site_id: site.id) }
     end
   end
 end
