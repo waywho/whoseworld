@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_30_145718) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_31_184752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -64,7 +78,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_145718) do
     t.string "name"
     t.bigint "burm_musical_id", null: false
     t.integer "voice_type"
-    t.integer "type"
+    t.integer "role_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["burm_musical_id"], name: "index_burm_roles_on_burm_musical_id"
@@ -74,9 +88,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_145718) do
     t.bigint "burm_person_id", null: false
     t.bigint "burm_role_id", null: false
     t.bigint "burm_musical_id", null: false
-    t.bigint "alternative_role"
+    t.bigint "alternative_role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "musical_title"
+    t.string "person_name"
+    t.string "role_name"
     t.index ["burm_musical_id"], name: "index_burm_signups_on_burm_musical_id"
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
@@ -89,6 +106,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_30_145718) do
     t.datetime "updated_at", null: false
     t.string "heading"
     t.string "summary"
+    t.integer "row_order"
     t.index ["page_id"], name: "index_contents_on_page_id"
   end
 

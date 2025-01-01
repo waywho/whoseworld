@@ -64,6 +64,9 @@ gem "simple_form-tailwind"
 # user authentication
 gem "devise"
 
+# admin interface
+gem "activeadmin", "~> 4.0.beta15"
+
 # friendly id
 gem "friendly_id"
 

@@ -1,4 +1,4 @@
-class Burm::PagesController < ApplicationController
+class BURM::PagesController < ApplicationController
   layout 'home'
 
   def landing

@@ -1,6 +1,12 @@
-class Burm::Person < ApplicationRecord
-  has_many :signups, class_name: "Burm::Signup", foreign_key: "burm_person_id"
-  has_many :roles, through: :signups, class_name: "Burm::Role", foreign_key: "burm_role_id"
-  has_many :musicals, through: :signups, class_name: "Burm::Musical", foreign_key: "burm_musical_id"
-  has_many :alternative_roles, through: :signups, class_name: "Burm::Role", foreign_key: "burm_role_id"
+class BURM::Person < ApplicationRecord
+  has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_person_id"
+  has_many :roles, through: :signups, class_name: "BURM::Role", foreign_key: "burm_role_id"
+  has_many :musicals, through: :signups, class_name: "BURM::Musical", foreign_key: "burm_musical_id"
+  has_many :alternative_roles, through: :signups, class_name: "BURM::Role", foreign_key: "burm_role_id"
+
+  validates :first_name, :last_name, :email, presence: true
+
+  def full_name
+    "#{first_name} #{last_name}".strip
+  end
 end

@@ -1,2 +1,2 @@
-module Burm::PagesHelper
+module BURM::PagesHelper
 end

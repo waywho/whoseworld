@@ -1,4 +1,4 @@
-class CreateBurmSignups < ActiveRecord::Migration[7.2]
+class CreateBURMSignups < ActiveRecord::Migration[7.2]
   def change
     create_table :burm_signups do |t|
       t.belongs_to :burm_person, null: false, foreign_key: true

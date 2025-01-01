@@ -1,6 +1,20 @@
-class Burm::Signup < ApplicationRecord
-  belongs_to :person, class_name: "Burm::Person", foreign_key: "burm_person_id"
-  belongs_to :role, class_name: "Burm::Role", foreign_key: "burm_role_id"
-  belongs_to :musical, class_name: "Burm::Musical", foreign_key: "burm_musical_id"
-  belongs_to :alternative_role, optional: true, class_name: "Burm::Role"
+class BURM::Signup < ApplicationRecord
+  belongs_to :person, class_name: "BURM::Person", foreign_key: "burm_person_id"
+  belongs_to :role, class_name: "BURM::Role", foreign_key: "burm_role_id"
+  belongs_to :musical, class_name: "BURM::Musical", foreign_key: "burm_musical_id"
+  belongs_to :alternative_role, optional: true, class_name: "BURM::Role"
+
+  accepts_nested_attributes_for :person, reject_if: :all_blank
+
+  before_commit :set_cached_attributes, only: %i[create update]
+
+  validates :person, uniqueness: { scope: %i[role musical] }
+
+  private
+
+  def set_cached_attributes
+    self.person_name = person&.full_name
+    self.role_name = role&.name
+    self.musical_title = musical&.title
+  end
 end

@@ -1,21 +1,13 @@
-<%= simple_form_for [:admin, @gallery] do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div data-controller="multi-upload" >
-
-    <div class="form-inputs mb-4">
-      <%= f.file_field :images, multiple: true, data: { action: "multi-upload#addFile"} %>
-    </div>
+<%= semantic_form_for [:admin, @gallery], builder: ActiveAdmin::FormBuilder do |f| %>
+  <%= f.inputs do %>
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :feature, as: :boolean %>
-    <%= f.association :page, label_method: :title_with_site, value_method: :id %>
-
-    <h2 class="mt-4">Selected Files</h2>
-    <ul class="mb-4" data-multi-upload-target="files"></ul>
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  </div>
+    <%= f.input :page %>
+    <%= f.input :feature %>
+    <%= f.input :row_order %>
+  <% end %>
+  <%= f.file_field :images, multiple: true, data: { action: "multi-upload#addFile"} %>
+  <h2 class="mt-4">Attached Images</h2>
+  <ul class="mb-4" data-multi-upload-target="files"></ul>
+  <%= f.actions %>
 <% end %>

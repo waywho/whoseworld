@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :burm_musical, class: 'Burm::Musical' do
+  factory :burm_musical, class: 'BURM::Musical' do
     title { Faker::Movie.title }
     start_at { "2024-12-30 15:54:48" }
     end_at { "2024-12-30 15:54:48" }
