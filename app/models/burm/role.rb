@@ -1,4 +1,6 @@
 class BURM::Role < ApplicationRecord
+  include MusicalScopes
+
   enum :voice_type, %i[speaking bass baritone tenor alto mezzo_soprano soprano], allow_nil: true, validate: true
   enum :role_type, %i[ensemble featured supporting lead], allow_nil: true, validate: true, suffix: :role
   

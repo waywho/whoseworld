@@ -1,6 +1,6 @@
 class BURM::Musical < ApplicationRecord
-  after_initialize :set_default_fee, unless: :persisted?
-  before_validation :build_from_bulk_roles
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy
@@ -10,6 +10,9 @@ class BURM::Musical < ApplicationRecord
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs.valid? }
 
   attribute :bulk_roles, :text
+
+  after_initialize :set_default_fee, unless: :persisted?
+  before_validation :build_from_bulk_roles
 
   private
 

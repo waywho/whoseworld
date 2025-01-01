@@ -1,4 +1,6 @@
 class BURM::Signup < ApplicationRecord
+  include MusicalScopes
+  
   belongs_to :person, class_name: "BURM::Person", foreign_key: "burm_person_id"
   belongs_to :role, class_name: "BURM::Role", foreign_key: "burm_role_id"
   belongs_to :musical, class_name: "BURM::Musical", foreign_key: "burm_musical_id"

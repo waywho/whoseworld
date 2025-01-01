@@ -6,9 +6,9 @@ ActiveAdmin.register BURM::Signup do
 
   scope :all, default: true
 
-  # BURM::Musical.all.each do |musical|
-  #   scope(musical.title) { |scope| scope.where(burm_musical: musical) }
-  # end
+  BURM::Musical.all.each do |musical|
+    scope(musical.slug.to_sym)
+  end
 
   index do
     selectable_column
