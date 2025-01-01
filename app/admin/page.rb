@@ -41,4 +41,24 @@ ActiveAdmin.register Page do
     end
     f.actions
   end
+
+  # https://stackoverflow.com/a/58774667/6076225
+  controller do
+
+    before_action :reload_scopes, only: :index
+
+    def reload_scopes
+      resource_config = active_admin_config
+
+      resource_config.instance_variable_set(:@scopes, [
+        resource_config.scopes.first ### Default scope
+      ])
+
+      Site.all.each do |site|
+        next if resource_config.scopes.first.name ==  site.name
+
+        resource_config.scopes << ActiveAdmin::Scope.new(site.name){|scope| scope.where(site_id: site.id) }
+      end
+    end
+  end
 end
