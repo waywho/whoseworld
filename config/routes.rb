@@ -2,7 +2,11 @@ require "domain_constraints"
 
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  begin
+    ActiveAdmin.routes(self)
+  rescue ActiveAdmin::DatabaseHitDuringLoad
+    nil
+  end
   
   if Rails.env.development?
     mount Lookbook::Engine, at: "/lookbook"
