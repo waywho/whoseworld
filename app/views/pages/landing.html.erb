@@ -1,2 +1,6 @@
-<h1><%= Current.tenant&.name %></h1>
+<% if Current.tenant&.logo.present? %>
+  <%= image_tag Current.tenant&.logo %>
+<% else %>
+  <h1><%= Current.tenant&.name %></h1>
+<% end %>
 <h2>Coming Soon</h2>
