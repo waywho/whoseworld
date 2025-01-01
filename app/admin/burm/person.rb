@@ -5,9 +5,9 @@ ActiveAdmin.register BURM::Person do
 
   scope :all, default: true
 
-  # BURM::Musical.all.each do |musical|
-  #   scope(musical.title) { |scope| scope.includes(:burm_musicals).where(burm_musicals: musical) }
-  # end
+  BURM::Musical.all.each do |musical|
+    scope(musical.title) { |scope| scope.includes(:burm_musicals).where(burm_musicals: musical) }
+  end
 
   index do
     selectable_column
