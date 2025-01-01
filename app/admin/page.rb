@@ -8,9 +8,9 @@ ActiveAdmin.register Page do
 
   scope :all, default: true
 
-  Site.all.each do |site|
-    scope(site.slug.to_sym)
-  end
+  # Site.all.each do |site|
+  #   scope(site.slug.to_sym)
+  # end
 
   index do
     column :row_order
