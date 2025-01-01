@@ -1,4 +1,6 @@
 class Media < ApplicationRecord
+  include SiteScopes
+
   belongs_to :page
   belongs_to :site, optional: true
 
