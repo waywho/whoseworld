@@ -1,5 +1,9 @@
 class Page < ApplicationRecord
   extend FriendlyId
+  friendly_id :title, use: :scoped, scope: :site
+
+  include Sluggable
+  include SiteScopes
   include RankedModel
   ranks :row_order, with_same: :site_id
 
@@ -12,8 +16,6 @@ class Page < ApplicationRecord
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 
-  friendly_id :title, use: :scoped, scope: :site
-
   # Validations
   validates :title, presence: true, uniqueness:  { scope: :site_id }
 
@@ -21,9 +23,6 @@ class Page < ApplicationRecord
   scope :menu_pages, -> { where.not(title: "landing").where(menu: true) }
   scope :landing, -> { friendly.find("landing") }
   scope :feature, -> { where(feature: true) }
-  Site.all.each do |site|
-    scope site.slug.to_sym, -> { where(site_id: site.id) }
-  end
 
   # Attachment
   has_one_attached :feature_image

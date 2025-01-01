@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_31_184752) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_01_084733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_31_184752) do
     t.decimal "fee", precision: 8, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 
   create_table "burm_people", force: :cascade do |t|

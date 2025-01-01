@@ -4,7 +4,7 @@ FactoryBot.define do
     domain { "#{Faker::App.name.downcase}.com" }
     subdomain { "MyString" }
     orientation { "MyString" }
-    slug { "MyString" }
+    slug { "my_string" }
     subtitle { "MyString" }
     template_style { "MyString" }
 
