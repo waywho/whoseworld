@@ -5,9 +5,9 @@ ActiveAdmin.register BURM::Role do
 
   scope :all, default: true
 
-  # BURM::Musical.all.each do |musical|
-  #   scope(musical.symbolized_slug)
-  # end
+  BURM::Musical.all.each do |musical|
+    scope(musical.symbolized_slug)
+  end
 
   index do
     selectable_column
@@ -23,8 +23,8 @@ ActiveAdmin.register BURM::Role do
     f.inputs do
       f.input :name
       f.input :musical
-      f.input :voice_type, as: :select, collection: proc { BURM::Role.voice_types }
-      f.input :role_type, as: :select, collection: proc { BURM::Role.role_types }
+      f.input :voice_type, as: :select, collection: BURM::Role.voice_types
+      f.input :role_type, as: :select, collection: BURM::Role.role_types
     end
     f.actions
   end

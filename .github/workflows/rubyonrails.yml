@@ -39,7 +39,7 @@ jobs:
         
       # Add or replace database setup steps here
       - name: Set up database schema
-        run: bin/rails db:schema:load
+        run: ACTIVE_ADMIN_DISABLE_ROUTE=true bin/rails db:schema:load
 
       - name: Compile assets
         run: bin/rails assets:precompile

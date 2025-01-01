@@ -2,7 +2,7 @@ require "domain_constraints"
 
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) if ENV["ACTIVE_ADMIN_DISABLE_ROUTE"] != "true"
   
   if Rails.env.development?
     mount Lookbook::Engine, at: "/lookbook"
