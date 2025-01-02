@@ -1,6 +1,4 @@
-class BURM::PagesController < ApplicationController
-  layout 'home'
-
+class BURM::PagesController < SiteBaseController
   def landing
   end
 end

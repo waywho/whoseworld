@@ -29,6 +29,8 @@ class BURM::Musical < ApplicationRecord
       role = roles.build(name:, voice_type:, role_type:)
       roles.delete(role) unless role.valid?
     end
+
+    roles
   end
 
   def set_default_fee

@@ -1,6 +1,4 @@
-class Weihsihu::PagesController < ApplicationController
-  layout 'home'
-
+class Weihsihu::PagesController < SiteBaseController
   def landing
   end
 end
