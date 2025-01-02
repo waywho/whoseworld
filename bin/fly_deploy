@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+fly deploy -e ACTIVE_ADMIN_DISABLE_ROUTE=true
