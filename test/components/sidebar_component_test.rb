@@ -3,10 +3,11 @@
 require "test_helper"
 
 class SidebarComponentTest < ViewComponent::TestCase
-  # def test_component_renders_something_useful
-  #   # assert_equal(
-  #   #   %(<span>Hello, components!</span>),
-  #   #   render_inline(SidebarComponent.new(message: "Hello, components!")).css("span").to_html
-  #   # )
+  # def test_component_render
+  #   render_inline(SidebarComponent.new(logo: nil, subtitle: "Hello, components!"),
+  #       menu_items: [{ title: "Great", url: "/" }])
+
+  #   assert_text "Hello, components!"
+  #   assert_select "a[href=?]", "/", text: "Great"
   # end
 end

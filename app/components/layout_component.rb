@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (placement: position, menu: menu_items, subtitle: @subtitle, site_logo: logo) do
+  renders_one :navigation, -> (position: nav_position, menu: menu_items, subtitle: @subtitle, site_logo: logo) do
     items = menu
-    case placement
+    case position
     when :top
       NavbarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items)
     when :left, :right
-      SidebarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items, position: placement)
+      SidebarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items, position:)
     end
   end
 
@@ -50,17 +50,17 @@ class LayoutComponent < ViewComponent::Base
   def style
     return :multi_page_admin if admin?
 
-    @site&.template_style&.to_sym
+    @site&.layout_style
   end
 
   def admin?
     @admin
   end
 
-  def position
+  def nav_position
     return :top if admin?
 
-    @site.orientation.to_sym || :top
+    @site.nav_position.to_sym || :top
   end
 
   def scroll_controller
@@ -68,7 +68,7 @@ class LayoutComponent < ViewComponent::Base
   end
 
   def style_class
-    case position
+    case nav_position
     when :top
       "container mt-24 mx-auto"
     when :left
@@ -79,7 +79,7 @@ class LayoutComponent < ViewComponent::Base
   end
 
   def navbar_component
-    case position
+    case nav_position
     when :top
       render NavbarComponent.new(logo: logo, subtitle: @subtitle, menu_items: menu_items)
     when :left, :right

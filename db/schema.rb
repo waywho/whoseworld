@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_01_084733) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_02_105334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,10 +148,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_01_084733) do
     t.text "source"
     t.bigint "page_id", null: false
     t.bigint "site_id"
-    t.string "media_type"
     t.integer "row_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "media_type", null: false
     t.index ["page_id"], name: "index_medias_on_page_id"
     t.index ["site_id"], name: "index_medias_on_site_id"
   end
@@ -164,8 +164,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_01_084733) do
     t.string "slug"
     t.bigint "site_id", null: false
     t.integer "row_order"
-    t.string "template"
     t.boolean "feature", default: false
+    t.integer "template", default: 0, null: false
     t.index ["site_id"], name: "index_pages_on_site_id"
   end
 
@@ -175,11 +175,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_01_084733) do
     t.string "subdomain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "orientation"
     t.string "slug"
     t.string "subtitle"
-    t.string "template_style"
     t.boolean "public", default: false
+    t.integer "nav_position", default: 0, null: false
+    t.integer "layout_style", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|

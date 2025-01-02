@@ -2,28 +2,28 @@
 
 class LayoutComponentPreview < ViewComponent::Preview
   # @display padding 0px
-  # @param orientation select [top, left, right]
-  # @param style select [one_page, multi_page]
-  def default(orientation: :top, style: :multi_page)
-    site = set_site(orientation, style)
+  # @param nav_position select [top, left, right]
+  # @param layout_style select [one_page, multi_page]
+  def default(nav_position: :top, layout_style: :multi_page)
+    site = set_site(nav_position, layout_style)
     items = menu_items
     render_with_template(locals: {
       site: site,
-      orientation: orientation,
+      nav_position:,
       menu_items: items
     })
   end
 
   private
 
-  def set_site(orientation, style)
-    site = Site.new(
+  def set_site(nav_position, layout_style)
+    Site.new(
       name: "Amazing Site",
       domain: "amazing-site.com",
       slug: "amazing_site",
-      orientation: orientation,
+      nav_position:,
       subtitle: "Great site",
-      template_style: style
+      layout_style:
     )
   end
 

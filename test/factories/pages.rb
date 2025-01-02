@@ -5,6 +5,6 @@ FactoryBot.define do
     slug { "MyString" }
     site
     row_order { 1 }
-    template { "MyString" }
+    template { Page.templates.keys.sample }
   end
 end

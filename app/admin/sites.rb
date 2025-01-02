@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Site do
-  permit_params :name, :subtitle, :domain, :subdomain, :slug, :orientation, :template_style, :public,
+  permit_params :name, :subtitle, :domain, :subdomain, :slug, :nav_position, :layout_style, :public,
                 :logo, domain_aliases_attributes: [:domain, :subdomain]
 
   index do
@@ -24,8 +24,8 @@ ActiveAdmin.register Site do
       f.input :domain
       f.input :subdomain
       f.input :slug
-      f.input :orientation, collection: Site.orientations
-      f.input :template_style, collection: Site.site_styles
+      f.input :nav_position
+      f.input :layout_style
       f.input :public
       f.file_field :logo
     end
