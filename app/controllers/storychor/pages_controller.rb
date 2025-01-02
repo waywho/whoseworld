@@ -1,6 +1,4 @@
-class Storychor::PagesController < ApplicationController
-  layout 'home'
-
+class Storychor::PagesController < SiteBaseController
   def landing
   end
 end

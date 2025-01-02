@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :end_at, :location, :fee, :roles
+  permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles,
+                roles_attributes: [:name, :voice_type, :role_type, :_destroy]
 
   index do
     selectable_column
