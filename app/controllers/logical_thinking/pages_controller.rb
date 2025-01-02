@@ -1,6 +1,4 @@
-class LogicalThinking::PagesController < ApplicationController
-  layout 'home'
-
+class LogicalThinking::PagesController < SiteBaseController
   def landing
   end
 end

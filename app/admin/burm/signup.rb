@@ -2,7 +2,7 @@
 
 ActiveAdmin.register BURM::Signup do
   permit_params :burm_person_id, :burm_role_id, :burm_musical_id, :alternative_role_id,
-                person_attributes: [:id, :first_name, :last_name, :email]
+                person_attributes: [:first_name, :last_name, :email]
 
   scope :all, default: true
 
