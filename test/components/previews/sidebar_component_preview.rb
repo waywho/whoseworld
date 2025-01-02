@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class SidebarComponentPreview < ViewComponent::Preview
-  # @param orientation select [left, right]
-  # @param style select [one_page, multi_page]
-  def default(orientation: "left", style: "multi_page")
-    site = set_site(orientation, style)
+  # @param nav_position select [left, right]
+  # @param layout_style select [one_page, multi_page]
+  def default(nav_position: "left", layout_style: "multi_page")
+    site = set_site(nav_position, layout_style)
     render(SidebarComponent.new(logo: site.name, menu_items: menu_items))
   end
 
@@ -18,14 +18,14 @@ class SidebarComponentPreview < ViewComponent::Preview
     end
   end
 
-  def set_site(orientation, style)
-    site = Site.new(
+  def set_site(nav_position, layout_style)
+    Site.new(
       name: "Amazing Site",
       domain: "amazing-site.com",
       slug: "amazing_site",
-      orientation: orientation,
+      nav_position:,
       subtitle: "Great site",
-      template_style: style
+      layout_style: layout_style
     )
   end
 

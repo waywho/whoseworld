@@ -4,7 +4,7 @@ module PagesSetter
   private
 
   def set_pages(site)
-    if site.template_style == "one_page"
+    if site.layout_style == :one_page
       site.pages.menu_pages.includes(:medias, :galleries).rank(:row_order)
     else
       site.pages.feature.rank(:row_order)

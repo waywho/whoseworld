@@ -18,7 +18,7 @@ ActiveAdmin.register Media do
   form do |f|
     f.input :title
     f.input :source
-    f.input :media_type, as: :select, collection: Media.types
+    f.input :media_type
     f.input :row_order, label: "Order"
     f.input :page
     f.input :site

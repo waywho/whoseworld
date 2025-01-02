@@ -3,19 +3,19 @@ FactoryBot.define do
     name { "MyString" }
     domain { "#{Faker::App.name.downcase}.com" }
     subdomain { "MyString" }
-    orientation { "MyString" }
+    nav_position { :top }
     slug { "my_string" }
     subtitle { "MyString" }
-    template_style { "MyString" }
+    layout_style { :one_page }
 
     trait :weihsi do
       name { "WeiHsi Hu" }
       domain { "weihsihu.com"}
       subdomain { nil }
       slug { "weihsihu" }
-      orientation { "left" }
+      nav_position { :left }
       subtitle { "Great site" }
-      template_style { "one_page" }
+      layout_style { :one_page }
     end
 
     trait :logical do
@@ -23,9 +23,9 @@ FactoryBot.define do
       domain { "logical-thinking.com" }
       subdomain { nil }
       slug { "logical-thinking" }
-      orientation { "top" }
+      nav_position { :top }
       subtitle { "Great site" }
-      template_style { "multi_page" }
+      layout_style { :multi_page }
     end
 
     trait :example do
@@ -33,9 +33,9 @@ FactoryBot.define do
       domain { "example.com" }
       subdomain { nil }
       slug { "example" }
-      orientation { "top" }
+      nav_position { :top }
       subtitle { "Great site" }
-      template_style { "multi_page" }
+      layout_style { :multi_page }
     end
   end
 end

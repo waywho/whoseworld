@@ -1,9 +1,9 @@
 class BURM::Musical < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
-
   include Sluggable
 
+  # Associations
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy
   has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_musical_id", dependent: :nullify
@@ -11,8 +11,10 @@ class BURM::Musical < ApplicationRecord
 
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs.valid? }
 
+  # Attribute
   attribute :bulk_roles, :text
 
+  # Callbacks
   after_initialize :set_default_fee, unless: :persisted?
   before_validation :build_from_bulk_roles
 

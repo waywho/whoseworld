@@ -4,6 +4,6 @@
 #   name: Example
 #   domain: example.com
 #   slug: example
-#   orientation: top
+#   nav_position: top
 #   subtitle: Great site
 #   template_style: multi_page

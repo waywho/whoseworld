@@ -16,6 +16,12 @@ class Page < ApplicationRecord
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 
+  # Attachment
+  has_one_attached :feature_image
+
+  # Enums
+  enum :template, %i[plain gallery media], validation: true
+
   # Validations
   validates :title, presence: true, uniqueness:  { scope: :site_id }
 
@@ -23,15 +29,4 @@ class Page < ApplicationRecord
   scope :menu_pages, -> { where.not(title: "landing").where(menu: true) }
   scope :landing, -> { friendly.find("landing") }
   scope :feature, -> { where(feature: true) }
-
-  # Attachment
-  has_one_attached :feature_image
-
-  def self.templates
-    %i[plain gallery media]
-  end
-
-  def title_with_site
-    "#{title} (#{site&.slug})"
-  end
 end

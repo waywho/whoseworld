@@ -14,7 +14,7 @@ module SiteSetter
     Rails.logger.info "Request Domain: #{request.domain}"
 
     Current.tenant = Site.find_by_domain(current_domain) or not_found
-    Current.layout = Current.tenant&.template_style || :multi_page
+    Current.layout = Current.tenant&.layout_style || :multi_page
   end
 
   def current_domain
@@ -32,7 +32,7 @@ module SiteSetter
     Rails.logger.info "Dev Request domain: #{domain}"
 
     Current.tenant = Site.where("domain LIKE ?", "%#{domain}%").first or not_found
-    Current.layout = Current.tenant&.template_style || :multi_page
+    Current.layout = Current.tenant&.layout_style || :multi_page
   end
 
   def not_found
