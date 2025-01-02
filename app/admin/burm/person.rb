@@ -7,7 +7,7 @@ ActiveAdmin.register BURM::Person do
   scope :all, default: true
 
   BURM::Musical.all.each do |musical|
-    scope(musical.symbolized_slug) { |scope| scope.includes(:burm_musicals).where(burm_musicals: musical) }
+    scope(musical.symbolized_slug) { |scope| scope.includes(:musicals).where(musicals: { id: musical.id }) }
   end
 
   index do
