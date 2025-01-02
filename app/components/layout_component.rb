@@ -50,7 +50,7 @@ class LayoutComponent < ViewComponent::Base
   def style
     return :multi_page_admin if admin?
 
-    @site&.layout_style
+    @site&.layout_style.to_sym
   end
 
   def admin?
