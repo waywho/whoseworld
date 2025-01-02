@@ -1,7 +1,6 @@
 class PagesController < SiteBaseController
   include PagesSetter
   before_action :set_page, only: %i[ show edit update destroy ]
-  layout "home"
 
   # GET /pages
   def index
