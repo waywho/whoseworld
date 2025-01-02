@@ -25,6 +25,7 @@ deploy:
 env:
   PORT: "3000"
   SERVER_COMMAND: bundle exec puma -C config/puma.rb
+  RAILS_LOG_TO_STDOUT: "true"
 
 mounts:
   - source: myapp_data

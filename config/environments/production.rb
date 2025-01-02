@@ -89,8 +89,8 @@ Rails.application.configure do
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
-    volume_logger    = ActiveSupport::Logger.new("/logs/production.log", 3)
-    logger           = logger.extend ActiveSupport::Logger.broadcast(volume_logger)
+    # volume_logger    = ActiveSupport::Logger.new("/logs/production.log", 3)
+    # logger           = logger.extend ActiveSupport::Logger.broadcast(volume_logger)
   end
 
   # Do not dump schema after migrations.
