@@ -6,5 +6,9 @@ class Media < ApplicationRecord
   belongs_to :site, optional: true
 
   # Enums
-  enum :media_type, %i[video audio], validation: true
+  enum :media_type, %i[audio video], validation: true
+
+  def self.types
+    %i[audio video]
+  end
 end

@@ -13,6 +13,7 @@ ActiveAdmin.register Media do
     column :title
     column :media_type
     column :row_order
+    actions
   end
 
   form do |f|

@@ -24,10 +24,10 @@ class ConvertToEnums < ActiveRecord::Migration[7.2]
     remove_column :pages, :old_template
 
     rename_column :medias, :media_type, :old_media_type
-    add_column :medias, :media_type, :integer, null: false
+    add_column :medias, :media_type, :integer
 
     Media.find_each do |media|
-      media_type = media.old_media_type.present? ? (Media.media_types[media.old_media_type] || 0) : 0
+      media_type = media.old_media_type.present? ? Media.types.index(media.old_media_type.to_sym) : 0
       media.update_column(:media_type, media_type)
     end
 
