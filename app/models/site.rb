@@ -23,10 +23,12 @@ class Site < ApplicationRecord
 
   after_create_commit :create_landing_page
 
+  # TODO: Remove
   def self.orientations
     %i[top left right].freeze
   end
 
+  # TODO: Remove
   def self.site_styles
     %i[one_page multi_page].freeze
   end
