@@ -8,6 +8,7 @@ class Media < ApplicationRecord
   # Enums
   enum :media_type, %i[audio video], validation: true
 
+  # TODO: Remove
   def self.types
     %i[audio video]
   end

@@ -1,8 +1,11 @@
 name: Fly Deploy
 on:
-  push:
-    branches:
-      - main    # change to main if needed
+  workflow_run:
+    workflows: ["Ruby on Rails CI"]
+    branches: [main]
+    types:
+      - completed
+
 jobs:
   deploy:
     name: Deploy app
@@ -14,3 +17,4 @@ jobs:
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
