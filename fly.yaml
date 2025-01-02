@@ -20,7 +20,7 @@ build:
   build_target: app
 
 deploy:
-  release_command: bundle exec rails db:migrate
+  release_command: ACTIVE_ADMIN_DISABLE_ROUTE=true bundle exec rails db:migrate
 
 env:
   PORT: "3000"
