@@ -1,4 +1,6 @@
 class BURM::Person < ApplicationRecord
+  nilify_blanks
+
   # Associations
   has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_person_id", dependent: :nullify
   has_many :roles, through: :signups, class_name: "BURM::Role", foreign_key: "burm_role_id"
@@ -8,6 +10,7 @@ class BURM::Person < ApplicationRecord
   accepts_nested_attributes_for :signups, allow_destroy: true, reject_if: proc { |attrs| attrs["burm_musical_id"].blank? }
 
   # Validations
+  validates :email, uniqueness: true
   validates :first_name, :last_name, :email, presence: true
 
   def full_name

@@ -1,4 +1,5 @@
 class Site < ApplicationRecord
+  nilify_blanks
   include Sluggable
 
   # Associations

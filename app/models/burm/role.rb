@@ -1,4 +1,5 @@
 class BURM::Role < ApplicationRecord
+  nilify_blanks
   include MusicalScopes
 
   # Associations

@@ -15,7 +15,7 @@ ActiveAdmin.register Page do
   index do
     column :row_order
     column :title
-    column :slug, :input_html => { :disabled => true }
+    column :slug, input_html: { disabled: true }
     column :template
     column :feature
     column :menu

@@ -1,4 +1,5 @@
 class BURM::Musical < ApplicationRecord
+  nilify_blanks
   extend FriendlyId
   friendly_id :title, use: :slugged
   include Sluggable

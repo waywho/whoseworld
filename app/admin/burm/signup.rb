@@ -27,16 +27,16 @@ ActiveAdmin.register BURM::Signup do
       f.input :musical
       f.input :role
       f.input :alternative_role
-      f.input :musical_title, disabled: true
-      f.input :person_name, disabled: true
-      f.input :role_name, disabled: true
+      f.input :musical_title, input_html: { disabled: true }
+      f.input :person_name, input_html: { disabled: true }
+      f.input :role_name, input_html: {  disabled: true }
     end
 
     f.inputs "Person" do
-      f.belongs_to :person, label: false, required: true do
-        f.input :first_name
-        f.input :last_name
-        f.input :email
+      f.has_many :person, heading: false, required: true do |p|
+        p.input :first_name
+        p.input :last_name
+        p.input :email
       end
     end
     f.actions

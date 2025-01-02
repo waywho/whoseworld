@@ -5,19 +5,20 @@ require "test_helper"
 class BURM::SignupTest < ActiveSupport::TestCase
   test "should belong to a person" do
     signup = BURM::Signup.new
-    assert_not signup.save
+
+    assert_not signup.valid?
     assert_equal ["must exist"], signup.errors.messages[:person]
   end
 
   test "should belong to a role" do
     signup = BURM::Signup.new
-    assert_not signup.save
+    assert_not signup.valid?
     assert_equal ["must exist"], signup.errors.messages[:role]
   end
 
   test "should belong to a musical" do
     signup = BURM::Signup.new
-    assert_not signup.save
+    assert_not signup.valid?
     assert_equal ["must exist"], signup.errors.messages[:musical]
   end
 
@@ -28,7 +29,7 @@ class BURM::SignupTest < ActiveSupport::TestCase
     signup = create(:burm_signup, person: person, musical: musical, role: role)
     signup = build(:burm_signup, person: person, musical: musical, role: role)
     assert_not signup.valid?
-    assert_equal ["has already been taken"], signup.errors.messages[:person]
+    assert_equal ["cannot sign up for the same musical twice"], signup.errors.messages[:person]
   end
 
   test "should cache person name, role name, and musical title" do
