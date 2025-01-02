@@ -23,8 +23,8 @@ ActiveAdmin.register BURM::Role do
     f.inputs do
       f.input :name
       f.input :musical, collection: BURM::Musical.all
-      f.input :voice_type, collection: BURM::Role.voice_types
-      f.input :role_type, collection: BURM::Role.role_types
+      f.input :voice_type
+      f.input :role_type
     end
     f.actions
   end

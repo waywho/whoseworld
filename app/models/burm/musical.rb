@@ -34,6 +34,6 @@ class BURM::Musical < ApplicationRecord
   end
 
   def set_default_fee
-    self.fee ||= 15.00
+    self.fee = 15.00
   end
 end

@@ -8,6 +8,7 @@ ActiveAdmin.register BURM::Musical do
     selectable_column
     id_column
     column :title
+    column :slug, :input_html => { :disabled => true }
     column :start_at
     column :end_at
     column :location
@@ -25,7 +26,7 @@ ActiveAdmin.register BURM::Musical do
       f.input :fee
     end
 
-    if f.object.new_record?
+    if f.object.new_record? || f.object.roles.blank?
       f.inputs :bulk_roles, as: :text, label: "Roles", hint: "Enter one role per line Name (Voice Type) Type"
     else
       f.inputs "Roles" do
