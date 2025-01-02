@@ -22,9 +22,9 @@ ActiveAdmin.register BURM::Role do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :musical
-      f.input :voice_type, as: :select, collection: BURM::Role.voice_types
-      f.input :role_type, as: :select, collection: BURM::Role.role_types
+      f.input :musical, collection: BURM::Musical.all
+      f.input :voice_type
+      f.input :role_type
     end
     f.actions
   end
