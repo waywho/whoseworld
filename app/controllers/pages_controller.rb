@@ -14,7 +14,11 @@ class PagesController < SiteBaseController
   def landing
     if Current.tenant&.public? || current_user&.admin?
       @pages = set_pages(Current.tenant)
-      render "#{Current.tenant.slug}/landing"
+      if Current.tenant.slug == "burm"
+        render "landings/#{Current.tenant.layout_style}"
+      else
+        render "#{Current.tenant.slug}/landing"
+      end
     else
       render "pages/landing", layout: "application"
     end
