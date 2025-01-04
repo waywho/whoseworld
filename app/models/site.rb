@@ -22,6 +22,7 @@ class Site < ApplicationRecord
   # Scopes
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
 
+  before_save :slugify
   after_create_commit :create_landing_page
 
   # TODO: Remove

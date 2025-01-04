@@ -2,7 +2,7 @@ require "test_helper"
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @site = create(:site, :weihsi)
+    @site = create(:site, name: "burm")
     @page = @site.landing_page
   end
 
@@ -16,9 +16,24 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show landing" do
+  test "should show generic landing" do
     host! @site.domain
     get root_url
-    assert_response :success
+    assert_template "pages/landing"
+  end
+
+  test "should show landing with layout for admin" do
+    sign_in users(:admin)
+    host! @site.domain
+    get root_url
+    assert_template "pages/landings/#{@site.layout_style}"
+  end
+
+  test "should show landing with layout for public site" do
+    @site.update(public: true)
+    sign_in users(:admin)
+    host! @site.domain
+    get root_url
+    assert_template "pages/landings/#{@site.layout_style}"
   end
 end

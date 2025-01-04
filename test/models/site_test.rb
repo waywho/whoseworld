@@ -20,4 +20,9 @@ class SiteTest < ActiveSupport::TestCase
       assert site.landing_page.present?
     end
   end
+
+  test "automatically populate slug" do
+    site = create(:site, name: "Test Site")
+    assert_equal "test-site", site.reload.slug
+  end
 end
