@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Page do
-  permit_params :title, :menu, :slug, :site_id, :row_order, :template, :feature,
+  permit_params :title, :menu, :slug, :site_id, :row_order, :template, :feature, :menu,
                 contents_attributes: %i[id heading summary body _destroy]
   config.sort_order = "row_order_asc"
   config.filters = false
@@ -29,7 +29,8 @@ ActiveAdmin.register Page do
       f.input :site
       f.input :template
       f.input :row_order
-      f.input :feature
+      f.input :feature, label: "Feature in Landing page"
+      f.input :menu, label: "Show in menu"
     end
     
     f.inputs "Contents" do
