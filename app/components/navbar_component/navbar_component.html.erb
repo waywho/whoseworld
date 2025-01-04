@@ -6,7 +6,7 @@
              <%= @logo %>
           </span>
        <% else %>
-          <div class="h-8"><%= image_tag @logo %></div>
+          <div class="h-12"><%= image_tag @logo, class: "max-h-full" %></div>
        <% end %>
      <% end %>
 
