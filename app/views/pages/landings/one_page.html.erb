@@ -1,8 +1,8 @@
-<div id="landing" class="min-h-screen bg-center bg-no-repeat bg-cover -mx-6 -mt-12 md:-mr-24 md:-ml-80 relative" style="background-image: url(<%= rails_blob_url(@site.landing_page&.feature_image) if @site.landing_page %>)">
-  <div class="bg-transparent text-white text-4xl md:text-6xl font-bold font-display absolute right-10 md:right-20 bottom-20">@site.title</div>
+<div id="landing" class="min-h-screen bg-center bg-no-repeat bg-cover -mx-6 -mt-12 md:-mr-24 md:-ml-80 relative" style="background-image: url(<%= rails_blob_url(Current.tenant.landing_page&.feature_image) if Current.tenant.landing_page %>)">
+  <div class="bg-transparent text-white text-4xl md:text-6xl font-bold font-display absolute right-10 md:right-20 bottom-20">Current.tenant.title</div>
 </div>
 <% @pages.each do |page| %>
-  <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 <%= @site.nav_position == "left" ? "-ml-80 -mr-6" : "-mr-80 -ml-6" %>">
+  <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700 <%= Current.tenant.nav_position == "left" ? "-ml-80 -mr-6" : "-mr-80 -ml-6" %>">
   <div class="min-h-screen py-12 px-10" id="<%= page.slug %>">
     <% if page.template %>
       <%= render "pages/#{page.template}", page: page %>
