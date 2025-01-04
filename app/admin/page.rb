@@ -2,7 +2,7 @@
 
 ActiveAdmin.register Page do
   permit_params :title, :menu, :slug, :site_id, :row_order, :template, :feature,
-                contents_attributes: %i[heading summary body _destroy]
+                contents_attributes: %i[id heading summary body _destroy]
   config.sort_order = "row_order_asc"
   config.filters = false
 
@@ -34,6 +34,7 @@ ActiveAdmin.register Page do
     
     f.inputs "Contents" do
       f.has_many :contents, heading: false,  sortable: :row_order, sortable_start: 1, allow_destroy: true do |c|
+        c.input :id, as: :hidden
         c.input :heading
         c.input :summary
         c.input :body

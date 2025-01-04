@@ -2,7 +2,7 @@
 
 ActiveAdmin.register Site do
   permit_params :name, :subtitle, :domain, :subdomain, :slug, :nav_position, :layout_style, :public,
-                :logo, domain_aliases_attributes: [:domain, :subdomain]
+                :logo, domain_aliases_attributes: [:id, :domain, :subdomain]
 
   index do
     id_column
@@ -32,6 +32,7 @@ ActiveAdmin.register Site do
 
     f.inputs "DomainAliases" do
       f.has_many :domain_aliases, heading: false, allow_destroy: true do |a|
+        a.input :id, as: :hidden
         a.input :domain
         a.input :subdomain
       end

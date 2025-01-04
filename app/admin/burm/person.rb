@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Person do
-  permit_params :first_name, :last_name, :email, signups_attributes: [:burm_person_id, :burm_musical_id,
+  permit_params :first_name, :last_name, :email, signups_attributes: [:id, :burm_person_id, :burm_musical_id,
                 :burm_role_id, :alternative_role_id, :_destroy]
 
   scope :all, default: true
@@ -30,6 +30,7 @@ ActiveAdmin.register BURM::Person do
 
     f.inputs "Signups" do
       f.has_many :signups, heading: false, allow_destroy: true do |s|
+        s.input :id, as: :hidden
         s.input :musical, collection: BURM::Musical.all
         s.input :role, collection: BURM::Role.all
         s.input :alternative_role

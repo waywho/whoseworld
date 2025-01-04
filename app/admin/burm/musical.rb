@@ -2,7 +2,7 @@
 
 ActiveAdmin.register BURM::Musical do
   permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles,
-                roles_attributes: [:name, :voice_type, :role_type, :_destroy]
+                roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy]
 
   index do
     selectable_column
@@ -31,6 +31,7 @@ ActiveAdmin.register BURM::Musical do
     else
       f.inputs "Roles" do
         f.has_many :roles, heading: false, allow_destroy: true do |r|
+          r.input :id, as: :hidden
           r.input :name
           r.input :voice_type
           r.input :role_type
