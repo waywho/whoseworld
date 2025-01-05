@@ -6,8 +6,11 @@ class Site < ApplicationRecord
   has_many :pages, dependent: :destroy
   has_one :landing_page, ->{  where("slug ILIKE ?", "%landing%") }, class_name: "Page"
   has_many :domain_aliases, dependent: :destroy
+  has_many :contents, as: :contentable, dependent: :destroy
+  accepts_nested_attributes_for :contents, allow_destroy: true,
+                                reject_if: proc { |attributes| attributes["heading"].blank? }
   accepts_nested_attributes_for :domain_aliases, allow_destroy: true,
-                                reject_if: proc { |attributes| attributes['domain'].blank? && attributes['subdomain'].blank? }
+                                reject_if: proc { |attributes| attributes["domain"].blank? && attributes["subdomain"].blank? }
 
   # Enums
   enum :nav_position, %i[top left right], validation: true
@@ -22,6 +25,7 @@ class Site < ApplicationRecord
   # Scopes
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
 
+  after_create_commit :create_standard_contents
   before_save :slugify
   after_create_commit :create_landing_page
 
@@ -36,6 +40,14 @@ class Site < ApplicationRecord
   end
 
   private
+
+  def create_standard_contents
+    contents.upsert_all([
+      { heading: "Imprint" },
+      { heading: "Privacy Policy" },
+      { heading: "Terms of Service" }
+    ])
+  end
 
   def create_landing_page
     pages.create(title: "Landing", slug: "landing", menu: false, template: :plain)

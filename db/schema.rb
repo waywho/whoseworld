@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_02_194129) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_05_203101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,13 +103,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_02_194129) do
 
   create_table "contents", force: :cascade do |t|
     t.text "body"
-    t.bigint "page_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "heading"
     t.string "summary"
     t.integer "row_order"
-    t.index ["page_id"], name: "index_contents_on_page_id"
+    t.string "contentable_type"
+    t.bigint "contentable_id"
+    t.index ["contentable_type", "contentable_id"], name: "index_contents_on_contentable_type_and_contentable_id"
+    t.index ["contentable_type"], name: "index_contents_on_contentable_type"
   end
 
   create_table "domain_aliases", force: :cascade do |t|
@@ -202,7 +204,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_02_194129) do
   add_foreign_key "burm_signups", "burm_musicals"
   add_foreign_key "burm_signups", "burm_people"
   add_foreign_key "burm_signups", "burm_roles"
-  add_foreign_key "contents", "pages"
   add_foreign_key "domain_aliases", "sites"
   add_foreign_key "galleries", "pages"
   add_foreign_key "medias", "pages"

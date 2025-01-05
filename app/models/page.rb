@@ -12,7 +12,7 @@ class Page < ApplicationRecord
   has_one :featured_gallery, -> { where(feature: true) }, class_name: "Gallery"
   has_many :medias, dependent: :nullify
   belongs_to :site
-  has_many :contents, dependent: :destroy
+  has_many :contents, as: :contentable, dependent: :destroy
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :site do
     name { "MyString" }
-    domain { "#{Faker::App.name.downcase}.com" }
+    domain { "#{Faker::App.name.parameterize}.com" }
     subdomain { nil }
     nav_position { :top }
     slug { nil }

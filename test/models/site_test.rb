@@ -25,4 +25,11 @@ class SiteTest < ActiveSupport::TestCase
     site = create(:site, name: "Test Site")
     assert_equal "test-site", site.reload.slug
   end
+
+  test "automatically generates standard site contents" do
+    site = create(:site)
+    assert_includes site.contents.pluck(:heading), "Imprint"
+    assert_includes site.contents.pluck(:heading), "Privacy Policy"
+    assert_includes site.contents.pluck(:heading), "Terms of Service"
+  end
 end
