@@ -36,6 +36,7 @@
                <li>
                   <%= link_to item[0], item[1], {class: "#{menu_classes} #{params[:id] == item[0]&.downcase ? active_menu_classes : non_active_menu_classes}"}.merge(additional_options) %>
                </li>
+               <%= content %>
             <% end %>
          </ul>
       </div>

@@ -22,6 +22,7 @@
             <%= link_to item[0], item[1], class: "#{menu_classes} #{params[:id] == item[0]&.parameterize ? active_menu_classes : non_active_menu_classes}", "aria-current"=>"page" %>
           </li>
         <% end %>
+        <%= content %>
       </ul>
     </div>
   </div>

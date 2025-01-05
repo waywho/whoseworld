@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
-  renders_one :navigation, -> (position: nav_position, menu: menu_items, subtitle: @subtitle, site_logo: logo) do
-    items = menu
-    case position
+  renders_one :navigation, ->(&block) do
+    case nav_position
     when :top
-      NavbarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items)
+      NavbarComponent.new(logo:, subtitle: @subtitle, menu_items:,&block)
     when :left, :right
-      SidebarComponent.new(logo: site_logo, subtitle: subtitle, menu_items: items, position:)
+      SidebarComponent.new(logo:, subtitle: @subtitle, menu_items:, position: nav_position,&block)
     end
   end
+
+  # renders_one :footer
 
   def initialize(site:, admin: false)
     @admin = admin
