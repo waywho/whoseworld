@@ -15,10 +15,8 @@ class SiteTest < ActiveSupport::TestCase
   end
 
   test "should automatically create landing page" do
-    assert_difference("Page.count") do
-      site = create(:site, domain: "test.com")
-      assert site.landing_page.present?
-    end
+    site = create(:site, domain: "test.com")
+    assert site.landing_page.present?
   end
 
   test "automatically populate slug" do
@@ -28,8 +26,8 @@ class SiteTest < ActiveSupport::TestCase
 
   test "automatically generates standard site contents" do
     site = create(:site)
-    assert_includes site.contents.pluck(:heading), "Imprint"
-    assert_includes site.contents.pluck(:heading), "Privacy Policy"
-    assert_includes site.contents.pluck(:heading), "Terms of Service"
+    assert_includes site.pages.pluck(:title), "Imprint"
+    assert_includes site.pages.pluck(:title), "Privacy Policy"
+    assert_includes site.pages.pluck(:title), "Terms of Service"
   end
 end

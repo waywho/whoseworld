@@ -29,8 +29,7 @@ ActiveAdmin.register Page do
       f.input :site
       f.input :template
       f.input :row_order
-      f.input :feature, label: "Feature in Landing page"
-      f.input :menu, label: "Show in menu"
+      f.input :kind, collection: Page::SITE_LABELS.invert.to_a
     end
     
     f.inputs "Contents" do

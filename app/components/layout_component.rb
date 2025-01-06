@@ -45,7 +45,7 @@ class LayoutComponent < ViewComponent::Base
       { title: "Medias", url: admin_medias_path(site_id: @site&.id) }
     ] if admin?
 
-    @site.pages.menu_pages.blank? ? [] : @site.pages.menu_pages
+    @site.pages.menu.blank? ? [] : @site.pages.menu
   end
 
   def style

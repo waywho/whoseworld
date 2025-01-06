@@ -97,6 +97,9 @@ group :development do
 
   gem "pry-remote"
 
+  gem "listen"
+  gem "actioncable"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

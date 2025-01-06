@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_05_203101) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_06_213220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -160,14 +160,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_05_203101) do
 
   create_table "pages", force: :cascade do |t|
     t.string "title"
-    t.boolean "menu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.bigint "site_id", null: false
     t.integer "row_order"
-    t.boolean "feature", default: false
     t.integer "template", default: 0, null: false
+    t.integer "kind"
+    t.index ["kind", "site_id"], name: "index_pages_on_kind_and_site_id"
+    t.index ["site_id", "title"], name: "index_pages_on_site_id_and_title", unique: true
     t.index ["site_id"], name: "index_pages_on_site_id"
   end
 
