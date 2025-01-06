@@ -1,4 +1,5 @@
 <%= render LayoutComponent.new(site: site) do |c| %>
-	<% c.with_navigation(nav_position: nav_position, menu: menu_items) %>
-			"great"
+	<% c.with_navigation do %>
+		<li><%= link_to "test", "" %></li>
+	<% end %>
 <% end %>

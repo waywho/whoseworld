@@ -2,6 +2,6 @@
 
 class GalleryComponentPreview < ViewComponent::Preview
   def default
-    render(GalleryComponent.new(gallery: Gallery.last))
+    render(GalleryComponent.new(gallery: Gallery.new(id: 123451234)))
   end
 end

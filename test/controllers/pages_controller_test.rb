@@ -7,11 +7,13 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    host! @site.domain
     get pages_url
     assert_response :success
   end
 
   test "should show page" do
+    host! @site.domain
     get page_url(@page)
     assert_response :success
   end

@@ -4,10 +4,13 @@ class Site < ApplicationRecord
 
   # Associations
   has_many :pages, dependent: :destroy
-  has_one :landing_page, ->{  where("slug ILIKE ?", "%landing%") }, class_name: "Page"
+  has_one :landing_page, ->{  where(kind: :landing) }, class_name: "Page"
   has_many :domain_aliases, dependent: :destroy
+  has_many :contents, as: :contentable, dependent: :destroy
+  accepts_nested_attributes_for :contents, allow_destroy: true,
+                                reject_if: proc { |attributes| attributes["heading"].blank? }
   accepts_nested_attributes_for :domain_aliases, allow_destroy: true,
-                                reject_if: proc { |attributes| attributes['domain'].blank? && attributes['subdomain'].blank? }
+                                reject_if: proc { |attributes| attributes["domain"].blank? && attributes["subdomain"].blank? }
 
   # Enums
   enum :nav_position, %i[top left right], validation: true
@@ -23,7 +26,7 @@ class Site < ApplicationRecord
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
 
   before_save :slugify
-  after_create_commit :create_landing_page
+  after_create_commit :create_default_pages
 
   # TODO: Remove
   def self.orientations
@@ -37,7 +40,14 @@ class Site < ApplicationRecord
 
   private
 
-  def create_landing_page
-    pages.create(title: "Landing", slug: "landing", menu: false, template: :plain)
+  def create_default_pages
+    [
+      { title: "#{slug} Landing", kind: :landing, template: :plain },
+      { title: "Imprint", kind: :imprint, template: :plain },
+      { title: "Terms of Service", kind: :imprint, template: :plain },
+      { title: "Privacy Policy", kind: :imprint, template: :plain },
+    ].each do |page|
+      pages.create(page)
+    end
   end
 end

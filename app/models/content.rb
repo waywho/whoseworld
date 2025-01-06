@@ -1,9 +1,13 @@
 class Content < ApplicationRecord
   nilify_blanks
   include RankedModel
-  ranks :row_order, with_same: :page_id
+  ranks :row_order, with_same: %i[contentable_id contentable_type]
 
   # Associations
+  # belongs_to :contentable, polymorphic: true
   belongs_to :page
   has_one_attached :image
+
+  # Validations
+  validates :heading, presence: true
 end

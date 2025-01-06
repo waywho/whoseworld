@@ -7,12 +7,20 @@ class Page < ApplicationRecord
   include RankedModel
   ranks :row_order, with_same: :site_id
 
+  KIND_LABELS = {
+    non_menu: "Pages not to be displayed",
+    imprint: "Imprint",
+    feature: "Feature in Landing",
+    menu: "Menu Pages",
+    landing: "Landing"
+  }
+
   # Associations
   has_many :galleries, dependent: :nullify
   has_one :featured_gallery, -> { where(feature: true) }, class_name: "Gallery"
   has_many :medias, dependent: :nullify
   belongs_to :site
-  has_many :contents, dependent: :destroy
+  has_many :contents, as: :contentable, dependent: :destroy
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
 
@@ -21,12 +29,15 @@ class Page < ApplicationRecord
 
   # Enums
   enum :template, %i[plain gallery media], validation: true
+  enum :kind, %i[non_menu imprint feature menu landing], validation: true
 
   # Validations
   validates :title, presence: true, uniqueness:  { scope: :site_id }
+  validate :unqie_landing_page, if: -> { landing? }
 
-  # Scopes
-  scope :menu_pages, -> { where.not(title: "landing").where(menu: true) }
-  scope :landing, -> { friendly.find("landing") }
-  scope :feature, -> { where(feature: true) }
+  private
+
+  def unqie_landing_page
+    errors.add(:kind, "already exists") if site.pages.landing.exists?
+  end
 end

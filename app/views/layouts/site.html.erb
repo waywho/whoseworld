@@ -13,10 +13,11 @@
 
   <body>
     <%= render LayoutComponent.new(site: Current.tenant) do |c| %>
-      <% if Current.tenant.pages.menu_pages.present? %>
+      <% if Current.tenant.pages.menu.present? %>
         <% c.with_navigation %>
       <% end %>
       <%= yield %>
+      <% c.with_footer %>
     <% end %>
   </body>
 </html>
