@@ -25,9 +25,8 @@ class Site < ApplicationRecord
   # Scopes
   scope :find_by_domain, ->(domain) { includes(:domain_aliases).where(domain:).or(where(domain_aliases: { domain: })).take }
 
-  after_create_commit :create_standard_contents
   before_save :slugify
-  after_create_commit :create_landing_page
+  after_create_commit :create_default_page
 
   # TODO: Remove
   def self.orientations
@@ -41,15 +40,12 @@ class Site < ApplicationRecord
 
   private
 
-  def create_standard_contents
-    contents.upsert_all([
-      { heading: "Imprint" },
-      { heading: "Privacy Policy" },
-      { heading: "Terms of Service" }
+  def create_default_pages
+    pages.upsert_all([
+      { title: "#{slug} Landing", menu: false, template: :plain },
+      { title: "Imprint", template: :plain },
+      { title: "Terms of Service", template: :plain },
+      { title: "Privacy Policy", template: :plain },
     ])
-  end
-
-  def create_landing_page
-    pages.create(title: "Landing", slug: "landing", menu: false, template: :plain)
   end
 end
