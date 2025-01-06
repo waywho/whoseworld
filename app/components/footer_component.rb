@@ -8,7 +8,11 @@ class FooterComponent < ViewComponent::Base
   end
 
   def menu_items
-    site.pages.menu_pages
+    site.pages.menu.blank? ? [] : site.pages.menu
+  end
+
+  def non_menu_items
+    site.pages.non_menu.blank? ? [] : site.pages.non_menu
   end
 
   def site_logo

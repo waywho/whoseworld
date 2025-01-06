@@ -1,11 +1,17 @@
-<div class="container mx-auto">
-  <div class="grid grid-col-3 gap-4">
-    <div>
+<div class="bg-slate-800 text-white py-12 md:py-24 px-4 md:px-24">
+  <div class="container mx-auto grid grid-flow-cols grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="col-span-2">
       <%= site_logo %>
     </div>
-    <div></div>
+    <div class="flex flex-col text-gray-400 font-normal">
+      <% menu_items.each do |item| %>
+        <%= link_to item.title, url_for(item) %>
+      <% end %>
+    </div>
     <div>
-
+      <% non_menu_items.each do |item| %>
+        <%= link_to item.title, url_for(item) %>
+      <% end %>
     </div>
   </div>
 </div>
