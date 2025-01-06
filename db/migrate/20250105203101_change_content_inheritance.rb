@@ -6,6 +6,8 @@ class ChangeContentInheritance < ActiveRecord::Migration[7.2]
       add_index :contents, :contentable_type
       add_index :contents, %i[contentable_type contentable_id]
 
+      Content.reset_column_information
+
       Content.all.each do |content|
         content.update(contentable_type: "Page", contentable_id: content.page_id)
       end

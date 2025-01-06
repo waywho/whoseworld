@@ -1,16 +1,30 @@
-<div class="bg-slate-800 text-white py-12 md:py-24 px-4 md:px-24">
+<div class="bg-slate-800 text-white pt-12 md:pt-24 px-4 md:px-24">
   <div class="container mx-auto grid grid-flow-cols grid-cols-2 md:grid-cols-3 gap-4">
-    <div class="col-span-2">
-      <%= site_logo %>
+    <div class="col-span-2 md:col-span-1">
+      <% if site_logo.is_a?(String) %>
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+             <%= site_logo %>
+          </span>
+       <% else %>
+          <div class="h-12"><%= image_tag site_logo, class: "max-h-full" %></div>
+       <% end %>
     </div>
     <div class="flex flex-col text-gray-400 font-normal">
       <% menu_items.each do |item| %>
         <%= link_to item.title, url_for(item) %>
       <% end %>
     </div>
-    <div>
+    <div class="flex flex-col text-gray-400 font-normal">
       <% non_menu_items.each do |item| %>
         <%= link_to item.title, url_for(item) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex gap-4 justify-center mt-24 border-top text-gray-400 font-normal pb-8">
+    <div class="">© 2025 All rights reserved</div>
+    <div class="flex gap-4">
+      <% imprint_items.each do |item| %>
+        <%= link_to item.title, url_for(item) %> |
       <% end %>
     </div>
   </div>

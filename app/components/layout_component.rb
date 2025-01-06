@@ -10,7 +10,9 @@ class LayoutComponent < ViewComponent::Base
     end
   end
 
-  # renders_one :footer
+  renders_one :footer, ->(&block) do
+    FooterComponent.new(site: @site,&block)
+  end
 
   def initialize(site:, admin: false)
     @admin = admin

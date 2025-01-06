@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Page do
-  permit_params :title, :menu, :slug, :site_id, :row_order, :template, :feature, :menu,
+  permit_params :title, :menu, :slug, :site_id, :row_order, :template, :kind,
                 contents_attributes: %i[id heading summary body _destroy]
   config.sort_order = "row_order_asc"
   config.filters = false
@@ -29,7 +29,7 @@ ActiveAdmin.register Page do
       f.input :site
       f.input :template
       f.input :row_order
-      f.input :kind, collection: Page::SITE_LABELS.invert.to_a
+      f.input :kind, collection: Page::KIND_LABELS.invert.to_a
     end
     
     f.inputs "Contents" do

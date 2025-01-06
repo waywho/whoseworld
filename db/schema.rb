@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_06_213220) do
     t.bigint "site_id", null: false
     t.integer "row_order"
     t.integer "template", default: 0, null: false
-    t.integer "kind"
+    t.integer "kind", default: 0, null: false
     t.index ["kind", "site_id"], name: "index_pages_on_kind_and_site_id"
     t.index ["site_id", "title"], name: "index_pages_on_site_id_and_title", unique: true
     t.index ["site_id"], name: "index_pages_on_site_id"

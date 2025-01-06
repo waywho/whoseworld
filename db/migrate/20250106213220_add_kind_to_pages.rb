@@ -1,24 +1,29 @@
 class AddKindToPages < ActiveRecord::Migration[7.2]
+  disable_ddl_transaction!
   def up
-    add_column :pages, :kind, :integer
-    add_index :pages, [:kind, :site_id]
+    ActiveRecord::Base.transaction do
+      add_column :pages, :kind, :integer, default: 0, null: false
+      add_index :pages, [:kind, :site_id]
 
-    Page.all.each do |page|
-      if page.menu?
-        page.update(kind: :menu)
-      elsif page.title.include?("landing")
-        page.update(kind: :landing)
-      elsif page.feature?
-        page.update(kind: :feature)
-      elsif ["imprint", "privacy policy", "terms of service"].include?(page.title.downcase)
-        page.update(kind: :imprint)
-      else
-        page.update(kind: :non_menu)
+      Page.reset_column_information
+      label_keys = Page::KIND_LABELS.keys
+      Page.all.each do |page|
+        if page.menu?
+          page.update!(kind: label_keys.index(:menu))
+        elsif page.slug.include?("landing")
+          page.update!(kind: label_keys.index(:landing))
+        elsif page.feature?
+          page.update!(kind: label_keys.index(:feature))
+        elsif ["imprint", "privacy policy", "terms of service"].include?(page.title.downcase)
+          page.update!(kind: label_keys.index(:imprint))
+        else
+          page.update!(kind: label_keys.index(:non_menu))
+        end
       end
-    end
 
-    remove_column :pages, :menu
-    remove_column :pages, :feature
+      remove_column :pages, :menu
+      remove_column :pages, :feature
+    end
   end
 
   def down

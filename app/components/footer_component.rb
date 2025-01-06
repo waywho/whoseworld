@@ -7,12 +7,18 @@ class FooterComponent < ViewComponent::Base
     @site = site
   end
 
+  private
+  
   def menu_items
     site.pages.menu.blank? ? [] : site.pages.menu
   end
 
   def non_menu_items
     site.pages.non_menu.blank? ? [] : site.pages.non_menu
+  end
+
+  def imprint_items
+    site.pages.imprint.blank? ? [] : site.pages.imprint
   end
 
   def site_logo

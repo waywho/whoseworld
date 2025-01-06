@@ -8,7 +8,7 @@ class Page < ApplicationRecord
   ranks :row_order, with_same: :site_id
 
   KIND_LABELS = {
-    non_menu: "Pages not displayed",
+    non_menu: "Pages not to be displayed",
     imprint: "Imprint",
     feature: "Feature in Landing",
     menu: "Menu Pages",
