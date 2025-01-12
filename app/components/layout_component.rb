@@ -73,7 +73,7 @@ class LayoutComponent < ViewComponent::Base
   def style_class
     case nav_position
     when :top
-      "container mt-24 mx-auto"
+      "container mt-24 my-32 mx-auto"
     when :left
       "px-6 py-12 md:pr-24 md:pl-80"
     when :right
