@@ -6,7 +6,4 @@ class Content < ApplicationRecord
   # Associations
   belongs_to :contentable, polymorphic: true
   has_one_attached :image
-
-  # Validations
-  validates :heading, presence: true
 end
