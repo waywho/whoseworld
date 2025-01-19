@@ -1,5 +1,6 @@
 class Media < ApplicationRecord
   include SiteScopes
+  include Menuable
 
   # Associations
   belongs_to :page, optional: true

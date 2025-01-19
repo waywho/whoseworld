@@ -5,6 +5,7 @@ class Page < ApplicationRecord
   include Sluggable
   include SiteScopes
   include RankedModel
+  include Menuable
   ranks :row_order, with_same: :site_id
 
   KIND_LABELS = {
@@ -20,7 +21,6 @@ class Page < ApplicationRecord
   has_one :featured_gallery, -> { where(feature: true) }, class_name: "Gallery"
   has_many :medias, dependent: :nullify
   belongs_to :site
-  has_one :menu_item, dependent: :destroy
   has_many :contents, as: :contentable, dependent: :destroy
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
@@ -43,10 +43,6 @@ class Page < ApplicationRecord
   after_commit :add_to_menu, on: %i[update create], if: -> { menu? }
 
   private
-
-  def add_to_menu
-    create_menu_item(title:, site_id:, row_order:)
-  end
 
   def unqie_landing_page
     errors.add(:kind, "already exists") if site.pages.landing.exists?

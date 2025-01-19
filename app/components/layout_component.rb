@@ -4,9 +4,9 @@ class LayoutComponent < ViewComponent::Base
   renders_one :navigation, ->(&block) do
     case nav_position
     when :top
-      NavbarComponent.new(logo:, subtitle: @subtitle, menu_items:,&block)
+      NavbarComponent.new(logo:, subtitle: @subtitle, menu_items:, style:, &block)
     when :left, :right
-      SidebarComponent.new(logo:, subtitle: @subtitle, menu_items:, position: nav_position,&block)
+      SidebarComponent.new(logo:, subtitle: @subtitle, menu_items:, position: nav_position, style:, &block)
     end
   end
 
@@ -24,10 +24,8 @@ class LayoutComponent < ViewComponent::Base
     case style
     when :multi_page_admin
       menus.map { |m| [m[:title], m[:url]] }
-    when :multi_page
-      menus.map { |m| [m.title, url_for(m)] }
-    when :one_page
-      menus.map { |m| [m.title, "##{m.slug}"] }
+    else
+      menus
     end
   end
 
@@ -80,14 +78,4 @@ class LayoutComponent < ViewComponent::Base
       "px-6 py-12 md:pl-24 md:pr-80"
     end
   end
-
-  def navbar_component
-    case nav_position
-    when :top
-      render NavbarComponent.new(logo: logo, subtitle: @subtitle, menu_items: menu_items)
-    when :left, :right
-      render SidebarComponent.new(logo: logo, subtitle: @subtitle, menu_items: menu_items, position: position)
-    end
-  end
-
 end

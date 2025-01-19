@@ -1,4 +1,6 @@
 class Gallery < ApplicationRecord
+  include Menuable
+  
   # Associations
   belongs_to :page, optional: true
   has_many_attached :images

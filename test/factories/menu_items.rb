@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :menu_item do
-    name { "MyString" }
+    title { "MyString" }
     site { nil }
     page { nil }
     url { "MyString" }

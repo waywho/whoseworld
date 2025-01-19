@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class SidebarComponent < ViewComponent::Base
-  def initialize(logo:, subtitle: nil, menu_items: [], position: :left)
+  attr_reader :style
+
+  def initialize(logo:, subtitle: nil, menu_items: [], position: :left, style: :multi_page)
     @logo = logo
     @menu_items = menu_items
     @position = position
     @subtitle = subtitle
+    @style = style
   end
 
   private
@@ -52,5 +55,14 @@ class SidebarComponent < ViewComponent::Base
 
   def non_active_menu_classes
     " text-gray-700 dark:text-gray-400"
+  end
+
+  def menu_path_for(menu_item)
+    case style
+    when :multi_page
+      menu_item.record.present? ? url_for(menu_item.record) : menu_item.url
+    else
+      menu_item.record.present? ? "##{menu_item.record.slug}" : "#{menu_item.title.downcase}"
+    end
   end
 end
