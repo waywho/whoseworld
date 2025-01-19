@@ -13,7 +13,7 @@ class FooterComponent < ViewComponent::Base
     site.menu_items
   end
 
-  def non_menu_items
+  def non_menu_pages
     site.pages.non_menu.blank? ? [] : site.pages.non_menu
   end
 
@@ -23,5 +23,14 @@ class FooterComponent < ViewComponent::Base
 
   def site_logo
     site.logo&.attached? ? site.logo : site.name
+  end
+
+  def menu_path_for(menu_item)
+    case style
+    when :multi_page
+      menu_item.record.present? ? url_for(menu_item.record) : menu_item.url
+    else
+      menu_item.record.present? ? "##{menu_item.record.slug}" : "#{menu_item.title.downcase}"
+    end
   end
 end

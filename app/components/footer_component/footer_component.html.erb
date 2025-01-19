@@ -11,12 +11,12 @@
     </div>
     <div class="flex flex-col text-gray-400 font-normal">
       <% menu_items.each do |item| %>
-        <%= link_to item.title, item.page.present? ? url_for(item.page) : item.url %>
+        <%= link_to item.title, menu_path_for(item) %>
       <% end %>
     </div>
     <div class="flex flex-col text-gray-400 font-normal">
-      <% non_menu_items.each do |item| %>
-        <%= link_to item.title, item.page.present? ? url_for(item.page) : item.url %>
+      <% non_menu_pages.each do |page| %>
+        <%= link_to page.title, url_for(page) %>
       <% end %>
     </div>
   </div>
