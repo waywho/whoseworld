@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FooterComponent < ViewComponent::Base
-  attr_reader :site
+  attr_reader :site, :style
 
   def initialize(site:, style: :multi_page)
     @site = site
