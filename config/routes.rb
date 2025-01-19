@@ -8,28 +8,11 @@ Rails.application.routes.draw do
     mount Lookbook::Engine, at: "/lookbook"
   end
 
-  # namespace :admin, module: 'admin', as: :admin do
-  #   root "sites#index"
-  #   resources :sites
-
-  #   get "/:site_id/pages/:id", to: "pages#show", as: :preview_page
-
-  #   scope "(:site_id)" do
-  #     resources :medias
-  #     resources :galleries do
-  #       member do
-  #         delete :delete_image
-  #       end
-  #     end
-
-  #     resources :pages, only: %i[index new create edit update destroy]
-  #     resources :contents do
-  #       member do
-  #         delete :delete_image
-  #       end
-  #     end
-  #   end
-  # end
+  constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
+    scope ":musical_id", module: "burm" do
+      resources "signups", only: %i[show new create edit update destroy]
+    end
+  end
 
   root "pages#landing"
   resources :pages, only: %i[index show], path: ''

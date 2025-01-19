@@ -28,6 +28,16 @@ FactoryBot.define do
       layout_style { :multi_page }
     end
 
+    trait :burm do
+      name { "Berlin UnRehearsed Musicals" }
+      domain { "berlinunrehearsedmusicals.com" }
+      subdomain { nil }
+      slug { "burm" }
+      nav_position { :top }
+      subtitle { "Great site" }
+      layout_style { :multi_page }
+    end
+
     trait :example do
       name { "Example" }
       domain { "example.com" }
