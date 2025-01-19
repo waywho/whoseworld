@@ -3,6 +3,7 @@ class Site < ApplicationRecord
   include Sluggable
 
   # Associations
+  has_many :menu_items, dependent: :destroy
   has_many :pages, dependent: :destroy
   has_one :landing_page, ->{  where(kind: :landing) }, class_name: "Page"
   has_many :domain_aliases, dependent: :destroy
