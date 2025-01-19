@@ -45,7 +45,7 @@ class Page < ApplicationRecord
   private
 
   def add_to_menu
-    create_menu_item(name: title, site_id: site_id, row_order:)
+    create_menu_item(title:, site_id:, row_order:)
   end
 
   def unqie_landing_page

@@ -34,7 +34,7 @@
          <ul class="mt-8 space-y-2">
             <% @menu_items.each do |item| %>
                <li>
-                  <%= link_to item[0], item[1], {class: "#{menu_classes} #{params[:id] == item[0]&.downcase ? active_menu_classes : non_active_menu_classes}"}.merge(additional_options) %>
+                  <%= link_to item.title, item.page.present? ? url_for(item.page) || item.url, {class: "#{menu_classes} #{params[:id] == item[0]&.downcase ? active_menu_classes : non_active_menu_classes}"}.merge(additional_options) %>
                </li>
                <%= content %>
             <% end %>

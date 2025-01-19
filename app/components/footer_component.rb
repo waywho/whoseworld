@@ -10,7 +10,7 @@ class FooterComponent < ViewComponent::Base
   private
   
   def menu_items
-    site.pages.menu.blank? ? [] : site.pages.menu
+    site.menu_items
   end
 
   def non_menu_items

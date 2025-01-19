@@ -19,7 +19,7 @@
       <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
         <% @menu_items.each do |item| %>
           <li>
-            <%= link_to item[0], item[1], class: "#{menu_classes} #{params[:id] == item[0]&.parameterize ? active_menu_classes : non_active_menu_classes}", "aria-current"=>"page" %>
+            <%= link_to item.title, item.page.present? ? url_for(item.page) || item.url, class: "#{menu_classes} #{params[:id] == item[0]&.parameterize ? active_menu_classes : non_active_menu_classes}", "aria-current"=>"page" %>
           </li>
         <% end %>
         <%= content %>

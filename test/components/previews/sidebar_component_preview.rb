@@ -31,7 +31,7 @@ class SidebarComponentPreview < ViewComponent::Preview
 
   def menu_items
     ['Here', 'About', 'Services', 'Pricing', 'Contact'].each_with_object([]) do |menu, arr|
-        arr << [menu, ""]
+        arr << [MenuItem.new(title: menu, url: "/")]
     end
   end
 end

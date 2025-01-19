@@ -24,8 +24,8 @@ class NavbarComponentPreview < ViewComponent::Preview
   end
 
   def menu_items
-    ['Here', 'About', 'Services', 'Pricing', 'Contact'].each_with_object([]) do |menu, arr|
-        arr << [menu, ""]
+    ["Here", "About", "Services", "Pricing", "Contact"].each_with_object([]) do |menu, arr|
+        arr << [MenuItem.new(title: menu, url: "/")]
     end
   end
 end
