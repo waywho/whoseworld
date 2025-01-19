@@ -62,7 +62,7 @@ class SidebarComponent < ViewComponent::Base
     when :multi_page
       menu_item.record.present? ? url_for(menu_item.record) : menu_item.url
     else
-      menu_item.record.present? ? "##{menu_item.record.slug}" : "#{menu_item.title.downcase}"
+      menu_item.record.present? ? "##{menu_item.record.slug}" : "##{menu_item.title.downcase}"
     end
   end
 end
