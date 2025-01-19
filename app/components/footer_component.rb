@@ -3,8 +3,9 @@
 class FooterComponent < ViewComponent::Base
   attr_reader :site
 
-  def initialize(site:)
+  def initialize(site:, style: :multi_page)
     @site = site
+    @style = style
   end
 
   private
