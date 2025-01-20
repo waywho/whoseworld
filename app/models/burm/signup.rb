@@ -1,6 +1,7 @@
 class BURM::Signup < ApplicationRecord
   nilify_blanks
   include MusicalScopes
+  self.implicit_order_column = "created_at"
   
   # Associations
   belongs_to :person, class_name: "BURM::Person", foreign_key: "burm_person_id", optional: true

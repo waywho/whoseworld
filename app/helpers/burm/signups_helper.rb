@@ -1,0 +1,2 @@
+module BURM::SignupsHelper
+end
