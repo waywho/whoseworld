@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_19_185825) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_20_175515) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
@@ -86,7 +87,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_19_185825) do
     t.index ["burm_musical_id"], name: "index_burm_roles_on_burm_musical_id"
   end
 
-  create_table "burm_signups", force: :cascade do |t|
+  create_table "burm_signups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "burm_person_id"
     t.bigint "burm_role_id"
     t.bigint "burm_musical_id"
