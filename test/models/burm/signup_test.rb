@@ -32,6 +32,12 @@ class BURM::SignupTest < ActiveSupport::TestCase
     assert_equal ["cannot sign up for the same musical twice"], signup.errors.messages[:person]
   end
 
+  test "should find or build person" do
+    signup = build(:burm_signup)
+    assert signup.save!
+    assert signup.person
+  end
+
   test "should cache person name, role name, and musical title" do
     signup = create(:burm_signup)
     assert_equal signup.person.full_name, signup.person_name
