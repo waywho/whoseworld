@@ -3,7 +3,7 @@ require "test_helper"
 class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @musical = create(:burm_musical)
-    @signup = create(:burm_signup, musical: @musical)
+    @signup = create(:burm_signup, :with_role, musical: @musical)
     @site = create(:site, :burm)
     host! @site.domain
   end

@@ -14,7 +14,7 @@ class BURM::Signup < ApplicationRecord
   # Validations
   validate :association_or_cached
   validates :person, uniqueness: { scope: %i[role musical],
-            message: "cannot sign up for the same musical twice" },
+            message: "cannot sign up for the same role and musical twice" },
             if: -> { person.present? && role.present? && musical.present? }
 
   # Callbacks

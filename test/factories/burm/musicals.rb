@@ -6,8 +6,10 @@ FactoryBot.define do
     location { "MyString" }
     fee { 15.00 }
 
-    after(:build) do |musical|
-      musical.roles << build(:burm_role, musical:)
+    trait :with_roles do
+      after(:build) do |musical|
+        musical.roles << build(:burm_role, musical:)
+      end
     end
   end
 end

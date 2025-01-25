@@ -28,7 +28,7 @@ class BURM::MusicalTest < ActiveSupport::TestCase
     create(:burm_role, name: "Alexander Hamilton", voice_type: :tenor, role_type: :lead, musical:)
     musical.bulk_roles = "King George III, baritone, lead\nAlexander Hamilton, (tenor), lead"
     musical.save!
-
+    
     assert_equal 2, musical.roles.count
   end
 
