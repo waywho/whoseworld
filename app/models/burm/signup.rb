@@ -14,14 +14,19 @@ class BURM::Signup < ApplicationRecord
   # Validations
   validate :association_or_cached
   validates :person, uniqueness: { scope: %i[role musical],
-            message: "cannot sign up for the same musical twice" },
+            message: "cannot sign up for the same role and musical twice" },
             if: -> { person.present? && role.present? && musical.present? }
 
   # Callbacks
   before_validation :find_or_build_person
   before_save :set_cached_attributes
+  before_save :set_cancelled_at, if: :cancelled?
 
   private
+
+  def set_cancelled_at
+    self.cancelled_at = Time.current
+  end
 
   def association_or_cached
     if person_name.nil? && person.nil?

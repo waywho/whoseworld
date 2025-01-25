@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_20_175515) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_20_185344) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -97,6 +97,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_20_175515) do
     t.string "musical_title"
     t.string "person_name"
     t.string "role_name"
+    t.boolean "cancelled"
+    t.datetime "cancelled_at"
+    t.text "cancellation_reason"
     t.index ["burm_musical_id"], name: "index_burm_signups_on_burm_musical_id"
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"

@@ -12,4 +12,8 @@ class BURM::Role < ApplicationRecord
   
   # Validations
   validates :name, uniqueness: { scope: :musical }
+
+  def to_s
+    [name, voice_type].compact.join(" - ")
+  end
 end

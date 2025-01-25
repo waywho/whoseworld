@@ -59,7 +59,6 @@ gem "bootsnap", require: false
 
 # simple form
 gem "simple_form"
-gem "simple_form-tailwind"
 
 # user authentication
 gem "devise"

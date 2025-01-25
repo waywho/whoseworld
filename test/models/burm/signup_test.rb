@@ -25,28 +25,30 @@ class BURM::SignupTest < ActiveSupport::TestCase
   test "should only allow one signup per person, per musical and role" do
     person = create(:burm_person)
     musical = create(:burm_musical)
-    role = create(:burm_role, musical: musical)
-    signup = create(:burm_signup, person: person, musical: musical, role: role)
-    signup = build(:burm_signup, person: person, musical: musical, role: role)
+    role = create(:burm_role, musical:)
+    create(:burm_signup, person:, musical:, role:)
+
+    signup = build(:burm_signup, person:, musical:, role:)
+
     assert_not signup.valid?
-    assert_equal ["cannot sign up for the same musical twice"], signup.errors.messages[:person]
+    assert_equal ["cannot sign up for the same role and musical twice"], signup.errors.messages[:person]
   end
 
   test "should find or build person" do
-    signup = build(:burm_signup)
+    signup = build(:burm_signup, :with_role)
     assert signup.save!
     assert signup.person
   end
 
   test "should cache person name, role name, and musical title" do
-    signup = create(:burm_signup)
+    signup = create(:burm_signup, :with_role)
     assert_equal signup.person.full_name, signup.person_name
     assert_equal signup.role.name, signup.role_name
     assert_equal signup.musical.title, signup.musical_title
   end
 
   test "should accept nested attributes for person" do
-    signup = build(:burm_signup)
+    signup = build(:burm_signup, :with_role)
     signup.person_attributes = { first_name: "John", last_name: "Doe", email: "john.doe@test.com" }
     assert signup.save!
     assert signup.person
