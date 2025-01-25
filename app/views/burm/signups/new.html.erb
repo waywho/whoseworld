@@ -1,4 +1,16 @@
 <div>
-  <h1 class="font-bold text-4xl">BURM::Signups#new</h1>
-  <p>Find me in app/views/burm/signups/new.html.erb</p>
+  <h1>Sign Up to <%= @musical.title %></h1>
+
+  <p><b>Date: <%= @musical.start_at.strftime("%a %b %d, %Y") %></b></p>
+
+
+  <p>Get the experience of singing through some great musical theatre shows with no pressure. Come join us.</p>
+
+  <p>There are several parts and roles available, and you can sign up to sing in one of the the roles/parts that are available. Of course if you want to only sing in the chorus, that is also GREAT! Roles will be given on a first-come-first-serve basis!</p>
+
+  <p>We ask that you commit to contribute <%= number_to_currency(@musical.fee, locale: :de) %> to cover the costs of space rental and musician for the day.</p>
+  <p>Once you've signed up, we will be in touch with the rest of the details.</p>
+
+  <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+
 </div>

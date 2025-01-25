@@ -1,0 +1,12 @@
+<%= simple_form_for signup do |f| %>
+  <%= f.simple_fields_for :person do |person| %>
+    <%= person.input :first_name %>
+    <%= person.input :last_name %>
+    <%= person.input :email %>
+  <% end %>
+  <%= f.hidden_field :burm_musical_id %>
+  <%= f.input :burm_role_id, as: :radio_buttons, collection: @musical.roles, label_method: :to_s, value_method: :id,  label: "Roles", required: true %>
+
+  <%= f.input :alternative_role_id, collection: @musical.roles, label_method: :to_s, value_method: :id %>
+  <%= f.button :submit %>
+<% end %>

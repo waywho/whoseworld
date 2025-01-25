@@ -1,0 +1,10 @@
+de:
+  number:
+    currency:
+      format:
+        delimiter: " "
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        strip_insignificant_zeros: false
+        unit: "€"

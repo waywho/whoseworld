@@ -30,4 +30,12 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  signups:
+    create:
+      success: "You have successfully signed up!"
+      cannot_signup: "There was an error signing up. Please try again."
+    update:
+      success: "You have successfully updated your signup!"
+      cannot_update: "There was an error updating your signup. Please try again."
+    destroy:
+      success: "You have successfully cancelled your signup!"

@@ -20,8 +20,13 @@ class BURM::Signup < ApplicationRecord
   # Callbacks
   before_validation :find_or_build_person
   before_save :set_cached_attributes
+  before_save :set_cancelled_at, if: :cancelled?
 
   private
+
+  def set_cancelled_at
+    self.cancelled_at = Time.current
+  end
 
   def association_or_cached
     if person_name.nil? && person.nil?
