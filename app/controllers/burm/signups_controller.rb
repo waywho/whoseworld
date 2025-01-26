@@ -1,7 +1,7 @@
 class BURM::SignupsController < SiteBaseController
   before_action :set_musical
   before_action :check_signup_open, only: %i[new create]
-  before_action :set_signup, only: %i[show edit update destroy]
+  before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
 
   def show
     @status = params[:status]
@@ -42,12 +42,18 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def destroy
-    @signup.update(cancelled: true)
+    @signup.update(cancelled: true, cancellation_reason: signup_params[:cancellation_reason])
 
-    render :thank_you, status: :no_content
+    render :cancelled
   end
 
   private
+
+  def check_cancelled
+    return unless @signup.cancelled?
+
+    render :already_cancelled
+  end
 
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])

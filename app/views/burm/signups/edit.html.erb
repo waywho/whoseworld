@@ -1,9 +1,26 @@
 <div class="min-h-screen">
   <div class="border border-4 border-indigo-700 rounded-lg m-6 p-6 sm:m-9 lg:m-36 md:p-9">
-    <h1>Edit Your Sign Up to <span class="italic"><%= @musical.title %></span></h1>
+    <h1><%= params[:cancel].present? ? "Cancel" : "Edit" %>  Your Sign Up to <span class="italic"><%= @musical.title %></span></h1>
 
     <div class="mb-2 font-semibold text-2xl">UnRehearsed on <%= @musical.date %></div>
     <div class="mb-4 font-semibold text-2xl"><%= @musical.time %></div>
-    <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+
+    <% if @signup.assigned_role.present? %>
+      <div class="mb-4 font-semibold text-2xl"><%= t(".already_assigned_role", role: @signup.assigned_role, musical: @musical.title) %></div>
+    <% end %>
+
+    <% if params[:cancel] %>
+      <% if @signup.assigned_role.nil? %>
+        <div class="mb-4 font-semibold text-2xl"><%= t(".signed_up_as", role: @signup.role, musical: @musical.title) %></div>
+      <% end %>
+
+      <% if @musical.start_at <= 7.days.from_now %>
+        <p>You are planning to cancel less than 7 days before the event. Please consider the impact of your cancellation on the other participants. Unfortunately, we still will require you to pay for the fee that you have committed.</p>
+      <% end %>
+
+      <%= render partial: "cancel_form", locals: { signup: @signup, musical: @musical } %>
+    <% else %>
+      <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+    <% end %>
   </div>
 </div>

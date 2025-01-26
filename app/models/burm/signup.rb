@@ -8,6 +8,7 @@ class BURM::Signup < ApplicationRecord
   belongs_to :role, class_name: "BURM::Role", foreign_key: "burm_role_id", optional: true
   belongs_to :musical, class_name: "BURM::Musical", foreign_key: "burm_musical_id", optional: true
   belongs_to :alternative_role, optional: true, class_name: "BURM::Role"
+  belongs_to :assigned_role, optional: true, class_name: "BURM::Role"
 
   accepts_nested_attributes_for :person, reject_if: :blank_or_invalid_person
 
@@ -21,12 +22,12 @@ class BURM::Signup < ApplicationRecord
   validates :musical, presence: true, on: :create
   validates :person, uniqueness: { scope: %i[role musical],
             message: "cannot sign up for the same role and musical twice" },
-            if: -> { person.present? && role.present? && musical.present? }
+            if: -> { !cancelled || (person.present? && role.present? && musical.present?) }
 
   # Callbacks
   before_validation :find_or_build_person
   before_save :set_cached_attributes
-  before_save :set_cancelled_at, if: :cancelled?
+  before_save :set_cancelled_at
 
   private
 
@@ -38,7 +39,11 @@ class BURM::Signup < ApplicationRecord
   end
 
   def set_cancelled_at
-    self.cancelled_at = Time.current
+    if cancelled?
+      self.cancelled_at = Time.current
+    else
+      self.cancelled_at = nil
+    end
   end
 
   def association_or_cached

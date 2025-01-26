@@ -42,6 +42,9 @@ en:
           <p class='font-semibold text-2xl'>Thank you for signing up to take part in <span class='italic'>%{musical}</span> UnRehearsed!</p><p>We will be in touch with further details soon.</p>"
         updated_html: "<h2>Your signup is updated!</h2>
           <p class='font-semibold text-2xl'>Thank you for updating your <span class='italic'>%{musical}</span> UnRehearsed participation!</h2><p class='font-semibold text-2xl'>We will be in touch withfurther details soon.</p>"
+      edit:
+        already_assigned_role: You have already been assigned the role of %{role} for %{musical} UnRehearsed.
+        signed_up_as: "You have signed up as %{role} for %{musical} UnRehearsed."
       create:
         cannot_signup: "Oops. There was an error in your signup. %{error}"
         success: "You have successfully signed up!"
