@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_20_185344) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_20_185344) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.datetime "signup_start_at"
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 
@@ -75,6 +76,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_20_185344) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "voice_type", default: 0, null: false
+    t.boolean "agree_to_emails", default: true, null: false
+    t.index ["email"], name: "index_burm_people_on_email"
+    t.index ["voice_type"], name: "index_burm_people_on_voice_type"
   end
 
   create_table "burm_roles", force: :cascade do |t|
@@ -100,7 +105,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_20_185344) do
     t.boolean "cancelled"
     t.datetime "cancelled_at"
     t.text "cancellation_reason"
+    t.bigint "assigned_burm_role_id"
+    t.boolean "role_sharing"
+    t.boolean "family_friends_watching"
+    t.boolean "commit_to_pay", default: true, null: false
+    t.text "comments"
     t.index ["burm_musical_id"], name: "index_burm_signups_on_burm_musical_id"
+    t.index ["burm_person_id", "burm_musical_id"], name: "index_burm_signups_on_burm_person_id_and_burm_musical_id", unique: true
+    t.index ["burm_person_id", "burm_role_id", "burm_musical_id"], name: "idx_on_burm_person_id_burm_role_id_burm_musical_id_7bb118a378"
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
   end

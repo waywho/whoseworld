@@ -37,7 +37,7 @@ SimpleForm.setup do |config|
   # vertical forms
   #
   # vertical default_wrapper
-  config.wrappers :vertical_form, tag: 'div', class: 'mb-4' do |b|
+  config.wrappers :vertical_form, tag: 'div', class: 'mb-4 w-full' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -48,22 +48,19 @@ SimpleForm.setup do |config|
     b.use :label, class: 'block mb-2 font-medium text-gray-900 dark:text-gray-300', error_class: 'text-red-700 dark:text-red-500'
     b.use :input, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'mt-2 text-grey-700 text-sm italic' }
   end
 
   # vertical input for boolean (aka checkboxes)
-  config.wrappers :vertical_boolean, tag: 'div', class: 'mb-4 flex items-start', error_class: '' do |b|
+  config.wrappers :vertical_boolean, tag: 'div', class: 'mb-2 flex items-start', error_class: '' do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: 'legend', class: 'mb-2 font-medium text-gray-900', error_class: 'text-red-500' do |ba|
-      ba.use :label_text
-    end
     b.wrapper tag: 'div', class: 'flex items-center h-5' do |ba|
       ba.use :input, class: 'focus:ring-2 focus:ring-indigo-500:focus ring-offset-2 h-4 w-4 text-indigo-600 border-gray-300 rounded'
     end
-    b.wrapper tag: 'div', class: 'ml-3 text-sm' do |bb|
-      bb.use :label, class: 'block', error_class: 'text-red-500'
-      bb.use :hint, wrap_with: { tag: 'p', class: 'block text-grey-700 text-xs italic' }
+    b.wrapper tag: 'div', class: 'mb-2 ml-3' do |bb|
+      bb.use :label, class: 'block font-medium text-gray-900', error_class: 'text-red-500'
+      bb.use :hint, wrap_with: { tag: 'div', class: 'block text-grey-700 text-sm italic' }
       bb.use :full_error, wrap_with: { tag: 'p', class: 'block text-red-500 text-xs italic' }
     end
 
@@ -76,9 +73,9 @@ SimpleForm.setup do |config|
     b.wrapper :legend_tag, tag: 'legend', class: 'mb-2 font-medium text-gray-900', error_class: 'text-red-500' do |ba|
       ba.use :label_text
     end
-    b.use :input, class: 'focus:ring-2 focus:ring-indigo-500 ring-offset-2 h-4 w-4 text-indigo-600 border-gray-300 rounded', error_class: 'text-red-500', valid_class: 'text-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'block mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'my-2 text-grey-700 text-sm italic' }
+    b.use :input, class: 'focus:ring-2 focus:ring-indigo-500 ring-offset-2 h-4 w-4 text-indigo-600 border-gray-300 rounded', error_class: 'text-red-500', valid_class: 'text-green-400'
   end
 
   # vertical file input
@@ -91,7 +88,7 @@ SimpleForm.setup do |config|
     b.use :label, class: 'block mb-2 font-medium text-gray-900 dark:text-gray-300', error_class: 'text-red-500'
     b.use :input, class: 'block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400', error_class: 'text-red-500 border-red-500', valid_class: 'text-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'mt-2 text-grey-700 text-sm italic' }
   end
 
   # vertical multi select
@@ -103,24 +100,24 @@ SimpleForm.setup do |config|
     end
     b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
       # ba.use :input, class: 'flex w-auto w-auto text-gray-500 text-sm border-gray-300 rounded p-2', error_class: 'text-red-500', valid_class: 'text-green-400'
-      ba.use :input, class: 'flex w-auto shadow appearance-none border border-gray-300 rounded w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
+      ba.use :input, class: 'flex w-auto shadow appearance-none border border-gray-300 rounded-lg w-full p-2 bg-white focus:outline-none focus:border-blue-500 text-gray-400 leading-4 transition-colors duration-200 ease-in-out'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'mt-2 text-grey-700 text-sm italic' }
   end
 
   # vertical select
-  config.wrappers :vertical_select, tag: 'div', class: 'my-4', error_class: 'f', valid_class: '' do |b|
+  config.wrappers :vertical_select, tag: 'div', class: 'mb-4', error_class: 'f', valid_class: '' do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: 'legend', class: 'mb-2 font-medium text-gray-900', error_class: 'text-red-500' do |ba|
+    b.wrapper :legend_tag, tag: 'legend', class: 'mb-2 font-medium text-gray-900 dark:text-gray-300', error_class: 'text-red-500 dark:text-red-500' do |ba|
       ba.use :label_text
     end
-    b.wrapper tag: 'div', class: 'inline-flex space-x-1' do |ba|
-      ba.use :input, class: 'shadow border border-gray-300 text-gray-900 text-sm rounded w-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+    b.wrapper tag: 'div', class: 'space-x-1' do |ba|
+      ba.use :input, class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'mt-2 text-grey-700 text-sm italic' }
   end
   # vertical range input
   config.wrappers :vertical_range, tag: 'div', class: 'my-4', error_class: 'text-red-500', valid_class: 'text-green-400' do |b|
@@ -133,7 +130,7 @@ SimpleForm.setup do |config|
       ba.use :input, class: 'rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-full text-gray-300', error_class: 'text-red-500', valid_class: 'text-green-400'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs italic' }
+    b.use :hint, wrap_with: { tag: 'div', class: 'mt-2 text-grey-700 text-sm italic' }
   end
 
   # The default wrapper to be used by the FormBuilder.

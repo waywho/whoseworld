@@ -8,6 +8,16 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
     host! @site.domain
   end
 
+  test "should get new only when signup is open" do
+    musical = create(:burm_musical, signup_start_at: Time.current + 1.day)
+    get new_burm_signup_path(musical)
+    assert_response :forbidden
+
+    musical.update!(signup_start_at: Time.current - 1.day)
+    get new_burm_signup_path(musical)
+    assert_response :success
+  end
+
   test "should get new" do
     get new_burm_signup_path(@musical)
     assert_response :success
@@ -24,7 +34,7 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_response :created
+    assert_response :redirect
   end
 
   test "should get edit" do
@@ -37,7 +47,7 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
     put burm_signup_path(@musical, @signup), params: { burm_signup: { burm_role_id: role.id } }
 
     assert @signup.reload.role == role
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should delete" do

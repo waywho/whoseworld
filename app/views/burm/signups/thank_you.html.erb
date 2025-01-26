@@ -1,1 +1,6 @@
-Thank you for your update.
+<div class="min-h-screen text-center">
+  <div class="border border-4 border-indigo-700 rounded-lg m-6 p-6 sm:m-9 lg:m-36 md:p-9">
+    <%= t(".#{@status}_html", musical: @musical.title) %>
+    <p>If you need to, you can come back to <%= link_to "Your Signup Form", edit_burm_signup_path(@musical, @signup) %> to update your participation.</p>
+  </div>
+</div>

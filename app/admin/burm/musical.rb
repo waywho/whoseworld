@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles,
+  permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles, :signup_start_at,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy]
 
   index do
@@ -24,6 +24,7 @@ ActiveAdmin.register BURM::Musical do
       f.input :end_at
       f.input :location
       f.input :fee
+      f.input :signup_start_at
     end
 
     if f.object.new_record? || f.object.roles.blank?

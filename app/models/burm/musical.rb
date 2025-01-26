@@ -10,7 +10,7 @@ class BURM::Musical < ApplicationRecord
   has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_musical_id", dependent: :nullify
   has_many :people, through: :signups, class_name: "BURM::Person", foreign_key: "burm_person_id"
 
-  accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs.valid? }
+  accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs[:name].blank? }
 
   # Attribute
   attribute :bulk_roles, :text
@@ -18,6 +18,24 @@ class BURM::Musical < ApplicationRecord
   # Callbacks
   after_initialize :set_default_fee, unless: :persisted?
   before_validation :build_from_bulk_roles
+
+  def signup_open?
+    signup_start_at&.past?
+  end
+
+  def signup_open_at
+    "near future" unless signup_start_at
+
+    signup_start_at&.strftime("%A, %B %e, %Y at %l:%M %p")
+  end
+
+  def date
+    "#{start_at.strftime("%A, %B %e, %Y")}"
+  end
+
+  def time
+    "#{start_at.strftime("%l:%M %p")} - #{end_at.strftime("%l:%M %p")}"
+  end
 
   private
 

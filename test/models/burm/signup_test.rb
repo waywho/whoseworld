@@ -7,19 +7,27 @@ class BURM::SignupTest < ActiveSupport::TestCase
     signup = BURM::Signup.new
 
     assert_not signup.valid?
-    assert_equal ["must exist"], signup.errors.messages[:person]
+    assert_equal ["can't be blank"], signup.errors.messages[:person]
   end
 
   test "should belong to a role" do
     signup = BURM::Signup.new
     assert_not signup.valid?
-    assert_equal ["must exist"], signup.errors.messages[:role]
+    assert_equal ["can't be blank"], signup.errors.messages[:role]
   end
 
   test "should belong to a musical" do
     signup = BURM::Signup.new
     assert_not signup.valid?
-    assert_equal ["must exist"], signup.errors.messages[:musical]
+    assert_equal ["can't be blank"], signup.errors.messages[:musical]
+  end
+
+  test "should only allow signups for open musical" do
+    musical = create(:burm_musical, signup_start_at: Time.current + 1.day)
+    signup = build(:burm_signup, musical: musical)
+
+    assert_not signup.valid?
+    assert_equal ["is not open for signups"], signup.errors.messages[:musical]
   end
 
   test "should only allow one signup per person, per musical and role" do

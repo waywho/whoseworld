@@ -11,9 +11,9 @@ ActiveAdmin.register MenuItem do
   end
 
   index do
-    column :name
+    column :title
     column :site
-    column :page
+    column :record
     column :url
     column :row_order
     actions
@@ -22,8 +22,8 @@ ActiveAdmin.register MenuItem do
   form do |f|
     f.inputs do
       f.input :site
-      f.input :name
-      f.input :page
+      f.input :title
+      f.input :record, collection: Page.all
       f.input :url
       f.input :row_order
     end

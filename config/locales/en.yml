@@ -30,12 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  signups:
-    create:
-      success: "You have successfully signed up!"
-      cannot_signup: "There was an error signing up. Please try again."
-    update:
-      success: "You have successfully updated your signup!"
-      cannot_update: "There was an error updating your signup. Please try again."
-    destroy:
-      success: "You have successfully cancelled your signup!"
+  helpers:
+    submit:
+      burm_signup:
+        create: "Sign up"
+        update: "Update Signup"
+  burm:
+    signups:
+      thank_you:
+        created_html: "<h2>You have signed up!</h2>
+          <p class='font-semibold text-2xl'>Thank you for signing up to take part in <span class='italic'>%{musical}</span> UnRehearsed!</p><p>We will be in touch with further details soon.</p>"
+        updated_html: "<h2>Your signup is updated!</h2>
+          <p class='font-semibold text-2xl'>Thank you for updating your <span class='italic'>%{musical}</span> UnRehearsed participation!</h2><p class='font-semibold text-2xl'>We will be in touch withfurther details soon.</p>"
+      create:
+        cannot_signup: "Oops. There was an error in your signup. %{error}"
+        success: "You have successfully signed up!"
+      update:
+        cannot_update: "Oops. There was an error updating your signup. %{error}"
+        success: "You have successfully updated your signup!"
+      destroy:
+        success: "You have successfully cancelled your signup!"

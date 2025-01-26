@@ -26,6 +26,7 @@ ActiveAdmin.register BURM::Person do
       f.input :first_name
       f.input :last_name
       f.input :email
+      f.input :voice_type, as: :select, collection: BURM::Person.voice_types.keys
     end
 
     f.inputs "Signups" do
