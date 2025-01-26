@@ -34,7 +34,7 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_response :created
+    assert_response :redirect
   end
 
   test "should get edit" do
@@ -47,7 +47,7 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
     put burm_signup_path(@musical, @signup), params: { burm_signup: { burm_role_id: role.id } }
 
     assert @signup.reload.role == role
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should delete" do

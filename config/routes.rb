@@ -10,8 +10,7 @@ Rails.application.routes.draw do
 
   constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
     scope ":musical_id", module: "burm" do
-      resources "signups", only: %i[new create edit update destroy], as: "burm_signups"
-      get "signups/not_open", to: "signups#show", as: "burm_signups_not_open"
+      resources "signups", only: %i[show new create edit update destroy], as: "burm_signups"
     end
   end
 

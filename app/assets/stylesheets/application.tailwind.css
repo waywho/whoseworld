@@ -28,7 +28,7 @@
         @apply mb-4 font-bold;
     }
     a {
-        @apply hover:text-gray-500;
+        @apply text-indigo-600 hover:text-gray-500;
     }
     p {
         @apply mb-6;

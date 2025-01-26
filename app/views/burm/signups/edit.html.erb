@@ -1,4 +1,9 @@
-<div>
-  <h1 class="font-bold text-4xl">BURM::Signups#edit</h1>
-  <p>Find me in app/views/burm/signups/edit.html.erb</p>
+<div class="min-h-screen">
+  <div class="border border-4 border-indigo-700 rounded-lg m-6 p-6 sm:m-9 lg:m-36 md:p-9">
+    <h1>Edit Your Sign Up to <span class="italic"><%= @musical.title %></span></h1>
+
+    <div class="mb-2 font-semibold text-2xl">UnRehearsed on <%= @musical.date %></div>
+    <div class="mb-4 font-semibold text-2xl"><%= @musical.time %></div>
+    <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+  </div>
 </div>

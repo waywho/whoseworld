@@ -16,6 +16,7 @@
       <% if Current.tenant.menu_items.present? %>
         <% c.with_navigation %>
       <% end %>
+      <%= render AlertComponent.new(flash) %>
       <%= yield %>
       <% c.with_footer %>
     <% end %>

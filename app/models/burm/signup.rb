@@ -31,6 +31,7 @@ class BURM::Signup < ApplicationRecord
   private
 
   def musical_signup_open
+    return if Current.user&.admin?
     return if musical.nil? || musical.signup_open?
 
     errors.add(:musical, "is not open for signups")
