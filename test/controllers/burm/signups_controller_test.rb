@@ -52,6 +52,6 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
 
   test "should delete" do
     delete burm_signup_path(@musical, @signup)
-    assert_response :no_content
+    assert_response :success
   end
 end

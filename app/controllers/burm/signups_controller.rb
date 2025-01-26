@@ -42,7 +42,7 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def destroy
-    @signup.update(cancelled: true, cancellation_reason: signup_params[:cancellation_reason])
+    @signup.update(cancelled: true, cancellation_reason: params.dig(:burm_signup, :cancellation_reason))
 
     render :cancelled
   end
@@ -71,7 +71,8 @@ class BURM::SignupsController < SiteBaseController
 
   def signup_params
     params.require(:burm_signup).permit(:burm_person_id, :burm_role_id, :burm_musical_id,
-      :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing, :family_friends_watching, :commit_to_pay, :comments,
+      :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing,
+      :family_friends_watching, :commit_to_pay, :comments,
       person_attributes: %i[first_name last_name email voice_type agree_to_emails])
   end
 end
