@@ -47,7 +47,7 @@
     }
     nav ul, .nav ul { @apply list-none list-outside; }
     .btn {
-        @apply font-semibold text-sm py-2 px-4 rounded;
+        @apply font-semibold text-sm py-2 px-4 rounded-lg;
     }
     .btn.btn-primary {
         @apply bg-blue-500 hover:bg-blue-700 text-white;

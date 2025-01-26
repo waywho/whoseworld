@@ -1,0 +1,5 @@
+<%= t(".created_html", musical: @musical.title) %>
+
+<p>If you need to, you can come back to <%= link_to "Your Signup Form", edit_burm_signup_path(@musical, @signup) %> to update your participation.</p>
+
+<p>You can cancel your participation <%= link_to "here", edit_burm_signup_path(@musical, @signup, cancel: true) %>.</p>

@@ -1,0 +1,5 @@
+<%= t(".updated_html", musical: musical.title) %>
+
+<%= t("burm.signups.edit_signup_html", edit_link: link_to("Your Signup Form", edit_burm_signup_path(musical, signup))) %>
+
+<%= t("burm.signups.cancel_signup_html", cancel_link: link_to("here", edit_burm_signup_path(musical, signup, cancel: true))) %>

@@ -34,7 +34,9 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert_response :redirect
+    assert_redirected_to burm_signup_path(@musical, BURM::Signup.last, status: :created)
+    follow_redirect!
+    assert_template partial: "_created"
   end
 
   test "should get edit" do
@@ -47,11 +49,50 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
     put burm_signup_path(@musical, @signup), params: { burm_signup: { burm_role_id: role.id } }
 
     assert @signup.reload.role == role
-    assert_response :redirect
+    assert_redirected_to burm_signup_path(@musical, @signup, status: :updated)
+    follow_redirect!
+    assert_template partial: "_updated"
   end
 
-  test "should delete" do
+  test "should cancel" do
     delete burm_signup_path(@musical, @signup)
-    assert_response :no_content
+    assert_response :success
+  end
+
+  test "should uncancel if cancelled" do
+    @signup.update!(cancelled: true)
+    patch burm_signup_path(@musical, @signup, burm_signup: { cancelled: false })
+
+    assert_not @signup.reload.cancelled?
+  end
+
+  test "should not cancel if already cancelled" do
+    @signup.update!(cancelled: true)
+    delete burm_signup_path(@musical, @signup)
+
+    assert_template :already_cancelled
+    assert @signup.reload.cancelled?
+  end
+
+  test "should not update if already cancelled" do
+    @signup.update!(cancelled: true)
+    patch burm_signup_path(@musical, @signup)
+
+    assert_template :already_cancelled
+    assert @signup.reload.cancelled?
+  end
+
+  test "get edit should render already_cancelled if already cancelled" do
+    @signup.update!(cancelled: true)
+    get burm_signup_path(@musical, @signup)
+
+    assert_template :already_cancelled
+  end
+
+  test "get show should render already_cancelled if already cancelled" do
+    @signup.update!(cancelled: true)
+    get edit_burm_signup_path(@musical, @signup)
+
+    assert_template :already_cancelled
   end
 end

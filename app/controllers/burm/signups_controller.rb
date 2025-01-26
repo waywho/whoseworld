@@ -1,14 +1,9 @@
 class BURM::SignupsController < SiteBaseController
   before_action :set_musical
   before_action :check_signup_open, only: %i[new create]
-  before_action :set_signup, only: %i[show edit update destroy]
+  before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
 
   def show
-    @status = params[:status]
-
-    if @status == "updated" || @status == "created"
-      render :thank_you, status: :ok
-    end
   end
 
   def new
@@ -42,12 +37,18 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def destroy
-    @signup.update(cancelled: true)
+    @signup.update(cancelled: true, cancellation_reason: params.dig(:burm_signup, :cancellation_reason))
 
-    render :thank_you, status: :no_content
+    render :cancelled
   end
 
   private
+
+  def check_cancelled
+    return if !@signup.cancelled? || uncancel_params?
+
+    render :already_cancelled
+  end
 
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])
@@ -63,9 +64,15 @@ class BURM::SignupsController < SiteBaseController
     @signup = BURM::Signup.find(params[:id])
   end
 
+  def uncancel_params?
+    cancel_param = params.dig(:burm_signup, :cancelled)
+    !cancel_param.nil? && cancel_param == "false"
+  end
+
   def signup_params
     params.require(:burm_signup).permit(:burm_person_id, :burm_role_id, :burm_musical_id,
-      :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing, :family_friends_watching, :commit_to_pay, :comments,
+      :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing,
+      :family_friends_watching, :commit_to_pay, :comments,
       person_attributes: %i[first_name last_name email voice_type agree_to_emails])
   end
 end
