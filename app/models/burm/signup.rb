@@ -12,7 +12,13 @@ class BURM::Signup < ApplicationRecord
   accepts_nested_attributes_for :person, reject_if: :blank_or_invalid_person
 
   # Validations
-  validate :association_or_cached
+  validates :commit_to_pay, acceptance: true
+  validates :agree_to_emails, acceptance: true
+  validate :musical_signup_open, on: :create
+  validate :association_or_cached, on: :update
+  validates :person, presence: true, on: :create
+  validates :role, presence: true, on: :create
+  validates :musical, presence: true, on: :create
   validates :person, uniqueness: { scope: %i[role musical],
             message: "cannot sign up for the same role and musical twice" },
             if: -> { person.present? && role.present? && musical.present? }
@@ -23,6 +29,12 @@ class BURM::Signup < ApplicationRecord
   before_save :set_cancelled_at, if: :cancelled?
 
   private
+
+  def musical_signup_open
+    return if musical.nil? || musical.signup_open?
+
+    errors.add(:musical, "is not open for signups")
+  end
 
   def set_cancelled_at
     self.cancelled_at = Time.current

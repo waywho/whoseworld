@@ -1,16 +1,31 @@
-<div>
-  <h1>Sign Up to <%= @musical.title %></h1>
+<div class="min-h-screen">
+  <div class="border border-4 border-indigo-700 rounded-lg m-6 p-6 sm:m-9 lg:m-36 md:p-9">
+    <h1>Sign Up to <%= @musical.title %></h1>
 
-  <p><b>Date: <%= @musical.start_at.strftime("%a %b %d, %Y") %></b></p>
+    <div class="mb-2 font-semibold text-2xl">UnRehearsed on <%= @musical.date %></div>
+    <div class="mb-4 font-semibold text-2xl"><%= @musical.time %></div>
 
+    <p>Get the experience of singing through a whole musical with no pressure. Come join us.</p>
 
-  <p>Get the experience of singing through some great musical theatre shows with no pressure. Come join us.</p>
+    <h3>How does it work?</h3>
+    <ul class="mb-4">
+      <li>We pick in advance one musical and you get plenty of notice.</li>
+      <li>Once you sign up to join us on the day, you will receive details of the event such as role assignments, preparation materials, rehearsal schedule of the day, etc. in follow-up emails.</li>
 
-  <p>There are several parts and roles available, and you can sign up to sing in one of the the roles/parts that are available. Of course if you want to only sing in the chorus, that is also GREAT! Roles will be given on a first-come-first-serve basis!</p>
+      <li>You will prepare at home to be ready to sing with the group on the day.</li>
 
-  <p>We ask that you commit to contribute <%= number_to_currency(@musical.fee, locale: :de) %> to cover the costs of space rental and musician for the day.</p>
-  <p>Once you've signed up, we will be in touch with the rest of the details.</p>
+      <li>Come the day, we will sing through the whole musical in 1 day. We will rehearse whatever is necessary on that day but there is no audience, so no pressure! At the end of the day, we will sing through the whole musical in the last hour.</li>
 
-  <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+      <li>Don't worry about memorising the music, we will sing with the sheet music (but if you want to momorise the music, you can!).</li>
+    </ul>
 
+    <h3>What can you sign up for?</h3>
+    <p>There are several parts and roles available, and you can sign up to sing any one of the the roles/parts that are available. Of course if you want to only sing in the chorus, that is also GREAT! Roles will be given on a first-come-first-serve basis!</p>
+
+    <h3>Costs and Commitment</h3>
+    <p>We count on everyone who signed up to commit to be there in order to make the event a enjoyable experience for all. We also ask that you commit to contribute <%= number_to_currency(@musical.fee, locale: :de) %> to cover the costs of space rental and musician for the day.</p>
+    <p>Once you've signed up, we will be in touch with the rest of the details.</p>
+
+    <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+  </div>
 </div>

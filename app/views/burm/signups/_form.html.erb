@@ -1,12 +1,21 @@
 <%= simple_form_for signup do |f| %>
   <%= f.simple_fields_for :person do |person| %>
-    <%= person.input :first_name %>
-    <%= person.input :last_name %>
-    <%= person.input :email %>
+    <div class="md:grid md:grid-cols-2 gap-2">
+      <%= person.input :first_name %>
+      <%= person.input :last_name %>
+      <%= person.input :email %>
+      <%= person.input :voice_type, collection: BURM::Person.voice_types %>
+    </div>
+
+    <%= person.input :agree_to_emails, as: :boolean %>
   <% end %>
   <%= f.hidden_field :burm_musical_id %>
-  <%= f.input :burm_role_id, as: :radio_buttons, collection: @musical.roles, label_method: :to_s, value_method: :id,  label: "Roles", required: true %>
-
-  <%= f.input :alternative_role_id, collection: @musical.roles, label_method: :to_s, value_method: :id %>
+  <%= f.input :role, as: :radio_buttons, collection: @musical.roles, label_method: :to_s, value_method: :id %>
+  <%= f.input :alternative_role, collection: @musical.roles, label_method: :to_s, value_method: :id %>
+  <%= f.input :role_sharing, as: :boolean %>
+  <%= f.input :family_friends_watching, as: :boolean %>
+  <%= f.input :commit_to_pay, as: :boolean %>
+  <%= f.input :agree_to_emails, as: :boolean %>
+  <%= f.input :comments %>
   <%= f.button :submit %>
 <% end %>

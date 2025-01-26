@@ -39,3 +39,6 @@ en:
       cannot_update: "There was an error updating your signup. Please try again."
     destroy:
       success: "You have successfully cancelled your signup!"
+  activerecord:
+    burm_person:
+      agree_to_emails: Yes, I would like to receive newsletters about upcoming events.

@@ -13,6 +13,9 @@ class BURM::Person < ApplicationRecord
   validates :email, uniqueness: true
   validates :first_name, :last_name, :email, presence: true
 
+  # Enums
+  enum :voice_type, %i[dont_know soprano alto tenor baritone bass], validate: true
+
   def full_name
     "#{first_name} #{last_name}".strip
   end

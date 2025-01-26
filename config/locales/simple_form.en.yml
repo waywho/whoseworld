@@ -10,6 +10,23 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      burm_person:
+        voice_type: Your voice type
+        agree_to_emails: Yes, I would like to receive news about the next UnRehearsed Musicals events.
+      person:
+        voice_type: Your voice type
+        agree_to_emails: Yes, I would like to receive news about the next UnRehearsed Musicals events.
+      burm_signup:
+        role: Which role would you like to sing?
+        alternative_role: What is your second choice of a role if your first choice is not available?
+        role_sharing: Would you be open to sharing your role with another singer?
+        family_friends_watching: Would you be ok for participants' friends and families to come and observe the FINAL sing-through?
+    hints:
+      defaults:
+        family_friends_watching: We sometimes have requests that friends and families might want to come and observe the final hour of the sing-through. But before we open this session, we would like consent from everyone. Please note that the final sing through  is not a performance and will not be open to the general public.
+
+
     # Examples
     # labels:
     #   defaults:

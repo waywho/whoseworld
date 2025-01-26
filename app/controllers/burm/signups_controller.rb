@@ -1,6 +1,11 @@
 class BURM::SignupsController < SiteBaseController
   before_action :set_musical
+  before_action :check_signup_open, only: %i[new create]
   before_action :set_signup, only: %i[edit update destroy]
+
+  def show
+    render :not_open, status: :forbidden
+  end
 
   def new
     @signup = @musical.signups.build
@@ -40,13 +45,19 @@ class BURM::SignupsController < SiteBaseController
     @musical = BURM::Musical.friendly.find(params[:musical_id])
   end
 
+  def check_signup_open
+    return if @musical.signup_open? || current_user&.admin?
+
+    render :not_open, status: :forbidden
+  end
+
   def set_signup
     @signup = BURM::Signup.find(params[:id])
   end
 
   def signup_params
-    params.require(:burm_signup).permit(:burm_person_id, :burm_role_id, :burm_musical_id,
-      :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason,
-      person_attributes: %i[first_name last_name email])
+    params.require(:burm_signup).permit(:burm_person_id, :burm_role_id, :burm_musical_id, :role,
+      :alternative_role, :cancelled, :cancelled_at, :cancellation_reason,
+      person_attributes: %i[first_name last_name email voice_type])
   end
 end
