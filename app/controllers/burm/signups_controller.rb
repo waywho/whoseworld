@@ -4,11 +4,6 @@ class BURM::SignupsController < SiteBaseController
   before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
 
   def show
-    @status = params[:status]
-
-    if @status == "updated" || @status == "created"
-      render :thank_you, status: :ok
-    end
   end
 
   def new
@@ -50,7 +45,7 @@ class BURM::SignupsController < SiteBaseController
   private
 
   def check_cancelled
-    return unless @signup.cancelled?
+    return if !@signup.cancelled? || uncancel_params?
 
     render :already_cancelled
   end
@@ -67,6 +62,11 @@ class BURM::SignupsController < SiteBaseController
 
   def set_signup
     @signup = BURM::Signup.find(params[:id])
+  end
+
+  def uncancel_params?
+    cancel_param = params.dig(:burm_signup, :cancelled)
+    !cancel_param.nil? && cancel_param == "false"
   end
 
   def signup_params
