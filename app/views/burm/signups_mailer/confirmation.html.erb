@@ -1,0 +1,24 @@
+<p>Dear <%= @person.first_name %>,</p>
+
+<p>Thank you for signing up to sing <b><%= @signup.role.to_s %></b> for our <i><b><%= @musical.title %> UnRehearsed</b></i>.</p>
+
+<p>Mark your calendar, the UnRehearsed will be on <b><%= @musical.date %></b> at <b><%= @musical.time %></b>.</p>
+
+<p>We will be sending you further details soon. In the meanwhile, start listening to the music and get ready for a great time!</p>
+
+<p>You can update your signup <%= link_to "here", edit_signup_url(@musical, @signup) %> or if you need to, cancel your signup <%= link_to "here", edit_signup_url(@musical, @signup, cancel: true) %>.</p>
+
+<p>We look foward to singing with you.</p>
+
+<p>Best,</p>
+
+<p>Berlin UnRehearsed Musicals</p>
+
+<p>Add this event to your calendar:</p>
+<ul>
+  <li><%= link_to "Google Calendar", @cal.google_url %></li>
+  <li><%= link_to "Yahoo Calendar", @cal.yahoo_url %></li>
+  <li><%= link_to "Outlook Calendar", @cal.outlook_com_url %></li>
+  <li><%= link_to "Office 365", @cal.office365_url %></li>
+  <li><%= link_to "Apple Calendar", @cal.ical_url %></li>
+</ul>

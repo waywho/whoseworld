@@ -1,0 +1,23 @@
+Dear <%= @person.first_name %>,
+
+You've just updated your signup! You are signed up to sing <%= @signup.role.to_s %> in our <%= @musical.title %> UnRehearsed.
+
+Mark your calendar, the UnRehearsed will be on <%= @musical.date %> at <%= @musical.time %>
+
+We will be sending you further details soon. In the meanwhile, start listening to the music and get ready for a great time!
+
+You can update your signup here: <%= edit_signup_url(@musical, @signup) %> or if you need to, cancel your signup here <%= edit_signup_url(@musical, @signup, cancel: true) %>.
+
+We look foward to singing with you.
+
+Best,
+
+Berlin UnRehearsed Musicals
+
+Add this event to your calendar:
+
+- Google Calendar: <%= @cal.google_url %>
+- Yahoo Calendar: <%= @cal.yahoo_url %>
+- Outlook Calendar: <%= @cal.outlook_com_url %>
+- Office 365: <%= @cal.office365_url %>
+- Apple Calendar: <%= @cal.ical_url %>

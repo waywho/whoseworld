@@ -15,6 +15,8 @@ class BURM::SignupsController < SiteBaseController
     @signup = @musical.signups.build(signup_params)
 
     if @signup.save
+      BURM::SignupsMailer.with(signup: @signup).confirmation.deliver_now
+      
       redirect_to burm_signup_path(@musical, @signup, status: :created)
     else
       flash.now[:alert] = t(".cannot_signup", error: @signup.errors.full_messages.to_sentence)
