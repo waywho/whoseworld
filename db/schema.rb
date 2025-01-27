@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_27_232302) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_27_233000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -78,6 +78,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_27_232302) do
     t.datetime "updated_at", null: false
     t.integer "voice_type", default: 0, null: false
     t.boolean "agree_to_emails", default: true, null: false
+    t.datetime "confirmed_at"
+    t.string "confirmation_token"
+    t.datetime "agree_to_terms_at"
+    t.boolean "agree_to_terms"
+    t.datetime "agree_to_emails_at"
     t.index ["email"], name: "index_burm_people_on_email"
     t.index ["id"], name: "index_burm_people_on_id", unique: true
     t.index ["voice_type"], name: "index_burm_people_on_voice_type"

@@ -12,7 +12,6 @@ ActiveAdmin.register BURM::Signup do
 
   index do
     selectable_column
-    id_column
     column :person
     column :musical
     column :role
@@ -24,6 +23,7 @@ ActiveAdmin.register BURM::Signup do
 
   form do |f|
     f.inputs do
+      f.input :id, as: :string, disabled: true
       f.input :musical
       f.input :role
       f.input :alternative_role

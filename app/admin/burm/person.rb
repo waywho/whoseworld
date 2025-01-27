@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Person do
-  permit_params :first_name, :last_name, :email, signups_attributes: [:id, :burm_person_id, :burm_musical_id,
+  permit_params :first_name, :last_name, :email, :voice_type, :confirmed_at,
+                :agree_to_terms, :agree_to_terms_at, :agree_to_emails,
+                :agree_to_emails_at,
+                signups_attributes: [:id, :burm_person_id, :burm_musical_id,
                 :burm_role_id, :alternative_role_id, :_destroy]
 
   scope :all, default: true
@@ -12,10 +15,11 @@ ActiveAdmin.register BURM::Person do
 
   index do
     selectable_column
-    id_column
     column :first_name
     column :last_name
     column :email
+    column :voice_type
+    column :confirmed_at
     column :created_at
     column :updated_at
     actions
@@ -23,10 +27,16 @@ ActiveAdmin.register BURM::Person do
 
   form do |f|
     f.inputs do
+      f.input :id, as: :string
       f.input :first_name
       f.input :last_name
       f.input :email
       f.input :voice_type, as: :select, collection: BURM::Person.voice_types.keys
+      f.input :confirmed_at
+      f.input :agree_to_terms
+      f.input :agree_to_terms_at
+      f.input :agree_to_emails
+      f.input :agree_to_emails_at
     end
 
     f.inputs "Signups" do

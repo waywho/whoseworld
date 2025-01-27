@@ -12,11 +12,34 @@ class BURM::Person < ApplicationRecord
   # Validations
   validates :email, uniqueness: true
   validates :first_name, :last_name, :email, presence: true
+  validates :agree_to_terms, acceptance: true
 
   # Enums
   enum :voice_type, %i[dont_know soprano alto tenor baritone bass], validate: true
 
+  # Callbacks
+  after_commit :generate_confirmation_token, :set_confirmation, on: :create
+  after_commit :set_agree_to_terms_at, :set_agree_to_emails_at, on: %i[create update]
+
   def full_name
     "#{first_name} #{last_name}".strip
+  end
+
+  private
+
+  def set_confirmation
+    update_columns(confirmed_at: Time.current) if signups.any?
+  end
+
+  def generate_confirmation_token
+    self.confirmation_token = SecureRandom.urlsafe_base64
+  end
+
+  def set_agree_to_terms_at
+    update_columns(agree_to_terms_at: Time.current) if agree_to_terms
+  end
+
+  def set_agree_to_emails_at
+    update_columns(agree_to_emails_at: Time.current) if agree_to_emails
   end
 end
