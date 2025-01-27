@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_27_232302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 
-  create_table "burm_people", force: :cascade do |t|
+  create_table "burm_people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -79,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
     t.integer "voice_type", default: 0, null: false
     t.boolean "agree_to_emails", default: true, null: false
     t.index ["email"], name: "index_burm_people_on_email"
+    t.index ["id"], name: "index_burm_people_on_id", unique: true
     t.index ["voice_type"], name: "index_burm_people_on_voice_type"
   end
 
@@ -93,7 +94,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
   end
 
   create_table "burm_signups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "burm_person_id"
     t.bigint "burm_role_id"
     t.bigint "burm_musical_id"
     t.bigint "alternative_role_id"
@@ -110,9 +110,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_25_232124) do
     t.boolean "family_friends_watching"
     t.boolean "commit_to_pay", default: true, null: false
     t.text "comments"
+    t.uuid "burm_person_id"
     t.index ["burm_musical_id"], name: "index_burm_signups_on_burm_musical_id"
     t.index ["burm_person_id", "burm_musical_id"], name: "index_burm_signups_on_burm_person_id_and_burm_musical_id", unique: true
-    t.index ["burm_person_id", "burm_role_id", "burm_musical_id"], name: "idx_on_burm_person_id_burm_role_id_burm_musical_id_7bb118a378"
+    t.index ["burm_person_id", "burm_role_id", "burm_musical_id"], name: "idx_on_burm_person_id_burm_role_id_burm_musical_id_7bb118a378", unique: true
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
   end
