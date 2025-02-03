@@ -1,7 +1,10 @@
 class BURM::SignupsController < SiteBaseController
+  include Recaptchable
+
   before_action :set_musical
   before_action :check_signup_open, only: %i[new create]
   before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
+  before_action :verify_captcha, only: %i[create update]
 
   def show
   end
@@ -46,6 +49,10 @@ class BURM::SignupsController < SiteBaseController
 
   private
 
+  def reintialize_record
+    @signup = @musical.signups.build(signup_params)
+  end
+
   def check_cancelled
     return if !@signup.cancelled? || uncancel_params?
 
@@ -75,6 +82,6 @@ class BURM::SignupsController < SiteBaseController
     params.require(:burm_signup).permit(:burm_person_id, :burm_role_id, :burm_musical_id,
       :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing,
       :family_friends_watching, :commit_to_pay, :comments,
-      person_attributes: %i[first_name last_name email voice_type agree_to_emails])
+      person_attributes: %i[first_name last_name email voice_type agree_to_emails agree_to_terms])
   end
 end

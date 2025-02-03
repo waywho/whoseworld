@@ -1,4 +1,5 @@
 <%= simple_form_for signup, url: (signup.new_record? ? burm_signups_path(musical) : burm_signup_path(musical, signup)), html: { data: { turbo: false } } do |f| %>
+  <%= render partial: "burm/recaptcha", locals: { action: "musical_signup"} %>
   <%= f.simple_fields_for :person do |person| %>
     <div class="md:grid md:grid-cols-2 gap-2">
       <%= person.input :first_name %>
@@ -6,8 +7,8 @@
       <%= person.input :email %>
       <%= person.input :voice_type, collection: BURM::Person.voice_types %>
     </div>
-
-    <%= person.input :agree_to_emails, as: :boolean, value: true %>
+    <%= person.input :agree_to_terms, label: t("simple_form.labels.person.agree_to_terms_html") %>
+    <%= person.input :agree_to_emails %>
   <% end %>
 
   <%= f.input :burm_role_id, as: :radio_buttons, collection: @musical.roles, label_method: :to_s, value_method: :id %>

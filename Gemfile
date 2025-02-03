@@ -66,6 +66,9 @@ gem "simple_form"
 # user authentication
 gem "devise"
 
+# Recaptcha
+gem "recaptcha"
+
 # admin interface
 gem "activeadmin", "~> 4.0.beta15"
 
