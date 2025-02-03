@@ -69,6 +69,9 @@ gem "haml-rails", "~> 2.0"
 # user authentication
 gem "devise"
 
+# Recaptcha
+gem "recaptcha"
+
 # admin interface
 gem "activeadmin", "~> 4.0.beta15"
 
