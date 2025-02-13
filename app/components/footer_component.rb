@@ -23,7 +23,7 @@ class FooterComponent < ViewComponent::Base
   end
 
   def site_logo
-    site.logo&.attached? ? site.logo : site.name
+    site.logo_for_dark&.attached? ? site.logo_for_dark : site.name
   end
 
   def menu_path_for(menu_item)
