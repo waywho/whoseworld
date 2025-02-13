@@ -19,6 +19,9 @@ class Site < ApplicationRecord
 
   # Attachment
   has_one_attached :logo
+  has_one_attached :logo_for_dark
+  has_one_attached :logo_with_tag
+  has_one_attached :logo_with_tag_for_dark
 
   # Validations
   validates :domain, uniqueness: true, allow_nil: true

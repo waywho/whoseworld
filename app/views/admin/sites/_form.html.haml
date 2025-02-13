@@ -1,0 +1,40 @@
+= semantic_form_for [:admin, @site], builder: ActiveAdmin::FormBuilder do |f|
+  = f.inputs do
+    = f.input :id, as: :hidden
+    = f.input :name
+    = f.input :subtitle
+    = f.input :domain
+    = f.input :subdomain
+    = f.input :slug
+    = f.input :nav_position
+    = f.input :layout_style
+    = f.input :public
+
+  = f.file_field :logo
+  .my-2
+    Attached:
+    = f.object.logo.filename if f.object.logo.attached?
+
+  = f.file_field :logo_for_dark
+  .my-2
+    Attached:
+    = f.object.logo_for_dark.filename if f.object.logo_for_dark.attached?
+
+  = f.file_field :logo_with_tag
+  .my-2
+    Attached:
+    = f.object.logo_with_tag.filename if f.object.logo_with_tag.attached?
+
+  = f.file_field :logo_with_tag_for_dark
+  .my-2
+    Attached:
+    = f.object.logo_with_tag_for_dark.filename if f.object.logo_with_tag_for_dark.attached?
+
+  %br
+  = f.inputs "DomainAliases" do
+    - f.has_many :domain_aliases, heading: false, allow_destroy: true do |a|
+      = a.input :id, as: :hidden
+      = a.input :domain
+      = a.input :subdomain
+
+  = f.actions

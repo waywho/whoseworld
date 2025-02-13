@@ -63,6 +63,9 @@ gem "bootsnap", require: false
 # simple form
 gem "simple_form"
 
+# HAML
+gem "haml-rails", "~> 2.0"
+
 # user authentication
 gem "devise"
 
