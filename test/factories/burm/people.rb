@@ -6,6 +6,7 @@ FactoryBot.define do
       "person#{n}@example.com"
     end
     voice_type { BURM::Person.voice_types.keys.sample }
+    agree_to_terms { true }
     agree_to_emails { true }
   end
 end

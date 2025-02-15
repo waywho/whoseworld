@@ -1,0 +1,2 @@
+module BURM::MailingsHelper
+end

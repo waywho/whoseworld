@@ -1,0 +1,16 @@
+= content_for :bg_class, "bg-slate-200"
+.min-h-screen
+  .border.border-4.border-indigo-700.rounded-lg.m-6.p-6.sm:m-9.lg:m-36.md:p-9.bg-white
+    %h1 Find out about our next event!
+    %p Sign up to our mailing list to stay informed about our next events and other musical theatre news around town!
+
+    = simple_form_for @person, url: burm_mailings_path, method: :post, html: { data: { turbo: false } } do |f|
+      = render partial: "burm/recaptcha", locals: { action: "mailing"}
+
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :email
+      = f.input :agree_to_terms, label: t("simple_form.labels.person.agree_to_terms_html")
+      = f.input :agree_to_emails
+
+      = f.button :submit

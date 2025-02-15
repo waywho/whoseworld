@@ -45,6 +45,9 @@ gem "redis", "~> 5.3"
 # Row order
 gem "ranked-model"
 
+# Tagging
+gem "acts-as-taggable-on"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -63,9 +66,6 @@ gem "bootsnap", require: false
 # simple form
 gem "simple_form"
 
-# HAML
-gem "haml-rails", "~> 2.0"
-
 # user authentication
 gem "devise"
 
@@ -81,6 +81,9 @@ gem "friendly_id"
 # ViewComponent
 gem "view_component"
 gem "lookbook", "~> 2.3.4"
+
+# Haml
+gem "haml-rails", "~> 2.1.0"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
