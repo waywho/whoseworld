@@ -1,6 +1,6 @@
-= content_for :bg_class, "bg-slate-200"
-.min-h-screen
-  .border.border-4.border-indigo-700.rounded-lg.m-6.p-6.sm:m-9.lg:m-36.md:p-9.bg-white
-    %h1 "Y#{@person.first_name}, you are confirmed!"
+= render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
+  - partial.heading do
+    "#{@person.first_name}, you are confirmed!"
+  - partial.body do
     %p Thank you for signing up to your mailing list.
     %p We can't wait to sing with you soon!

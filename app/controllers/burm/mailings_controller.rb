@@ -39,6 +39,6 @@ class BURM::MailingsController < ApplicationController
   end
 
   def mailing_params
-    params.require(:person).permit(:first_name, :last_name, :email,  :agree_to_terms, :agree_to_emails)
+    params.require(:burm_person).permit(:first_name, :last_name, :email,  :agree_to_terms, :agree_to_emails)
   end
 end

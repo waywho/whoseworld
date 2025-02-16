@@ -1,7 +1,8 @@
-= content_for :bg_class, "bg-slate-200"
-.min-h-screen
-  .border.border-4.border-indigo-700.rounded-lg.m-6.p-6.sm:m-9.lg:m-36.md:p-9.bg-white
-    %h1 Find out about our next event!
+= render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
+  - partial.heading do
+    Find out about our next event!
+
+  - partial.body do
     %p Sign up to our mailing list to stay informed about our next events and other musical theatre news around town!
 
     = simple_form_for @person, url: burm_mailings_path, method: :post, html: { data: { turbo: false } } do |f|
