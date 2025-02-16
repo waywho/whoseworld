@@ -81,6 +81,7 @@ gem "friendly_id"
 # ViewComponent
 gem "view_component"
 gem "lookbook", "~> 2.3.4"
+gem "nice_partials"
 
 # Haml
 gem "haml-rails", "~> 2.1.0"

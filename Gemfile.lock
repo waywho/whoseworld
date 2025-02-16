@@ -266,6 +266,8 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    nice_partials (0.10.1)
+      actionview (>= 4.2.6)
     nilify_blanks (1.4.0)
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -446,6 +448,7 @@ DEPENDENCIES
   letter_opener
   listen
   lookbook (~> 2.3.4)
+  nice_partials
   nilify_blanks
   pg (~> 1.5)
   pry-remote
