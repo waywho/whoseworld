@@ -1,5 +1,5 @@
 class BURM::MailingsController < ApplicationController
-  before_action :set_person, only: %i[edit confirm unsubscribe]
+  before_action :set_person, only: %i[edit unsubscribe]
 
   def new
     @person = BURM::Person.new
@@ -21,6 +21,7 @@ class BURM::MailingsController < ApplicationController
   end
 
   def confirm
+    @person = BURM::Person.find_by(confirmation_token: params[:token])
     @person.confirm!
 
     render :confirmed
@@ -28,7 +29,7 @@ class BURM::MailingsController < ApplicationController
 
   def unsubscribe
     @person.unsubscribe!
-    debugger
+
     render :unsubscribed
   end
 

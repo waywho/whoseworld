@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     end
 
     resources "mailings", module: :burm, only: %i[new create edit], as: "burm_mailings" do
-      get :confirm, to: "mailings#confirm"
       get :unsubscribe, to: "mailings#unsubscribe"
+    end
+
+    scope "mailings" do
+      get "confirm/:token", to: "burm/mailings#confirm", as: "burm_mailing_confirm"
     end
   end
 

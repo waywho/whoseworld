@@ -1,6 +1,6 @@
 class BURM::Person < ApplicationRecord
   nilify_blanks
-  acts_as_taggable_on :subscription
+  acts_as_taggable_on :subscriptions
 
   # Associations
   has_many :signups, class_name: "BURM::Signup", foreign_key: "burm_person_id", dependent: :nullify
@@ -20,11 +20,8 @@ class BURM::Person < ApplicationRecord
 
   # Callbacks
   after_commit :generate_confirmation_token, on: %i[create]
-  after_commit :set_confirmation, on: %i[create update]
+  before_save :confirm_when_signup
   after_commit :set_agree_to_terms_at, :set_agree_to_emails_at, on: %i[create update]
-
-  # Attributes
-  attribute :confirm
 
   def full_name
     "#{first_name} #{last_name}".strip
@@ -35,33 +32,45 @@ class BURM::Person < ApplicationRecord
   end
 
   def confirm!
-    confirm and save!
+    confirm
+    subscribe
+    generate_confirmation_token
+    save!
   end
 
   def confirmed?
     confirmed_at.present?
   end
 
+  def subscribe
+    subscription_list.add("newsletter")
+  end
+
   def subscribe!
-    subscription_list.add("email") && save!
+    subscribe && save!
   end
 
   def unsubscribe!
-    subscription_list.remove("email")
+    subscription_list.remove("newsletter")
     subscription_list.add("unsubscribed")
     save!
   end
 
   private
 
-  def set_confirmation
-    return if !confirm || !signups.any?
+  def confirm_when_signup
+    return if confirmed? || !signups.any?
 
-    update_columns(confirmed_at: Time.current)
+    self.confirmed_at = Time.current
+    if subscription_list.exclude?("newsletter")
+      self.subscription_list.add("newsletter")
+      self.subscription_list.remove("unsubscribed")
+    end
   end
 
   def generate_confirmation_token
     self.confirmation_token = SecureRandom.urlsafe_base64
+    save
   end
 
   def set_agree_to_terms_at
@@ -71,7 +80,6 @@ class BURM::Person < ApplicationRecord
   def set_agree_to_emails_at
     if agree_to_emails && agree_to_emails_at.blank?
       update_columns(agree_to_emails_at: Time.current)
-      subscribe!
     end
   end
 end

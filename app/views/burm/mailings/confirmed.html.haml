@@ -1,6 +1,6 @@
 = render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
   - partial.heading do
-    "#{@person.first_name}, you are confirmed!"
+    = "#{@person.first_name}, you are confirmed!"
   - partial.body do
     %p Thank you for signing up to your mailing list.
     %p We can't wait to sing with you soon!

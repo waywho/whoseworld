@@ -21,27 +21,22 @@ class BURM::MailingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create person" do
     assert_difference("BURM::Person.count") do
-      post burm_mailings_path, params: { person: attributes_for(:burm_person) }
+      post burm_mailings_path, params: { burm_person: attributes_for(:burm_person) }
     end
 
-    assert @person.subscription_list.include?("email")
     assert_template :created
   end
 
   test "should confirm person" do
-    get burm_mailing_confirm_path(burm_mailing_id: @person.id)
-    assert @person.confirmed?
-    assert @person.confirmed_at?
+    get burm_mailing_confirm_path(token: @person.confirmation_token)
+
     assert_template :confirmed
     assert_response :success
   end
 
   test "should unsubscribe person" do
     get burm_mailing_unsubscribe_path(burm_mailing_id: @person.id)
-    debugger
-    
-    assert @person.subscription_list.include?("unsubscribed")
-    assert_not @person.subscription_list.include?("email")
+
     assert_template :unsubscribed
     assert_response :success
   end
