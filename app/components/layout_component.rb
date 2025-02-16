@@ -34,7 +34,13 @@ class LayoutComponent < ViewComponent::Base
   def logo
     return "Admin" if @admin
 
-    @site&.logo&.attached? ? @site&.logo : @site&.name
+    if @site&.logo&.attached?
+      @site&.logo
+    elsif @site&.logo_with_tag&.attached?
+      @site&.logo_with_tag
+    elsif
+      @site&.name
+    end
   end
 
   def menus
