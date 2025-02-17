@@ -5,10 +5,10 @@
 
 %p
   Please confirm your subscription by clicking
-  = link_to "confirm" , confirm_url(token: @person.confirmation_token)
+  = link_to "confirm" , confirm_url(@person.confirmation_token)
   or cut and paste the link below into your browser:
 
-= confirm_url(token: @person.confirmation_token)
+= confirm_url(@person.confirmation_token)
 
 %br
 %p Looking forward to signing with you,

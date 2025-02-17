@@ -22,6 +22,7 @@ class BURM::NewslettersController < ApplicationController
   end
 
   def confirm
+    logger.info "Confirming person with token: #{params[:token]}"
     @person = BURM::Person.find_by(confirmation_token: params[:token])
 
     @person.confirm!

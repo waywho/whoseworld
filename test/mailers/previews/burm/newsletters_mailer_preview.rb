@@ -5,7 +5,8 @@ class BURM::NewslettersMailerPreview < ActionMailer::Preview
       id: SecureRandom.uuid,
       first_name: "Tom",
       last_name: "Hiddleston",
-      email: "tom@gmail.com"
+      email: "tom@gmail.com",
+      confirmation_token: SecureRandom.urlsafe_base64(64)
     )
 
     BURM::NewslettersMailer.with(person:).new_subscription
