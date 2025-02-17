@@ -22,9 +22,9 @@ class BURM::NewslettersController < ApplicationController
 
   def confirm
     @person = BURM::Person.find_by(confirmation_token: params[:token])
-    
-    @person.confirm!
 
+    @person.confirm!
+    @person.subscribe!
     render :confirmed
   end
 
