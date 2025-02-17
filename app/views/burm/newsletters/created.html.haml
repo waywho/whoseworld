@@ -1,0 +1,7 @@
+= render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
+  - partial.heading do
+    = "Welcome #{@person.first_name}!"
+  - partial.body do
+    %h2 Thank you for signing up to our mailing list!
+    %p In order to ensure that our mailings get to you, please confirm your email address. You can do that by clicking the link in the email we just sent you.
+    %p If you don't see the email, please check your spam folder.

@@ -81,6 +81,9 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
+    acts-as-taggable-on (12.0.0)
+      activerecord (>= 7.1, < 8.1)
+      zeitwerk (>= 2.4, < 3.0)
     add_to_calendar (0.5.1)
       tzinfo (>= 1.1, < 3)
       tzinfo-data (~> 1.2020)
@@ -263,6 +266,8 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    nice_partials (0.10.1)
+      actionview (>= 4.2.6)
     nilify_blanks (1.4.0)
       activerecord (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -343,6 +348,7 @@ GEM
       ffi (~> 1.0)
     rdoc (6.10.0)
       psych (>= 4.0.0)
+    recaptcha (5.19.0)
     redcarpet (3.6.0)
     redis (5.3.0)
       redis-client (>= 0.22.0)
@@ -422,6 +428,7 @@ PLATFORMS
 DEPENDENCIES
   actioncable
   activeadmin (~> 4.0.beta15)
+  acts-as-taggable-on
   add_to_calendar
   aws-sdk-s3
   bootsnap
@@ -435,12 +442,13 @@ DEPENDENCIES
   flowbite (~> 2.3)
   foreman
   friendly_id
-  haml-rails (~> 2.0)
+  haml-rails (~> 2.1.0)
   image_processing (~> 1.2)
   importmap-rails
   letter_opener
   listen
   lookbook (~> 2.3.4)
+  nice_partials
   nilify_blanks
   pg (~> 1.5)
   pry-remote
@@ -448,6 +456,7 @@ DEPENDENCIES
   rails (= 7.2.2.1)
   rails-controller-testing
   ranked-model
+  recaptcha
   redis (~> 5.3)
   simple_form
   sprockets-rails

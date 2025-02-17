@@ -1,0 +1,8 @@
+= render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
+  - partial.heading do
+    You are unsubscribing from Berlin UnRehearsed Musicals Mailing List
+  - partial.body do
+    %p By unsubscribing, you will no longer receive any notifications about our next UnRehearsed Musical events.
+    %p Are you sure you want to unsubscribe?
+
+    = button_to "Unsubscribe", burm_newsletter_unsubscribe_path(@person), class: "btn btn-danger"

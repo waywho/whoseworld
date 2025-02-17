@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Whoseworld</title>
+    <title><%= Current.tenant.name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,13 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render LayoutComponent.new(site: Current.tenant, admin: true) do |c| %>
-      <% if current_user %>
-        <% c.with_navigation %>
-      <% end %>
-      <%= render AlertComponent.new(flash) %>
+  <body class="<%= content_for(:bg_class) %>">
+    <%= render AlertComponent.new(flash) %>
+    <div class="container mx-auto">
       <%= yield %>
-    <% end %>
+    </div>
   </body>
 </html>

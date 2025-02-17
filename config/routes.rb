@@ -9,8 +9,16 @@ Rails.application.routes.draw do
   end
 
   constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
-    scope ":musical_id", module: "burm" do
-      resources "signups", only: %i[show new create edit update destroy], as: "burm_signups"
+
+    scope ":musical_id" do
+      resources "signups", module: :burm, only: %i[show new create edit update destroy], as: "burm_signups"
+    end
+
+    resources "newsletters", module: :burm, only: %i[new create edit], as: "burm_newsletters"
+
+    scope "newsletters", module: "burm" do
+      get "confirm/:token", to: "newsletters#confirm", as: "burm_newsletter_confirm"
+      get "unsubscribe/:id", to: "newsletters#unsubscribe", as: "burm_newsletter_unsubscribe"
     end
   end
 

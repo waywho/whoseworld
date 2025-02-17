@@ -28,8 +28,13 @@ class BURM::Signup < ApplicationRecord
   before_validation :find_or_build_person
   before_save :set_cached_attributes
   before_save :set_cancelled_at
+  after_commit :add_person_to_newsletter, on: :create
 
   private
+
+  def add_person_to_newsletter
+    person&.subscribe!
+  end
 
   def musical_signup_open
     return if Current.user&.admin?
@@ -69,6 +74,7 @@ class BURM::Signup < ApplicationRecord
       person_record.assign_attributes(person.attributes.slice("first_name", "last_name", "email"))
     end
 
+    person_record.confirmed_at = Time.current
     self.person = person_record
   end
 

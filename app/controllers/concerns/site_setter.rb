@@ -27,7 +27,9 @@ module SiteSetter
   end
 
   def set_dev_tenant
-    domain = request.domain.split(".")[0]
+    domain = request&.domain&.split(".")[0]
+    return unless domain
+    
     Rails.logger.info "Dev Request host: #{request.host}"
     Rails.logger.info "Dev Request domain: #{domain}"
 

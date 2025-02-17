@@ -14,8 +14,10 @@ en:
       burm_person:
         voice_type: Your voice type
         agree_to_emails: Yes, I would like to receive news about the next UnRehearsed Musicals events.
+        agree_to_terms: "Yes, I agree to the <a href='https://berlinunrehearsedmusicals.com/terms-of-service'>terms and conditions</a> and <a href='https://berlinunrehearsedmusicals.com/privacy-policy'>privacy policy</a>."
       person:
         voice_type: Your voice type
+        agree_to_terms_html: "Yes, I agree to the <a href='https://berlinunrehearsedmusicals.com/terms-of-service'>terms and conditions</a> and <a href='https://berlinunrehearsedmusicals.com/privacy-policy'>privacy policy</a>."
         agree_to_emails: Yes, I would like to receive news about the next UnRehearsed Musicals events.
       burm_signup:
         burm_role_id: Which role would you like to sing?

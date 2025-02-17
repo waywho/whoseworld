@@ -1,0 +1,12 @@
+= "Dear #{@person.first_name}"
+
+Thank you for signing up to Berlin UnRehearsed Musicals newsletter!
+
+
+Please confirm your subscription by by cut and paste the link below into your browser:
+
+= confirm_url(token: @person.confirmation_token)
+
+Looking forward to signing with you,
+
+Berlin UnRehearsed Musicals

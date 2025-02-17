@@ -1,0 +1,7 @@
+= render "components/box", bg: "bg-slate-200", with_logo: true do |partial|
+  - partial.heading do
+    "#{@person.first_name}, you have been unsubscribed"
+  - partial.body do
+    %p You have been unsubscribed to our newsletter.
+    %p We are sorry to see you go.
+    %p If you have any feedback, please let us know.
