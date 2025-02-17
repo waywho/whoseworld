@@ -1,4 +1,4 @@
-class BURM::MailingsController < ApplicationController
+class BURM::NewslettersController < ApplicationController
   before_action :set_person, only: %i[edit unsubscribe]
 
   def new
@@ -22,6 +22,7 @@ class BURM::MailingsController < ApplicationController
 
   def confirm
     @person = BURM::Person.find_by(confirmation_token: params[:token])
+    
     @person.confirm!
 
     render :confirmed
@@ -36,7 +37,7 @@ class BURM::MailingsController < ApplicationController
   private
 
   def set_person
-    @person = BURM::Person.find(params[:id] || params[:burm_mailing_id])
+    @person = BURM::Person.find(params[:id])
   end
 
   def mailing_params

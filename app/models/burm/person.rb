@@ -20,7 +20,6 @@ class BURM::Person < ApplicationRecord
 
   # Callbacks
   after_commit :generate_confirmation_token, on: %i[create]
-  before_save :confirm_when_signup
   after_commit :set_agree_to_terms_at, :set_agree_to_emails_at, on: %i[create update]
 
   def full_name
@@ -33,7 +32,6 @@ class BURM::Person < ApplicationRecord
 
   def confirm!
     confirm
-    subscribe
     generate_confirmation_token
     save!
   end
@@ -57,16 +55,6 @@ class BURM::Person < ApplicationRecord
   end
 
   private
-
-  def confirm_when_signup
-    return if confirmed? || !signups.any?
-
-    self.confirmed_at = Time.current
-    if subscription_list.exclude?("newsletter")
-      self.subscription_list.add("newsletter")
-      self.subscription_list.remove("unsubscribed")
-    end
-  end
 
   def generate_confirmation_token
     self.confirmation_token = SecureRandom.urlsafe_base64

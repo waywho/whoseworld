@@ -14,12 +14,11 @@ Rails.application.routes.draw do
       resources "signups", module: :burm, only: %i[show new create edit update destroy], as: "burm_signups"
     end
 
-    resources "mailings", module: :burm, only: %i[new create edit], as: "burm_mailings" do
-      get :unsubscribe, to: "mailings#unsubscribe"
-    end
+    resources "newsletters", module: :burm, only: %i[new create edit], as: "burm_newsletters"
 
-    scope "mailings" do
-      get "confirm/:token", to: "burm/mailings#confirm", as: "burm_mailing_confirm"
+    scope "newsletters", module: "burm" do
+      get "confirm/:token", to: "newsletters#confirm", as: "burm_newsletter_confirm"
+      get "unsubscribe/:id", to: "newsletters#unsubscribe", as: "burm_newsletter_unsubscribe"
     end
   end
 
