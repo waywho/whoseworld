@@ -14,6 +14,7 @@ class BURM::NewslettersController < ApplicationController
     @person = BURM::Person.new(mailing_params)
 
     if @person.save
+      BURM::NewslettersMailer.with(person: @person).new_subscription.deliver_later
       render :created
     else
       render :new

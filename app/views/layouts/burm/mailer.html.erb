@@ -337,7 +337,7 @@
                 <tr>
                   <td class="content-block">
                     <span class="apple-link">Berlin UnRehearsed Musicals</span>
-                    <br> Don't like these emails? <a href="http://htmlemail.io/blog">Unsubscribe</a>.
+                    <br> Don't like these emails? <%= link_to "Unsbscribe", burm_newsletter_unsubscribe_url(id: @person.id, host: "berlinunrehearsedmusicals.com") %>.
                   </td>
                 </tr>
                 <tr>

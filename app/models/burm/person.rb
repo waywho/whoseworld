@@ -57,7 +57,7 @@ class BURM::Person < ApplicationRecord
   private
 
   def generate_confirmation_token
-    self.confirmation_token = SecureRandom.urlsafe_base64
+    self.confirmation_token = SecureRandom.urlsafe_base64(64)
     save
   end
 

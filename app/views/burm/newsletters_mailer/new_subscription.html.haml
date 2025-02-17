@@ -3,8 +3,14 @@
 %p
   Thank you for signing up to <b>Berlin UnRehearsed Musicals</b> newsletter!
 
-%p Please confirm your subscription by clicking the link below:
+%p
+  Please confirm your subscription by clicking
+  = link_to "confirm" , confirm_url(token: @person.confirmation_token)
+  or cut and paste the link below into your browser:
 
+= confirm_url(token: @person.confirmation_token)
+
+%br
 %p Looking forward to signing with you,
 
 %p Berlin UnRehearsed Musicals

@@ -2,11 +2,12 @@
 class BURM::NewslettersMailerPreview < ActionMailer::Preview
   def new_subscription
     person = BURM::Person.new(
+      id: SecureRandom.uuid,
       first_name: "Tom",
       last_name: "Hiddleston",
       email: "tom@gmail.com"
     )
 
-    BURM::MailingsMailer.with(person:).new_subscription
+    BURM::NewslettersMailer.with(person:).new_subscription
   end
 end
