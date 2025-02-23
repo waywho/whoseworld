@@ -10,25 +10,7 @@
     = f.input :layout_style
     = f.input :public
 
-  = f.file_field :logo
-  .my-2
-    Attached:
-    = f.object.logo.filename if f.object.logo.attached?
-
-  = f.file_field :logo_for_dark
-  .my-2
-    Attached:
-    = f.object.logo_for_dark.filename if f.object.logo_for_dark.attached?
-
-  = f.file_field :logo_with_tag
-  .my-2
-    Attached:
-    = f.object.logo_with_tag.filename if f.object.logo_with_tag.attached?
-
-  = f.file_field :logo_with_tag_for_dark
-  .my-2
-    Attached:
-    = f.object.logo_with_tag_for_dark.filename if f.object.logo_with_tag_for_dark.attached?
+  = render "components/attachment_field", form: f, fields: [:logo, :logo_for_dark, :logo_with_tag, :logo_with_tag_for_dark]
 
   %br
   = f.inputs "DomainAliases" do

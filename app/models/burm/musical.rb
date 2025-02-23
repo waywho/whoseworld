@@ -12,6 +12,9 @@ class BURM::Musical < ApplicationRecord
 
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs[:name].blank? }
 
+  # ActiveStorage
+  has_one_attached :image
+
   # Attribute
   attribute :bulk_roles, :text
 
