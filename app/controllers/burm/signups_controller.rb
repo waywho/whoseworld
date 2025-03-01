@@ -62,6 +62,7 @@ class BURM::SignupsController < SiteBaseController
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])
 
+  rescue ActiveRecord::RecordNotFound
     redirect_to page_path(params[:musical_id]) unless @musical
   end
 
