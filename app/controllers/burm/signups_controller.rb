@@ -61,6 +61,8 @@ class BURM::SignupsController < SiteBaseController
 
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])
+
+    redirect_to page_path(params[:musical_id]) unless @musical
   end
 
   def check_signup_open
