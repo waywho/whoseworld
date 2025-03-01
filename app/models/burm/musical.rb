@@ -47,7 +47,7 @@ class BURM::Musical < ApplicationRecord
     return if bulk_roles.blank?
 
     bulk_roles.split("\n").each do |line|
-      name, voice_type, role_type = line.split(",").map(&:strip)
+      name, role_type, voice_type = line.split(",").map(&:strip)
       voice_type = voice_type.gsub("(", "").gsub(")", "").downcase.to_sym if voice_type
       role_type = role_type.downcase.to_sym if role_type
 
