@@ -75,7 +75,7 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def set_signup
-    @signup = BURM::Signup.find(params[:id])
+    @signup = BURM::Signup.friendly.find(params[:id])
   end
 
   def uncancel_params?
