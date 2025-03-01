@@ -63,7 +63,9 @@ class BURM::SignupsController < SiteBaseController
     @musical = BURM::Musical.friendly.find(params[:musical_id])
 
   rescue ActiveRecord::RecordNotFound
-    redirect_to page_path(params[:musical_id]) unless @musical
+    @page = Current.tenant.pages.friendly.find(params[:id])
+
+    render "pages/show"
   end
 
   def check_signup_open

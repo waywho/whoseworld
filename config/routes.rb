@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   constraints DomainConstraints.new("berlinunrehearsedmusicals.com", "berlinunrehearsedmusicals.test") do
 
+    get "events", to: "burm/events#index", as: "burm_events"
+
     get ":musical_id", to: "burm/signups#new", as: "signup_burm_musical"
 
     scope ":musical_id" do

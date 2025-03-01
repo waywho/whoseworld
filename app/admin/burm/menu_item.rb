@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register MenuItem do
-  permit_params :name, :page_id, :url, :row_order, :site_id
+  permit_params :name, :page_id, :url, :title, :row_order, :site_id
   config.sort_order = "row_order_asc"
 
   scope :all, default: true
