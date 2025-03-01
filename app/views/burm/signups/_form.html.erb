@@ -17,5 +17,9 @@
   <%= f.input :family_friends_watching, as: :boolean %>
   <%= f.input :commit_to_pay, as: :boolean, required: true %>
   <%= f.input :comments %>
-  <%= f.button :submit %>
+  <% if musical.signup_open? %>
+    <%= f.button :submit %>
+  <% else %>
+    <button disabled class="btn btn-disabled">Sign Up</button>
+  <% end %>
 <% end %>

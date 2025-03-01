@@ -2,7 +2,7 @@ class BURM::SignupsController < SiteBaseController
   include Recaptchable
 
   before_action :set_musical
-  before_action :check_signup_open, only: %i[new create]
+  # before_action :check_signup_open, only: %i[new create]
   before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
   before_action :verify_captcha, only: %i[create update]
 

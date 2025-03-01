@@ -1,4 +1,4 @@
 <%= simple_form_for signup, url: burm_signup_path(musical, signup),method: :delete, html: { data: { turbo: false } } do |f| %>
   <%= f.input :cancellation_reason %>
-  <%= f.button :submit, "Cancel my participation", class: "bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900", confirmation: "Are you sure?" %>
+  <%= f.button :submit, "Cancel my participation", class: "btn btn-danger", confirmation: "Are you sure?" %>
 <% end %>

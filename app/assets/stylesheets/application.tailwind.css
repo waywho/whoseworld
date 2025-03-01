@@ -50,10 +50,19 @@
         @apply font-semibold text-sm py-2 px-4 rounded-lg;
     }
     .btn.btn-primary {
-        @apply bg-blue-500 hover:bg-blue-700 text-white;
+        @apply text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
     }
     .btn.btn-primary-xl {
-        @apply bg-blue-500 hover:bg-blue-700 text-white text-2xl;
+        @apply text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg px-5 py-2.5 text-center text-2xl;
+    }
+    .btn.btn-danger {
+        @apply text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+    }
+    .btn.btn-success {
+        @apply text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center;
+    }
+    .btn.btn-disabled {
+        @apply text-white bg-blue-400 dark:bg-blue-500 cursor-not-allowed font-medium rounded-lg text-sm px-5 py-2.5 text-center;
     }
     .hover-row {
         @apply hover:bg-gray-50 dark:hover:bg-gray-600;
