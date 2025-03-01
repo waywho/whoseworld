@@ -3,7 +3,8 @@ class BURM::Musical < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
   include Sluggable
-
+  include Addressable
+  
   # Associations
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy

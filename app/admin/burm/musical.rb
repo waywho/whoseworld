@@ -2,7 +2,8 @@
 
 ActiveAdmin.register BURM::Musical do
   permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image,
-                roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy]
+                roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
+                address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy]
 
   index do
     selectable_column
@@ -27,6 +28,16 @@ ActiveAdmin.register BURM::Musical do
       f.input :signup_start_at
       f.input :image, as: :file
       li f.object.image.filename if f.object.image.attached?
+    end
+
+    f.inputs "Address" do
+      f.has_many :address, heading: false, allow_destroy: true, new_record: false do |a|
+        a.input :id, as: :hidden
+        a.input :address
+        a.input :lat
+        a.input :lon
+        a.input :boundingbox
+      end
     end
 
 

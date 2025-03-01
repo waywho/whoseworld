@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_04_210209) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_01_105235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -55,6 +55,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_04_210209) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.jsonb "address", default: {}
+    t.string "display_name"
+    t.string "lat"
+    t.string "lon"
+    t.text "boundingbox", default: [], array: true
+    t.string "addressable_type"
+    t.bigint "addressable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
   create_table "burm_musicals", force: :cascade do |t|

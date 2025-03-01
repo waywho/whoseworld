@@ -189,6 +189,10 @@ GEM
       activesupport (>= 5.2)
     htmlbeautifier (1.4.3)
     htmlentities (4.3.4)
+    httparty (0.22.0)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
@@ -257,6 +261,8 @@ GEM
     mini_portile2 (2.8.8)
     minitest (5.25.4)
     msgpack (1.7.5)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
     net-imap (0.5.4)
       date
       net-protocol
@@ -281,6 +287,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
+    open_street_map (1.2.2)
+      httparty (~> 0.17)
     orm_adapter (0.5.0)
     pg (1.5.9)
     pry (0.15.2)
@@ -450,6 +458,7 @@ DEPENDENCIES
   lookbook (~> 2.3.4)
   nice_partials
   nilify_blanks
+  open_street_map
   pg (~> 1.5)
   pry-remote
   puma (~> 6.0)

@@ -78,6 +78,9 @@ gem "activeadmin", "~> 4.0.beta15"
 # friendly id
 gem "friendly_id"
 
+# Open Street Map
+gem "open_street_map"
+
 # ViewComponent
 gem "view_component"
 gem "lookbook", "~> 2.3.4"
