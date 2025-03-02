@@ -2,7 +2,7 @@ class BURM::SignupsController < SiteBaseController
   include Recaptchable
 
   before_action :set_musical
-  # before_action :check_signup_open, only: %i[new create]
+  before_action :check_signup_open, only: %i[new create]
   before_action :set_signup, :check_cancelled, only: %i[show edit update destroy]
   before_action :verify_captcha, only: %i[create update]
 
@@ -61,11 +61,6 @@ class BURM::SignupsController < SiteBaseController
 
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])
-
-  rescue ActiveRecord::RecordNotFound
-    @page = Current.tenant.pages.friendly.find(params[:musical_id])
-
-    render "pages/show" and return
   end
 
   def check_signup_open
@@ -75,7 +70,7 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def set_signup
-    @signup = BURM::Signup.friendly.find(params[:id])
+    @signup = BURM::Signup.find(params[:id])
   end
 
   def uncancel_params?

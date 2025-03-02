@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 
     get "events", to: "burm/events#index", as: "burm_events"
 
-    get ":musical_id", to: "burm/signups#new", as: "signup_burm_musical"
+    scope :unrehearsed do
+      get ":musical_id", to: "burm/signups#new", as: "new_burm_signup"
 
-    scope ":musical_id" do
-      resources "signups", module: :burm, only: %i[show new create edit update destroy], as: "burm_signups"
+      scope ":musical_id" do
+        resources "signups", module: :burm, only: %i[show create edit update destroy], as: "burm_signups"
+      end
     end
 
     resources "newsletters", module: :burm, only: %i[new create edit], as: "burm_newsletters"

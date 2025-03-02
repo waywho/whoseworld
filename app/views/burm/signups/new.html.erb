@@ -4,19 +4,12 @@
       <div class="h-[200px] bg-center bg-no-repeat bg-cover -mx-6 -mt-6 md:-mx-9 md:-mt-9 mb-6 w-auto" style="background-image: url(<%= url_for(@musical.image) %>)"></div>
     <% end %>
 
-    <h1>Sign Up to <span class="italic"><%= @musical.title %></span></h1>
+    <div class="text-center"><h1>Sign Up to UnRehearse <span class="italic"><%= @musical.title %></span></h1></div>
 
-    <% unless @musical.signup_open? %>
+    <div class="mt-4 mb-2 font-semibold text-2xl">Date: <%= @musical.date %></div>
+    <div class="my-2 font-semibold text-2xl">Time: <%= @musical.time %></div>
 
-      <div class="mb-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 text-center text-xl">Sign Up is not yet open.
-        <br />
-        Sign Up Starts at: <%= @musical.signup_open_at %>
-      </div>
-    <% end %>
-    <div class="mb-2 font-semibold text-2xl">UnRehearsed on <%= @musical.date %></div>
-    <div class="mb-4 font-semibold text-2xl"><%= @musical.time %></div>
-
-    <p>Get the experience of singing through a whole musical with no pressure. Come join us.</p>
+    <p class="lead">Get the experience of singing through a whole musical with no pressure. Come join us.</p>
 
     <h3>How does it work?</h3>
     <ul class="mb-4">

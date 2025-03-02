@@ -10,9 +10,9 @@ class BURM::SignupsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get new only when signup is open" do
     musical = create(:burm_musical, signup_start_at: Time.current + 1.day)
-    # TODO: PUT back
-    # get new_burm_signup_path(musical)
-    # assert_response :forbidden
+
+    get new_burm_signup_path(musical)
+    assert_response :forbidden
 
     musical.update!(signup_start_at: Time.current - 1.day)
     get new_burm_signup_path(musical)

@@ -10,7 +10,7 @@ class BURM::MusicalTest < ActiveSupport::TestCase
 
   test "should add roles when new_record" do
     musical = BURM::Musical.new(title: "Hamilton")
-    musical.bulk_roles = "King George III, baritone, lead\nAlexander Hamilton, (tenor), lead"
+    musical.bulk_roles = "King George III, lead, baritone\nAlexander Hamilton, lead, (tenor)"
     musical.save!
 
     assert_equal 2, musical.roles.count
@@ -36,7 +36,7 @@ class BURM::MusicalTest < ActiveSupport::TestCase
     musical = create(:burm_musical)
     create(:burm_role, name: "King George III", voice_type: :baritone, role_type: :lead,  musical:)
     create(:burm_role, name: "Alexander Hamilton", voice_type: :tenor, role_type: :lead, musical:)
-    musical.bulk_roles = "King George III, baritone, lead\nAlexander Hamilton, (tenor), lead\nAaron Burr, baritone, lead"
+    musical.bulk_roles = "King George III, lead, baritone\nAlexander Hamilton, lead, (tenor)\nAaron Burr, lead, baritone"
     musical.save!
 
     assert_equal 3, musical.roles.count
