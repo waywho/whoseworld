@@ -2,10 +2,14 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require "faker"
+require "minitest/mock"
+require "aws-sdk-s3"
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include Devise::Test::IntegrationHelpers
+  include ActionDispatch::TestProcess::FixtureFile
+  include ActiveJob::TestHelper
 
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

@@ -1,7 +1,7 @@
 <div class="min-h-screen">
   <div class="border border-4 border-indigo-700 rounded-lg m-6 p-6 sm:m-9 lg:m-36 md:p-9 overflow-hidden">
-    <% if @musical.image&.persisted? %>
-      <div class="h-[200px] bg-center bg-no-repeat bg-cover -mx-6 -mt-6 md:-mx-9 md:-mt-9 mb-6 w-auto" style="background-image: url(<%= url_for(@musical.image) %>)"></div>
+    <% if @musical.image&.attached? %>
+      <div class="h-[200px] bg-center bg-no-repeat bg-cover -mx-6 -mt-6 md:-mx-9 md:-mt-9 mb-6 w-auto" style="background-image: url(<%= pinned_url_for(@musical.image) %>)"></div>
     <% end %>
 
     <div class="text-center"><h1>Sign Up to UnRehearse <span class="italic"><%= @musical.title %></span></h1></div>

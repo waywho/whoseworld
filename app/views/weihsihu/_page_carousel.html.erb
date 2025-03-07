@@ -5,7 +5,7 @@
             <% gallery.images.each do |image| %>
                  <!-- Item 1 -->
                 <div class="duration-[1250ms] ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20" data-carousel-item>
-                    <%= image_tag image, class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt:"" %>
+                    <%= image_tag pinned_url_for(image), class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt:"" %>
                 </div>
             <% end %>
         <% end %>

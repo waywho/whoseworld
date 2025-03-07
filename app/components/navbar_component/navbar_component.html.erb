@@ -6,7 +6,7 @@
              <%= @logo %>
           </span>
        <% else %>
-          <div class="h-16"><%= image_tag @logo, class: "max-h-full" %></div>
+          <div class="h-16"><%= image_tag pinned_url_for(@logo), class: "max-h-full" %></div>
        <% end %>
      <% end %>
 

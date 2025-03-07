@@ -1,5 +1,5 @@
 <% if Current.tenant&.logo.present? %>
-  <%= image_tag Current.tenant&.logo %>
+  <%= image_tag pinned_url_for(Current.tenant&.logo) %>
 <% else %>
   <h1><%= Current.tenant&.name %></h1>
 <% end %>

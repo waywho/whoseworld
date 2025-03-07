@@ -24,14 +24,11 @@ class Page < ApplicationRecord
   has_many :contents, as: :contentable, dependent: :destroy
   accepts_nested_attributes_for :contents, allow_destroy: true,
                                            reject_if: proc { |attributes| attributes["body"].blank? && attributes["summary"].blank? }
-  has_one :cover_image, as: :imageable, class_name: "Image", dependent: :destroy
-  accepts_nested_attributes_for :cover_image, allow_destroy: true
+  has_one :feature_image, as: :imageable, class_name: "Image", dependent: :destroy
+  accepts_nested_attributes_for :feature_image, allow_destroy: true
 
   # Scopes
   default_scope { rank(:row_order) }
-
-  # Attachment
-  has_one_attached :feature_image
 
   # Enums
   enum :template, %i[plain gallery media], validation: true

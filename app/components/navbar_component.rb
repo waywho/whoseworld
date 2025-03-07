@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class NavbarComponent < ViewComponent::Base
+  include ImageHelper
+
   attr_reader :style
 
   def initialize(logo:, subtitle: nil, menu_items: [], style: :multi_page)
