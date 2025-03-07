@@ -28,7 +28,17 @@ ActiveAdmin.register BURM::Musical do
       f.input :fee
       f.input :signup_start_at
       f.input :image, as: :file
-      li f.object.image.filename if f.object.image.attached?
+      li f.object.image.filename if f.object&.image&.attached?
+    end
+
+    f.inputs "Cover Image" do
+      f.has_many :cover_image, heading: false, allow_destroy: true do |i|
+        i.input :id, as: :hidden
+        i.input :cid
+        i.input :kind
+        i.input :image_file, as: :file
+        li i.object.image.filename if i.object&.image&.attached?
+      end
     end
 
     f.inputs "Address" do

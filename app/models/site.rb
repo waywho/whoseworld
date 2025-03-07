@@ -12,6 +12,13 @@ class Site < ApplicationRecord
                                 reject_if: proc { |attributes| attributes["heading"].blank? }
   accepts_nested_attributes_for :domain_aliases, allow_destroy: true,
                                 reject_if: proc { |attributes| attributes["domain"].blank? && attributes["subdomain"].blank? }
+  has_many :images, as: :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
+  %i[logo_image logo_for_dark_image logo_with_tag_image logo_with_tag_for_dark_image].each do |method|
+    has_one method, ->{ find_by(kind: method.to_s.gsub("_image", "")) }, class_name: "Image",
+      as: :imageable
+    accepts_nested_attributes_for method, allow_destroy: true, reject_if: proc { |attributes| attributes["image"].blank? }
+  end
 
   # Enums
   enum :nav_position, %i[top left right], validation: true

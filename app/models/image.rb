@@ -1,7 +1,9 @@
 class Image < ApplicationRecord
-  belongs_to :record, polymorphic: true
+  belongs_to :imageable, polymorphic: true
+  has_one_attached :image
 
-  after_commit :update_cid
+  after_commit :update_cid, on: %i[create update]
+  after_destroy_commit :delete_image_from_storage
 
   private
 
@@ -18,5 +20,9 @@ class Image < ApplicationRecord
     @client = Aws::S3::Client.new(
       **Rails.application.credentials.filebase.except(:bucket)
     )
+  end
+
+  def delete_image_from_storage
+    image.purge
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_01_105235) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_07_074940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_01_105235) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.datetime "signup_start_at"
+    t.string "quote"
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 
@@ -180,6 +181,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_01_105235) do
     t.boolean "feature", default: false, null: false
     t.integer "row_order"
     t.index ["page_id"], name: "index_galleries_on_page_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.string "kind"
+    t.string "cid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id", "kind"], name: "index_images_on_imageable_type_and_imageable_id_and_kind"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
   create_table "medias", force: :cascade do |t|

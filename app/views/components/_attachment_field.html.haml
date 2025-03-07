@@ -1,14 +1,18 @@
 -# locals: (form: nil, fields:, multiple: false, options: {})
 
-- Array(fields).each do |field|
-  = form.file_field field.to_sym, multiple: multiple, **options
+.grid.grid-cols-2.gap-2
+  - Array(fields).each do |field|
+    .flex.flex-col.gap-2
+      .text-lg.font-semibold= field.to_s.humanize
+      = form.file_field field.to_sym, multiple: multiple, **options
 
-  .mb-1.font-semibold Attached:
-  %ul.my-2
-    - if form.object.send(field).attached?
-      - if multiple
-        - form.object.send(field).each do |file|
-          %li= file.filename
-      - else
-        %li
-          = form.object.send(field).filename
+      - if form.object.send(field)&.attached?
+        - if multiple
+          .font-semibold Attached:
+          %ul.my-2
+          - form.object.send(field).each do |file|
+            %li= file.filename
+        - else
+          %div
+            %span.font-semibold Attached:
+            %span= form.object.send(field).filename

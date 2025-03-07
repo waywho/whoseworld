@@ -10,6 +10,8 @@
     = f.input :layout_style
     = f.input :public
 
+  = render "components/image_field", form: f, fields: [:logo_image, :logo_for_dark_image, :logo_with_tag_image, :logo_with_tag_for_dark_image]
+
   = render "components/attachment_field", form: f, fields: [:logo, :logo_for_dark, :logo_with_tag, :logo_with_tag_for_dark]
 
   %br
