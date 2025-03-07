@@ -253,6 +253,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailtrap (2.2.0)
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
@@ -456,6 +457,7 @@ DEPENDENCIES
   letter_opener
   listen
   lookbook (~> 2.3.4)
+  mailtrap
   nice_partials
   nilify_blanks
   open_street_map

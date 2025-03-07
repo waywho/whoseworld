@@ -1,0 +1,47 @@
+Next musical and other news
+
+= "Dear #{@person.first_name},"
+
+- if @musical.quote
+  = @musical.quote
+
+We are happy to announce that our next musical on
+= @musical.date
+will be...
+
+= @musical.title
+
+Available Roles
+
+- @musical.roles.group_by(&:role_type).each do |role_type, roles|
+  = "#{role_type&.humanize || "Other"} roles"
+  - roles.each do |role|
+    = "- #{role.name} (#{role.voice_type})"
+
+Of course, there is always the ensemble (SATB)
+
+A couple of notes about casting:
+
+Roles will be given on a first-come-first-serve basis once the sign up opens (link sent in an upcoming email).
+
+We practice gender blind casting. It means you can sign up to whichever role you wish as long as you feel that it is suitable for your voice! Feel free to take parts in voice ranges equivalent to yours:
+
+Soprano ⇔ Tenor
+Mezzo ⇔ Baritone
+Alto ⇔ Bass
+
+Of course if you want to only sing in the chorus, that is also GREAT! We have plenty of room for that!
+
+Role sign up will take place on
+= @musical.signup_open_at
+
+
+As always, we ask every participant to contribute
+= number_to_currency(@musical.fee, locale: :de)
+to cover the cost of running the workshop. Once you've signed up, we will be in touch with the rest of the details.
+
+Looking forward to singing with you,
+
+
+WeiHsi
+Berlin UnRehearsed Musicals

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image,
+  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy]
 
@@ -22,6 +22,7 @@ ActiveAdmin.register BURM::Musical do
     f.inputs do
       f.input :title
       f.input :start_at
+      f.input :quote
       f.input :end_at
       f.input :location
       f.input :fee

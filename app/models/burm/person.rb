@@ -18,6 +18,9 @@ class BURM::Person < ApplicationRecord
   # Enums
   enum :voice_type, %i[dont_know soprano alto tenor baritone bass], validate: true
 
+  # Scope
+  scope :subscribers, -> { [last] }
+
   # Callbacks
   after_commit :generate_confirmation_token, on: %i[create]
   after_commit :set_agree_to_terms_at, :set_agree_to_emails_at, on: %i[create update]
@@ -52,6 +55,10 @@ class BURM::Person < ApplicationRecord
     subscription_list.remove("newsletter")
     subscription_list.add("unsubscribed")
     save!
+  end
+
+  def to_mail_hash
+    { email:, name: full_name }
   end
 
   private
