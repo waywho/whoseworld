@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_07_074940) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_07_202729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -190,6 +190,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_07_074940) do
     t.string "cid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
     t.index ["imageable_type", "imageable_id", "kind"], name: "index_images_on_imageable_type_and_imageable_id_and_kind"
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
