@@ -10,6 +10,8 @@ class Image < ApplicationRecord
   private
 
   def update_cid
+    return unless image&.attached?
+
     object = client.get_object(
       bucket: Rails.application.credentials.filebase[:bucket],
       key: image.blob.key
