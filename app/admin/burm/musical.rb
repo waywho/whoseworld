@@ -7,12 +7,12 @@ ActiveAdmin.register BURM::Musical do
                 image: [:id, :cid, :kind, :image_file]
 
   member_action :annouce_next, method: :put do
-    resource.annouce_next
+    resource.announce_next
     redirect_to resource_path(resource), notice: "Annouced!"
   end
 
   member_action :annouce_test, method: :put do
-    resource.annouce_next(test: true)
+    resource.announce_next(test: true)
     redirect_to resource_path(resource), notice: "Test Annouced!"
   end
 
