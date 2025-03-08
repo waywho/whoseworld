@@ -30,7 +30,7 @@ class BURM::Musical < ApplicationRecord
     "near future" unless signup_start_at
 
     signup_time = signup_start_at&.strftime("%A, %B %e, %Y at %l:%M %p")
-    Time.zone.parse(signup_time.to_s)
+    Time.zone.parse(signup_time.to_s).strftime("%A, %B %e, %Y at %l:%M %p")
   end
 
   def date
