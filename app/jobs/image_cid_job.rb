@@ -2,7 +2,7 @@ class ImageCidJob < ApplicationJob
   queue_as :default
 
   def perform(image)
-    return unless image.blob&.key
+    return unless image&.image&.blob&.key
 
     object = client.get_object(
       bucket: Rails.application.credentials.filebase[:bucket],
