@@ -9,7 +9,7 @@ class ImageCidJob < ApplicationJob
       key: image.image.blob.key
     )
 
-    update_columns(cid: object.metadata["cid"])
+    image.update_columns(cid: object.metadata["cid"])
   end
 
   def client
