@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_08_083318) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_08_123314) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -98,6 +98,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_08_083318) do
     t.boolean "agree_to_terms", default: true
     t.datetime "agree_to_emails_at"
     t.datetime "confirmation_token_expires_at"
+    t.string "timezone"
+    t.string "country_code"
+    t.string "region"
     t.index ["confirmation_token"], name: "index_burm_people_on_confirmation_token", unique: true
     t.index ["email"], name: "index_burm_people_on_email"
     t.index ["id"], name: "index_burm_people_on_id", unique: true

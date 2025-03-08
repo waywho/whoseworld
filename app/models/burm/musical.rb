@@ -40,6 +40,10 @@ class BURM::Musical < ApplicationRecord
     "#{start_at.strftime("%l:%M %p")} - #{end_at.strftime("%l:%M %p")}"
   end
 
+  def announce_next(test: false)
+    MusicalMailJob.perform_later(:next_musical, self, test:)
+  end
+
   private
 
   def build_from_bulk_roles

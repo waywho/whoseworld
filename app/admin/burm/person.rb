@@ -13,6 +13,19 @@ ActiveAdmin.register BURM::Person do
     scope(musical.symbolized_slug) { |scope| scope.includes(:musicals).where(musicals: { id: musical.id }) }
   end
 
+  action_item :only => :index do
+    link_to 'Upload CSV', upload_csv_admin_burm_people_path, class: "action-item-button"
+  end
+
+  collection_action :upload_csv do
+    render "admin/csv/upload_csv"
+  end
+
+  collection_action :import_csv, :method => :post do
+    count = CsvDb.convert_save(resource_class.name, params[:dump][:file])
+    redirect_to :action => :index, :notice => "CSV imported successfully! #{count} records added."
+  end
+
   index do
     selectable_column
     column :first_name

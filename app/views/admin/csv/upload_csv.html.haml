@@ -1,0 +1,5 @@
+= form_for :dump, :url=>{:action=>"import_csv"}, :html => { :multipart => true, class: "flex flex-col gap-4 items-start" } do |f|
+  %label{:for => "dump_file"}
+    Select a CSV File :
+  = f.file_field :file
+  = submit_tag "Submit", class: "action-item-button"

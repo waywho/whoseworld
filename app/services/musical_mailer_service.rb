@@ -1,5 +1,6 @@
 class MusicalMailerService
   attr_reader :mailer, :mail_method, :category, :musical, :receivers, :sandbox
+  
   def initialize(mailer, mail_method, musical:, receivers: nil, sandbox: Rails.env.development?)
     @mailer = mailer
     @category = "#{mailer.gsub('Mailer', '')} #{mail_method.to_s.camelcase}"

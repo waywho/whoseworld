@@ -12,7 +12,7 @@ class BURM::Person < ApplicationRecord
 
   # Validations
   validates :email, uniqueness: true
-  validates :first_name, :last_name, :email, presence: true
+  validates :first_name, :email, presence: true
   validates :agree_to_terms, acceptance: true
 
   # Enums

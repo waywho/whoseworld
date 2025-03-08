@@ -8,7 +8,7 @@ class Image < ApplicationRecord
   after_commit :update_cid, on: %i[create update]
   after_destroy_commit :delete_image_from_storage
 
-  delegate :attached?, to: :image
+  delegate_missing_to :image
 
   private
 

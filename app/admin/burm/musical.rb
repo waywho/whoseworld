@@ -3,7 +3,26 @@
 ActiveAdmin.register BURM::Musical do
   permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
-                address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy]
+                address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
+                image: [:id, :cid, :kind, :image_file]
+
+  member_action :annouce_next, method: :put do
+    resource.annouce_next
+    redirect_to resource_path(resource), notice: "Annouced!"
+  end
+
+  member_action :annouce_test, method: :put do
+    resource.annouce_next(test: true)
+    redirect_to resource_path(resource), notice: "Test Annouced!"
+  end
+
+  action_item :annouce_next, :only => [:show, :edit] do
+    link_to "Annouce Next", annouce_next_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  action_item :annouce_test, :only => [:show, :edit] do
+    link_to "Annouce Test", annouce_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
 
   index do
     selectable_column
@@ -27,12 +46,10 @@ ActiveAdmin.register BURM::Musical do
       f.input :location
       f.input :fee
       f.input :signup_start_at
-      f.input :image, as: :file
-      li f.object.image.filename if f.object&.image&.attached?
     end
 
     f.inputs "Cover Image" do
-      f.has_many :cover_image, heading: false, allow_destroy: true do |i|
+      f.has_many :image, heading: false, allow_destroy: true do |i|
         i.input :id, as: :hidden
         i.input :cid
         i.input :kind
