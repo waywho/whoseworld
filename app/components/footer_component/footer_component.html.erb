@@ -1,13 +1,7 @@
 <div class="bg-slate-800 text-white pt-12 md:pt-24 px-4 md:px-24">
   <div class="container mx-auto grid grid-flow-cols grid-cols-2 md:grid-cols-3 gap-4">
     <div class="col-span-2 md:col-span-1">
-      <% if site_logo.is_a?(String) %>
-          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-             <%= site_logo %>
-          </span>
-       <% else %>
-          <div class="h-12"><%= image_tag site_logo, class: "max-h-full" %></div>
-       <% end %>
+      <%= site_logo %>
     </div>
     <div class="flex flex-col text-gray-400 font-normal">
       <% menu_items.each do |item| %>

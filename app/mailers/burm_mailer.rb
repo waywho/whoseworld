@@ -1,4 +1,6 @@
 class BURMMailer < ActionMailer::Base
+  helper ImageHelper
+
   default from: "info@berlinunrehearsedmusicals.com"
   layout "burm/mailer"
 

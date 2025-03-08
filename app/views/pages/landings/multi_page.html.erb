@@ -4,7 +4,7 @@
     <p class="text-xl"><%= Current.tenant.landing_page.contents.first&.body %></p>
   </div>
   <% Current.tenant.landing_page.featured_gallery&.images&.each do |image| %>
-    <div style="background-image: url(<%= rails_blob_url(image) %>)" class="bg-center bg-no-repeat bg-cover w-full"></div>
+    <div style="background-image: url(<%= pinned_url_for(image) %>)" class="bg-center bg-no-repeat bg-cover w-full"></div>
   <% end %>
 </div>
 

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :image do
-    record { nil }
-    kind { "MyString" }
-    cid { "MyString" }
+    imageable { nil }
+    kind { nil }
+    cid { nil }
   end
 end

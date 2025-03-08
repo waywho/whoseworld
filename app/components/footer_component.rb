@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FooterComponent < ViewComponent::Base
+  include ImageHelper
+
   attr_reader :site, :style
 
   def initialize(site:, style: :multi_page)
@@ -23,7 +25,13 @@ class FooterComponent < ViewComponent::Base
   end
 
   def site_logo
-    site.logo_with_tag_for_dark&.attached? ? site.logo_with_tag_for_dark : site.name
+    if site.logo_with_tag_for_dark&.attached?
+      content_tag :div, class: "h-12" do
+        concat(image_tag pinned_url_for(site.logo_with_tag_for_dark), class: "max-h-full")
+      end
+    else
+      content_tag :span, site.name, class: "self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+    end
   end
 
   def menu_path_for(menu_item)

@@ -12,11 +12,8 @@ class BURM::Musical < ApplicationRecord
   has_many :people, through: :signups, class_name: "BURM::Person", foreign_key: "burm_person_id"
 
   accepts_nested_attributes_for :roles, allow_destroy: true, reject_if: proc { |attrs| attrs[:name].blank? }
-  has_one :cover_image, as: :imageable, class_name: "Image", dependent: :destroy
-  accepts_nested_attributes_for :cover_image, allow_destroy: true
-
-  # ActiveStorage
-  has_one_attached :image
+  has_one :image, as: :imageable, class_name: "Image", dependent: :destroy
+  accepts_nested_attributes_for :image, allow_destroy: true
 
   # Attribute
   attribute :bulk_roles, :text

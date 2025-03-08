@@ -1,8 +1,8 @@
 -# locals: (bg: nil, with_logo: false, size: :sm)
 = content_for :bg_class, partial.bg
 .min-h-screen.mt-9
-  - if partial.with_logo && Current.tenant.logo_with_tag.attached?
-    = image_tag Current.tenant&.logo_with_tag, class: "mx-auto h-16"
+  - if partial.with_logo && Current.tenant&.logo_with_tag&.attached?
+    = image_tag pinned_url_for(Current.tenant&.logo_with_tag), class: "mx-auto h-16"
   .border.border-4.border-indigo-700.rounded-lg.mx-2.sm:mx-auto.mt-9.p-6.md:p-9.bg-white{class: class_names({"max-w-[550px]": partial.size != :full}, partial.wrapper_classes)}
     %h1= partial.heading
     .mt-2= partial.body
