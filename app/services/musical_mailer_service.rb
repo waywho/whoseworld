@@ -1,13 +1,14 @@
 class MusicalMailerService
-  attr_reader :mailer, :mail_method, :category, :musical, :receivers, :sandbox
+  attr_reader :mailer, :mail_method, :category, :musical, :receivers, :sandbox, :test
   
-  def initialize(mailer, mail_method, musical:, receivers: nil, sandbox: Rails.env.development?)
+  def initialize(mailer, mail_method, musical:, receivers: nil, sandbox: Rails.env.development?, test: false)
     @mailer = mailer
     @category = "#{mailer.gsub('Mailer', '')} #{mail_method.to_s.camelcase}"
     @mail_method = mail_method
     @musical = musical
-    @receivers ||= BURM::Person.subscribers
+    @receivers = receivers
     @sandbox = sandbox
+    @test = test
   end
 
   def send_mail
@@ -15,6 +16,14 @@ class MusicalMailerService
   end
 
   private
+
+  def sendees
+    if test
+      BURM::Person.where(email: "walzerfan@yahoo.com")
+    else
+      BURM::Person.subscribers
+    end
+  end
 
   def base_request
     {
@@ -31,7 +40,7 @@ class MusicalMailerService
   end
 
   def composed_mails
-    receivers.map do |person|
+    Array(sendees).map do |person|
       composed_mail = mail(person)
       Mailtrap::Mail::Base.new(
         to: [{
