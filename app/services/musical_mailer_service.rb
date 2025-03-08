@@ -21,7 +21,7 @@ class MusicalMailerService
     if test
       BURM::Person.where(email: "walzerfan@yahoo.com")
     else
-      BURM::Person.subscribers
+      BURM::Person.all
     end
   end
 
