@@ -12,12 +12,7 @@ class Image < ApplicationRecord
   def update_cid
     return unless image&.attached?
 
-    object = client.get_object(
-      bucket: Rails.application.credentials.filebase[:bucket],
-      key: image.blob.key
-    )
-
-    update_columns(cid: object.metadata["cid"])
+    ImageCidJob.perform_later(self)
   end
 
   def client
