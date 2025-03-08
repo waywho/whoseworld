@@ -6,7 +6,7 @@ class ImageCidJob < ApplicationJob
 
     object = client.get_object(
       bucket: Rails.application.credentials.filebase[:bucket],
-      key: image.blob.key
+      key: image.image.blob.key
     )
 
     update_columns(cid: object.metadata["cid"])
