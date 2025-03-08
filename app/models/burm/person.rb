@@ -19,7 +19,7 @@ class BURM::Person < ApplicationRecord
   enum :voice_type, %i[dont_know soprano alto tenor baritone bass], validate: true
 
   # Scope
-  scope :subscribers, -> { [last] }
+  scope :subscribers, -> { tagged_with("newsletter") }
 
   # Callbacks
   after_commit :generate_confirmation_token, on: %i[create]

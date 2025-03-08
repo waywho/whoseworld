@@ -1,5 +1,5 @@
 class BURM::MusicalsMailer < BURMMailer
-  def announcement
+  def next_musical
     @musical = params[:musical]
     @person = params[:person]
 
