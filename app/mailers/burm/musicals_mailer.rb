@@ -6,4 +6,11 @@ class BURM::MusicalsMailer < BURMMailer
     mail(to: @person.email,
          subject: burm_subject("Our Next Musical..."))
   end
+
+  def signup_url(*params)
+    host = Rails.env.production? ? "berlinunrehearsedmusicals.com" : "berlinunrehearsedmusicals.test"
+
+    new_burm_signup_url(*params, host:)
+  end
+  helper_method :signup_url
 end

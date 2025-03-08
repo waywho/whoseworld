@@ -40,7 +40,7 @@ class BURM::Musical < ApplicationRecord
   def time
     start_at_time = Time.zone.parse(start_at.to_s)
     end_at_time = Time.zone.parse(end_at.to_s)
-    "#{start_at_time.strftime("%l:%M %p")} - #{end_at.strftime("%l:%M %p")}"
+    "#{start_at_time.strftime("%l:%M %p")} - #{end_at_time.strftime("%l:%M %p")}"
   end
 
   def announce_next(test: false)
