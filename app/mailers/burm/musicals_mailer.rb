@@ -4,7 +4,7 @@ class BURM::MusicalsMailer < BURMMailer
     @person = params[:person]
 
     mail(to: @person.email,
-         subject: burm_subject("Our Next Musical..."))
+         subject: burm_subject("Our Next Musical...Oops"))
   end
 
   def signup_url(*params)
