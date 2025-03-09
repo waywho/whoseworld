@@ -12,8 +12,28 @@
   <% end %>
   <%= f.label :burm_role %>
   <%= f.hint :burm_role, class: "mb-2" %>
-  <% @musical.roles.group_by(&:role_type).each do |role_type, roles| %>
-    <div class="italic"><%= "#{role_type&.humanize || "Other"} roles" %></div>
+
+  <% @roles[:lead].each do |roles| %>
+    <div class="italic">Lead roles</div>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% end %>
+
+  <% @roles[:supporting].each do |roles| %>
+    <div class="italic">Supporting roles</div>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% end %>
+
+  <% @roles[:featured].each do |roles| %>
+    <div class="italic">Featured roles</div>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% end %>
+
+  <% @roles[:nil].each do |roles| %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% end %>
+
+  <% @roles[:ensemble].each do |roles| %>
+    <div class="italic">Ensemble</div>
     <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
   <% end %>
 
