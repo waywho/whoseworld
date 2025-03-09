@@ -13,28 +13,28 @@
   <%= f.label :burm_role %>
   <%= f.hint :burm_role, class: "mb-2" %>
 
-  <% roles[:lead]&.each do |roles| %>
+  <% if roles["lead"] %>
     <div class="italic">Lead roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["lead"], label_method: :to_s, value_method: :id %>
   <% end %>
 
-  <% roles[:supporting]&.each do |roles| %>
+  <% if roles["supporting"] %>
     <div class="italic">Supporting roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["supporting"], label_method: :to_s, value_method: :id %>
   <% end %>
 
-  <% roles[:featured]&.each do |roles| %>
+  <% if roles["featured"] %>
     <div class="italic">Featured roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["featured"], label_method: :to_s, value_method: :id %>
   <% end %>
 
-  <% roles[:nil]&.each do |roles| %>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% if roles[nil] %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles[nil], label_method: :to_s, value_method: :id %>
   <% end %>
 
-  <% roles[:ensemble]&.each do |roles| %>
+  <% if roles["ensemble"] %>
     <div class="italic">Ensemble</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["ensemble"], label_method: :to_s, value_method: :id %>
   <% end %>
 
   <%= f.input :alternative_role_id, collection: @musical.roles, label_method: :to_s, value_method: :id %>

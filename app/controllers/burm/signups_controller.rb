@@ -11,7 +11,6 @@ class BURM::SignupsController < SiteBaseController
 
   def new
     @signup = @musical.signups.build
-    @roles = @musical.roles.group_by(&:role_type)
     @signup.build_person
   end
 
@@ -20,7 +19,7 @@ class BURM::SignupsController < SiteBaseController
 
     if @signup.save
       BURM::SignupsMailer.with(signup: @signup).confirmation.deliver_now
-      
+
       redirect_to burm_signup_path(@musical, @signup, status: :created)
     else
       flash.now[:alert] = t(".cannot_signup", error: @signup.errors.full_messages.to_sentence)
@@ -30,7 +29,6 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def edit
-    @roles = @musical.roles.group_by(&:role_type)
   end
 
   def update
@@ -63,6 +61,7 @@ class BURM::SignupsController < SiteBaseController
 
   def set_musical
     @musical = BURM::Musical.friendly.find(params[:musical_id])
+    @roles = @musical.roles.group_by(&:role_type)
   end
 
   def check_signup_open
