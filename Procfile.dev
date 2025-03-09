@@ -1,2 +1,2 @@
-css: bin/rails tailwindcss:watch
+css: bin/rails tailwindcss:watch[debug]
 active_admin: bin/rails active_admin:watch
