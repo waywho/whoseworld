@@ -8,7 +8,7 @@ class BURM::Signup < ApplicationRecord
   belongs_to :role, class_name: "BURM::Role", foreign_key: "burm_role_id", optional: true
   belongs_to :musical, class_name: "BURM::Musical", foreign_key: "burm_musical_id", optional: true
   belongs_to :alternative_role, optional: true, class_name: "BURM::Role"
-  belongs_to :assigned_role, optional: true, class_name: "BURM::Role"
+  belongs_to :assigned_role, optional: true, class_name: "BURM::Role", foreign_key: "assigned_burm_role_id"
 
   accepts_nested_attributes_for :person, reject_if: :blank_or_invalid_person
 
@@ -17,20 +17,41 @@ class BURM::Signup < ApplicationRecord
   validates :agree_to_emails, acceptance: true
   validate :musical_signup_open, on: :create
   validate :association_or_cached, on: :update
+  # only validate on :create because we cache the attributes
   validates :person, presence: true, on: :create
   validates :role, presence: true, on: :create
   validates :musical, presence: true, on: :create
   validates :person, uniqueness: { scope: %i[role musical],
             message: "cannot sign up for the same role and musical twice" },
             if: -> { !cancelled || (person.present? && role.present? && musical.present?) }
+  validates :assigned_role, uniqueness: { scope: %i[musical]}
+  # validate :unique_role_assignment
 
   # Callbacks
   before_validation :find_or_build_person
   before_save :set_cached_attributes
   before_save :set_cancelled_at
+  after_commit :set_assigned_role, on: :create
   after_commit :add_person_to_newsletter, on: :create
 
   private
+
+  def unique_role_assignment
+    return unless musical
+    return if (musical.signups.pluck(:assigned_burm_role_id) - [assigned_burm_role_id_was]).exclude?(assigned_burm_role_id)
+
+    errors.add(:assigned_burm_role_id, "this role has been assigned to another person.")
+  end
+
+  def set_assigned_role
+    return if role.ensemble_role?
+
+    if musical.signups.pluck(:assigned_burm_role_id).exclude?(burm_role_id)
+      update(assigned_burm_role_id: burm_role_id)
+    elsif musical.signups.pluck(:assigned_burm_role_id).exclude?(alternative_role_id)
+      update(assigned_burm_role_id: burm_role_id)
+    end
+  end
 
   def add_person_to_newsletter
     person&.subscribe!
