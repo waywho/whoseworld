@@ -2,7 +2,8 @@ class BURM::NewslettersMailer < BURMMailer
   def new_subscription
     @person = params[:person]
     mail(to: @person.email,
-         subject: burm_subject("Confirm your subscription!"))
+         subject: burm_subject("Confirm your subscription!"),
+         category: "new_subscription")
   end
 
   private

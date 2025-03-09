@@ -3,12 +3,14 @@ class BURM::SignupsMailer < BURMMailer
 
   def confirmation
     mail(to: @person.email,
-         subject: burm_subject("You've signed up to #{@signup.musical.title}!"))
+         subject: burm_subject("You've signed up to #{@signup.musical.title}!"),
+         category: "signup_confirmation")
   end
 
   def confirm_update
     mail(to: @person.email,
-         subject: burm_subject("You've updated the signup for #{@signup.musical.title}!"))
+         subject: burm_subject("You've updated the signup for #{@signup.musical.title}!"),
+         category: "signup_update")
   end
 
   private
