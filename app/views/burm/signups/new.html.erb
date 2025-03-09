@@ -30,6 +30,6 @@
     <p>We count on everyone who signed up to commit to be there in order to make the event a enjoyable experience for all. We also ask that you commit to contribute <%= number_to_currency(@musical.fee, locale: :de) %> to cover the costs of space rental and musician for the day.</p>
     <p>Once you've signed up, we will be in touch with the rest of the details.</p>
 
-    <%= render partial: "form", locals: { signup: @signup, musical: @musical } %>
+    <%= render partial: "form", locals: { signup: @signup, musical: @musical, roles: @roles } %>
   </div>
 </div>

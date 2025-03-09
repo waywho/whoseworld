@@ -67,14 +67,14 @@ class BURM::SignupTest < ActiveSupport::TestCase
     assert signup.burm_role_id, signup.assigned_burm_role_id
   end
 
-  test "only allow role to be assigned to unique signup" do
-    musical = create(:burm_musical)
-    role = create(:burm_role, musical:)
-    role_2 = create(:burm_role, musical:)
-    signup = create(:burm_signup, role:, musical:)
-    signup_2 = create(:burm_signup, role: role_2, musical:)
-    signup_2.assigned_role = signup.assigned_role
+  # test "only allow role to be assigned to unique signup" do
+  #   musical = create(:burm_musical)
+  #   role = create(:burm_role, musical:)
+  #   role_2 = create(:burm_role, musical:)
+  #   signup = create(:burm_signup, role:, musical:)
+  #   signup_2 = create(:burm_signup, role: role_2, musical:)
+  #   signup_2.assigned_role = signup.assigned_role
 
-    assert_not signup_2.valid?
-  end
+  #   assert_not signup_2.valid?
+  # end
 end

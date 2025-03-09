@@ -30,6 +30,7 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def edit
+    @roles = @musical.roles.group_by(&:role_type)
   end
 
   def update
