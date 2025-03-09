@@ -12,7 +12,9 @@ class MusicalMailerService
   end
 
   def send_mail
-    client.send_batch(base_request, composed_mails)
+    composed_mails.each_slice(500) do |batch|
+      client.send_batch(base_request, composed_mails)
+    end
   end
 
   private

@@ -10,8 +10,13 @@
     <%= person.input :agree_to_terms, label: t("simple_form.labels.person.agree_to_terms_html") %>
     <%= person.input :agree_to_emails %>
   <% end %>
+  <%= f.label :burm_role %>
+  <%= f.hint :burm_role, class: "mb-2" %>
+  <% @musical.roles.group_by(&:role_type).each do |role_type, roles| %>
+    <div class="italic"><%= "#{role_type&.humanize || "Other"} roles" %></div>
+    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles, label_method: :to_s, value_method: :id %>
+  <% end %>
 
-  <%= f.input :burm_role_id, as: :radio_buttons, collection: @musical.roles, label_method: :to_s, value_method: :id %>
   <%= f.input :alternative_role_id, collection: @musical.roles, label_method: :to_s, value_method: :id %>
   <%= f.input :role_sharing, as: :boolean %>
   <%= f.input :family_friends_watching, as: :boolean %>

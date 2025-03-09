@@ -20,14 +20,16 @@ en:
         agree_to_terms_html: "Yes, I agree to the <a href='https://berlinunrehearsedmusicals.com/terms-of-service'>terms and conditions</a> and <a href='https://berlinunrehearsedmusicals.com/privacy-policy'>privacy policy</a>."
         agree_to_emails: Yes, I would like to receive news about the next UnRehearsed Musicals events.
       burm_signup:
-        burm_role_id: Which role would you like to sing?
+        burm_role: Which role would you like to sing?
+        burm_role_id: ""
         alternative_role_id: What is your second choice of a role if your first choice is not available?
         role_sharing: I would be open to sharing my role with another singer.
         family_friends_watching: I would be ok for participants' friends and families to come and observe the FINAL sing-through.
         commit_to_pay: Please confirm you are committed to pay for the fee.
     hints:
       defaults:
-        burm_role_id: We practice gender blind casting, so you can sign up to whichever role you wish as long as you feel that it is suitable for your voice!
+        burm_role: We practice gender blind casting, so you can sign up to whichever role you wish as long as you feel that it is suitable for your voice!
+        burm_role_id: ""
         family_friends_watching: We sometimes have requests that friends and families might want to come and observe the final hour of the sing-through. But before we open this session, we would like consent from everyone. Please note that the final sing through  is not a performance and will not be open to the general public.
         commit_to_pay: If you cancel less than a week before, you will still be asked to pay for the fee.
 
