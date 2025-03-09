@@ -11,7 +11,7 @@ class BURM::SignupsController < SiteBaseController
 
   def new
     @signup = @musical.signups.build
-    @roles = @musical.roles.group_by(&:roll_type)
+    @roles = @musical.roles.group_by(&:role_type)
     @signup.build_person
   end
 
