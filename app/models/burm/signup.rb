@@ -24,7 +24,7 @@ class BURM::Signup < ApplicationRecord
   validates :person, uniqueness: { scope: %i[role musical],
             message: "cannot sign up for the same role and musical twice" },
             if: -> { !cancelled || (person.present? && role.present? && musical.present?) }
-  validates :assigned_role, uniqueness: { scope: %i[musical]}
+  validates :assigned_role, uniqueness: { scope: %i[musical]}, on: :creae
   # validate :unique_role_assignment
 
   # Callbacks
