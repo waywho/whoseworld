@@ -1,4 +1,5 @@
 class BURM::Person < ApplicationRecord
+  include BURMHostable
   nilify_blanks
   acts_as_taggable_on :subscriptions
 
@@ -59,6 +60,10 @@ class BURM::Person < ApplicationRecord
 
   def to_mail_hash
     { email:, name: full_name }
+  end
+
+  def unsubscribe_url
+    url_helpers.burm_newsletter_unsubscribe_url(self, host:)
   end
 
   private

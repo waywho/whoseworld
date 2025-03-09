@@ -1,4 +1,11 @@
 class BatchMailClient < Mailtrap::Client
+  def initialize(**params)
+    config = {
+      api_key: Rails.application.credentials.mailtrap_api_token
+    }
+    super(**params.merge(config))
+  end
+
   def send_batch(base, mails)
     request_body = {
       base: base,
@@ -13,7 +20,7 @@ class BatchMailClient < Mailtrap::Client
   private
 
   def request_url
-    "/api/#{sandbox ? "send/#{inbox_id}" : "batch"}"
+    "/api/batch"
   end
 end
 

@@ -6,22 +6,40 @@ ActiveAdmin.register BURM::Musical do
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
                 image: [:id, :cid, :kind, :image_file]
 
-  member_action :annouce_next, method: :put do
-    resource.announce_next
-    redirect_to resource_path(resource), notice: "Annouced!"
+  member_action :broadcast, method: :put do
+    resource.broadcast
+    redirect_to resource_path(resource), notice: "Broadcasted!"
   end
 
-  member_action :annouce_test, method: :put do
-    resource.announce_next(test: true)
-    redirect_to resource_path(resource), notice: "Test Annouced!"
+  action_item :broadcast, :only => [:show, :edit] do
+    link_to "Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
-  action_item :annouce_next, :only => [:show, :edit] do
-    link_to "Annouce Next", annouce_next_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  member_action :broadcast_test, method: :put do
+    resource.broadcast(test: true)
+    redirect_to resource_path(resource), notice: "Test Broadcasted!"
   end
 
-  action_item :annouce_test, :only => [:show, :edit] do
-    link_to "Annouce Test", annouce_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  action_item :broadcast_test, :only => [:show, :edit] do
+    link_to "Test Broadcast", broadcast_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  member_action :signup_broadcast, method: :put do
+    resource.broadcast_signup
+    redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
+  end
+
+  action_item :signup_broadcast, :only => [:show, :edit] do
+    link_to "Open Signup", signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  member_action :test_signup_broadcast, method: :put do
+    resource.broadcast_signup(test: true)
+    redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
+  end
+
+  action_item :test_signup_broadcast, :only => [:show, :edit] do
+    link_to "Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   index do
