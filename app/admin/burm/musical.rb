@@ -7,7 +7,7 @@ ActiveAdmin.register BURM::Musical do
                 image: [:id, :cid, :kind, :image_file]
 
   member_action :broadcast, method: :put do
-    resource.broadcast
+    resource.broadcast if Rails.env.production?
     redirect_to resource_path(resource), notice: "Broadcasted!"
   end
 
@@ -25,7 +25,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   member_action :signup_broadcast, method: :put do
-    resource.broadcast_signup
+    resource.broadcast_signup if Rails.env.production?
     redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
   end
 
