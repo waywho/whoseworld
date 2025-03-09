@@ -71,14 +71,14 @@ Rails.application.configure do
   # needed before production deployment
   config.action_mailer.default_url_options = { host: 'berlinunrehearsedmusicals.com' }
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mailersend.net",
-    :port      => 587,
-    :user_name => Rails.application.credentials.dig(:mailersend, :user_name),
-    :password  => Rails.application.credentials.dig(:mailersend, :api_key),
-    :starttls => true
-}
+  config.action_mailer.delivery_method = :mailtrap
+#   config.action_mailer.smtp_settings = {
+#     :address   => "smtp.mailersend.net",
+#     :port      => 587,
+#     :user_name => Rails.application.credentials.dig(:mailersend, :user_name),
+#     :password  => Rails.application.credentials.dig(:mailersend, :api_key),
+#     :starttls => true
+# }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
