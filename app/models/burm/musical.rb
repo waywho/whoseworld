@@ -4,7 +4,8 @@ class BURM::Musical < ApplicationRecord
   friendly_id :title, use: :slugged
   include Sluggable
   include Addressable
-  
+  include BURMHostable
+
   # Associations
   has_many :roles, class_name: "BURM::Role", foreign_key: "burm_musical_id",
            inverse_of: :musical, autosave: true, dependent: :destroy
@@ -43,8 +44,22 @@ class BURM::Musical < ApplicationRecord
     "#{start_at_time.strftime("%l:%M %p")} - #{end_at_time.strftime("%l:%M %p")}"
   end
 
-  def announce_next(test: false)
+  # could move to a decorator
+  def signup_url
+    url_helpers.new_burm_signup_url(self, host:)
+  end
+
+  def fee_with_currency(locale: :de)
+    helpers.number_to_currency(fee, locale:)
+  end
+
+  # Actions
+  def broadcast(test: false)
     MusicalMailJob.perform_later(:next_musical, self, test:)
+  end
+
+  def broadcast_signup(test: false)
+    MusicalMailJob.perform_later(:signup_open, self, test:)
   end
 
   private
