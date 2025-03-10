@@ -13,29 +13,7 @@
   <%= f.label :burm_role %>
   <%= f.hint :burm_role, class: "mb-2" %>
 
-  <% if roles["lead"] %>
-    <div class="italic">Lead roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["lead"], label_method: :to_s, value_method: :id %>
-  <% end %>
-
-  <% if roles["supporting"] %>
-    <div class="italic">Supporting roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["supporting"], label_method: :to_s, value_method: :id %>
-  <% end %>
-
-  <% if roles["featured"] %>
-    <div class="italic">Featured roles</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["featured"], label_method: :to_s, value_method: :id %>
-  <% end %>
-
-  <% if roles[nil] %>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles[nil], label_method: :to_s, value_method: :id %>
-  <% end %>
-
-  <% if roles["ensemble"] %>
-    <div class="italic">Ensemble</div>
-    <%= f.input :burm_role_id, as: :radio_buttons, collection: roles["ensemble"], label_method: :to_s, value_method: :id %>
-  <% end %>
+  <%= f.input :burm_role_id, as: :radio_buttons, collection: roles.values.flatten, label_method: :to_s, value_method: :id %>
 
   <%= f.input :alternative_role_id, collection: @musical.roles, label_method: :to_s, value_method: :id %>
   <%= f.input :role_sharing, as: :boolean %>
