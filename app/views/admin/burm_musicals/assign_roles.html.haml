@@ -1,0 +1,18 @@
+.grid.grid-rows.gap-2
+  .grid.grid-cols-6.gap-2.font-semibold.border.border-gray-50
+    %div Name
+    %div Voice Type
+    %div Preferred Role
+    %div Alternate Role
+    %div Assigned Role
+    %div Comments
+  - @signups.each do |signup|
+    = turbo_frame_tag dom_id(signup), class: "grid grid-cols-6 gap-2" do
+      %div= signup.person ? signup.person.full_name : signup.person_name
+      %div= signup.person&.voice_type
+      %div= signup.role.name
+      %div= signup.alternative_role&.name
+      = simple_form_for signup  do |s|
+        = s.input :id, value: signup.id, as: :hidden
+        = s.input :assigned_role, collection: @roles, value_method: :id, label_method: :name, label: ""
+      %div= signup.comments

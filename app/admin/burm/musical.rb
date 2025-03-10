@@ -6,6 +6,7 @@ ActiveAdmin.register BURM::Musical do
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
                 image: [:id, :cid, :kind, :image_file]
 
+  # Broadcast
   member_action :broadcast, method: :put do
     resource.broadcast if Rails.env.production?
     redirect_to resource_path(resource), notice: "Broadcasted!"
@@ -15,6 +16,7 @@ ActiveAdmin.register BURM::Musical do
     link_to "Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
+  # Test Broadcast
   member_action :broadcast_test, method: :put do
     resource.broadcast(test: true)
     redirect_to resource_path(resource), notice: "Test Broadcasted!"
@@ -24,6 +26,7 @@ ActiveAdmin.register BURM::Musical do
     link_to "Test Broadcast", broadcast_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
+  # Signup Broadcast
   member_action :signup_broadcast, method: :put do
     resource.broadcast_signup if Rails.env.production?
     redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
@@ -33,6 +36,7 @@ ActiveAdmin.register BURM::Musical do
     link_to "Open Signup", signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
+  # Test Signup Broadcast
   member_action :test_signup_broadcast, method: :put do
     resource.broadcast_signup(test: true)
     redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
@@ -40,6 +44,15 @@ ActiveAdmin.register BURM::Musical do
 
   action_item :test_signup_broadcast, :only => [:show, :edit] do
     link_to "Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  action_item :assign_roles, :only => [:show, :edit]  do
+    link_to "Assign Roles", assign_roles_admin_burm_musical_path(resource), class: "action-item-button", method: :get
+  end
+
+  member_action :assign_roles, method: :get do
+    @roles = resource.roles
+    @signups = resource.signups.includes(:person).order(:created_at)
   end
 
   index do
