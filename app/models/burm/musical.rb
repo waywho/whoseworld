@@ -30,8 +30,7 @@ class BURM::Musical < ApplicationRecord
   def signup_open_at
     "near future" unless signup_start_at
 
-    signup_time = signup_start_at&.strftime("%A, %B %e, %Y at %l:%M %p")
-    Time.zone.parse(signup_time.to_s).strftime("%A, %B %e, %Y at %l:%M %p")
+    signup_start_at&.strftime("%A, %B %e, %Y at %l:%M %p")
   end
 
   def date
@@ -39,9 +38,7 @@ class BURM::Musical < ApplicationRecord
   end
 
   def time
-    start_at_time = Time.zone.parse(start_at.to_s)
-    end_at_time = Time.zone.parse(end_at.to_s)
-    "#{start_at_time.strftime("%l:%M %p")} - #{end_at_time.strftime("%l:%M %p")}"
+    "#{start_at.strftime("%l:%M %p")} -#{end_at.strftime("%l:%M %p")}"
   end
 
   # could move to a decorator
