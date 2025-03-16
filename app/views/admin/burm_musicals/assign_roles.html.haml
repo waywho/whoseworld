@@ -3,9 +3,9 @@
     - @roles.each do |role|
       .flex
         - if @assigned_role_ids&.include?(role.id)
-          .bg-green-200.px-3.py-2.rounded-lg= role.name
+          .bg-green-200.px-3.py-2.rounded-lg= role.name.to_s
         - else
-          .px-3.py-2.rounded-lg= role.name
+          .px-3.py-2.rounded-lg= role.name.to_s
 
   .grid.grid-cols-6.border.border-gray-200.rounded-lg.divide-y.divide-gray-200
     - ['Name', 'Voice type', 'Preferred role', 'Alternate role', 'Assigned role', 'Comments'].each do |header|

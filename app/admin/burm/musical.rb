@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image,
+  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image, :roles_assigned_at, :excerpt_url,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
                 image: [:id, :cid, :kind, :image_file]
@@ -86,6 +86,8 @@ ActiveAdmin.register BURM::Musical do
       f.input :location
       f.input :fee
       f.input :signup_start_at
+      f.input :roles_assigned_at
+      f.input :except_url
     end
 
     f.inputs "Cover Image" do
