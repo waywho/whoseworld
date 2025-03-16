@@ -1,18 +1,12 @@
-.grid.grid-rows.gap-2
-  .grid.grid-cols-6.gap-2.font-semibold.border.border-gray-50
-    %div Name
-    %div Voice Type
-    %div Preferred Role
-    %div Alternate Role
-    %div Assigned Role
-    %div Comments
+.grid.grid-cols-6.border.border-gray-200.rounded-lg.divide-y.divide-gray-200
+  - ['Name', 'Voice type', 'Preferred role', 'Alternate role', 'Assigned role', 'Comments'].each do |header|
+    .font-semibold.bg-gray-50.px-3.py-2= header
   - @signups.each do |signup|
-    = turbo_frame_tag dom_id(signup), class: "grid grid-cols-6 gap-2" do
-      %div= signup.person ? signup.person.full_name : signup.person_name
-      %div= signup.person&.voice_type
-      %div= signup.role.name
-      %div= signup.alternative_role&.name
-      = simple_form_for signup  do |s|
-        = s.input :id, value: signup.id, as: :hidden
-        = s.input :assigned_role, collection: @roles, value_method: :id, label_method: :name, label: ""
-      %div= signup.comments
+    .px-3.py-2= signup.person ? signup.person.full_name : signup.person_name
+    .px-3.py-2= signup.person&.voice_type
+    .px-3.py-2= signup.role.name
+    .px-3.py-2= signup.alternative_role&.name
+    = simple_form_for :signup, url: assign_roles_admin_burm_musical_path, method: :put, data: { controller: "submit-by-select" } do |s|
+      = s.input :id, as: :hidden, input_html: { value: signup.id }
+      = s.input :assigned_burm_role_id, collection: @roles, value_method: :id, label_method: :name, label: "", required: false, input_html: { data: { action: "submit-by-select#submit" } }
+    .px-3.py-2= signup.comments

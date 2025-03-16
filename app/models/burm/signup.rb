@@ -10,7 +10,7 @@ class BURM::Signup < ApplicationRecord
   belongs_to :alternative_role, optional: true, class_name: "BURM::Role"
   belongs_to :assigned_role, optional: true, class_name: "BURM::Role", foreign_key: "assigned_burm_role_id"
 
-  accepts_nested_attributes_for :person, reject_if: :blank_or_invalid_person
+  accepts_nested_attributes_for :person
 
   # Validations
   validates :commit_to_pay, acceptance: true
@@ -28,7 +28,7 @@ class BURM::Signup < ApplicationRecord
   # validate :unique_role_assignment
 
   # Callbacks
-  before_validation :find_or_build_person
+  before_validation :find_or_build_person, on: :create
   before_save :set_cached_attributes
   before_save :set_cancelled_at
   after_commit :set_assigned_role, on: :create
@@ -100,7 +100,7 @@ class BURM::Signup < ApplicationRecord
   end
 
   def blank_or_invalid_person(attributes)
-    all_blank = attributes.all? { |key, value| key == "_destroy" || value.blank? }
+    all_blank = attributes.except("_destroy").all? { |_key, value| value.blank? }
 
     all_blank || !build_person(attributes).valid?
   end

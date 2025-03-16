@@ -21,6 +21,7 @@ module Whoseworld
     config.time_zone = "Berlin"
     config.hosts = nil
     config.autoload_lib(ignore: %w(assets tasks))
+    config.importmap.paths << ActiveAdmin::Engine.root.join("config", "importmap.rb")
 
     config.view_component.generate_sidecar = true
     # config.view_component.preview_paths << "#{Rails.root}/test/components/previews"
