@@ -87,7 +87,7 @@ ActiveAdmin.register BURM::Musical do
       f.input :fee
       f.input :signup_start_at
       f.input :roles_assigned_at
-      f.input :except_url
+      f.input :excerpt_url
     end
 
     f.inputs "Cover Image" do
