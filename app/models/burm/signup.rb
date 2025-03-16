@@ -31,8 +31,9 @@ class BURM::Signup < ApplicationRecord
   before_validation :find_or_build_person, on: :create
   before_save :set_cached_attributes
   before_save :set_cancelled_at
-  after_commit :set_assigned_role, on: :create
+  before_create :set_assigned_role
   after_commit :add_person_to_newsletter, on: :create
+  after_create_commit :broadcast_assignment
 
   private
 
@@ -47,9 +48,9 @@ class BURM::Signup < ApplicationRecord
     return if role.ensemble_role?
 
     if musical.signups.pluck(:assigned_burm_role_id).exclude?(burm_role_id)
-      update(assigned_burm_role_id: burm_role_id)
+      self.assigned_burm_role_id = burm_role_id
     elsif musical.signups.pluck(:assigned_burm_role_id).exclude?(alternative_role_id)
-      update(assigned_burm_role_id: burm_role_id)
+      self.assigned_burm_role_id = burm_role_id
     end
   end
 
@@ -109,5 +110,11 @@ class BURM::Signup < ApplicationRecord
     self.person_name = person&.full_name
     self.role_name = role&.name
     self.musical_title = musical&.title
+  end
+
+  def broadcast_assignment
+    return unless musical&.roles_assigned_at
+
+    BURM::MusicalsMailer.with(musical:, person:).role_assignments.deliver_later
   end
 end
