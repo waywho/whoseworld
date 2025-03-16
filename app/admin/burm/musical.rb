@@ -53,11 +53,12 @@ ActiveAdmin.register BURM::Musical do
   member_action :assign_roles, method: [:get, :put] do
     @roles = resource.roles
     @signups = resource.signups.includes(:person).order(:created_at)
+    @assigned_role_ids = @signups.pluck(:assigned_burm_role_id).compact.uniq
 
     if request.put?
       signup = BURM::Signup.find(params[:burm_signup][:id])
       signup.update!(assigned_burm_role_id: params[:burm_signup][:assigned_burm_role_id])
-      render :assign_roles
+      redirect_to assign_roles_admin_burm_musical_path(resource)
     else
       render :assign_roles
     end
