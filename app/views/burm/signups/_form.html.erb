@@ -5,7 +5,7 @@
       <%= person.input :first_name %>
       <%= person.input :last_name %>
       <%= person.input :email %>
-      <%= person.input :voice_type, collection: BURM::Person.voice_types %>
+      <%= person.input :voice_type, collection: BURM::Person.voice_types.keys %>
     </div>
     <%= person.input :agree_to_terms, label: t("simple_form.labels.person.agree_to_terms_html") %>
     <%= person.input :agree_to_emails %>

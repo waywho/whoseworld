@@ -17,7 +17,7 @@ class BURM::Person < ApplicationRecord
   validates :agree_to_terms, acceptance: true
 
   # Enums
-  enum :voice_type, %i[dont_know soprano alto tenor baritone bass], validate: true
+  enum :voice_type, { dont_know: 0, soprano: 1, alto: 2, tenor: 3, baritone: 4, bass: 5 }, valid: true
 
   # Scope
   scope :subscribers, -> { tagged_with("newsletter") }

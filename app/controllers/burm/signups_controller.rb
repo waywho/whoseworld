@@ -16,6 +16,7 @@ class BURM::SignupsController < SiteBaseController
 
   def create
     @signup = @musical.signups.build(signup_params)
+    @signup.assign_attributes(signup_params)
 
     if @signup.save
       BURM::SignupsMailer.with(signup: @signup).confirmation.deliver_now

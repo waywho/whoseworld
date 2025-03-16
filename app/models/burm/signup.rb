@@ -18,12 +18,12 @@ class BURM::Signup < ApplicationRecord
   validate :musical_signup_open, on: :create
   validate :association_or_cached, on: :update
   # only validate on :create because we cache the attributes
-  validates :person, presence: true, on: :create
   validates :role, presence: true, on: :create
   validates :musical, presence: true, on: :create
-  validates :person, uniqueness: { scope: %i[role musical],
-            message: "cannot sign up for the same role and musical twice" },
-            if: -> { !cancelled || (person.present? && role.present? && musical.present?) }
+  # validates :person, uniqueness: { scope: %i[role musical],
+  #           message: "cannot sign up for the same role and musical twice" },
+  #           if: -> { !cancelled || (person.present? && role.present? && musical.present?) },
+  #           on: :create
   # validates :assigned_role, uniqueness: { scope: %i[musical]}
   # validate :unique_role_assignment
 
