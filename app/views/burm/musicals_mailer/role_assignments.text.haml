@@ -1,0 +1,44 @@
+= "#{@musical.title}: Preparing for UnRehearsed"
+Roles & Music
+
+= "Dear #{@person.first_name},"
+
+= "Thank you very much for signing up to sing #{@musical.title} We're looking forward to see you all at #{@musical.time} on #{@musical.date}!"
+
+Today we're sending you information about role assignments, and the music excerpts for the UnReherased.
+
+Role Assignments:
+- if @musical.roles.lead_role
+  Lead roless
+
+  - @musical.roles.lead_role.each do |lead|
+    = "- #{lead.name}: #{lead.assigned_to}"
+
+- if @musical.roles.supporting_role
+  Supporting roles
+  - @musical.roles.supporting_role.each do |supporting|
+    = "- #{supporting.name}: #{supporting.assigned_to}"
+
+- if @musical.roles.featured_role
+  Featured roles
+  - @musical.roles.featured_role.each do |featured|
+    = "- #{featured.name}: #{featured.assigned_to}"
+
+- if !(all_roles = @musical.roles.where(role_type: nil)).blank?
+  - all_roles.each do |role|
+    = "-#{role.name}: #{role.assigned_to}"
+
+
+Music excerpts
+You can download the music excerpts for the UnRehearsed here:
+= link_to "Download music excerpt", @musical.excerpt_url || ""
+
+As always, we ask every participant to contribute
+= @musical.fee_with_currency
+to cover the cost of running the workshop. Please make payment via the following:
+= link_to "Pay via Paypal", "https://www.paypal.com/paypalme/waywho/15EUR"
+
+Looking forward to singing with you,
+
+WeiHsi
+Berlin UnRehearsed Musicals

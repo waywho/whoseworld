@@ -59,6 +59,13 @@ class BURM::Musical < ApplicationRecord
     MusicalMailJob.perform_later(:signup_open, self, test:)
   end
 
+  def broadcast_roles(test: false)
+    send_signups = test ? User.where(admin: true) : signups.map(&:person)
+    send_signups.each do |person|
+      BURM::MusicalsMailer.with(musical: self, person:).role_assignments.deliver_later
+    end
+  end
+
   private
 
   def build_from_bulk_roles

@@ -16,4 +16,8 @@ class BURM::Role < ApplicationRecord
   def to_s
     [name, voice_type].compact.join(" - ")
   end
+
+  def assigned_to
+    musical.signups.find_by(assigned_burm_role_id: id)&.person&.full_name
+  end
 end

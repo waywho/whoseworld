@@ -64,6 +64,22 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
+  action_item :broadcast_assignments, :only => [:show, :edit]  do
+    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  member_action :broadcast_assignments, method: :put do
+    resource.broadcast_roles
+  end
+
+  action_item :broadcast_assignments_test, :only => [:show, :edit]  do
+    link_to "Broadcast Assignments Test", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  member_action :broadcast_assignments_test, method: :put do
+    resource.broadcast_roles(test: true)
+  end
+
   index do
     selectable_column
     id_column

@@ -19,7 +19,7 @@ class BURM::SignupsController < SiteBaseController
     @signup.assign_attributes(signup_params)
 
     if @signup.save
-      BURM::SignupsMailer.with(signup: @signup).confirmation.deliver_now
+      BURM::SignupsMailer.with(signup: @signup).confirmation.deliver_later
 
       redirect_to burm_signup_path(@musical, @signup, status: :created)
     else

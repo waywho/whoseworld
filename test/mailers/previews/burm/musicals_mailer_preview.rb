@@ -6,4 +6,11 @@ class BURM::MusicalsMailerPreview < ActionMailer::Preview
 
     BURM::MusicalsMailer.with(musical:, person:).next_musical
   end
+
+  def role_assignments
+    musical = BURM::Musical.last
+    person = BURM::Person.last
+
+    BURM::MusicalsMailer.with(musical:, person:).role_assignments
+  end
 end

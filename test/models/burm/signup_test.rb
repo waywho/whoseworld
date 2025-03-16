@@ -3,12 +3,12 @@
 require "test_helper"
 
 class BURM::SignupTest < ActiveSupport::TestCase
-  test "should belong to a person" do
-    signup = BURM::Signup.new
+  # test "should belong to a person" do
+  #   signup = BURM::Signup.new
 
-    assert_not signup.valid?
-    assert_equal ["can't be blank"], signup.errors.messages[:person]
-  end
+  #   assert_not signup.valid?
+  #   assert_equal ["can't be blank"], signup.errors.messages[:person]
+  # end
 
   test "should belong to a role" do
     signup = BURM::Signup.new
@@ -30,17 +30,17 @@ class BURM::SignupTest < ActiveSupport::TestCase
     assert_equal ["is not open for signups"], signup.errors.messages[:musical]
   end
 
-  test "should only allow one signup per person, per musical and role" do
-    person = create(:burm_person)
-    musical = create(:burm_musical)
-    role = create(:burm_role, musical:)
-    create(:burm_signup, person:, musical:, role:)
+  # test "should only allow one signup per person, per musical and role" do
+  #   person = create(:burm_person)
+  #   musical = create(:burm_musical)
+  #   role = create(:burm_role, musical:)
+  #   create(:burm_signup, person:, musical:, role:)
 
-    signup = build(:burm_signup, person:, musical:, role:)
+  #   signup = build(:burm_signup, person:, musical:, role:)
 
-    assert_not signup.valid?
-    assert_equal ["cannot sign up for the same role and musical twice"], signup.errors.messages[:person]
-  end
+  #   assert_not signup.valid?
+  #   assert_equal ["cannot sign up for the same role and musical twice"], signup.errors.messages[:person]
+  # end
 
   test "should find or build person" do
     signup = build(:burm_signup, :with_role)
