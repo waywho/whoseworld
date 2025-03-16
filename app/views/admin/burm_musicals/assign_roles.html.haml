@@ -6,7 +6,7 @@
     .px-3.py-2= signup.person&.voice_type
     .px-3.py-2= signup.role.name
     .px-3.py-2= signup.alternative_role&.name
-    = simple_form_for :signup, url: assign_roles_admin_burm_musical_path, method: :put, data: { controller: "submit-by-select" } do |s|
+    = simple_form_for signup, url: assign_roles_admin_burm_musical_path, method: :put, data: { controller: "submit-by-select" } do |s|
       = s.input :id, as: :hidden, input_html: { value: signup.id }
-      = s.input :assigned_burm_role_id, collection: @roles, value_method: :id, label_method: :name, label: "", required: false, input_html: { data: { action: "submit-by-select#submit" } }
+      = s.input :assigned_burm_role_id, collection: @roles, value_method: :id, label_method: :name, label: "", include_blank: true, required: false, input_html: { data: { action: "submit-by-select#submit" } }
     .px-3.py-2= signup.comments

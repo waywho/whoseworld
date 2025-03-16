@@ -47,17 +47,19 @@ ActiveAdmin.register BURM::Musical do
   end
 
   action_item :assign_roles, :only => [:show, :edit]  do
-    link_to "Assign Roles", assign_roles_admin_burm_musical_path(resource), class: "action-item-button", method: :get
+    link_to "Assign Roles", assign_roles_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
   end
 
   member_action :assign_roles, method: [:get, :put] do
+    @roles = resource.roles
+    @signups = resource.signups.includes(:person).order(:created_at)
+
     if request.put?
-      signup = BURM::Signup.find(params[:signup][:id])
-      signup.update!(assigned_burm_role_id: params[:signup][:assigned_burm_role_id])
-      head :ok
+      signup = BURM::Signup.find(params[:burm_signup][:id])
+      signup.update!(assigned_burm_role_id: params[:burm_signup][:assigned_burm_role_id])
+      render :assign_roles
     else
-      @roles = resource.roles
-      @signups = resource.signups.includes(:person).order(:created_at)
+      render :assign_roles
     end
   end
 
