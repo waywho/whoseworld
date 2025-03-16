@@ -8,6 +8,8 @@ end
 # https://stackoverflow.com/questions/27032902/activeadmin-with-friendly-id
 module ActiveAdminFriendlyIdScoping
   def find_resource
+    return super if action_name == "index"
+
     if resource_class.is_a? FriendlyId
       scoped_collection.friendly.find params[:id]
     else
