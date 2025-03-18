@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LayoutComponent < ViewComponent::Base
+  include ImageHelper
+  
   renders_one :navigation, ->(&block) do
     case nav_position
     when :top

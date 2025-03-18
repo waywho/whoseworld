@@ -2,6 +2,7 @@
 
 class GalleryComponent < ViewComponent::Base
   include IconsHelper
+  include ImageHelper
 
   def initialize(gallery:, admin:false)
     @gallery = gallery
