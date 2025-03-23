@@ -18,6 +18,8 @@ class BURM::Musical < ApplicationRecord
 
   has_many :songs, class_name: "BURM::Song", foreign_key: "burm_musical_id", dependent: :destroy
   accepts_nested_attributes_for :songs, allow_destroy: true, reject_if: proc { |attrs| attrs[:title].blank? && attrs[:role_ids].compact_blank!.blank? && attrs[:page_number].blank? }
+  has_many :rehearsal_orders, class_name: "BURM::RehearsalOrder", foreign_key: "burm_musical_id"
+  accepts_nested_attributes_for :rehearsal_orders, allow_destroy: true, reject_if: proc { |attrs| attrs[:burm_song_id].blank? }
 
   # Attribute
   attribute :bulk_roles, :text

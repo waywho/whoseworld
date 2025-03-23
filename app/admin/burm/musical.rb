@@ -5,7 +5,8 @@ ActiveAdmin.register BURM::Musical do
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
                 image: [:id, :cid, :kind, :image_file],
-                songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []]
+                songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []],
+                rehearsal_orders_attributes: [:id, :block, :order, :burm_song_id, :_destroy]
 
   # Broadcast
   member_action :broadcast, method: :put do
@@ -82,6 +83,26 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
+  action_item :rehearsal, :only => [:show, :edit]  do
+    link_to "Rehearsal", rehearsal_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
+  end
+
+  member_action :rehearsal, method: [:get, :put] do
+    @songs = resource.songs.order(:order)
+
+    if request.put?
+      params.permit!
+      resource.update(params[:burm_musical])
+      redirect_to rehearsal_admin_burm_musical_path(resource)
+    else
+      rehearsal_block_no = (@songs.size - resource.rehearsal_orders.size)
+      (0..rehearsal_block_no).to_a.in_groups(4).each_with_index { |group, index| group.compact.map.with_index { |n, m_index| resource.rehearsal_orders.build(block: index + 1, order: m_index + 1) } }
+
+      resource.rehearsal_orders.group_by(&:block)
+      render :rehearsal
+    end
+  end
+
   action_item :broadcast_assignments, :only => [:show, :edit]  do
     link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_broadcasted_at?
   end
@@ -103,7 +124,19 @@ ActiveAdmin.register BURM::Musical do
   end
 
   member_action :export_songs, method: :get do
-    csv = CsvDb.export(resource, :songs, json_options: { only: %i[order title page_number], methods: [:role_list] }, assoc_preload: [:roles])
+    csv = CsvDb.export(resource, :songs, json_options: { only: %i[order title page_number], methods: [:role_list] }, assoc_preload: [:roles], order: [:order])
+
+    respond_to do |format|
+      format.csv { send_data csv, filename: "#{resource.title.parameterize}-songs.csv" }
+    end
+  end
+
+  action_item :export_rehearsal, :only => [:rehearsal]  do
+    link_to "Export", export_rehearsal_admin_burm_musical_path(resource, format: "csv"), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
+  end
+
+  member_action :export_rehearsal, method: :get do
+    csv = CsvDb.export(resource, :rehearsal_orders, json_options: { only: %i[block order], methods: [:song_title, :role_list] }, assoc_preload: [:burm_song], order: [:block, :order])
 
     respond_to do |format|
       format.csv { send_data csv, filename: "#{resource.title.parameterize}-songs.csv" }

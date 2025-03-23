@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_111933) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_125852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -111,6 +111,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_111933) do
     t.index ["email"], name: "index_burm_people_on_email"
     t.index ["id"], name: "index_burm_people_on_id", unique: true
     t.index ["voice_type"], name: "index_burm_people_on_voice_type"
+  end
+
+  create_table "burm_rehearsal_orders", force: :cascade do |t|
+    t.bigint "burm_musical_id", null: false
+    t.bigint "burm_song_id", null: false
+    t.integer "block"
+    t.integer "order"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["burm_musical_id"], name: "index_burm_rehearsal_orders_on_burm_musical_id"
+    t.index ["burm_song_id"], name: "index_burm_rehearsal_orders_on_burm_song_id"
   end
 
   create_table "burm_roles", force: :cascade do |t|
@@ -318,6 +331,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_111933) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "burm_rehearsal_orders", "burm_musicals"
+  add_foreign_key "burm_rehearsal_orders", "burm_songs"
   add_foreign_key "burm_roles", "burm_musicals"
   add_foreign_key "burm_signups", "burm_musicals"
   add_foreign_key "burm_signups", "burm_people"

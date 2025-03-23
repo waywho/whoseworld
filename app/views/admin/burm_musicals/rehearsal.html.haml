@@ -1,0 +1,24 @@
+.flex.gap-8{data: { controller: "highlight-by-select" }}
+  %div{ class: "w-3/5" }
+    = semantic_form_for resource, url: rehearsal_admin_burm_musical_path(resource),  method: :put do |form|
+      .divide-y
+        = form.semantic_fields_for :rehearsal_orders do |rehearsal|
+          .pb-4
+            - if rehearsal.object.persisted?
+              = rehearsal.input :id, as: :hidden
+            .flex.gap-4
+              = rehearsal.input :block, wrapper_html: { class: "list-none flex-1" }
+              = rehearsal.input :order, wrapper_html: { class: "list-none flex-1" }
+            = rehearsal.input :burm_song_id, collection: @songs, as: :select, wrapper_html: { class: "list-none" }, input_html: { data: { action: "highlight-by-select#highlight", highlight_by_select_target: "select"}}
+      = form.actions do
+        = form.action :submit, :as => :button
+  %div{ class: "w-2/5 relative" }
+    .fixed.w-full
+      .h2 Songs
+      .divide-y
+        - @songs.each do |song|
+          .py-1
+            %span{data: { highlight_by_select_target: "highlightItem", highlight_item_id: song.id }}
+              = "#{song.order}. "
+              = song.title
+
