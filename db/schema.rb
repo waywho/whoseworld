@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_22_215202) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_093957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -83,6 +83,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_22_215202) do
     t.string "quote"
     t.datetime "roles_assigned_at"
     t.string "excerpt_url"
+    t.datetime "pusblished_at"
+    t.datetime "signup_broadcasted_at"
+    t.datetime "roles_broadcasted_at"
+    t.datetime "join_instructions_broadcasted_at"
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 

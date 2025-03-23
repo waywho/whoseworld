@@ -56,18 +56,28 @@ class BURM::Musical < ApplicationRecord
 
   # Actions
   def broadcast(test: false)
+    return if !test && published_at?
+
     MusicalMailJob.perform_later(:next_musical, self, test:)
+    update_column(:published_at, Time.zone.now) unless test
   end
 
   def broadcast_signup(test: false)
+    return if !test && signup_broadcasted_at?
+
     MusicalMailJob.perform_later(:signup_open, self, test:)
+    update_column(:signup_broadcasted_at, Time.zone.now) unless test
   end
 
   def broadcast_roles(test: false)
+    return if !test && roles_broadcasted_at?
+    
     send_signups = test ? User.where(admin: true) : signups.map(&:person)
+
     send_signups.each do |person|
       BURM::MusicalsMailer.with(musical: self, person:).role_assignments.deliver_later
     end
+    update_column(:roles_broadcasted_at, Time.zone.now) unless test
   end
 
   private

@@ -13,7 +13,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   action_item :broadcast, :only => [:show, :edit] do
-    link_to "Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+    link_to "Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.published_at?
   end
 
   # Test Broadcast
@@ -65,11 +65,11 @@ ActiveAdmin.register BURM::Musical do
   end
 
   action_item :broadcast_assignments, :only => [:show, :edit]  do
-    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_broadcasted_at?
   end
 
   member_action :broadcast_assignments, method: :put do
-    resource.broadcast_roles
+    resource.broadcast_roles if Rails.env.production?
   end
 
   action_item :broadcast_assignments_test, :only => [:show, :edit]  do
