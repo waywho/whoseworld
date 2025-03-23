@@ -20,5 +20,18 @@ class CsvDb
       end
       upload_count
     end
+
+    def export(resource, association = nil, json_options: {})
+      data = (association.present? ? resource.send(association) : resource)
+      columns = json_options[:only] || resource.class.column_names
+      columns += json_options[:methods] if json_options[:methods]
+
+      CSV.generate(headers: true) do |csv|
+        csv << columns.map { _1.to_s.humanize }
+        data.each do |record|
+          csv << record.as_json(**json_options).values
+        end
+      end
+    end
   end
 end

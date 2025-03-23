@@ -4,7 +4,8 @@ ActiveAdmin.register BURM::Musical do
   permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at, :excerpt_url,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
-                image: [:id, :cid, :kind, :image_file]
+                image: [:id, :cid, :kind, :image_file],
+                songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []]
 
   # Broadcast
   member_action :broadcast, method: :put do
@@ -64,6 +65,23 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
+  action_item :songs, :only => [:show, :edit]  do
+    link_to "Songs", songs_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
+  end
+
+  member_action :songs, method: [:get, :put] do
+    @roles = resource.roles
+    @songs = resource.songs.order(:order)
+
+    if request.put?
+      params.permit!
+      resource.update(params[:burm_musical])
+      redirect_to songs_admin_burm_musical_path(resource)
+    else
+      render :songs
+    end
+  end
+
   action_item :broadcast_assignments, :only => [:show, :edit]  do
     link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_broadcasted_at?
   end
@@ -78,6 +96,18 @@ ActiveAdmin.register BURM::Musical do
 
   member_action :broadcast_assignments_test, method: :put do
     resource.broadcast_roles(test: true)
+  end
+
+  action_item :export_songs, :only => [:songs]  do
+    link_to "Export", export_songs_admin_burm_musical_path(resource, format: "csv"), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
+  end
+
+  member_action :export_songs, method: :get do
+    csv = CsvDb.export(resource, :songs, json_options: { only: %i[order title page_number], methods: [:role_list] })
+
+    respond_to do |format|
+      format.csv { send_data csv, filename: "#{resource.title.parameterize}-songs.csv" }
+    end
   end
 
   index do

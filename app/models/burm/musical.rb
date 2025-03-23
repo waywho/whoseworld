@@ -17,7 +17,7 @@ class BURM::Musical < ApplicationRecord
   accepts_nested_attributes_for :image, allow_destroy: true
 
   has_many :songs, class_name: "BURM::Song", foreign_key: "burm_musical_id", dependent: :destroy
-  accepts_nested_attributes_for :songs, allow_destroy: true, reject_if: proc { |attrs| attrs[:title].blank? }
+  accepts_nested_attributes_for :songs, allow_destroy: true, reject_if: proc { |attrs| attrs[:title].blank? && attrs[:role_ids].compact_blank!.blank? && attrs[:page_number].blank? }
 
   # Attribute
   attribute :bulk_roles, :text
@@ -71,7 +71,7 @@ class BURM::Musical < ApplicationRecord
 
   def broadcast_roles(test: false)
     return if !test && roles_broadcasted_at?
-    
+
     send_signups = test ? User.where(admin: true) : signups.map(&:person)
 
     send_signups.each do |person|

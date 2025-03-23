@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_093957) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_111933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_093957) do
     t.string "quote"
     t.datetime "roles_assigned_at"
     t.string "excerpt_url"
-    t.datetime "pusblished_at"
+    t.datetime "published_at"
     t.datetime "signup_broadcasted_at"
     t.datetime "roles_broadcasted_at"
     t.datetime "join_instructions_broadcasted_at"
@@ -154,6 +154,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_093957) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "page_number"
     t.index ["burm_musical_id"], name: "index_burm_songs_on_burm_musical_id"
   end
 

@@ -1,0 +1,8 @@
+= semantic_form_for resource, url: songs_admin_burm_musical_path(resource),  method: :put do |form|
+  = form.semantic_fields_for :songs do |song|
+    = song.input :id, as: :hidden
+    = song.input :title, input_html: { disabled: true },wrapper_html: { class: "list-none" }
+    = song.input :page_number, wrapper_html: { class: "list-none" }
+    = song.input :roles, collection: @roles, as: :check_boxes, wrapper_html: { class: "list-none [&_ol]:flex [&_ol]:flex-wrap [&_ol]:gap-2" }
+  = form.actions do
+    = form.action :submit, :as => :button
