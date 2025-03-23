@@ -1,0 +1,54 @@
+= "#{@musical.title}: Joining Instruction"
+
+= "Dear #{@person.first_name},"
+
+= "#{@musical.title} is coming up on #{@musical.date}!"
+
+Today we're sending you the detail instructions for the day.
+
+Location & Contacts
+
+We are rehearsing at #{@musical.location_name}.
+
+= "Address: #{@musical.location}"
+= @musical.address.direction_notes
+
+If you have trouble finding us, you can contact us (via Whatsapp, Signal or Telegram): (+44 7595920888)
+
+
+Schedule & Check-In
+
+
+= "Time: #{@musical.time}"
+= @musical.checkin_instructions
+
+
+The schedule for the day is available for download.
+
+Download schedule
+= @musical.schedule_url
+
+What to Bring
+There will be a lunch break, there are some restaurants nearby, but you are welcome to bring your own lunch. We will provide some fruits and snacks, but we have no drink making facilities on site, so please bring your own water/drinks.
+
+We do not provide copies of the music. Please do bring your own copy. You can download the music excerpts for the UnRehearsed here:
+= @musical.excerpt_url
+
+- if @musical.songlist_url.present?
+  To help you navigate the score, you can also download the list of songs and the roles that are singing them:
+  = @musical.songlist_url
+
+Note: If you are unable to sing the role or attend the event, please let us know as soon as possible so that we can re-assign the role to someone else and the spot to someone on the waiting list.
+
+Lastly, if you haven't done so, please do pay the Unrehearsed fee of
+= @musical.fee_with_currency
+to cover the cost of running the workshop. Please make payment via the following paypal link: "https://www.paypal.com/paypalme/waywho/15EUR"
+
+
+(Please note if you cancel less than a week before, you will still be asked to pay for the fee, we need to rely on people's commitment to put on this event).
+
+
+Looking forward to singing with you,
+
+WeiHsi
+Berlin UnRehearsed Musicals

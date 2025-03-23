@@ -1,0 +1,67 @@
+%h1= "#{@musical.title}: Joining Instruction"
+
+%p= "Dear #{@person.first_name},"
+
+%p
+  = "#{@musical.title} is coming up"
+  %b= "on #{@musical.date}!"
+
+%p Today we're sending you the detail instructions for the day.
+
+%h2 Location & Contacts
+%p
+  We are rehearsing at #{@musical.location_name}.
+%p
+  %b Address:
+  = @musical.location
+%p= @musical.address.direction_notes
+
+%p If you have trouble finding us, you can contact us (via Whatsapp, Signal or Telegram): (+44 7595920888)
+
+%h2 Schedule & Check-In
+
+%p
+  %b Time:
+  = @musical.time
+%p= @musical.checkin_instructions
+
+%p
+  The schedule for the day is available for download.
+.flex-center
+  = link_to "Download schedule", @musical.schedule_url || "", class: "btn btn-secondary"
+
+%h2 What to Bring
+%p There will be a lunch break, there are some restaurants nearby, but you are welcome to bring your own lunch. We will provide some fruits and snacks, but we have no drink making facilities on site, so please bring your own water/drinks.
+
+%p
+  We do not provide copies of the music. Please do bring your own copy. You can download the music excerpts for the UnRehearsed here:
+  .flex-center
+    = link_to "Download music excerpt", @musical.excerpt_url || "", class: "btn btn-secondary"
+%p
+  To help you navigate the score, you can also download the list of songs and the roles that are singing them.
+  .flex-center
+    = link_to "Download song list", @musical.songlist_url || "", class: "btn btn-secondary"
+
+%p
+  %i Note: If you are unable to sing the role or attend the event, please let us know as soon as possible so that we can re-assign the role to someone else and the spot to someone on the waiting list.
+
+%br
+%p
+  %b Lastly, if you haven't done so,
+  please do pay the Unrehearsed fee of
+  = @musical.fee_with_currency
+  to cover the cost of running the workshop. Please make payment via the following:
+
+  .flex-center
+    = link_to "Pay via Paypal", "https://www.paypal.com/paypalme/waywho/15EUR", class: "btn btn-primary"
+
+%p
+  %i (Please note if you cancel less than a week before, you will still be asked to pay for the fee, we need to rely on people's commitment to put on this event).
+
+%p
+  Looking forward to singing with you,
+  %br
+  %br
+  WeiHsi
+  %br
+  Berlin UnRehearsed Musicals

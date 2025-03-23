@@ -39,6 +39,12 @@
   .flex-center
     = link_to "Download music excerpt", @musical.excerpt_url || "", class: "btn btn-secondary"
 
+- if @musical.songlist_url.present?
+  %p
+    To help you navigate the score, you can also download the list of songs and the roles that are singing them.
+    .flex-center
+      = link_to "Download song list", @musical.songlist_url || "", class: "btn btn-secondary"
+
 %p
   As always, we ask every participant to contribute
   = @musical.fee_with_currency

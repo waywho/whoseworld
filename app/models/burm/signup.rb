@@ -33,7 +33,7 @@ class BURM::Signup < ApplicationRecord
   before_save :set_cancelled_at
   before_create :set_assigned_role
   after_commit :add_person_to_newsletter, on: :create
-  after_create_commit :broadcast_assignment
+  after_create_commit :broadcast_info
 
   private
 
@@ -112,9 +112,12 @@ class BURM::Signup < ApplicationRecord
     self.musical_title = musical&.title
   end
 
-  def broadcast_assignment
-    return unless musical&.roles_assigned_at
-
-    BURM::MusicalsMailer.with(musical:, person:).role_assignments.deliver_later
+  def broadcast_info
+    if musical&.roles_broadcasted_at
+      BURM::MusicalsMailer.with(musical:, person:).role_assignments.deliver_later
+    end
+    if musical&.joining_instruction_broadcasted_at
+      BURM::MusicalsMailer.with(musical:, person:).joining_instruction.deliver_later
+    end
   end
 end

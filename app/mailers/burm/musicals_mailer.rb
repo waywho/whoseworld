@@ -17,6 +17,15 @@ class BURM::MusicalsMailer < BURMMailer
            category: "role_assignments")
   end
 
+  def joining_instruction
+    @musical = params[:musical]
+    @person = params[:person]
+
+    mail(to: @person.email,
+         subject: burm_subject("Joining Instructions for #{@musical.title}"),
+         category: "joining_instruction")
+  end
+
   def signup_url(*params)
     host = Rails.env.production? ? "berlinunrehearsedmusicals.com" : "berlinunrehearsedmusicals.test"
 

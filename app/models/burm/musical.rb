@@ -82,6 +82,17 @@ class BURM::Musical < ApplicationRecord
     update_column(:roles_broadcasted_at, Time.zone.now) unless test
   end
 
+  def broadcast_joining_instructions(test: false)
+    return if !test && joining_instruction_broadcasted_at?
+
+    send_signups = test ? User.where(admin: true) : signups.map(&:person)
+
+    send_signups.each do |person|
+      BURM::MusicalsMailer.with(musical: self, person:).joining_instruction.deliver_later
+    end
+    update_column(:joining_instruction_broadcasted_at, Time.zone.now) unless test
+  end
+
   private
 
   def build_from_bulk_songs

@@ -13,4 +13,11 @@ class BURM::MusicalsMailerPreview < ActionMailer::Preview
 
     BURM::MusicalsMailer.with(musical:, person:).role_assignments
   end
+
+  def joining_instruction
+    musical = BURM::Musical.last
+    person = BURM::Person.last
+
+    BURM::MusicalsMailer.with(musical:, person:).joining_instruction
+  end
 end

@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at, :excerpt_url,
+  permit_params :title, :start_at, :quote, :end_at, :location_name, :location, :fee,
+                :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at,
+                :published_at, :roles_broadcasted_at, :signup_broadcasted_at,
+                :excerpt_url, :schedule_url, :songlist_url,
+                :checkin_instructions, :additional_joining_info,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
-                address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
+                address_attributes: [:id, :address, :lat, :lon, :boundingbox, :direction_notes, :_destroy],
                 image: [:id, :cid, :kind, :image_file],
                 songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []],
                 rehearsal_orders_attributes: [:id, :block, :order, :burm_song_id, :_destroy]
@@ -46,6 +50,30 @@ ActiveAdmin.register BURM::Musical do
 
   action_item :test_signup_broadcast, :only => [:show, :edit] do
     link_to "Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  # Broadcast Joining Instructions
+  member_action :joining_instructions_broadcast, method: :put do
+    if resource.schedule_url.present?
+      resource.broadcast_joining_instructions
+      redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
+    else
+      redirect_to resource_path(resource), alert: "Schedule URL is missing!"
+    end
+  end
+
+  action_item :joining_instructions_broadcast, :only => [:show, :edit] do
+    link_to "Broadcast Joining Instructions", joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  end
+
+  # Test Broadcast Joining Instructions
+  member_action :test_joining_instructions_broadcast, method: :put do
+    resource.broadcast_joining_instructions(test: true)
+    redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
+  end
+
+  action_item :test_joining_instructions_broadcast, :only => [:show, :edit] do
+    link_to "Test Broadcast Joining Instructions", test_joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   action_item :assign_roles, :only => [:show, :edit]  do
@@ -108,7 +136,11 @@ ActiveAdmin.register BURM::Musical do
   end
 
   member_action :broadcast_assignments, method: :put do
-    resource.broadcast_roles if Rails.env.production?
+    if resource.excerpt_url.present?
+      resource.broadcast_roles if Rails.env.production?
+    else
+      redirect_to resource_path(resource), alert: "Excerpt URL is missing!"
+    end
   end
 
   action_item :broadcast_assignments_test, :only => [:show, :edit]  do
@@ -162,11 +194,17 @@ ActiveAdmin.register BURM::Musical do
       f.input :start_at
       f.input :quote
       f.input :end_at
-      f.input :location
       f.input :fee
       f.input :signup_start_at
       f.input :roles_assigned_at
+      f.input :published_at
+      f.input :roles_broadcasted_at
+      f.input :signup_broadcasted_at
       f.input :excerpt_url
+      f.input :schedule_url
+      f.input :songlist_url
+      f.input :checkin_instructions
+      f.input :additional_joining_info
     end
 
     f.inputs "Cover Image" do
@@ -179,13 +217,16 @@ ActiveAdmin.register BURM::Musical do
       end
     end
 
+    f.input :location_name
+    f.input :location
     f.inputs "Address" do
       f.has_many :address, heading: false, allow_destroy: true, new_record: false do |a|
         a.input :id, as: :hidden
-        a.input :address
+        a.input :address, input_html: { rows: 3 }
         a.input :lat
         a.input :lon
-        a.input :boundingbox
+        a.input :boundingbox, input_html: { rows: 3 }
+        a.input :direction_notes, input_html: { rows: 3 }
       end
     end
 

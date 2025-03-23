@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_125852) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_213546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_125852) do
     t.bigint "addressable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "direction_notes"
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
@@ -87,6 +88,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_125852) do
     t.datetime "signup_broadcasted_at"
     t.datetime "roles_broadcasted_at"
     t.datetime "join_instructions_broadcasted_at"
+    t.string "location_name"
+    t.string "schedule_url"
+    t.string "songlist_url"
+    t.text "checkin_instructions"
+    t.text "additional_joining_info"
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 
