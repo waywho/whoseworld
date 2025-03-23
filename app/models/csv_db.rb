@@ -21,8 +21,8 @@ class CsvDb
       upload_count
     end
 
-    def export(resource, association = nil, json_options: {})
-      data = (association.present? ? resource.send(association) : resource)
+    def export(resource, association = nil, json_options: {}, assoc_preload: [])
+      data = (association.present? ? resource.send(association).includes(*assoc_preload) : resource)
       columns = json_options[:only] || resource.class.column_names
       columns += json_options[:methods] if json_options[:methods]
 

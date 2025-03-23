@@ -103,7 +103,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   member_action :export_songs, method: :get do
-    csv = CsvDb.export(resource, :songs, json_options: { only: %i[order title page_number], methods: [:role_list] })
+    csv = CsvDb.export(resource, :songs, json_options: { only: %i[order title page_number], methods: [:role_list] }, assoc_preload: [:roles])
 
     respond_to do |format|
       format.csv { send_data csv, filename: "#{resource.title.parameterize}-songs.csv" }
