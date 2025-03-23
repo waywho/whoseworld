@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_16_201014) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_22_215202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -142,6 +142,22 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_16_201014) do
     t.index ["burm_person_id", "burm_role_id", "burm_musical_id"], name: "idx_on_burm_person_id_burm_role_id_burm_musical_id_7bb118a378", unique: true
     t.index ["burm_person_id"], name: "index_burm_signups_on_burm_person_id"
     t.index ["burm_role_id"], name: "index_burm_signups_on_burm_role_id"
+  end
+
+  create_table "burm_songs", force: :cascade do |t|
+    t.bigint "burm_musical_id", null: false
+    t.integer "order"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["burm_musical_id"], name: "index_burm_songs_on_burm_musical_id"
+  end
+
+  create_table "burm_songs_burm_roles", force: :cascade do |t|
+    t.bigint "burm_song_id", null: false
+    t.bigint "burm_role_id", null: false
+    t.index ["burm_role_id"], name: "index_burm_songs_burm_roles_on_burm_role_id"
+    t.index ["burm_song_id"], name: "index_burm_songs_burm_roles_on_burm_song_id"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -301,6 +317,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_16_201014) do
   add_foreign_key "burm_signups", "burm_musicals"
   add_foreign_key "burm_signups", "burm_people"
   add_foreign_key "burm_signups", "burm_roles"
+  add_foreign_key "burm_songs", "burm_musicals"
+  add_foreign_key "burm_songs_burm_roles", "burm_roles"
+  add_foreign_key "burm_songs_burm_roles", "burm_songs"
   add_foreign_key "domain_aliases", "sites"
   add_foreign_key "galleries", "pages"
   add_foreign_key "medias", "pages"

@@ -16,12 +16,16 @@ class BURM::Musical < ApplicationRecord
   has_one :image, as: :imageable, class_name: "Image", dependent: :destroy
   accepts_nested_attributes_for :image, allow_destroy: true
 
+  has_many :songs, class_name: "BURM::Song", foreign_key: "burm_musical_id", dependent: :destroy
+  accepts_nested_attributes_for :songs, allow_destroy: true, reject_if: proc { |attrs| attrs[:title].blank? }
+
   # Attribute
   attribute :bulk_roles, :text
+  attribute :bulk_songs, :text
 
   # Callbacks
   after_initialize :set_default_fee, unless: :persisted?
-  before_validation :build_from_bulk_roles
+  before_validation :build_from_bulk_roles, :build_from_bulk_songs
 
   def signup_open?
     signup_start_at&.past?
@@ -67,6 +71,22 @@ class BURM::Musical < ApplicationRecord
   end
 
   private
+
+  def build_from_bulk_songs
+    return if bulk_songs.blank?
+
+    bulk_songs.split("\n").each do |line|
+      order, title = line.split(".").map(&:strip)
+      if order.to_i == 0
+        title = order
+        order = nil
+      end
+      song = songs.build(title:, order:)
+      songs.delete(song) unless song.valid?
+    end
+
+    songs
+  end
 
   def build_from_bulk_roles
     return if bulk_roles.blank?

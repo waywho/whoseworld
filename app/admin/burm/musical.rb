@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
-  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :signup_start_at, :image, :roles_assigned_at, :excerpt_url,
+  permit_params :title, :start_at, :quote, :end_at, :location, :fee, :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at, :excerpt_url,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :_destroy],
                 image: [:id, :cid, :kind, :image_file]
@@ -126,7 +126,6 @@ ActiveAdmin.register BURM::Musical do
       end
     end
 
-
     if f.object.new_record? || f.object.roles.blank?
       f.inputs :bulk_roles, as: :text, label: "Roles", hint: "Enter one role per line Name (Voice Type) Type"
     else
@@ -136,6 +135,17 @@ ActiveAdmin.register BURM::Musical do
           r.input :name
           r.input :voice_type
           r.input :role_type
+        end
+      end
+    end
+
+    if f.object.new_record? || f.object.songs.blank?
+      f.inputs :bulk_songs, as: :text, label: "Songs", hint: "Enter one song per line 1. Title"
+    else
+      f.inputs "Songs" do
+        f.has_many :songs, heading: false, allow_destroy: true do |r|
+          r.input :id, as: :hidden
+          r.input :title
         end
       end
     end
