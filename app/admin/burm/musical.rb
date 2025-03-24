@@ -67,13 +67,15 @@ ActiveAdmin.register BURM::Musical do
   end
 
   # Test Broadcast Joining Instructions
-  member_action :test_joining_instructions_broadcast, method: :put do
-    resource.broadcast_joining_instructions(test: true)
-    redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
+  member_action :preview_joining_instructions, method: :get do
+    @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :joining_instructions).html_part.decoded.html_safe
+    # resource.broadcast_joining_instructions(test: true)
+    # redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
+    render :mail_preview
   end
 
-  action_item :test_joining_instructions_broadcast, :only => [:show, :edit] do
-    link_to "Test Broadcast Joining Instructions", test_joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  action_item :preview_joining_instructions, :only => [:show, :edit] do
+    link_to "Preview Joining Instructions", preview_joining_instructions_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
   end
 
   action_item :assign_roles, :only => [:show, :edit]  do
@@ -168,7 +170,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   member_action :export_rehearsal, method: :get do
-    csv = CsvDb.export(resource, :rehearsal_orders, json_options: { only: %i[block order], methods: [:song_title, :role_list] }, assoc_preload: [:burm_song], order: [:block, :order])
+    csv = CsvDb.export(resource, :rehearsal_orders, json_options: { only: %i[block order], methods: [:song_title, :page, :role_list] }, assoc_preload: [:burm_song], order: [:block, :order])
 
     respond_to do |format|
       format.csv { send_data csv, filename: "#{resource.title.parameterize}-songs.csv" }

@@ -88,7 +88,7 @@ class BURM::Musical < ApplicationRecord
     send_signups = test ? User.where(admin: true) : signups.map(&:person)
 
     send_signups.each do |person|
-      BURM::MusicalsMailer.with(musical: self, person:).joining_instruction.deliver_later
+      BURM::MusicalsMailer.with(musical: self, person:).joining_instructions.deliver_later
     end
     update_column(:joining_instruction_broadcasted_at, Time.zone.now) unless test
   end

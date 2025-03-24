@@ -17,13 +17,13 @@ class BURM::MusicalsMailer < BURMMailer
            category: "role_assignments")
   end
 
-  def joining_instruction
+  def joining_instructions
     @musical = params[:musical]
     @person = params[:person]
 
     mail(to: @person.email,
          subject: burm_subject("Joining Instructions for #{@musical.title}"),
-         category: "joining_instruction")
+         category: "joining_instructions")
   end
 
   def signup_url(*params)

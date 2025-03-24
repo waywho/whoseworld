@@ -6,6 +6,10 @@ class BURM::RehearsalOrder < ApplicationRecord
     "#{burm_song.order}. #{burm_song.title}"
   end
 
+  def page
+    burm_song.page_number
+  end
+
   def role_list
     burm_song.role_list
   end
