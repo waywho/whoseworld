@@ -202,6 +202,7 @@ ActiveAdmin.register BURM::Musical do
       f.input :published_at
       f.input :roles_sent_at
       f.input :signup_sent_at
+      f.input :joining_instructions_sent_at
       f.input :excerpt_url
       f.input :schedule_url
       f.input :songlist_url

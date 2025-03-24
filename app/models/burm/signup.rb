@@ -117,7 +117,7 @@ class BURM::Signup < ApplicationRecord
       BURM::MusicalsMailer.with(musical:, person:).role_assignments.deliver_later
     end
     if musical&.joining_instructions_sent_at
-      BURM::MusicalsMailer.with(musical:, person:).joining_instruction.deliver_later
+      BURM::MusicalsMailer.with(musical:, person:).joining_instructions.deliver_later
     end
   end
 end
