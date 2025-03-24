@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Signup do
-  permit_params :burm_person_id, :burm_role_id, :burm_musical_id, :alternative_role_id,
+  permit_params :burm_person_id, :burm_role_id, :burm_musical_id, :alternative_role_id, :cancelled, :cancelled_at, :cancellation_reason, :role_sharing, :assigned_burm_role_id,
                 :assigned_burm_role_id,
                 person_attributes: [:id, :first_name, :last_name, :email]
 
@@ -28,9 +28,13 @@ ActiveAdmin.register BURM::Signup do
       f.input :musical
       f.input :role
       f.input :alternative_role
+      f.input :assigned_burm_role_id
       f.input :musical_title, input_html: { disabled: true }
       f.input :person_name, input_html: { disabled: true }
       f.input :role_name, input_html: {  disabled: true }
+      f.input :cancelled
+      f.input :cancelled_at
+      f.input :cancellation_reason
     end
 
     f.inputs "Person" do
