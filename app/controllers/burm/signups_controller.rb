@@ -43,7 +43,7 @@ class BURM::SignupsController < SiteBaseController
   end
 
   def destroy
-    @signup.update(cancelled: true, cancellation_reason: signup_params[:cancellation_reason])
+    @signup.update(cancelled: true, cancellation_reason: params.dig(:burm_signup, :cancellation_reason))
 
     render :cancelled
   end
