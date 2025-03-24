@@ -113,10 +113,10 @@ class BURM::Signup < ApplicationRecord
   end
 
   def broadcast_info
-    if musical&.roles_broadcasted_at
+    if musical&.roles_sent_at
       BURM::MusicalsMailer.with(musical:, person:).role_assignments.deliver_later
     end
-    if musical&.joining_instruction_broadcasted_at
+    if musical&.joining_instructions_sent_at
       BURM::MusicalsMailer.with(musical:, person:).joining_instruction.deliver_later
     end
   end

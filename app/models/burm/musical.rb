@@ -65,32 +65,32 @@ class BURM::Musical < ApplicationRecord
   end
 
   def broadcast_signup(test: false)
-    return if !test && signup_broadcasted_at?
+    return if !test && signup_sent_at?
 
     MusicalMailJob.perform_later(:signup_open, self, test:)
-    update_column(:signup_broadcasted_at, Time.zone.now) unless test
+    update_column(:signup_sent_at, Time.zone.now) unless test
   end
 
   def broadcast_roles(test: false)
-    return if !test && roles_broadcasted_at?
+    return if !test && roles_sent_at?
 
     send_signups = test ? User.where(admin: true) : signups.map(&:person)
 
     send_signups.each do |person|
       BURM::MusicalsMailer.with(musical: self, person:).role_assignments.deliver_later
     end
-    update_column(:roles_broadcasted_at, Time.zone.now) unless test
+    update_column(:roles_sent_at, Time.zone.now) unless test
   end
 
   def broadcast_joining_instructions(test: false)
-    return if !test && joining_instructions_broadcasted_at?
+    return if !test && joining_instructions_sent_at?
 
     send_signups = test ? User.where(admin: true) : signups.map(&:person)
 
     send_signups.each do |person|
       BURM::MusicalsMailer.with(musical: self, person:).joining_instructions.deliver_later
     end
-    update_column(:joining_instructions_broadcasted_at, Time.zone.now) unless test
+    update_column(:joining_instructions_sent_at, Time.zone.now) unless test
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_213546) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_24_210118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -85,9 +85,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_213546) do
     t.datetime "roles_assigned_at"
     t.string "excerpt_url"
     t.datetime "published_at"
-    t.datetime "signup_broadcasted_at"
-    t.datetime "roles_broadcasted_at"
-    t.datetime "join_instructions_broadcasted_at"
+    t.datetime "signup_sent_at"
+    t.datetime "roles_sent_at"
+    t.datetime "joining_instructions_sent_at"
     t.string "location_name"
     t.string "schedule_url"
     t.string "songlist_url"

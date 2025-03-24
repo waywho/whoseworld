@@ -3,7 +3,7 @@
 ActiveAdmin.register BURM::Musical do
   permit_params :title, :start_at, :quote, :end_at, :location_name, :location, :fee,
                 :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at,
-                :published_at, :roles_broadcasted_at, :signup_broadcasted_at,
+                :published_at, :roles_sent_at, :signup_sent_at,
                 :excerpt_url, :schedule_url, :songlist_url,
                 :checkin_instructions, :additional_joining_info,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
@@ -134,7 +134,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   action_item :broadcast_assignments, :only => [:show, :edit]  do
-    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_broadcasted_at?
+    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_sent_at?
   end
 
   member_action :broadcast_assignments, method: :put do
@@ -200,8 +200,8 @@ ActiveAdmin.register BURM::Musical do
       f.input :signup_start_at
       f.input :roles_assigned_at
       f.input :published_at
-      f.input :roles_broadcasted_at
-      f.input :signup_broadcasted_at
+      f.input :roles_sent_at
+      f.input :signup_sent_at
       f.input :excerpt_url
       f.input :schedule_url
       f.input :songlist_url
