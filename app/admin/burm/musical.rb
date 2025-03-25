@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register BURM::Musical do
+  form partial: "form"
   permit_params :title, :start_at, :quote, :end_at, :location_name, :location, :fee,
                 :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at,
                 :published_at, :roles_sent_at, :signup_sent_at,
@@ -190,72 +191,5 @@ ActiveAdmin.register BURM::Musical do
     actions
   end
 
-  form do |f|
-    f.inputs do
-      f.input :title
-      f.input :start_at
-      f.input :quote
-      f.input :end_at
-      f.input :fee
-      f.input :signup_start_at
-      f.input :roles_assigned_at
-      f.input :published_at
-      f.input :roles_sent_at
-      f.input :signup_sent_at
-      f.input :joining_instructions_sent_at
-      f.input :excerpt_url
-      f.input :schedule_url
-      f.input :songlist_url
-      f.input :checkin_instructions
-      f.input :additional_joining_info
-    end
 
-    f.inputs "Cover Image" do
-      f.has_many :image, heading: false, allow_destroy: true do |i|
-        i.input :id, as: :hidden
-        i.input :cid
-        i.input :kind
-        i.input :image_file, as: :file
-        li i.object.image.filename if i.object&.image&.attached?
-      end
-    end
-
-    f.input :location_name
-    f.input :location
-    f.inputs "Address" do
-      f.has_many :address, heading: false, allow_destroy: true, new_record: false do |a|
-        a.input :id, as: :hidden
-        a.input :address, input_html: { rows: 3 }
-        a.input :lat
-        a.input :lon
-        a.input :boundingbox, input_html: { rows: 3 }
-        a.input :direction_notes, input_html: { rows: 3 }
-      end
-    end
-
-    if f.object.new_record? || f.object.roles.blank?
-      f.inputs :bulk_roles, as: :text, label: "Roles", hint: "Enter one role per line Name (Voice Type) Type"
-    else
-      f.inputs "Roles" do
-        f.has_many :roles, heading: false, allow_destroy: true do |r|
-          r.input :id, as: :hidden
-          r.input :name
-          r.input :voice_type
-          r.input :role_type
-        end
-      end
-    end
-
-    if f.object.new_record? || f.object.songs.blank?
-      f.inputs :bulk_songs, as: :text, label: "Songs", hint: "Enter one song per line 1. Title"
-    else
-      f.inputs "Songs" do
-        f.has_many :songs, heading: false, allow_destroy: true do |r|
-          r.input :id, as: :hidden
-          r.input :title
-        end
-      end
-    end
-    f.actions
-  end
 end
