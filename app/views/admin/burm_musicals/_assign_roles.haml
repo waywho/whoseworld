@@ -11,10 +11,7 @@
         = s.input :id, as: :hidden, input_html: { value: signup.id }
         = s.input :assigned_burm_role_id, collection: roles, value_method: :id, label_method: :name, label: "", include_blank: true, required: false, input_html: { data: { action: "submit-by-select#submit" } }
       .px-3.py-2= signup.comments
-  .grid.grid-rows
+  .inline-grid.grid-rows.gap-6
     - roles.each do |role|
-      .flex
-        - if assigned_role_ids&.include?(role.id)
-          .bg-green-200.px-3.py-2.rounded-lg= role.name.to_s
-        - else
-          .px-3.py-2.rounded-lg= role.name.to_s
+      .px-3.py-2.rounded-lg{ class: "#{'bg-green-200' if assigned_role_ids&.include?(role.id)}" }
+        = role.to_s
