@@ -13,11 +13,11 @@
       = form.actions do
         = form.action :submit, :as => :button
   %div{ class: "w-2/5 relative" }
-    .fixed.w-full
+    .fixed
       .h2 Songs
       .divide-y
         - @songs.each do |song|
-          .py-1
+          .py-1.text-wrap
             %span{data: { highlight_by_select_target: "highlightItem", highlight_item_id: song.id }}
               = "#{song.order}. "
               = song.title
