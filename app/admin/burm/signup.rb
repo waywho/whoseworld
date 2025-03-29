@@ -51,8 +51,10 @@ ActiveAdmin.register BURM::Signup do
   csv do
     column(:last_name) { |signup| signup.person.last_name }
     column(:first_name) { |signup| signup.person.last_name }
-    column(:role) { |signup| signup.role.name }
-    column(:musical) { |signup| signup.musical.title }
-    column(:paid)
+    column(:role) { |signup| signup.role&.name }
+    column(:musical) { |signup| signup.musical&.title }
+    column(:assigned_role) { |signup| signup.assigned_burm_role&.name }
+    column(:alternative_role) { |signup| signup.alternative_role&.name }
+    column(:cancelled) { |signup| signup.cancelled_at }
   end
 end
