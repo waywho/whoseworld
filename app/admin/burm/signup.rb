@@ -50,7 +50,7 @@ ActiveAdmin.register BURM::Signup do
 
   csv do
     column(:last_name) { |signup| signup.person.last_name }
-    column(:first_name) { |signup| signup.person.last_name }
+    column(:first_name) { |signup| signup.person.first_name }
     column(:role) { |signup| signup.role&.name }
     column(:musical) { |signup| signup.musical&.title }
     column(:role) { |signup| signup.role&.name }
