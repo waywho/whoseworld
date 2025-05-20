@@ -10,12 +10,12 @@ class BURM::Role < ApplicationRecord
   # Enums
   enum :voice_type, %i[speaking bass baritone tenor alto mezzo_soprano soprano satb], allow_nil: true, validate: true
   enum :role_type, %i[ensemble featured supporting lead], validate: { allow_nil: true }, suffix: :role
-  
+
   # Validations
   validates :name, uniqueness: { scope: :musical }
 
   def to_s
-    [name, voice_type].compact.join(" - ")
+    [name, voice_type, role_type].compact.join(" - ")
   end
 
   def assigned_to
