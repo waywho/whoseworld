@@ -60,7 +60,7 @@ class BURM::Musical < ApplicationRecord
   def broadcast(test: false)
     return if !test && published_at?
 
-    MusicalMailJob.perform_later(:next_musical, self, test:)
+    MusicalMailJob.perform_later(:next_musical, self, mailer: "MusicalsMailer", test:)
     update_column(:published_at, Time.zone.now) unless test
   end
 
