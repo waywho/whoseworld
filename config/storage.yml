@@ -13,8 +13,8 @@ fly:
 filebase:
   service: S3
   endpoint: <%= Rails.application.credentials.dig(:filebase, :endpoint) %>
-  access_key_id: <%= Rails.application.credentials.dig(:filebase, :key) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:filebase, :secret) %>
+  access_key_id: <%= Rails.application.credentials.dig(:filebase, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:filebase, :secret_access_key) %>
   bucket: <%= Rails.application.credentials.dig(:filebase, :bucket) %>
   region: <%= Rails.application.credentials.dig(:filebase, :region) %>
 
