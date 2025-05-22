@@ -38,7 +38,7 @@
           .grid.grid-cols-2.gap-2
             - i.input :cid
             - i.input :kind
-            - i.input :image_file, as: :file
+            - i.input :image, as: :file
             - if i.object&.image&.attached?
               %li= i.object.image.filename
 
