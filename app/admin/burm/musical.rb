@@ -9,7 +9,7 @@ ActiveAdmin.register BURM::Musical do
                 :checkin_instructions, :additional_joining_info,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :direction_notes, :_destroy],
-                image: [:id, :cid, :kind, :image_file],
+                images_attributes: [:id, :cid, :kind, :image_file],
                 songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []],
                 rehearsal_orders_attributes: [:id, :block, :order, :burm_song_id, :_destroy]
 
