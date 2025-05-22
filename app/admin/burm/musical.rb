@@ -3,13 +3,13 @@
 ActiveAdmin.register BURM::Musical do
   form partial: "form"
   permit_params :title, :start_at, :quote, :end_at, :location_name, :location, :fee,
-                :bulk_roles, :bulk_songs, :signup_start_at, :image, :roles_assigned_at,
+                :bulk_roles, :bulk_songs, :signup_start_at, :roles_assigned_at,
                 :published_at, :roles_sent_at, :signup_sent_at,
                 :excerpt_url, :schedule_url, :songlist_url,
                 :checkin_instructions, :additional_joining_info,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :direction_notes, :_destroy],
-                images_attributes: [:id, :cid, :kind, :image_file],
+                image_attributes: [:id, :cid, :kind, :image_file],
                 songs_attributes: [:id, :title, :page_number, :_destroy, role_ids: []],
                 rehearsal_orders_attributes: [:id, :block, :order, :burm_song_id, :_destroy]
 
