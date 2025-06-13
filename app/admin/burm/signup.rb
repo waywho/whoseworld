@@ -31,7 +31,7 @@ ActiveAdmin.register BURM::Signup do
       f.input :assigned_burm_role_id
       f.input :musical_title, input_html: { disabled: true }
       f.input :person_name, input_html: { disabled: true }
-      f.input :role_name, input_html: {  disabled: true }
+      f.input :role_name, input_html: { disabled: true }
       f.input :cancelled
       f.input :cancelled_at
       f.input :cancellation_reason
@@ -49,13 +49,14 @@ ActiveAdmin.register BURM::Signup do
   end
 
   csv do
-    column(:last_name) { |signup| signup.person.last_name }
-    column(:first_name) { |signup| signup.person.first_name }
-    column(:role) { |signup| signup.role&.name }
-    column(:musical) { |signup| signup.musical&.title }
-    column(:role) { |signup| signup.role&.name }
-    column(:assigned_role) { |signup| signup.assigned_role&.name }
+    column(:last_name)        { |signup| signup.person.last_name }
+    column(:first_name)       { |signup| signup.person.first_name }
+    column(:email)            { |signup| signup.person.email }
+    column(:role)             { |signup| signup.role&.name }
+    column(:musical)          { |signup| signup.musical&.title }
+    column(:role)             { |signup| signup.role&.name }
+    column(:assigned_role)    { |signup| signup.assigned_role&.name }
     column(:alternative_role) { |signup| signup.alternative_role&.name }
-    column(:cancelled) { |signup| signup.cancelled_at }
+    column(:cancelled)        { |signup| signup.cancelled_at }
   end
 end
