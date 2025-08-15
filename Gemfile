@@ -93,7 +93,7 @@ gem "nice_partials"
 gem "haml-rails", "~> 2.1.0"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.14"
 
 gem "aws-sdk-s3", require: false
 
