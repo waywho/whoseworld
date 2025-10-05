@@ -147,11 +147,12 @@ ActiveAdmin.register BURM::Musical do
   end
 
   action_item :broadcast_assignments_test, :only => [:show, :edit]  do
-    link_to "Broadcast Assignments Test", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+    link_to "Broadcast Assignments Test", broadcast_assignments_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   member_action :broadcast_assignments_test, method: :put do
     resource.broadcast_roles(test: true)
+    redirect_to resource_path(resource), notice: "Test Roles Broadcasted!"
   end
 
   action_item :export_songs, :only => [:songs]  do
