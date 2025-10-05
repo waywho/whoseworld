@@ -74,7 +74,7 @@ class BURM::Musical < ApplicationRecord
   def broadcast_roles(test: false)
     return if !test && roles_sent_at?
 
-    send_signups = test ? User.where(admin: true) : signups.map(&:person)
+    send_signups = test ? User.where(admin: true) : signups.map(&:person) + User.where(admin: true)
 
     send_signups.each do |person|
       BURM::MusicalsMailer.with(musical: self, person:).role_assignments.deliver_later
