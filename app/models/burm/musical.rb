@@ -93,7 +93,33 @@ class BURM::Musical < ApplicationRecord
     update_column(:joining_instructions_sent_at, Time.zone.now) unless test
   end
 
+  def ready_for_broadcast?
+    return if published_at?
+
+    attributes.slice("title", "start_at", "end_at", "signup_start_at", "fee", "location").values.any?(&:blank?)
+  end
+
+  def ready_for_role_broadcast?
+    return if roles_sent_at?
+
+    attributes.slice("excerpt_url", "songlist_url").values.any?(&:blank?) ||
+    roles.empty? ||
+      signups.empty? ||
+        signups.where(assigned_burm_role_id: nil).exists?
+  end
+
+  def ready_for_joining_instructions_broadcast?
+    return if joining_instructions_sent_at?
+
+    attributes.slice("schedule_url").values.any?(&:blank?) ||
+      signups.empty?
+  end
+
   private
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 
   def build_from_bulk_songs
     return if bulk_songs.blank?
