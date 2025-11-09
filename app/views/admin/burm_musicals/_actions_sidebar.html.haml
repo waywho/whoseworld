@@ -1,0 +1,18 @@
+.flex.flex-col.gap-2.border-l-2.p-2
+  = link_to("Test Broadcast", broadcast_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put)
+  = link_to("Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_broadcast?)
+
+  = link_to("Assign Roles", assign_roles_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" })
+
+
+  = link_to("Broadcast Roles", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_sent_at?)
+  = link_to("Broadcast Roles Test", broadcast_assignments_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_role_broadcast?)
+
+  = link_to("Preview Joining Instructions", preview_joining_instructions_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" })
+  = link_to("Broadcast Joining Instructions", joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_joining_instructions_broadcast?)
+
+  =# link_to("Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+  =# link_to("Open Signup", signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
+
+  = link_to("Rehearsal", rehearsal_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" })
+  = link_to("Songs", songs_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" })

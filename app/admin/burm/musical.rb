@@ -19,18 +19,10 @@ ActiveAdmin.register BURM::Musical do
     redirect_to resource_path(resource), notice: "Broadcasted!"
   end
 
-  action_item :broadcast, :only => [:show, :edit] do
-    link_to "Broadcast", broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.published_at?
-  end
-
   # Test Broadcast
   member_action :broadcast_test, method: :put do
     resource.broadcast(test: true)
     redirect_to resource_path(resource), notice: "Test Broadcasted!"
-  end
-
-  action_item :broadcast_test, :only => [:show, :edit] do
-    link_to "Test Broadcast", broadcast_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   # Signup Broadcast
@@ -39,18 +31,10 @@ ActiveAdmin.register BURM::Musical do
     redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
   end
 
-  action_item :signup_broadcast, :only => [:show, :edit] do
-    link_to "Open Signup", signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
-  end
-
   # Test Signup Broadcast
   member_action :test_signup_broadcast, method: :put do
     resource.broadcast_signup(test: true)
     redirect_to resource_path(resource), notice: "Test Broadcasted Signup!"
-  end
-
-  action_item :test_signup_broadcast, :only => [:show, :edit] do
-    link_to "Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   # Broadcast Joining Instructions
@@ -63,24 +47,12 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
-  action_item :joining_instructions_broadcast, :only => [:show, :edit] do
-    link_to "Broadcast Joining Instructions", joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put
-  end
-
   # Test Broadcast Joining Instructions
   member_action :preview_joining_instructions, method: :get do
     @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :joining_instructions).html_part.decoded.html_safe
     # resource.broadcast_joining_instructions(test: true)
     # redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
     render :mail_preview
-  end
-
-  action_item :preview_joining_instructions, :only => [:show, :edit] do
-    link_to "Preview Joining Instructions", preview_joining_instructions_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
-  end
-
-  action_item :assign_roles, :only => [:show, :edit]  do
-    link_to "Assign Roles", assign_roles_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
   end
 
   member_action :assign_roles, method: [:get, :put] do
@@ -97,8 +69,19 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
-  action_item :songs, :only => [:show, :edit]  do
-    link_to "Songs", songs_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
+  member_action :duplicate, method: :get do
+    new_musical = resource.dup
+    new_musical.title = "Copy of " + resource.title
+    new_musical.published_at = nil
+    new_musical.roles_assigned_at = nil
+    new_musical.roles_sent_at = nil
+    new_musical.signup_sent_at = nil
+    new_musical.save!
+    redirect_to edit_admin_burm_musical_path(new_musical), notice: "Musical duplicated. Please review details."
+  end
+
+  action_item :duplicate, only: :show do
+    link_to "Duplicate Musical", duplicate_admin_burm_musical_path(resource), class: "action-item-button"
   end
 
   member_action :songs, method: [:get, :put] do
@@ -112,10 +95,6 @@ ActiveAdmin.register BURM::Musical do
     else
       render :songs
     end
-  end
-
-  action_item :rehearsal, :only => [:show, :edit]  do
-    link_to "Rehearsal", rehearsal_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" }
   end
 
   member_action :rehearsal, method: [:get, :put] do
@@ -134,20 +113,12 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
-  action_item :broadcast_assignments, :only => [:show, :edit]  do
-    link_to "Broadcast Assignments", broadcast_assignments_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.roles_sent_at?
-  end
-
   member_action :broadcast_assignments, method: :put do
     if resource.excerpt_url.present?
       resource.broadcast_roles if Rails.env.production?
     else
       redirect_to resource_path(resource), alert: "Excerpt URL is missing!"
     end
-  end
-
-  action_item :broadcast_assignments_test, :only => [:show, :edit]  do
-    link_to "Broadcast Assignments Test", broadcast_assignments_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put
   end
 
   member_action :broadcast_assignments_test, method: :put do
@@ -192,5 +163,5 @@ ActiveAdmin.register BURM::Musical do
     actions
   end
 
-
+  sidebar :actions, only: %i[show edit]
 end
