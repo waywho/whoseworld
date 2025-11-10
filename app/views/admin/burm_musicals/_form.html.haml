@@ -1,12 +1,12 @@
 %div
   = radio_button_tag "tab", 1, class: "peer/tab-1 hidden float-left clear-none"
   = label_tag "tab_1", "Form", class: "peer-checked/tab-1:bg-gray-300 rounded-md border border-gray-200 px-4 py-2"
-  = radio_button_tag "tab", 2, class: "peer/tab-3 hidden float-left clear-none"
+  = radio_button_tag "tab", 2, class: "peer/tab-2 hidden float-left clear-none"
   = label_tag "tab_2", "Roles", class: "peer-checked/tab-2:bg-gray-300 rounded-md border border-gray-200 px-4 py-2"
-  = radio_button_tag "tab", 3, class: "peer/tab-4 hidden float-left clear-none"
+  = radio_button_tag "tab", 3, class: "peer/tab-3 hidden float-left clear-none"
   = label_tag "tab_3", "Songs", class: "peer-checked/tab-3:bg-gray-300 rounded-md border border-gray-200 px-4 py-2"
-  = radio_button_tag "tab", 4, class: "peer/tab-2 hidden float-left clear-none"
-  = label_tag "tab_1", "Joining Instructions", class: "peer-checked/tab-1:bg-gray-300 rounded-md border border-gray-200 px-4 py-2"
+  = radio_button_tag "tab", 4, class: "peer/tab-4 hidden float-left clear-none"
+  = label_tag "tab_1", "Joining Instructions", class: "peer-checked/tab-4:bg-gray-300 rounded-md border border-gray-200 px-4 py-2"
 
   %div{class: "hidden peer-checked/tab-1:block mt-8"}
     = semantic_form_for [:admin, resource], builder: ActiveAdmin::FormBuilder do |f|
@@ -82,7 +82,7 @@
               - r.input :page_number
 
       = f.actions
-      
+
   %div{class: "hidden peer-checked/tab-4:block mt-8"}
     = semantic_form_for [:admin, resource], builder: ActiveAdmin::FormBuilder do |f|
       = f.inputs do
