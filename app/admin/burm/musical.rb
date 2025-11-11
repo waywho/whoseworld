@@ -25,7 +25,7 @@ ActiveAdmin.register BURM::Musical do
     redirect_to resource_path(resource), notice: "Test Broadcasted!"
   end
 
-  member_action :broadcast_preview, method: :put do
+  member_action :broadcast_preview, method: :get do
     @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :next_musical).html_part.decoded.html_safe
     render :mail_preview
   end
@@ -131,7 +131,7 @@ ActiveAdmin.register BURM::Musical do
     redirect_to resource_path(resource), notice: "Test Roles Broadcasted!"
   end
 
-  member_action :broadcast_assignments_preview, method: :put do
+  member_action :broadcast_assignments_preview, method: :get do
     @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :role_assignments).html_part.decoded.html_safe
     render :mail_preview
   end
