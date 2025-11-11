@@ -25,6 +25,11 @@ ActiveAdmin.register BURM::Musical do
     redirect_to resource_path(resource), notice: "Test Broadcasted!"
   end
 
+  member_action :broadcast_preview, method: :put do
+    @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :next_musical).html_part.decoded.html_safe
+    render :mail_preview
+  end
+
   # Signup Broadcast
   member_action :signup_broadcast, method: :put do
     resource.broadcast_signup if Rails.env.production?
@@ -124,6 +129,11 @@ ActiveAdmin.register BURM::Musical do
   member_action :broadcast_assignments_test, method: :put do
     resource.broadcast_roles(test: true)
     redirect_to resource_path(resource), notice: "Test Roles Broadcasted!"
+  end
+
+  member_action :broadcast_assignments_preview, method: :put do
+    @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :role_assignments).html_part.decoded.html_safe
+    render :mail_preview
   end
 
   action_item :export_songs, :only => [:songs]  do
