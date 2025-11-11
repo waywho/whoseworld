@@ -30,6 +30,7 @@
         .grid.grid-cols-2.gap-2
           = f.input :excerpt_url
           = f.input :songlist_url
+        = f.input :additional_broadcast_info, input_html: { rows: 4 }
 
       = f.inputs "Cover Image" do
         - f.has_many :image, heading: false, allow_destroy: true do |i|
@@ -54,19 +55,20 @@
       = f.actions
 
   %div{class: "hidden peer-checked/tab-2:block mt-8"}
-    = semantic_form_for [:admin, resource], builder: ActiveAdmin::FormBuilder do |f|
-      - if f.object.new_record? || f.object.roles.blank?
-        = f.inputs :bulk_roles, as: :text, label: "Roles", hint: "Enter one role per line Name (Voice Type) Type"
+    = semantic_form_for [:admin, resource], builder: ActiveAdmin::FormBuilder do |rf|
+      - if rf.object.new_record? || rf.object.roles.blank?
+        = rf.inputs do
+          = rf.input :bulk_roles, as: :text, label: "Roles", hint: "Enter one role per line Name (Voice Type) Type"
       - else
-        = f.inputs "Roles" do
-          - f.has_many :roles, heading: false, allow_destroy: true do |r|
+        = rf.inputs "Roles" do
+          - rf.has_many :roles, heading: false, allow_destroy: true do |r|
             .grid.grid-cols-3.gap-2
               - r.input :id, as: :hidden
               - r.input :name
               - r.input :voice_type
               - r.input :role_type
 
-      = f.actions
+      = rf.actions
 
   %div{class: "hidden peer-checked/tab-3:block mt-8"}
     = semantic_form_for [:admin, resource], builder: ActiveAdmin::FormBuilder do |f|

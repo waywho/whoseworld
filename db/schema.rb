@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_24_210118) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_11_140935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_24_210118) do
     t.string "songlist_url"
     t.text "checkin_instructions"
     t.text "additional_joining_info"
+    t.text "additional_broadcast_info"
     t.index ["slug"], name: "index_burm_musicals_on_slug", unique: true
   end
 

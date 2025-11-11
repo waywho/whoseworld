@@ -48,21 +48,9 @@
   = number_to_currency(@musical.fee, locale: :de)
   to cover the cost of running the workshop. Once you've signed up, we will be in touch with the rest of the details.
 
-%hr
-%h2 Musicals Around Town
-%p= "Berlin Musical Scene is hopping alive. Check out some of the upcoming musical events:"
-
-%p.bold= "September 30-October 9: Jesus Christ Superstar from #{link_to "Komische Oper", "https://www.komische-oper-berlin.de/", class: "text-link"}"
-
-%p.bold= "October 17-19: Little Shop of Horrors from #{link_to "encore! Musicals Berlin", "https://www.encoremusicalsberlin.com/", class: "text-link"}"
-
-%p.bold= "November 10: #{link_to "Der deutschsprachige Musical Award 2025", "https://www.schlossparktheater.de/produktionen/der-deutschsprachige-musical-award-2025.html", class: "text-link"}"
-
-%p.bold= "November 21-30: Kinky Boots from #{link_to "Musical Theatre Society Berlin", "https://www.mtsberlin.com/", class: "text-link"}"
-
-%hr
-%h2 Our Next UnRehearsed
-%p= "After the October UnReheased, the next one will be on Sunday December 7th, 2025"
+- if @musical.additional_broadcast_info
+  %hr
+  = raw @musical.additional_broadcast_info
 
 %p
   Looking forward to singing with you,

@@ -7,6 +7,7 @@ ActiveAdmin.register BURM::Musical do
                 :published_at, :roles_sent_at, :signup_sent_at,
                 :excerpt_url, :schedule_url, :songlist_url,
                 :checkin_instructions, :additional_joining_info,
+                :additional_broadcast_info,
                 roles_attributes: [:id, :name, :voice_type, :role_type, :_destroy],
                 address_attributes: [:id, :address, :lat, :lon, :boundingbox, :direction_notes, :_destroy],
                 image_attributes: [:id, :cid, :kind, :image],
