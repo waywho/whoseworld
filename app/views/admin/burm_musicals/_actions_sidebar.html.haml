@@ -11,6 +11,7 @@
   = link_to("Test Broadcast Roles", broadcast_assignments_test_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_role_broadcast?)
 
   = link_to("Preview Joining Instructions", preview_joining_instructions_admin_burm_musical_path(resource), class: "action-item-button", method: :get, data: { "turbo-stream": "" })
+  = link_to("Test Joining Instructions", test_joining_instructions_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_joining_instructions_broadcast?)
   = link_to("Broadcast Joining Instructions", joining_instructions_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put, disabled: resource.ready_for_joining_instructions_broadcast?)
 
   =# link_to("Test Open Signup", test_signup_broadcast_admin_burm_musical_path(resource), class: "action-item-button", method: :put

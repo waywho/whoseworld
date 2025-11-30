@@ -53,12 +53,18 @@ ActiveAdmin.register BURM::Musical do
     end
   end
 
-  # Test Broadcast Joining Instructions
+  # Preview Broadcast Joining Instructions
   member_action :preview_joining_instructions, method: :get do
     @mail = Mailers::MusicalsMailerParser.mailer_compose(resource, current_user, :joining_instructions).html_part.decoded.html_safe
     # resource.broadcast_joining_instructions(test: true)
     # redirect_to resource_path(resource), notice: "Broadcasted Joining Instructions!"
     render :mail_preview
+  end
+
+  # Test Broadcast Joining Instructions
+  member_action :test_joining_instructions, method: :get do
+    resource.broadcast_joining_instructions(test: true)
+    redirect_to resource_path(resource), notice: "Test Joining Instructions sent!"
   end
 
   member_action :assign_roles, method: [:get, :put] do

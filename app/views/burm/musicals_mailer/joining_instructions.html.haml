@@ -23,7 +23,7 @@
 %p
   %b Time:
   = @musical.time
-%p= @musical.checkin_instructions
+%p= raw(@musical.checkin_instructions)
 
 %p
   The schedule for the day is available for download.
@@ -45,7 +45,7 @@
 %p
   %i Note: If you are unable to sing the role or attend the event, please let us know as soon as possible so that we can re-assign the role to someone else and the spot to someone on the waiting list.
 
-%p= @musical.additional_joining_info
+%div= raw(@musical.additional_joining_info)
 
 %br
 %p
