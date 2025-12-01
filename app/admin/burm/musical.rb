@@ -62,7 +62,7 @@ ActiveAdmin.register BURM::Musical do
   end
 
   # Test Broadcast Joining Instructions
-  member_action :test_joining_instructions, method: :get do
+  member_action :test_joining_instructions, method: :put do
     resource.broadcast_joining_instructions(test: true)
     redirect_to resource_path(resource), notice: "Test Joining Instructions sent!"
   end
