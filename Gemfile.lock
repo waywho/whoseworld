@@ -166,7 +166,7 @@ GEM
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
-    flowbite (2.3.0)
+    flowbite (3.1.2)
     foreman (0.88.1)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
@@ -448,7 +448,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.6)
   factory_bot_rails
   faker
-  flowbite (~> 2.3)
+  flowbite (~> 3.1)
   foreman
   friendly_id
   haml-rails (~> 2.1.0)
