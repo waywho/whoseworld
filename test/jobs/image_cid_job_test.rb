@@ -6,11 +6,9 @@ class ImageCidJobTest < ActiveJob::TestCase
   end
 
   test "populate cid" do
-    mock = Minitest::Mock.new
-    mock.expect :metadata, { "cid" => "1234" }
-
     client_stub = Aws::S3::Client.new(stub_responses: {
-      get_object: mock})
+      get_object: { metadata: { "cid" => "1234" } }
+    })
 
     Aws::S3::Client.stub(:new, client_stub) do
       ImageCidJob.perform_now(@image)
