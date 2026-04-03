@@ -2,6 +2,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.3.2
+ENV BUNDLER_VERSION=2.7.2
 FROM ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
