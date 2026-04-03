@@ -23,11 +23,12 @@ RUN gem update --system --no-document && \
 FROM base AS build
 
 # Install packages needed to build gems
+# Install packages needed to build gems
 RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
     --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
     apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev libvips
-
+    apt-get install --no-install-recommends -y build-essential libpq-dev libvips libxml2-dev
+    
 # Install application gems
 COPY Gemfile Gemfile.lock .ruby-version ./
 RUN --mount=type=cache,id=bld-gem-cache,sharing=locked,target=/srv/vendor \
