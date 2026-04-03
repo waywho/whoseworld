@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../../views/**/*.html.{erb,haml}";
+@source "../../components/*.rb";
+@source "../../components/**/*.html.{erb,haml}";
+@source "../../helpers/**/*.rb";
+@source "../../javascript/**/*.js";
+@source "../../../config/initializers/simple_form_tailwind.rb";
+@source "../../../config/locales/**/*.yml";
+@source "../../../vendor/javascript/flowbite/**/*.js";
+
+@theme {
+    --font-display: 'League Spartan', 'Helvetica', 'Arial', sans-serif;
+}
 
 @font-face {
     font-family: 'League Spartan';
@@ -43,7 +54,8 @@
         @apply bg-white border-b dark:bg-gray-800 dark:border-gray-700;
     }
     ul {
-        @apply list-square list-inside;
+        list-style-type: square;
+        @apply list-inside;
     }
     nav ul, .nav ul { @apply list-none list-outside; }
     .btn {
