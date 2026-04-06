@@ -15,7 +15,7 @@ gem "pg", "~> 1.5"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6.0"
 
-gem "importmap-rails"
+gem "importmap-rails", "2.2.3"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -96,6 +96,8 @@ gem "haml-rails", "~> 2.1.0"
 gem "image_processing", "~> 1.2"
 
 gem "aws-sdk-s3", require: false
+
+gem "openssl", "3.3.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

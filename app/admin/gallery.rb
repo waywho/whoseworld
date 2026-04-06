@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Gallery do
-  permit_params :title, :description, :page_id, :feature, :row_order, images: []
+  permit_params :title, :description, :page_id, :feature, :row_order,
+                images_attributes: [:id, :image, :row_order, :_destroy]
   form partial: "form"
 
   index do

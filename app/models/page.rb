@@ -44,6 +44,8 @@ class Page < ApplicationRecord
   private
 
   def unqie_landing_page
-    errors.add(:kind, "already exists") if site.pages.landing.exists?
+    return if site.pages.where.not(id:).landing.none?
+    
+    errors.add(:kind, "already exists")
   end
 end

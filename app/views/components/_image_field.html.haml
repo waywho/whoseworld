@@ -1,16 +1,16 @@
--# locals: (form: nil, fields:, options: {})
-
+-# locals: (form:, fields:, options: {})
 .grid.grid-cols-2.gap-2
   - Array(fields).each do |field|
     .flex.flex-col.gap-2
       .text-lg.font-semibold= field.to_s.humanize
-      - form.has_many field, heading: false, allow_destroy: true do |f|
-        = f.file_field field, **options
+      - form.object.send(:"build_#{field}") unless form.object.send(field)
+      = form.semantic_fields_for field do |f|
+        = f.input :image, as: :file, input_html: options
         = f.input :id, as: :hidden
-        = f.input :kind
-        = f.input :cid, disabled: true
+        = f.input :kind, as: :hidden, input_html: { value: field.to_s }
+        = f.input :cid, input_html: { disabled: true }
 
-        .mb-2
-          %span.font-semibold Attached:
-          - if f.object&.image&.attached?
-            %span = f.object&.image.filename
+        - if f.object&.image&.attached?
+          .mb-2
+            %span.font-semibold Attached:
+            %span= f.object.image.filename

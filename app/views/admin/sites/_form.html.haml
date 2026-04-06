@@ -10,9 +10,9 @@
     = f.input :layout_style
     = f.input :public
 
-  = render "components/image_field", form: f, fields: [:logo_image, :logo_for_dark_image, :logo_with_tag_image, :logo_with_tag_for_dark_image]
+  = render partial: "components/image_field", locals: { form: f, fields: [:logo, :logo_for_dark, :logo_with_tag, :logo_with_tag_for_dark] }
 
-  = render "components/attachment_field", form: f, fields: [:logo, :logo_for_dark, :logo_with_tag, :logo_with_tag_for_dark]
+  = render partial: "components/attachment_field", locals: { form: f, fields: [:logo, :logo_for_dark, :logo_with_tag, :logo_with_tag_for_dark] }
 
   %br
   = f.inputs "DomainAliases" do

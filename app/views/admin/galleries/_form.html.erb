@@ -6,8 +6,11 @@
     <%= f.input :feature %>
     <%= f.input :row_order %>
   <% end %>
-  <%= f.file_field :images, multiple: true, data: { action: "multi-upload#addFile"} %>
-  <h2 class="mt-4">Attached Images</h2>
-  <ul class="mb-4" data-multi-upload-target="files"></ul>
+  <%= f.inputs "Images" do %>
+    <% f.has_many :images, heading: false, allow_destroy: true, new_record: true do |img| %>
+      <% img.input :image, as: :file, hint: img.object&.image&.attached? ? img.object.image.filename : nil %>
+      <% img.input :row_order %>
+    <% end %>
+  <% end %>
   <%= f.actions %>
 <% end %>
