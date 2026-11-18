@@ -9,11 +9,18 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "h2", "Leading the dev team at SimplyTV"
   end
 
+  test "dev.weihsihu.com sends every other path to the developer page" do
+    create(:site, :weihsi)
+    host! "dev.weihsihu.com"
+    get "/about"
+    assert_redirected_to "http://dev.weihsihu.com/"
+  end
+
   test "weihsihu.com still serves the site landing" do
     site = create(:site, :weihsi)
     host! site.domain
     get "/"
     assert_response :success
-    assert_select "h2", { text: "Leading the dev team at SimplyTV", count: 0 }
+    assert_template "weihsihu/landing"
   end
 end
