@@ -30,7 +30,7 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "weihsihu.com still serves the site landing" do
-    site = create(:site, :weihsi)
+    site = create(:site, :weihsi, public: true)
     host! site.domain
     get "/"
     assert_response :success
