@@ -16,6 +16,12 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "http://dev.weihsihu.com/"
   end
 
+  test "the developer page carries no build notes in its source" do
+    host! "dev.weihsihu.com"
+    get "/"
+    assert_no_match "Hallmark", response.body
+  end
+
   test "weihsihu.com still serves the site landing" do
     site = create(:site, :weihsi)
     host! site.domain
