@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WeiHsi Hu CV</title>
+<meta name="description" content="CV of WeiHsi Hu, a lead Rails engineer and team lead in Berlin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Hallmark · shape: Marquee Hero · genre: editorial · theme: Almanac (deal 1/3, seed berlin-lead-rails-engineer-0c0f·80889043·2026-11-18·r0) · redesign: full
+ * hero: Ledge ·nav: edge-aligned · footer: colophon ·imagery: none · signature: the career set as a printed reference sheet, years in mono down the edge
+ * axes: mid/grotesk-sans/chromatic-magenta · posture: restrained · contrast: pass · fold: pass · draw: 19ccc9 · job: hire · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: P, a CV argues little; the earlier career leads the page as a statement so the research years read as the point */
+/* Hallmark · dropped email address · the owner asked for no email on the page */
+/* Hallmark · reworded "Experience" to "Lead engineer at SimplyTV" and "Ten years of Rails before that" · 54 names the old section labels */
+/* Hallmark · dropped the 1999 to 2009 programme and research row · the owner keeps this page to dev roles; strategic roles moved to "Strategy and boards" */
+/* Hallmark · reworded role heads "Role · Org" to the role over the org · 63 names the middle-dot join */
+:root {
+  color-scheme: light;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem); --text-marquee: clamp(4rem, 19vw, 18rem);
+  --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --dur-micro: 120ms; --dur-short: 220ms;
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px; --nav-height: 72px;
+  --z-sticky-nav: 300; --z-toast: 500;
+  --color-paper: oklch(84% 0.012 245); --color-paper-2: oklch(81% 0.012 245); --color-paper-3: oklch(77% 0.012 245);
+  --color-ink: oklch(16% 0.020 245); --color-ink-2: oklch(24% 0.018 245); --color-muted: oklch(38% 0.016 245);
+  --color-rule: oklch(73% 0.013 240); --color-rule-2: oklch(32% 0.018 240);
+  --color-accent: oklch(45% 0.180 350); --color-accent-2: oklch(37% 0.160 350); --color-accent-ink: oklch(97% 0.006 245); --color-focus: oklch(46% 0.190 350);
+  --color-sheet: oklch(93.5% 0.008 245); --color-on-ink-muted: oklch(78% 0.012 245); --color-on-ink-accent: oklch(78% 0.120 350);
+  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Newsreader", ui-serif, Georgia, serif;
+  --font-outlier: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-pill: 2px; --rule-hair: 1px; --rule-bar: 2px;
+  --tracking-display: -0.02em; --display-weight: 600;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-muted) var(--color-paper); scroll-padding-top: var(--space-3xl); }
+body { margin: 0; background: var(--color-paper); color: var(--color-ink-2); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; caret-color: var(--color-accent); }
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+a { color: var(--color-ink); text-decoration-color: var(--color-accent); text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+a:active { color: var(--color-accent-2); }
+h1, h2, h3 { margin: 0; color: var(--color-ink); font-family: var(--font-display); font-weight: var(--display-weight); font-synthesis: none; letter-spacing: var(--tracking-display); line-height: 1.05; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+h2 { max-width: 30ch; font-size: var(--text-section); }
+h3 { max-width: 40ch; font-size: var(--text-title); line-height: 1.2; }
+p { margin: 0; text-wrap: pretty; }
+ul { margin: 0; padding: 0; }
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap-columns); }
+.num { font-family: var(--font-outlier); font-variant-numeric: tabular-nums; }
+.small { font-size: var(--text-sm); color: var(--color-muted); }
+
+.skip { position: absolute; left: var(--space-md); top: calc(-1 * var(--space-3xl)); z-index: var(--z-toast); padding: var(--space-xs) var(--space-md); background: var(--color-ink); color: var(--color-paper); }
+.skip:focus-visible { top: var(--space-md); }
+
+.nav { border-bottom: var(--rule-hair) solid var(--color-rule); }
+.nav .container { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: var(--nav-height); }
+.wordmark { font: 600 var(--text-lg)/1 var(--font-display); letter-spacing: var(--tracking-display); text-decoration: none; }
+.nav ul { display: flex; gap: var(--space-lg); list-style: none; }
+.nav a { font-size: var(--text-md); }
+
+.hero { min-height: calc(100dvh - var(--nav-height)); display: flex; align-items: flex-end; padding-block: var(--space-2xl) var(--space-3xl); }
+.hero h1 { max-width: none; font-size: var(--text-marquee); line-height: 0.95; letter-spacing: -0.035em; }
+.hero .lead { margin-top: var(--space-lg); max-width: 34ch; font-size: var(--text-lead); line-height: 1.45; color: var(--color-ink-2); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xl); }
+.btn { display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--space-lg); border: var(--rule-hair) solid var(--color-ink); border-radius: var(--radius-pill); background: transparent; color: var(--color-ink); font: 500 var(--text-md)/1 var(--font-display); white-space: nowrap; text-decoration: none; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+.btn:hover { background: var(--color-paper-2); }
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-ink); }
+.btn--primary:hover { background: var(--color-accent-2); border-color: var(--color-accent-2); }
+
+.band-ink { background: var(--color-ink); color: var(--color-paper); padding-block: var(--section-gap-s); }
+.statement { grid-column: 1 / span 10; max-width: none; color: var(--color-paper); font-size: var(--text-section); line-height: 1.1; }
+.statement-note { grid-column: 1 / span 6; margin-top: var(--space-xl); color: var(--color-on-ink-muted); font-size: var(--text-lead); }
+
+.case { padding-block: var(--section-gap) var(--section-gap-s); }
+.case-head { grid-column: 1 / span 4; display: grid; align-content: start; gap: var(--space-md); }
+.case-head .small { max-width: 32ch; }
+.case-list { grid-column: 6 / span 7; list-style: none; border-top: var(--rule-bar) solid var(--color-rule-2); }
+.case-list li { padding-block: var(--space-sm); border-bottom: var(--rule-hair) solid var(--color-rule); }
+
+.record { padding-bottom: var(--section-gap); }
+.record-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-2xl); }
+.sheet { background: var(--color-sheet); border-top: var(--rule-bar) solid var(--color-ink); padding: var(--space-md) var(--space-xl) var(--space-xl); }
+.row { padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.row:last-child { border-bottom: 0; }
+.years { grid-column: 1 / span 2; display: grid; align-content: start; color: var(--color-ink); }
+.years span + span { color: var(--color-muted); }
+.role { grid-column: 3 / span 4; display: grid; align-content: start; gap: var(--space-2xs); }
+.role h3 { font-size: var(--text-lg); }
+.detail { grid-column: 7 / span 6; display: grid; gap: var(--space-xs); }
+.detail ul { padding-left: var(--space-md); display: grid; gap: var(--space-2xs); }
+.detail li::marker { color: var(--color-muted); }
+
+.projects { padding-bottom: var(--section-gap-l); }
+.projects h2 { margin-bottom: var(--space-2xl); }
+.project-list { list-style: none; border-top: var(--rule-bar) solid var(--color-rule-2); }
+.project { align-items: baseline; padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.project h3 { grid-column: 1 / span 4; }
+.project p { grid-column: 5 / span 5; }
+.project .project-links { grid-column: 10 / span 3; justify-self: end; display: grid; justify-items: end; gap: var(--space-2xs); }
+
+.strategy { padding-bottom: var(--section-gap); }
+.strategy-head { grid-column: 1 / span 4; display: grid; align-content: start; gap: var(--space-md); }
+.strategy-head .small { max-width: 30ch; }
+.strategy-body { grid-column: 5 / span 8; }
+.strategy-list { list-style: none; margin: 0; padding: 0; border-top: var(--rule-bar) solid var(--color-rule-2); }
+.strategy-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: var(--space-2xs) var(--gap-columns); padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.strategy-list .when { grid-row: span 2; color: var(--color-ink); }
+.strategy-list h3 { font-size: var(--text-lg); }
+.boards-head { max-width: none; margin-top: var(--space-2xl); padding-bottom: var(--space-sm); border-bottom: var(--rule-bar) solid var(--color-rule-2); font-size: var(--text-lg); }
+.boards { list-style: none; }
+.boards li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2xs) var(--space-lg); padding-block: var(--space-sm); border-bottom: var(--rule-hair) solid var(--color-rule); }
+.boards .when { color: var(--color-muted); white-space: nowrap; }
+
+.band-well { background: var(--color-paper-2); padding-block: var(--section-gap-s); }
+.band-well h2 { margin-bottom: var(--space-2xl); }
+.facts { grid-column: span 4; display: grid; align-content: start; gap: var(--space-lg); }
+.facts h3 { padding-bottom: var(--space-sm); border-bottom: var(--rule-bar) solid var(--color-rule-2); }
+.facts dl { margin: 0; display: grid; gap: var(--space-md); }
+.facts dt { color: var(--color-ink); font-weight: 500; }
+.facts dd { margin: 0; }
+
+.footer { padding-block: var(--section-gap-s) var(--space-2xl); }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-lg); padding-top: var(--space-lg); border-top: var(--rule-bar) solid var(--color-rule-2); }
+.footer-links ul { display: flex; flex-wrap: wrap; gap: var(--space-lg); list-style: none; }
+
+@media (max-width: 60rem) {
+  .case-head, .case-list, .statement, .statement-note, .years, .role, .detail, .facts, .project h3, .project p, .project .project-links, .strategy-head, .strategy-body { grid-column: 1 / -1; }
+  .project .project-links { justify-self: start; justify-items: start; }
+  .strategy-list li { grid-template-columns: minmax(0, 1fr); }
+  .strategy-list .when { grid-row: auto; }
+  .row, .project { gap: var(--space-xs); }
+  .sheet { padding-inline: var(--space-md); }
+  .years { display: flex; gap: var(--space-xs); }
+  .years span + span::before { content: "to "; }
+}
+@media (max-width: 40rem) {
+  :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; }
+}
+@media (max-width: 60rem) and (min-width: 40.01rem) {
+  :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:active { transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="container">
+    <a class="wordmark" href="#main" aria-label="WeiHsi Hu, back to top">WeiHsi Hu</a>
+    <ul>
+      <li><a href="https://github.com/waywho">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/weihsihu">LinkedIn</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="name">
+    <div class="container">
+      <h1 id="name">WeiHsi Hu</h1>
+      <p class="lead">Lead developer in Berlin. I came to code from research and product.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="https://www.linkedin.com/in/weihsihu">Message me on LinkedIn</a>
+        <a class="btn" href="https://github.com/waywho">Read my code on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-ink" aria-label="Background">
+    <div class="container cols">
+      <p class="statement">I spent ten years in social research, product management and my own consultancy before I wrote software for a living.</p>
+      <p class="statement-note">I still start every product from what its users need, and I like to see it through from the database to the screen.</p>
+    </div>
+  </section>
+
+  <section class="case" aria-labelledby="experience">
+    <div class="container cols">
+      <div class="case-head">
+        <h2 id="experience">Leading the dev team at SimplyTV</h2>
+        <p>Lead Software Engineer since <span class="num">2025</span>, after a year as Senior Software Engineer.</p>
+      </div>
+      <ul class="case-list">
+        <li>I lead a team of <span class="num">5</span> engineers. I run our sprints, plan the roadmap and advise on what we build.</li>
+        <li>I took pilot products from idea to launch, among them a live EPG correction tool. I still ship features myself, backend to UI.</li>
+        <li>With one contractor, I ran an LLM pilot: a RAG pipeline that finds duplicate programs with <span class="num">96%</span> accuracy. We checked it with a statistical evaluation framework.</li>
+        <li>AI enrichment is now part of the editorial workflow, with <span class="num">2x</span> the enrichment and <span class="num">10x</span> the duplicate merges.</li>
+        <li>Our Rails monolith ingests <span class="num">800k</span> to <span class="num">1M</span> programs a day. I worked on infrastructure and performance until the nightly incidents across OpenSearch, MySQL, Redis and the workers stopped, and I cut CI runtime by <span class="num">90%</span>.</li>
+        <li>I build reusable Rails engines so other teams can ship faster.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="projects" aria-labelledby="projects">
+    <div class="container">
+      <h2 id="projects">What I build in my own time</h2>
+      <ul class="project-list">
+        <li class="project cols"><h3>Launchd</h3><p>A deploy service for apps that non-coders build with AI</p><p class="project-links"><a href="https://launchd.eu">launchd.eu</a></p></li>
+        <li class="project cols"><h3>Tally</h3><p>A food diary, built in Rails 8 with an iOS app</p><p class="project-links"><a href="https://tally.quest">tally.quest</a><a href="https://github.com/waywho/tally">waywho/tally</a></p></li>
+        <li class="project cols"><h3>Signpost</h3><p>An AI assistant for tech leads, built on the Claude API</p><p class="project-links"><a href="https://github.com/waywho/signpost">waywho/signpost</a></p></li>
+        <li class="project cols"><h3>whose-components</h3><p>My Rails UI engine and app template</p><p class="project-links"><a href="https://github.com/waywho/whose-components">waywho/whose-components</a></p></li>
+        <li class="project cols"><h3>pr-to-release</h3><p>A GitHub Action for changelogs and releases</p><p class="project-links"><a href="https://github.com/waywho/pr-to-release">waywho/pr-to-release</a></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="record" aria-labelledby="before">
+    <div class="container">
+      <div class="record-head">
+        <h2 id="before">Ten years of Rails before that</h2>
+      </div>
+      <div class="sheet">
+        <article class="row cols">
+          <p class="years num"><span>2021</span><span>2024</span></p>
+          <div class="role"><h3>Senior Fullstack Software Engineer</h3><p>Zaikio</p></div>
+          <div class="detail">
+            <ul>
+              <li>I helped design an API-based, event-driven cloud platform that connects the print industry.</li>
+              <li>I built features for a SaaS print workflow app and for a secure OAuth sign-in and registration platform.</li>
+              <li>I led a group of junior developers from start to launch in <span class="num">3</span> weeks, together with design, sales and customer service.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="row cols">
+          <p class="years num"><span>2020</span><span>2021</span></p>
+          <div class="role"><h3>Senior Fullstack Software Engineer</h3><p>foodcircle</p></div>
+          <div class="detail">
+            <ul>
+              <li>I automated back-office work, such as logistics planning and credit checks, for an organic wholesale app.</li>
+              <li>I made the SaaS app faster and more stable by removing its major sources of errors.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="row cols">
+          <p class="years num"><span>2014</span><span>2021</span></p>
+          <div class="role"><h3>Founder</h3><p>Logical Thinking Consultancy</p></div>
+          <div class="detail">
+            <ul>
+              <li>I set up my own consultancy for tech development, business strategy, impact evaluation and research.</li>
+              <li>My clients worked in housing, addiction, health, education and the arts. Among them were Crisis, Diabetes UK and Mayday Housing Trust.</li>
+              <li>I built software for the Oxford University Research Archive at the Bodleian Library, LensShift, Artist.Center and AIMS Music International.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="strategy" aria-labelledby="strategy">
+    <div class="container cols">
+      <div class="strategy-head">
+        <h2 id="strategy">Product, research and policy work</h2>
+        <p class="small">In the UK and Canada, and on the boards I sat on</p>
+      </div>
+      <div class="strategy-body">
+        <ol class="strategy-list">
+          <li><p class="when"><span class="num">2016</span> to <span class="num">2017</span></p><h3>Product Manager, Refash</h3><p>I led product development from the first research to launch, working with design, tech, sales and marketing.</p></li>
+          <li><p class="when"><span class="num">2010</span> to <span class="num">2014</span></p><h3>Research and Consultancy Manager, Community Links</h3><p>I rebuilt a charity’s research and consultancy business. Its revenue grew <span class="num">800%</span> in <span class="num">3</span> years.</p></li>
+          <li><p class="when"><span class="num">2008</span> to <span class="num">2009</span></p><h3>Programme Manager, UK Department for Children, Schools and Families</h3><p>I ran programme management for the <span class="num">25</span> policy divisions of the Schools Directorate, and its business planning and resource allocation for <span class="num">2008</span> to <span class="num">2011</span>.</p></li>
+          <li><p class="when"><span class="num">2006</span> to <span class="num">2008</span></p><h3>Senior Programme Manager, Social Planning and Research Council of British Columbia</h3><p>My project teams used user research to influence government policy on immigration, social inclusion and justice reform.</p></li>
+        </ol>
+        <h3 class="boards-head">Boards</h3>
+        <ul class="boards">
+          <li><span>School Governor, St George’s CoE, Southwark</span><span class="when"><span class="num">2014</span> to <span class="num">2016</span></span></li>
+          <li><span>Executive Member, Canadian Commission for UNESCO</span><span class="when"><span class="num">2006</span> to <span class="num">2008</span></span></li>
+          <li><span>Vice-Chair, Society for Children and Youth of BC</span><span class="when"><span class="num">2006</span> to <span class="num">2008</span></span></li>
+          <li><span>Advisory Board, FirstCall Children and Youth Policy Network</span><span class="when"><span class="num">2006</span> to <span class="num">2008</span></span></li>
+          <li><span>Advisory Board, YouthNet Mental Health Initiative</span><span class="when"><span class="num">2002</span> to <span class="num">2004</span></span></li>
+          <li><span>Chair, Asian Society for the Intervention of AIDS</span><span class="when"><span class="num">1998</span> to <span class="num">2000</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-well" aria-labelledby="skills">
+    <div class="container">
+      <h2 id="skills">Skills, study and life outside work</h2>
+      <div class="cols">
+        <div class="facts">
+          <h3>Skills</h3>
+          <dl>
+            <div><dt>Backend</dt><dd>Ruby on Rails, RSpec, Minitest, Capybara, Redis, Sidekiq, OpenAPI, Python, OpenSearch, Elasticsearch, Node.js</dd></div>
+            <div><dt>Frontend</dt><dd>HTML, CSS, JavaScript, Vue, jQuery, Stimulus/Turbo, ViewComponent, Tailwind</dd></div>
+            <div><dt>Deployment</dt><dd>AWS, Docker, Heroku, Fly.io, Coolify, Ansible, Dokku, GitHub Actions</dd></div>
+            <div><dt>Tools</dt><dd>Git, AppSignal, Sentry, ScoutAPM, BetterUptime, Asana, Trello, Basecamp</dd></div>
+            <div><dt>AI</dt><dd>Claude Code, Claude API, RAG, evaluation frameworks</dd></div>
+          </dl>
+        </div>
+        <div class="facts">
+          <h3 id="education">Education</h3>
+          <dl>
+            <div><dt>Master of Music</dt><dd>University of Alberta, <span class="num">2004</span> to <span class="num">2006</span></dd></div>
+            <div><dt>Bachelor of Music</dt><dd>University of British Columbia, <span class="num">1997</span> to <span class="num">2001</span></dd></div>
+            <div><dt>Training</dt><dd>Human Centred Design, IDEO.org (<span class="num">2017</span>). Full-Stack Web Development, The Firehose Project (<span class="num">2015</span>). Data Science, Coursera (<span class="num">2015</span>). Social Return on Investment, New Economics Foundation (<span class="num">2013</span>). PRINCE2 Practitioner, KPMG (<span class="num">2012</span>). Statistical Analysis with SPSS, Imperial College London (<span class="num">2012</span>).</dd></div>
+            <div><dt>Languages</dt><dd>English and Chinese (native), German (B2), Spanish (A2)</dd></div>
+          </dl>
+        </div>
+        <div class="facts">
+          <h3 id="outside">Outside work</h3>
+          <dl>
+            <div><dt>Music director and founder</dt><dd>Berlin UnRehearsed Musicals, <span class="num">2017</span> to now</dd></div>
+            <div><dt>Festival choir conductor</dt><dd>Hand in Hand Pan Asian LGBT Choral Festival, <span class="num">2019</span> to now</dd></div>
+            <div><dt>Also</dt><dd>Flute, circus arts, photography and baking</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <ul>
+        <li><a href="https://www.linkedin.com/in/weihsihu">LinkedIn</a></li>
+        <li><a href="https://github.com/waywho">GitHub</a></li>
+      </ul>
+      <p class="small">Berlin. Updated November <span class="num">2026</span>.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

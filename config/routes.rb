@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints host: /\Adev\.weihsihu\.(com|test)\z/ do
+    root "weihsihu/dev_pages#show", as: :weihsihu_dev_root
+  end
+
   root "pages#landing"
   resources :pages, only: %i[index show], path: ''
 
