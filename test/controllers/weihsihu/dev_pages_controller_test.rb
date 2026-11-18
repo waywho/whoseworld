@@ -6,7 +6,7 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     get "/"
     assert_response :success
     assert_select "h1", "WeiHsi Hu"
-    assert_select "h2", "Leading the dev team at SimplyTV"
+    assert_select "h2", "Leading dev team at SimplyTV"
   end
 
   test "dev.weihsihu.com sends every other path to the developer page" do
