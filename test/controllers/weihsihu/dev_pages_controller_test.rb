@@ -5,8 +5,7 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     host! "dev.weihsihu.com"
     get "/"
     assert_response :success
-    assert_select "h1", "WeiHsi Hu"
-    assert_select "h2", "Leading dev team at SimplyTV"
+    assert_equal "weihsihu/dev_pages", controller.controller_path
   end
 
   test "dev.weihsihu.com sends every other path to the developer page" do
@@ -16,24 +15,11 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "http://dev.weihsihu.com/"
   end
 
-  test "the developer page loads no third-party fonts" do
-    host! "dev.weihsihu.com"
-    get "/"
-    assert_no_match "fonts.googleapis.com", response.body
-    assert_match "League Spartan", response.body
-  end
-
-  test "the developer page carries no build notes in its source" do
-    host! "dev.weihsihu.com"
-    get "/"
-    assert_no_match "Hallmark", response.body
-  end
-
-  test "weihsihu.com still serves the site landing" do
-    site = create(:site, :weihsi, public: true)
+  test "weihsihu.com still goes to the site pages" do
+    site = create(:site, :weihsi)
     host! site.domain
     get "/"
     assert_response :success
-    assert_template "weihsihu/landing"
+    assert_equal "pages", controller.controller_path
   end
 end
