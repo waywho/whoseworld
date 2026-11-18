@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WeiHsi Hu CV</title>
 <meta name="description" content="CV of WeiHsi Hu, a lead Rails engineer and team lead in Berlin.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
+@font-face {
+  font-family: "League Spartan";
+  src: url("<%= asset_path("leaguespartan-bold.woff2") %>") format("woff2"), url("<%= asset_path("leaguespartan-bold.woff") %>") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   color-scheme: light;
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
   --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
-  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem); --text-marquee: clamp(4rem, 19vw, 18rem);
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem); --text-marquee: clamp(3.5rem, 14vw, 13rem);
   --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --dur-micro: 120ms; --dur-short: 220ms;
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px; --nav-height: 72px;
@@ -22,11 +27,11 @@
   --color-rule: oklch(73% 0.013 240); --color-rule-2: oklch(32% 0.018 240);
   --color-accent: oklch(45% 0.180 350); --color-accent-2: oklch(37% 0.160 350); --color-accent-ink: oklch(97% 0.006 245); --color-focus: oklch(46% 0.190 350);
   --color-sheet: oklch(93.5% 0.008 245); --color-on-ink-muted: oklch(78% 0.012 245); --color-on-ink-accent: oklch(78% 0.120 350);
-  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Newsreader", ui-serif, Georgia, serif;
-  --font-outlier: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "League Spartan", Helvetica, Arial, sans-serif;
+  --font-body: Georgia, ui-serif, serif;
+  --font-outlier: ui-monospace, "SF Mono", Menlo, monospace;
   --radius-pill: 2px; --rule-hair: 1px; --rule-bar: 2px;
-  --tracking-display: -0.02em; --display-weight: 600;
+  --tracking-display: -0.02em; --display-weight: 700;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -96,7 +101,7 @@ ul { margin: 0; padding: 0; }
 .project { align-items: baseline; padding-block: var(--space-lg); border-bottom: var(--rule-hair) solid var(--color-rule); }
 .project h3 { grid-column: 1 / span 4; }
 .project p { grid-column: 5 / span 5; }
-.project .project-links { grid-column: 10 / span 3; justify-self: end; display: grid; justify-items: end; gap: var(--space-2xs); }
+.project .project-links { grid-column: 10 / span 3; justify-self: end; display: grid; justify-items: end; gap: var(--space-2xs); white-space: nowrap; }
 
 .strategy { padding-bottom: var(--section-gap); }
 .strategy-head { grid-column: 1 / span 4; display: grid; align-content: start; gap: var(--space-md); }

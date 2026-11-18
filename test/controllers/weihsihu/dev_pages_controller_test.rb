@@ -16,6 +16,13 @@ class Weihsihu::DevPagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "http://dev.weihsihu.com/"
   end
 
+  test "the developer page loads no third-party fonts" do
+    host! "dev.weihsihu.com"
+    get "/"
+    assert_no_match "fonts.googleapis.com", response.body
+    assert_match "League Spartan", response.body
+  end
+
   test "the developer page carries no build notes in its source" do
     host! "dev.weihsihu.com"
     get "/"
