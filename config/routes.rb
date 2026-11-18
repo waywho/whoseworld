@@ -1,6 +1,11 @@
 require "domain_constraints"
 
 Rails.application.routes.draw do
+  constraints host: /\Adev\.weihsihu\.(com|test)\z/ do
+    root "weihsihu/dev_pages#show", as: :weihsihu_dev_root
+    get "*path", to: redirect("/"), format: false
+  end
+
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self) if ENV["ACTIVE_ADMIN_DISABLE_ROUTE"] != "true"
   
